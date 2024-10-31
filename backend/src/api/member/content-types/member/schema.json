@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "members",
+  "info": {
+    "singularName": "member",
+    "pluralName": "members",
+    "displayName": "Member",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "full_name": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": false
+    },
+    "portrait_image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "location": {
+      "type": "enumeration",
+      "enum": [
+        "auckland",
+        "christchurch",
+        "sydney",
+        "yokohama"
+      ]
+    },
+    "country": {
+      "type": "enumeration",
+      "enum": [
+        "New Zealand",
+        "Australia",
+        "Japan"
+      ]
+    }
+  }
+}
