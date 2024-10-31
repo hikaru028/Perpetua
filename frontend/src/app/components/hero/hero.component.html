@@ -1,9 +1,23 @@
 <section>
-    <app-logo></app-logo>
-    <app-languages></app-languages>
-    <app-header-nav></app-header-nav>
-    <app-slide-toggler></app-slide-toggler>
-    <app-slides></app-slides>
+    <div class="row">
+        <div class="col-3">
+            <!-- Logo -->
+            <app-logo></app-logo>
+        </div>
+        <div class="col-3">
+            <!-- Header menu bar -->
+            <app-menu></app-menu>
+        </div>
+        <div class="col-3">
+            <!-- Language options -->
+            <app-languages></app-languages>
+        </div>
+    </div>
+    <div class="row">
+        <app-slide-toggler></app-slide-toggler>
+        <app-slides></app-slides>
+    </div>
 
     <h1>{{ firstName }}</h1>
+    <input type="text" [value]="firstName" class='form-control' />
 </section>

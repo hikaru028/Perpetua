@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { SlidesComponent } from "./components/slides/slides.component";
 import { SlideTogglerComponent } from "./components/slide-toggler/slide-toggler.component";
-import { HeaderNavComponent } from "./components/header-nav/header-nav.component";
 import { LanguagesComponent } from "./components/languages/languages.component";
 import { LogoComponent } from "./components/logo/logo.component";
+import { MenuComponent } from "./components/menu/menu.component";
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [SlidesComponent, SlideTogglerComponent, HeaderNavComponent, LanguagesComponent, LogoComponent],
+  imports: [SlidesComponent, SlideTogglerComponent, LanguagesComponent, LogoComponent, MenuComponent],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss'
 })
