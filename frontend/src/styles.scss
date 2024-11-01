@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -10,16 +9,12 @@
 @include mat.core();
 
 // Define the theme object.
-$frontend-theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
-    tertiary: mat.$blue-palette,
-  ),
-  density: (
-    scale: 0,
-  )
-));
+$frontend-theme: mat.define-theme((color: (theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      density: (scale: 0,
+      )));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -36,5 +31,41 @@ $frontend-theme: mat.define-theme((
 // @include mat.color-variants-backwards-compatibility($frontend-theme);
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@font-face {
+  font-family: 'Larsseit';
+  src: url('/assets/fonts/larsseit/Larsseit-Thin.otf') format('larsseit-thin'),
+    url('/assets/fonts/larsseit/Larsseit-Light.otf') format('larsseit-light'),
+    url('/assets/fonts/larsseit/Larsseit.otf') format('larsseit-base'),
+    url('/assets/fonts/larsseit/Larsseit-Medium.otf') format('larsseit-mid'),
+    url('/assets/fonts/larsseit/Larsseit-Bold.otf') format('larsseit-bold'),
+    url('/assets/fonts/larsseit/Larsseit-ExtraBold.otf') format('larsseit-ex-bold');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sohne';
+  src: url('/assets/fonts/sohne/Sohne-Thin.otf') format('Sohne-thin'),
+    url('/assets/fonts/sohne/Sohne-Light.otf') format('Sohne-light'),
+    url('/assets/fonts/sohne/Sohne.otf') format('Sohne-base'),
+    url('/assets/fonts/sohne/Sohne-Medium.otf') format('Sohne-mid'),
+    url('/assets/fonts/sohne/Sohne-Bold.otf') format('Sohne-bold'),
+    url('/assets/fonts/sohne/Sohne-ExtraBold.otf') format('Sohne-ex-bold');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Set global font family */
+body {
+  font-family: 'FontA', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
