@@ -1,23 +1,24 @@
-<section>
-    <div class="row">
-        <div class="col-3">
+<section class='w-100 m-0'>
+    <!-- Header -->
+    <div class='header-container'>
+        <div class='header-left'>
             <!-- Logo -->
-            <app-logo></app-logo>
-        </div>
-        <div class="col-3">
+            <div class='logo-wrapper'>
+                <app-logo></app-logo>
+            </div>
             <!-- Header menu bar -->
-            <app-menu></app-menu>
+            <div class="">
+                <app-menu></app-menu>
+            </div>
         </div>
-        <div class="col-3">
-            <!-- Language options -->
+        <!-- Language options -->
+        <div class='header-right'>
             <app-languages></app-languages>
         </div>
     </div>
+
     <div class="row">
         <app-slide-toggler></app-slide-toggler>
         <app-slides></app-slides>
     </div>
-
-    <h1>{{ firstName }}</h1>
-    <input type="text" [value]="firstName" class='form-control' />
 </section>

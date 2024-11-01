@@ -1,1 +1,82 @@
-<p>menu works!</p>
+<div cdkMenuBar>
+    <button class="menu-item" cdkMenuItem [cdkMenuTriggerFor]="projects">projects</button>
+    <button class="menu-item" cdkMenuItem [cdkMenuTriggerFor]="services">What we do</button>
+    <button class="menu-item" cdkMenuItem [cdkMenuTriggerFor]="about">About us</button>
+</div>
+<ng-template #projects>
+    <div class="submenu-items" cdkMenu>
+        <button class="submenu-item" cdkMenuItem>MyOCP App</button>
+        <button class="submenu-item" cdkMenuItem>Duncan Taylor Builders Website</button>
+        <button class="submenu-item" cdkMenuItem>Perpetua Website</button>
+        <button class="submenu-item" cdkMenuItem>OCP Group Website</button>
+        <button class="submenu-item" cdkMenuItem>Ecoglo Cost-calculator</button>
+        <button class="submenu-item" cdkMenuItem>First Class First Aid Website</button>
+    </div>
+</ng-template>
+
+<ng-template #services>
+    <div class="submenu-items" cdkMenu>
+        <button class="submenu-item" cdkMenuItem>Custom Software</button>
+        <button class="submenu-item" cdkMenuItem>Websites & CMS</button>
+        <button class="submenu-item" cdkMenuItem>Native & Web Apps</button>
+        <button class="submenu-item" cdkMenuItem>Artificial Intelligence</button>
+        <button class="submenu-item" cdkMenuItem>Hosting & Cloud</button>
+        <button class="submenu-item" cdkMenuItem>First Class First Aid Website</button>
+        <button class="submenu-item" cdkMenuItem>Data & Analytics</button>
+    </div>
+</ng-template>
+
+<ng-template #about>
+    <div class="submenu-items" cdkMenu>
+        <button class="submenu-item" cdkMenuItem>About Us</button>
+        <button class="submenu-item" cdkMenuItem>Our Team</button>
+        <button class="submenu-item" cdkMenuItem>Our Clients</button>
+        <button class="submenu-item" cdkMenuItem>Testimonials</button>
+    </div>
+</ng-template>
+
+<!-- Projects -->
+<!-- <div>
+    <ul>
+        <li>
+            <p>View all work</p>
+            <span>icon</span>
+        </li>
+        <li>
+            <p>Browse by project type</p>
+            <span>icon</span>
+        </li>
+        <li>
+            <p>Browse by industry</p>
+            <span>icon</span>
+        </li>
+    </ul>
+</div> -->
+
+<!-- What we do -->
+<!-- <div>
+    <ul>
+        <li>
+            <p>Learn more</p>
+            <span>icon</span>
+        </li>
+        <li>
+            <p>Book a free consultation</p>
+            <span>icon</span>
+        </li>
+    </ul>
+</div> -->
+
+<!-- About us -->
+<!-- <div>
+    <ul>
+        <li>
+            <p>Join the team</p>
+            <span>icon</span>
+        </li>
+        <li>
+            <p>View our locations</p>
+            <span>icon</span>
+        </li>
+    </ul>
+</div> -->
