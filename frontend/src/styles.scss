@@ -33,31 +33,90 @@ $frontend-theme: mat.define-theme((color: (theme-type: light,
 
 @font-face {
   font-family: 'Larsseit';
-  src: url('/assets/fonts/larsseit/Larsseit-Thin.otf') format('larsseit-thin'),
-    url('/assets/fonts/larsseit/Larsseit-Light.otf') format('larsseit-light'),
-    url('/assets/fonts/larsseit/Larsseit.otf') format('larsseit-base'),
-    url('/assets/fonts/larsseit/Larsseit-Medium.otf') format('larsseit-mid'),
-    url('/assets/fonts/larsseit/Larsseit-Bold.otf') format('larsseit-bold'),
-    url('/assets/fonts/larsseit/Larsseit-ExtraBold.otf') format('larsseit-ex-bold');
-  font-weight: normal;
+  src: url('./assets/fonts/larsseit/Larsseit-Thin.otf') format('opentype');
+  font-weight: 100; // Thin
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Larsseit';
+  src: url('./assets/fonts/larsseit/Larsseit-Light.otf') format('opentype');
+  font-weight: 300; // Light
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Larsseit';
+  src: url('./assets/fonts/larsseit/Larsseit.otf') format('opentype');
+  font-weight: 400; // Normal
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Larsseit';
+  src: url('./assets/fonts/larsseit/Larsseit-Medium.otf') format('opentype');
+  font-weight: 500; // Medium
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Larsseit';
+  src: url('./assets/fonts/larsseit/Larsseit-Bold.otf') format('opentype');
+  font-weight: 700; // Bold
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Larsseit';
+  src: url('./assets/fonts/larsseit/Larsseit-ExtraBold.otf') format('opentype');
+  font-weight: 800; // Extra Bold
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Sohne';
-  src: url('/assets/fonts/sohne/Sohne-Thin.otf') format('Sohne-thin'),
-    url('/assets/fonts/sohne/Sohne-Light.otf') format('Sohne-light'),
-    url('/assets/fonts/sohne/Sohne.otf') format('Sohne-base'),
-    url('/assets/fonts/sohne/Sohne-Medium.otf') format('Sohne-mid'),
-    url('/assets/fonts/sohne/Sohne-Bold.otf') format('Sohne-bold'),
-    url('/assets/fonts/sohne/Sohne-ExtraBold.otf') format('Sohne-ex-bold');
-  font-weight: bold;
+  src: url('./assets/fonts/sohne/Sohne-Thin.otf') format('opentype');
+  font-weight: 100; // Thin
   font-style: normal;
 }
 
-/* Set global font family */
-body {
-  font-family: 'FontA', sans-serif;
+@font-face {
+  font-family: 'Sohne';
+  src: url('./assets/fonts/sohne/Sohne-Light.otf') format('opentype');
+  font-weight: 300; // Light
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sohne';
+  src: url('./assets/fonts/sohne/Sohne.otf') format('opentype');
+  font-weight: 400; // Regular
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sohne';
+  src: url('./assets/fonts/sohne/Sohne-Medium.otf') format('opentype');
+  font-weight: 500; // Medium
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sohne';
+  src: url('./assets/fonts/sohne/Sohne-Bold.otf') format('opentype');
+  font-weight: 700; // Bold
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sohne';
+  src: url('./assets/fonts/sohne/Sohne-ExtraBold.otf') format('opentype');
+  font-weight: 800; // Extra Bold
+  font-style: normal;
+}
+
+html {
+  font-size: 16px;
 }
 
 html,
@@ -67,5 +126,5 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Larsseit', sans-serif, Roboto;
 }

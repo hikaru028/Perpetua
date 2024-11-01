@@ -1,39 +1,53 @@
-<div cdkMenuBar>
-    <button class="menu-item" cdkMenuItem [cdkMenuTriggerFor]="projects">projects</button>
-    <button class="menu-item" cdkMenuItem [cdkMenuTriggerFor]="services">What we do</button>
-    <button class="menu-item" cdkMenuItem [cdkMenuTriggerFor]="about">About us</button>
+<div class="menu-container">
+    <button class="menu-item" id="projects">Projects</button>
+    <button class="menu-item" id="services">What we do</button>
+    <button class="menu-item" id="about">About us</button>
 </div>
-<ng-template #projects class="submenu-container">
-    <div class="submenu-items" cdkMenu>
-        <button class="submenu-item" cdkMenuItem>MyOCP App</button>
-        <button class="submenu-item" cdkMenuItem>Duncan Taylor Builders Website</button>
-        <button class="submenu-item" cdkMenuItem>Perpetua Website</button>
-        <button class="submenu-item" cdkMenuItem>OCP Group Website</button>
-        <button class="submenu-item" cdkMenuItem>Ecoglo Cost-calculator</button>
-        <button class="submenu-item" cdkMenuItem>First Class First Aid Website</button>
+<div id="submenu-projects" class="submenu-container">
+    <i class="bi bi-chevron-down"></i>
+    <div class="submenu-box">
+        <ul class="submenu-item-wrapper">
+            <li class="submenu-item">MyOCP App</li>
+            <li class="submenu-item">Duncan Taylor Builders Website</li>
+            <li class="submenu-item">Perpetua Website</li>
+            <li class="submenu-item">OCP Group Website</li>
+            <li class="submenu-item">Ecoglo Cost-calculator</li>
+            <li class="submenu-item">First Class First Aid Website</li>
+        </ul>
+        <ul class="submenu-item-wrapper">
+            <li class="page-link">
+                <p>View all work</p><i class="bi bi-arrow-right-short"></i>
+            </li>
+            <li class="page-link">
+                <p>Browse by project type</p><i class="bi bi-arrow-right-short"></i>
+            </li>
+            <li class="page-link">
+                <p>Browse by industry</p><i class="bi bi-arrow-right-short"></i>
+            </li>
+        </ul>
     </div>
-</ng-template>
+</div>
 
-<ng-template #services>
-    <div class="submenu-items" cdkMenu>
-        <button class="submenu-item" cdkMenuItem>Custom Software</button>
-        <button class="submenu-item" cdkMenuItem>Websites & CMS</button>
-        <button class="submenu-item" cdkMenuItem>Native & Web Apps</button>
-        <button class="submenu-item" cdkMenuItem>Artificial Intelligence</button>
-        <button class="submenu-item" cdkMenuItem>Hosting & Cloud</button>
-        <button class="submenu-item" cdkMenuItem>First Class First Aid Website</button>
-        <button class="submenu-item" cdkMenuItem>Data & Analytics</button>
-    </div>
-</ng-template>
+<!-- <div id="submenu-services" class="submenu-container">
+    <ul class="submenu-item-wrapper">
+        <li class="submenu-item">Custom Software</li>
+        <li class="submenu-item">Websites & CMS</li>
+        <li class="submenu-item">Native & Web Apps</li>
+        <li class="submenu-item">Artificial Intelligence</li>
+        <li class="submenu-item">Hosting & Cloud</li>
+        <li class="submenu-item">First Class First Aid Website</li>
+        <li class="submenu-item">Data & Analytics</li>
+    </ul>
+</div>
 
-<ng-template #about>
-    <div class="submenu-items" cdkMenu>
-        <button class="submenu-item" cdkMenuItem>About Us</button>
-        <button class="submenu-item" cdkMenuItem>Our Team</button>
-        <button class="submenu-item" cdkMenuItem>Our Clients</button>
-        <button class="submenu-item" cdkMenuItem>Testimonials</button>
-    </div>
-</ng-template>
+<div id="submenu-about" class="submenu-container">
+    <ul class="submenu-item-wrapper">
+        <li class="submenu-item">About Us</li>
+        <li class="submenu-item">Our Team</li>
+        <li class="submenu-item">Our Clients</li>
+        <li class="submenu-item">Testimonials</li>
+    </ul>
+</div> -->
 
 <!-- Projects -->
 <!-- <div>

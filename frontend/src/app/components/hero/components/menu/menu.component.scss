@@ -1,75 +1,132 @@
-.menu-item {
-    cursor: pointer;
-    border: none;
-    user-select: none;
-    min-width: 34px;
-    line-height: 26px;
-    padding: 0 16px;
+.menu-container {
+    margin-left: 50px;
+
+    .menu-item {
+        width: auto;
+        height: 24px;
+        border: none;
+        user-select: none;
+        min-width: 34px;
+        line-height: 24px;
+        padding: 0 21px;
+        color: #ffffff;
+        font-family: 'Larsseit' !important;
+        font-weight: 300;
+        font-size: 1.125rem;
+        background-color: transparent;
+        cursor: pointer;
+    }
+}
+
+
+.menu-item:hover {
     color: #a8a8a8;
     background-color: transparent;
 }
 
-.menu-item:hover {
-    color: #ffffff;
-}
-
 .submenu-container {
     width: 100%;
-}
-
-.submenu-items {
-    display: inline-flex;
-    flex-direction: column;
-    min-width: 100%;
-    background-color: rgb(255, 255, 255);
-    padding: 6px 0;
-}
-
-.submenu-items {
-    display: inline-flex;
-    flex-direction: column;
-}
-
-.submenu-items .submenu-item {
-    background-color: transparent;
-    cursor: pointer;
-    border: none;
-
-    user-select: none;
-    min-width: 64px;
-    line-height: 36px;
-    padding: 0 16px;
-
+    height: 410px;
+    position: absolute;
+    top: 46px;
+    left: 0;
     display: flex;
-    align-items: center;
-    flex-direction: row;
-    flex: 1;
+    flex-direction: column;
+    background-color: #0e0e01;
+
+    .bi-chevron-down {
+        margin-top: 3px;
+        margin-left: 117px;
+        font-size: 1rem;
+        color: #a8a8a8;
+        margin-bottom: 46px;
+    }
+
+    .submenu-box {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: start;
+
+        .submenu-item-wrapper {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 6px 0;
+            margin-left: 117px;
+
+            .submenu-item {
+                list-style: none;
+                background-color: transparent;
+                font-family: 'Sohne' !important;
+                font-size: 1.5rem;
+                border: none;
+                user-select: none;
+                min-width: 64px;
+                margin-bottom: 6px;
+                color: #ffffff;
+                cursor: pointer;
+            }
+
+            .page-link {
+                list-style: none;
+                display: flex;
+                flex-direction: row;
+                font-family: 'Larsseit' !important;
+                font-weight: 400;
+                font-size: 1.125rem;
+                color: #a8a8a8;
+            }
+        }
+    }
+
 }
 
-.submenu-item>span {
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-    justify-content: flex-end;
-}
 
-.submenu-items .submenu-item:hover {
-    background-color: rgb(208, 208, 208);
-}
+// .submenu-items .submenu-item {
+//     background-color: transparent;
+//     cursor: pointer;
+//     border: none;
 
-.submenu-items .submenu-item[role='menuitemradio'][aria-checked='true'] {
-    background-color: rgb(225, 225, 225);
-}
+//     user-select: none;
+//     min-width: 64px;
+//     line-height: 36px;
+//     padding: 0 16px;
 
-.submenu-items .submenu-item[role='menuitemcheckbox'][aria-checked='true'] {
-    background-color: rgb(225, 225, 225);
-}
+//     display: flex;
+//     align-items: center;
+//     flex-direction: row;
+//     flex: 1;
+// }
 
-.submenu-items .submenu-item:active {
-    background-color: rgb(170, 170, 170);
-}
+// .submenu-item>span {
+//     display: flex;
+//     flex-direction: row;
+//     flex: 1;
+//     justify-content: flex-end;
+// }
 
-.menu-item[aria-expanded='true'],
-.submenu-item[aria-expanded='true'] {
-    background-color: rgb(208, 208, 208) !important;
-}
+// .submenu-items .submenu-item:hover {
+//     background-color: rgb(208, 208, 208);
+// }
+
+
+// .submenu-items .submenu-item[role='menuitemradio'][aria-checked='true'] {
+//     background-color: rgb(225, 225, 225);
+// }
+
+// .submenu-items .submenu-item[role='menuitemcheckbox'][aria-checked='true'] {
+//     background-color: rgb(225, 225, 225);
+// }
+
+// .submenu-items .submenu-item:active {
+//     background-color: rgb(170, 170, 170);
+//     color: #ffffff;
+// }
+
+// .menu-item[aria-expanded='true'],
+// .submenu-item[aria-expanded='true'] {
+//     background-color: rgb(208, 208, 208) !important;
+// }

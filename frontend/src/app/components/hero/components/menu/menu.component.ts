@@ -1,29 +1,12 @@
-import { Component } from '@angular/core';
-import {
-  CdkMenuItemRadio,
-  CdkMenuItemCheckbox,
-  CdkMenuGroup,
-  CdkMenu,
-  CdkMenuTrigger,
-  CdkMenuItem,
-  CdkMenuBar,
-} from '@angular/cdk/menu';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [
-    CdkMenuBar,
-    CdkMenuItem,
-    CdkMenuTrigger,
-    CdkMenu,
-    CdkMenuGroup,
-    CdkMenuItemCheckbox,
-    CdkMenuItemRadio,
-  ],
+  imports: [],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss'
+  styleUrl: './menu.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class MenuComponent {
-
 }
