@@ -12,6 +12,7 @@
         (mouseenter)="onMenuClick('contact', $event)">Contact</button>
 </div>
 <!-- Submenu -->
+<!-- Projects -->
 <div id="submenu-projects" class="submenu-container">
     <i class="bi bi-chevron-down"></i>
     <div class="submenu-box">
@@ -35,78 +36,89 @@
             </li>
         </ul>
         <div class="submenu-item-wrapper">
-            <app-search-bar></app-search-bar>
+            <app-search-bar placeholder="Search projects"></app-search-bar>
         </div>
     </div>
 </div>
-<div id="submenu-services" class="submenu-container"></div>
-<div id="submenu-about" class="submenu-container"></div>
-<div id="submenu-blog" class="submenu-container"></div>
-<div id="submenu-contact" class="submenu-container"></div>
-
-<!-- <div id="submenu-services" class="submenu-container">
-    <ul class="submenu-item-wrapper">
-        <li class="submenu-item">Custom Software</li>
-        <li class="submenu-item">Websites & CMS</li>
-        <li class="submenu-item">Native & Web Apps</li>
-        <li class="submenu-item">Artificial Intelligence</li>
-        <li class="submenu-item">Hosting & Cloud</li>
-        <li class="submenu-item">First Class First Aid Website</li>
-        <li class="submenu-item">Data & Analytics</li>
-    </ul>
-</div>
-
-<div id="submenu-about" class="submenu-container">
-    <ul class="submenu-item-wrapper">
-        <li class="submenu-item">About Us</li>
-        <li class="submenu-item">Our Team</li>
-        <li class="submenu-item">Our Clients</li>
-        <li class="submenu-item">Testimonials</li>
-    </ul>
-</div> -->
-
-<!-- Projects -->
-<!-- <div>
-    <ul>
-        <li>
-            <p>View all work</p>
-            <span>icon</span>
-        </li>
-        <li>
-            <p>Browse by project type</p>
-            <span>icon</span>
-        </li>
-        <li>
-            <p>Browse by industry</p>
-            <span>icon</span>
-        </li>
-    </ul>
-</div> -->
-
 <!-- What we do -->
-<!-- <div>
-    <ul>
-        <li>
-            <p>Learn more</p>
-            <span>icon</span>
-        </li>
-        <li>
-            <p>Book a free consultation</p>
-            <span>icon</span>
-        </li>
-    </ul>
-</div> -->
-
+<div id="submenu-services" class="submenu-container">
+    <i class="bi bi-chevron-down"></i>
+    <div class="submenu-box">
+        <ul class="submenu-item-wrapper">
+            <li class="submenu-item">Custom Software</li>
+            <li class="submenu-item">Websites & CMS</li>
+            <li class="submenu-item">Native & Web Apps</li>
+            <li class="submenu-item">Artificial Intelligence</li>
+            <li class="submenu-item">Hosting & Cloud</li>
+            <li class="submenu-item">Data & Analytics</li>
+        </ul>
+        <ul class="submenu-item-wrapper">
+            <li class="page-link">
+                <p>Learn more</p><i class="bi bi-arrow-right-short"></i>
+            </li>
+            <li class="page-link">
+                <p>Book a free consultation</p><i class="bi bi-arrow-right-short"></i>
+            </li>
+        </ul>
+    </div>
+</div>
 <!-- About us -->
-<!-- <div>
-    <ul>
-        <li>
-            <p>Join the team</p>
-            <span>icon</span>
-        </li>
-        <li>
-            <p>View our locations</p>
-            <span>icon</span>
-        </li>
-    </ul>
-</div> -->
+<div id="submenu-about" class="submenu-container">
+    <i class="bi bi-chevron-down"></i>
+    <div class="submenu-box">
+        <ul class="submenu-item-wrapper">
+            <li class="submenu-item">About Us</li>
+            <li class="submenu-item">Our Team</li>
+            <li class="submenu-item">Our Clients</li>
+            <li class="submenu-item">Testimonials</li>
+        </ul>
+        <ul class="submenu-item-wrapper">
+            <li class="page-link">
+                <p>Join the team</p><i class="bi bi-arrow-right-short"></i>
+            </li>
+            <li class="page-link">
+                <p>View our locations</p><i class="bi bi-arrow-right-short"></i>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- Blog -->
+<div id="submenu-blog" class="submenu-container">
+    <i class="bi bi-chevron-down"></i>
+    <div class="submenu-box">
+        <ul class="submenu-item-wrapper">
+            <li class="submenu-item">News</li>
+            <li class="submenu-item">Articles</li>
+        </ul>
+        <ul class="submenu-item-wrapper">
+            <li class="page-link">
+                <p>View all content</p><i class="bi bi-arrow-right-short"></i>
+            </li>
+            <li class="page-link">
+                <p>Browse by tag</p><i class="bi bi-arrow-right-short"></i>
+            </li>
+        </ul>
+        <div class="submenu-item-wrapper">
+            <app-search-bar placeholder="Search content"></app-search-bar>
+        </div>
+    </div>
+</div>
+<!-- Contact -->
+<div id="submenu-contact" class="submenu-container">
+    <i class="bi bi-chevron-down"></i>
+    <div class="submenu-box">
+        <ul class="submenu-item-wrapper">
+            <li class="submenu-item">Contact us</li>
+            <li class="submenu-item">Our locations</li>
+            <li class="submenu-item">Careers</li>
+        </ul>
+        <ul class="submenu-item-wrapper">
+            <li class="page-link">
+                <p>Send us a message</p><i class="bi bi-arrow-right-short"></i>
+            </li>
+            <li class="page-link">
+                <p>Book a consultation</p><i class="bi bi-arrow-right-short"></i>
+            </li>
+        </ul>
+    </div>
+</div>

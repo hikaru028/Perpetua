@@ -41,8 +41,6 @@ export class MenuComponent {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     const targetElement = event.target as HTMLElement;
-
-    // Check if the click happened inside the menu container or submenu container
     const isMenuClick = targetElement.closest('.menu-container') || targetElement.closest('.submenu-container');
 
     if (!isMenuClick) {
