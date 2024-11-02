@@ -1,8 +1,17 @@
+<!-- Menu bar -->
 <div class="menu-container">
-    <button class="menu-item" id="projects">Projects</button>
-    <button class="menu-item" id="services">What we do</button>
-    <button class="menu-item" id="about">About us</button>
+    <button class="menu-item" id="projects" (click)="onMenuClick('projects', $event)"
+        (mouseenter)="onMenuClick('projects', $event)">Projects</button>
+    <button class="menu-item" id="services" (click)="onMenuClick('services', $event)"
+        (mouseenter)="onMenuClick('services', $event)">What we do</button>
+    <button class="menu-item" id="about" (click)="onMenuClick('about', $event)"
+        (mouseenter)="onMenuClick('about', $event)">About us</button>
+    <button class="menu-item" id="blog" (click)="onMenuClick('blog', $event)"
+        (mouseenter)="onMenuClick('blog', $event)">Blog</button>
+    <button class="menu-item" id="contact" (click)="onMenuClick('contact', $event)"
+        (mouseenter)="onMenuClick('contact', $event)">Contact</button>
 </div>
+<!-- Submenu -->
 <div id="submenu-projects" class="submenu-container">
     <i class="bi bi-chevron-down"></i>
     <div class="submenu-box">
@@ -25,10 +34,15 @@
                 <p>Browse by industry</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>
-
-        <app-search-bar></app-search-bar>
+        <div class="submenu-item-wrapper">
+            <app-search-bar></app-search-bar>
+        </div>
     </div>
 </div>
+<div id="submenu-services" class="submenu-container"></div>
+<div id="submenu-about" class="submenu-container"></div>
+<div id="submenu-blog" class="submenu-container"></div>
+<div id="submenu-contact" class="submenu-container"></div>
 
 <!-- <div id="submenu-services" class="submenu-container">
     <ul class="submenu-item-wrapper">
