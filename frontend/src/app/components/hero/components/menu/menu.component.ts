@@ -9,14 +9,15 @@ import { SearchBarComponent } from "./search-bar/search-bar.component";
   styleUrl: './menu.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
+
 export class MenuComponent {
   selectedMenuItem: string | null = null;
 
   onMenuClick(menuItem: string, event: Event) {
     event.stopPropagation();
 
-    const menuItems = document.querySelectorAll('.menu-item');
-    menuItems.forEach(item => item.classList.remove('selected'));
+    const menuWrappers = document.querySelectorAll('.menu-wrapper');
+    menuWrappers.forEach(wrapper => wrapper.classList.remove('selected'));
 
     // Hide all submenus
     const submenus = document.querySelectorAll('.submenu-container');
@@ -25,7 +26,10 @@ export class MenuComponent {
     // Add "selected" class to the clicked item
     const clickedMenuItem = document.getElementById(menuItem);
     if (clickedMenuItem) {
-      clickedMenuItem.classList.add('selected');
+      const menuWrapper = clickedMenuItem.closest('.menu-wrapper');
+      if (menuWrapper) {
+        menuWrapper.classList.add('selected');
+      }
     }
 
     // Show the corresponding submenu
@@ -41,6 +45,8 @@ export class MenuComponent {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     const targetElement = event.target as HTMLElement;
+
+    // Check if the click happened inside the menu container or submenu container
     const isMenuClick = targetElement.closest('.menu-container') || targetElement.closest('.submenu-container');
 
     if (!isMenuClick) {
@@ -48,9 +54,9 @@ export class MenuComponent {
       const submenus = document.querySelectorAll('.submenu-container');
       submenus.forEach(submenu => submenu.classList.remove('visible'));
 
-      // Also deselect all menu items
-      const menuItems = document.querySelectorAll('.menu-item');
-      menuItems.forEach(item => item.classList.remove('selected'));
+      // Also deselect all menu wrappers (this will affect both the button and the chevron)
+      const menuWrappers = document.querySelectorAll('.menu-wrapper');
+      menuWrappers.forEach(wrapper => wrapper.classList.remove('selected'));
 
       // Reset the selectedMenuItem state
       this.selectedMenuItem = null;

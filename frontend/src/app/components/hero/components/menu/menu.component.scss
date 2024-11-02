@@ -1,32 +1,56 @@
 .menu-container {
     margin-left: 50px;
+    display: flex;
+    flex-direction: row;
 
-    .menu-item {
-        width: auto;
-        height: 24px;
-        border: none;
-        user-select: none;
-        min-width: 34px;
-        line-height: 24px;
-        padding: 0 21px;
-        color: #ffffff;
-        font-family: 'Larsseit' !important;
-        font-weight: 300;
-        font-size: 1.125rem;
-        background-color: transparent;
-        cursor: pointer;
+    .menu-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        position: relative;
 
-        &:hover {
-            color: #a8a8a8;
+        .menu-item {
+            width: auto;
+            height: 24px;
+            min-width: 34px;
+            line-height: 24px;
+            padding: 0 21px;
+            color: #ffffff;
+            font-family: 'Larsseit' !important;
+            font-weight: 300;
+            font-size: 1.125rem;
             background-color: transparent;
+            border: none;
+            user-select: none;
+            cursor: pointer;
+
+            &:hover {
+                color: #a8a8a8;
+                background-color: transparent;
+            }
+
+            &.selected {
+                color: #a8a8a8;
+            }
         }
 
-        &.selected {
+        &:hover .chevron,
+        &.selected .chevron {
+            display: block;
+        }
+
+        .chevron {
+            display: none;
+            font-size: 1rem;
+            position: absolute;
+            top: 40px;
+            left: 21px;
             color: #a8a8a8;
+            z-index: 20;
         }
     }
 }
-
 
 .submenu-container {
     width: 100%;
@@ -43,20 +67,13 @@
         display: flex;
     }
 
-    .bi-chevron-down {
-        margin-top: 3px;
-        margin-left: 117px;
-        font-size: 1rem;
-        color: #a8a8a8;
-        margin-bottom: 46px;
-    }
-
     .submenu-box {
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: start;
         align-items: start;
+        margin-top: 70px;
 
         .submenu-item-wrapper {
             width: auto;
@@ -119,5 +136,15 @@
             }
         }
     }
+}
 
+// Mobile devices
+@media screen and (max-width: 768px) {
+    .menu-container {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
 }

@@ -1,20 +1,34 @@
 <!-- Menu bar -->
 <div class="menu-container">
-    <button class="menu-item" id="projects" (click)="onMenuClick('projects', $event)"
-        (mouseenter)="onMenuClick('projects', $event)">Projects</button>
-    <button class="menu-item" id="services" (click)="onMenuClick('services', $event)"
-        (mouseenter)="onMenuClick('services', $event)">What we do</button>
-    <button class="menu-item" id="about" (click)="onMenuClick('about', $event)"
-        (mouseenter)="onMenuClick('about', $event)">About us</button>
-    <button class="menu-item" id="blog" (click)="onMenuClick('blog', $event)"
-        (mouseenter)="onMenuClick('blog', $event)">Blog</button>
-    <button class="menu-item" id="contact" (click)="onMenuClick('contact', $event)"
-        (mouseenter)="onMenuClick('contact', $event)">Contact</button>
+    <div class="menu-wrapper">
+        <button class="menu-item" id="projects" (click)="onMenuClick('projects', $event)"
+            (mouseenter)="onMenuClick('projects', $event)">Projects</button>
+        <i class="chevron bi bi-chevron-down"></i>
+    </div>
+    <div class="menu-wrapper">
+        <button class="menu-item" id="services" (click)="onMenuClick('services', $event)"
+            (mouseenter)="onMenuClick('services', $event)">What we do</button>
+        <i class="chevron bi bi-chevron-down"></i>
+    </div>
+    <div class="menu-wrapper">
+        <button class="menu-item" id="about" (click)="onMenuClick('about', $event)"
+            (mouseenter)="onMenuClick('about', $event)">About us</button>
+        <i class="chevron bi bi-chevron-down"></i>
+    </div>
+    <div class="menu-wrapper">
+        <button class="menu-item" id="blog" (click)="onMenuClick('blog', $event)"
+            (mouseenter)="onMenuClick('blog', $event)">Blog</button>
+        <i class="chevron bi bi-chevron-down"></i>
+    </div>
+    <div class="menu-wrapper">
+        <button class="menu-item" id="contact" (click)="onMenuClick('contact', $event)"
+            (mouseenter)="onMenuClick('contact', $event)">Contact</button>
+        <i class="chevron bi bi-chevron-down"></i>
+    </div>
 </div>
 <!-- Submenu -->
 <!-- Projects -->
 <div id="submenu-projects" class="submenu-container">
-    <i class="bi bi-chevron-down"></i>
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
             <li class="submenu-item">MyOCP App</li>
@@ -42,7 +56,6 @@
 </div>
 <!-- What we do -->
 <div id="submenu-services" class="submenu-container">
-    <i class="bi bi-chevron-down"></i>
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
             <li class="submenu-item">Custom Software</li>
@@ -64,7 +77,6 @@
 </div>
 <!-- About us -->
 <div id="submenu-about" class="submenu-container">
-    <i class="bi bi-chevron-down"></i>
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
             <li class="submenu-item">About Us</li>
@@ -84,7 +96,6 @@
 </div>
 <!-- Blog -->
 <div id="submenu-blog" class="submenu-container">
-    <i class="bi bi-chevron-down"></i>
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
             <li class="submenu-item">News</li>
@@ -105,7 +116,6 @@
 </div>
 <!-- Contact -->
 <div id="submenu-contact" class="submenu-container">
-    <i class="bi bi-chevron-down"></i>
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
             <li class="submenu-item">Contact us</li>
