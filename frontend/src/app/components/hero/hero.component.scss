@@ -9,7 +9,6 @@
     justify-content: space-between;
     align-items: center;
     background-color: #0e0e01;
-    z-index: 10;
 
     .header-left {
         width: auto;
@@ -27,8 +26,4 @@
         width: auto;
     }
 
-}
-
-.slide-container {
-    z-index: 0;
 }

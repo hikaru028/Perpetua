@@ -31,6 +31,8 @@ $frontend-theme: mat.define-theme((color: (theme-type: light,
 // @include mat.color-variants-backwards-compatibility($frontend-theme);
 /* You can add global styles to this file, and also import other style files */
 
+@import 'swiper/swiper-bundle.css';
+
 @font-face {
   font-family: 'Larsseit';
   src: url('./assets/fonts/larsseit/Larsseit-Thin.otf') format('opentype');
