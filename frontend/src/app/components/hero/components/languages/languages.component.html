@@ -1,21 +1,17 @@
-<div class="lang-option-container">
+<div class="lang-option-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
     <i class="bi bi-chevron-left"></i>
-    <form action=''>
-        <fieldset class="radio-button-group">
-            <div class="radio-options">
-                <div class="lang-option">
-                    <input id="korean" name="language" type="radio" value="korean" class="hidden-radio" />
-                    <label for="korean" class="radio-label">한국어</label>
-                </div>
-                <div class="lang-option">
-                    <input id="japanese" name="language" type="radio" value="japanese" class="hidden-radio" />
-                    <label for="japanese" class="radio-label">日本語</label>
-                </div>
-                <div class="lang-option">
-                    <input id="english" name="language" type="radio" value="english" class="hidden-radio" />
-                    <label for="english" class="radio-label">English</label>
+    <form #languageForm action=''>
+        <fieldset class="language-container">
+            <div class="lang-options">
+                <div class="lang-option" *ngFor="let lang of filteredLanguages">
+                    <input [id]="lang.code" name="language" type="radio" [value]="lang.code" class="hidden-radio"
+                        (change)="onLanguageChange(lang.label)" />
+                    <label [for]="lang.code" class="radio-label">{{ lang.label }}</label>
                 </div>
             </div>
         </fieldset>
     </form>
+    <div class="current-lang-wrapper">
+        <span class="current-lang">{{ selectedLanguage }}</span>
+    </div>
 </div>

@@ -1,55 +1,88 @@
 .lang-option-container {
     display: flex;
     flex-direction: row;
-    justify-content: end;
     align-items: center;
+    cursor: pointer;
+    position: relative;
 
-    i {
+    i.bi-chevron-left {
         color: #ffffff;
+        font-size: 1rem;
+        margin-bottom: 4px;
+        transition: transform 0.3s ease;
     }
 
-    .radio-button-group {
-        border: none;
-        padding: 0;
+    form {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        opacity: 0;
+        transition: right 0.3s ease, opacity 0.3s ease;
+        width: max-content;
+        white-space: nowrap;
 
-        .radio-options {
-            display: flex;
+        &.visible {
+            right: 0;
+            opacity: 1;
         }
 
-        .hidden-radio {
-            display: none;
-        }
+        .language-container {
+            border: none;
+            padding: 0;
 
-        .radio-label {
-            color: #ffffff;
-            padding: 10px 20px;
-            transition: 0.3s ease, color 0.3s ease;
+            .lang-options {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+
+                .lang-option {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+
+                    .hidden-radio {
+                        display: none;
+                    }
+
+                    .radio-label {
+                        color: #ffffff;
+                        font-family: 'Larsseit', sans-serif;
+                        font-weight: 300;
+                        font-size: 1.125rem;
+                        transition: 0.3s ease, color 0.3s ease;
+                    }
+
+                    .radio-label:hover {
+                        color: #a8a8a8;
+                    }
+                }
+            }
+        }
+    }
+
+    .current-lang-wrapper {
+        margin-left: 10px;
+        padding-right: 20px;
+        cursor: pointer;
+        background-color: #0e0e01;
+        z-index: 20;
+
+        .current-lang {
+            font-family: 'Larsseit', sans-serif;
             font-weight: 300;
-            text-align: center;
             font-size: 1.125rem;
-            cursor: pointer;
-
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
+            color: #ffffff;
         }
+    }
 
-        .radio-label+.radio-label {
-            margin-left: -1px;
-        }
+    &:hover form {
+        right: 95px;
+        opacity: 1;
+    }
 
-        .radio-label:first-of-type {
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-        }
-
-        .radio-label:last-of-type {
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 10px;
-        }
-
-        .radio-label:hover {
-            color: #a8a8a8;
-        }
+    &:hover i.bi-chevron-left {
+        transform: translateX(-150px);
     }
 }
