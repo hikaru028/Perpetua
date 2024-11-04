@@ -1,0 +1,44 @@
+.project-card-container {
+    width: 100%;
+    padding: 15px;
+}
+
+.custom-gutter {
+    row-gap: 15px;
+    // column-gap: 15px;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    // transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    // &:hover {
+    //     transform: translateY(-3px);
+    //     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    // }
+
+    .image-wrapper {
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.05)
+            }
+        }
+    }
+
+    p {
+        font-family: 'Sohne' !important;
+        font-weight: 300;
+        font-size: 1rem;
+        color: #0e0e01;
+        margin-top: 10px;
+    }
+}

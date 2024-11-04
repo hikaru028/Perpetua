@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeroComponent } from './components/hero/hero.component';
 import { ProjectsComponent } from "./components/projects/projects.component";
-import { ServicesComponent } from "./components/services/services.component";
 import { ClientsComponent } from "./components/clients/clients.component";
 import { TeamComponent } from "./components/team/team.component";
 import { NewsComponent } from "./components/news/news.component";
@@ -16,7 +15,6 @@ import { CallActionComponent } from "./components/call-action/call-action.compon
     RouterOutlet,
     HeroComponent,
     ProjectsComponent,
-    ServicesComponent,
     ClientsComponent,
     TeamComponent,
     NewsComponent,
