@@ -5,7 +5,6 @@
 
 .custom-gutter {
     row-gap: 15px;
-    // column-gap: 15px;
 }
 
 .card-container {
@@ -20,11 +19,12 @@
     // }
 
     .image-wrapper {
+        height: 400px;
         overflow: hidden;
 
         img {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
 

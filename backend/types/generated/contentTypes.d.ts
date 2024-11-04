@@ -562,8 +562,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     project_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
+      'images' | 'files' | 'videos' | 'audios'
     >;
     project_title: Schema.Attribute.String & Schema.Attribute.Required;
     project_type: Schema.Attribute.Enumeration<['software', 'website', 'app']>;
