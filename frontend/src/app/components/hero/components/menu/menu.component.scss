@@ -1,10 +1,11 @@
 .menu-container {
+    position: relative;
+    z-index: 20;
     height: 40px;
     margin-left: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    z-index: 100;
 
     .menu-wrapper {
         display: flex;
@@ -12,7 +13,7 @@
         justify-content: start;
         align-items: center;
         position: relative;
-        z-index: 100;
+        z-index: 21;
 
         .menu-item {
             width: auto;
@@ -28,7 +29,7 @@
             border: none;
             user-select: none;
             cursor: pointer;
-            z-index: 100;
+            z-index: 21;
 
             &:hover {
                 color: #a8a8a8;
@@ -57,6 +58,7 @@
             color: #a8a8a8;
             z-index: 20;
             transition: top 0.3s ease, opacity 0.3s ease;
+            z-index: 120;
 
             &.visible {
                 top: 40px;
@@ -87,7 +89,6 @@
         opacity: 1;
         transform: translateY(0);
         transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0s;
-        /* visibility immediately visible */
     }
 
     .submenu-box {
