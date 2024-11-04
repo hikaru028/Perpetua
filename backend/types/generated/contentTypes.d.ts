@@ -576,6 +576,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
 export interface ApiSlideSlide extends Struct.CollectionTypeSchema {
   collectionName: 'slides';
   info: {
+    description: '';
     displayName: 'Slide';
     pluralName: 'slides';
     singularName: 'slide';
@@ -584,6 +585,7 @@ export interface ApiSlideSlide extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    company_name: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -594,7 +596,8 @@ export interface ApiSlideSlide extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     slide_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
-    >;
+    > &
+      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

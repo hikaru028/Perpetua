@@ -5,10 +5,20 @@ export interface APIResponseModel {
     error: string,
 }
 
+export interface ISlide {
+    id: number,
+    documentId: string,
+    company_name: string,
+    slide_image: Image,
+    image_title: string,
+    createdAt: Date,
+    updatedAt: Date,
+}
+
 export interface IProject {
     id: number,
     documentId: string,
-    project_image: ProjectImage,
+    project_image: Image,
     project_title: string,
     project_type: string,
     industry: string,
@@ -16,7 +26,7 @@ export interface IProject {
     updatedAt: Date,
 }
 
-export interface ProjectImage {
+export interface Image {
     id: number;
     documentId: string;
     name: string;

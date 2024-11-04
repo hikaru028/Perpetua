@@ -11,6 +11,10 @@ export class StrapiService {
 
   constructor(private http: HttpClient) { }
 
+  getSlides(): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/slides?populate=*`);
+  }
+
   getAllProjects(): Observable<APIResponseModel> {
     return this.http.get<APIResponseModel>(`${this.apiUrl}/projects?populate=*`);
   }
