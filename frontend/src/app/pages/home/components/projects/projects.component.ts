@@ -2,13 +2,14 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectCardComponent } from "./components/project-card/project-card.component";
 import { IProject, APIResponseModel } from '../../../../../util/interfaces';
-import { StrapiService } from '../../../../services/strapi.service';
+import { StrapiService } from '../../../../api/strapi.service';
 import { RouterLink } from '@angular/router';
+import { ServiceCardComponent } from "../services/components/service-card/service-card.component";
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectCardComponent, RouterLink],
+  imports: [CommonModule, ProjectCardComponent, RouterLink, ServiceCardComponent],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })

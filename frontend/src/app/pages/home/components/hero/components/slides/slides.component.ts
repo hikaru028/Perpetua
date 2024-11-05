@@ -1,7 +1,10 @@
 import { Component, inject, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StrapiService } from '../../../../../../services/strapi.service';
+import { StrapiService } from '../../../../../../api/strapi.service';
 import { ISlide, APIResponseModel } from '../../../../../../../util/interfaces';
+import { register } from 'swiper/element/bundle';
+
+register();
 
 @Component({
   selector: 'app-slides',
@@ -9,12 +12,13 @@ import { ISlide, APIResponseModel } from '../../../../../../../util/interfaces';
   imports: [CommonModule],
   templateUrl: './slides.component.html',
   styleUrl: './slides.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SlidesComponent implements OnInit {
   slides: ISlide[] = [];
   strapiUrl = 'http://localhost:1337';
   strapiService = inject(StrapiService);
+  showSwiper: boolean = false;
 
   ngOnInit(): void {
     this.strapiService.getSlides().subscribe((result: APIResponseModel) => {
@@ -28,8 +32,15 @@ export class SlidesComponent implements OnInit {
         }
       }));
 
+      setTimeout(() => {
+        this.showSwiper = true;
+      }, 100);
     }, error => {
       console.error('Error fetching projects:', error);
     });
+  }
+
+  ngAfterViewInit(): void {
+    register();
   }
 }

@@ -5,6 +5,12 @@ export interface APIResponseModel {
     error: string,
 }
 
+export interface IService {
+    image: string,
+    title: string,
+    description: string,
+}
+
 export interface ISlide {
     id: number,
     documentId: string,

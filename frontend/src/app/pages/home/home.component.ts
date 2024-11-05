@@ -6,6 +6,7 @@ import { TeamComponent } from "./components/team/team.component";
 import { NewsComponent } from "./components/news/news.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { CallActionComponent } from "./components/call-action/call-action.component";
+import { ServicesComponent } from './components/services/services.component';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { CallActionComponent } from "./components/call-action/call-action.compon
   imports: [
     HeroComponent,
     ProjectsComponent,
+    ServicesComponent,
     ClientsComponent,
     TeamComponent,
     NewsComponent,
