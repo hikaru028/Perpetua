@@ -15,8 +15,7 @@
                 </div>
                 <!-- Description -->
                 <div class="description-wrapper" [ngClass]="{'visible': isVisible[i]}">
-                    <p class="description">
-                        {{ service.description || 'No Description' }}
+                    <p class="description" [innerHTML]="service.description">
                     </p>
                     <div class="more-container">
                         <div class="more-wrapper" routerLink="/services">

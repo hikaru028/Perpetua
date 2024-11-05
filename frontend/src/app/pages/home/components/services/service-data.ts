@@ -11,7 +11,7 @@ export const ServiceData: IService[] = [
     {
         image: `${IMAGE_BASE_PATH}service2.svg`,
         title: 'Websites & CMS',
-        description: 'A brief outline of the services we provide regarding websites & CMS. Maybe we talk about the benefits from a client’s perspective? Keep it short and then call to action to the expanded ‘Websites & CMS’ page. Around this long will be the maximum length.'
+        description: 'A brief outline of the services we provide regarding websites & CMS. Maybe we talk about the benefits from a client’s perspective?<br /><br />Keep it short and then call to action to the expanded ‘Websites & CMS’ page. Around this long will be the maximum length.'
     },
     {
         image: `${IMAGE_BASE_PATH}service3.svg`,
