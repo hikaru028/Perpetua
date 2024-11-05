@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IProject } from '../../../../../util/interfaces';
+import { IProject } from '../../../../../../../util/interfaces';
 
 @Component({
   selector: 'app-project-card',

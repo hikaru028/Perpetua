@@ -1,8 +1,7 @@
 import { Component, inject, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StrapiService } from '../../../../services/strapi.service';
-import { ISlide, APIResponseModel } from '../../../../../util/interfaces';
-
+import { StrapiService } from '../../../../../../services/strapi.service';
+import { ISlide, APIResponseModel } from '../../../../../../../util/interfaces';
 
 @Component({
   selector: 'app-slides',

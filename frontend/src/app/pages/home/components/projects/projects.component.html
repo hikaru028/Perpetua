@@ -28,7 +28,7 @@
                 'bi-x': selectedFilter === 'app'
             }"></i>
         </button>
-        <button class="sort-button">
+        <button class="sort-button" [routerLink]="['/projects']">
             View all works
             <i class="bi bi-arrow-right-short"></i>
         </button>
@@ -37,7 +37,7 @@
     <!-- Project cards -->
     <app-project-card [projects]="filteredProjects"></app-project-card>
     <!-- Footer -->
-    <div class="footer-button-wrapper">
+    <div class="footer-button-wrapper" [routerLink]="['/projects']">
         <button class="footer-button">
             View all works
             <i class="bi bi-arrow-right-short"></i>
