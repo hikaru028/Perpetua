@@ -5,17 +5,28 @@
     </h1>
     <!-- Sorting buttons -->
     <div class="sort-button-container">
-        <button class="sort-button">
+        <button class="sort-button" (click)="sortProjects('software')"
+            [ngClass]="{'selected': selectedFilter === 'software'}">
             Software
-            <i class="bi bi-chevron-down"></i>
+            <i class="bi" [ngClass]="{
+                'bi-chevron-down': selectedFilter !== 'software',
+                'bi-x': selectedFilter === 'software'
+            }"></i>
         </button>
-        <button class="sort-button">
+        <button class="sort-button" (click)="sortProjects('website')"
+            [ngClass]="{'selected': selectedFilter === 'website'}">
             Websites
-            <i class="bi bi-chevron-down"></i>
+            <i class="bi" [ngClass]="{
+                'bi-chevron-down': selectedFilter !== 'website',
+                'bi-x': selectedFilter === 'website'
+            }"></i>
         </button>
-        <button class="sort-button">
+        <button class="sort-button" (click)="sortProjects('app')" [ngClass]="{'selected': selectedFilter === 'app'}">
             Apps
-            <i class="bi bi-chevron-down"></i>
+            <i class="bi" [ngClass]="{
+                'bi-chevron-down': selectedFilter !== 'app',
+                'bi-x': selectedFilter === 'app'
+            }"></i>
         </button>
         <button class="sort-button">
             View all works
@@ -24,7 +35,7 @@
     </div>
     <span class="separator"></span>
     <!-- Project cards -->
-    <app-project-card></app-project-card>
+    <app-project-card [projects]="filteredProjects"></app-project-card>
     <!-- Footer -->
     <div class="footer-button-wrapper">
         <button class="footer-button">
@@ -33,9 +44,4 @@
         </button>
     </div>
     <span class="separator"></span>
-
-
-
-
-    <i class="bi bi-x"></i>
 </section>

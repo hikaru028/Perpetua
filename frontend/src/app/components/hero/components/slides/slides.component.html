@@ -1,5 +1,5 @@
-<swiper-container *ngIf="slides.length > 0 else noSlides" class="slide-container" loop="true" navigation="true"
-    slides-per-view="1" speed="500" direction="horizontal">
+<swiper-container *ngIf="slides.length > 0" class="slide-container" loop="true" navigation="true" slides-per-view="1"
+    speed="500" direction="horizontal">
     <swiper-slide *ngFor="let slide of slides">
         <img [src]="slide.slide_image.url" [alt]="slide.image_title" />
         <p class="title">{{slide.company_name}}</p>
