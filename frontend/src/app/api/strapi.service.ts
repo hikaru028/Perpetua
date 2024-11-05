@@ -22,4 +22,12 @@ export class StrapiService {
   getProjectById(id: number): Observable<APIResponseModel> {
     return this.http.get<APIResponseModel>(`${this.apiUrl}/projects/${id}`);
   }
+
+  getAllClients(): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/clients?populate=*`);
+  }
+
+  getClientById(id: number): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/clients/${id}`);
+  }
 }

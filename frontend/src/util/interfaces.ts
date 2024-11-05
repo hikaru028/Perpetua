@@ -5,6 +5,29 @@ export interface APIResponseModel {
     error: string,
 }
 
+export interface IClient {
+    id: number,
+    documentId: string,
+
+    company_name: string,
+    representative: string,
+    address: string,
+    phone: string,
+    website_URL: string,
+    testimonial: [
+        {
+            type: string,
+            children: [
+                {
+                    text: string,
+                    type: string
+                }
+            ]
+        }
+    ],
+    company_logo: Image,
+}
+
 export interface IService {
     image: string,
     title: string,
@@ -17,8 +40,6 @@ export interface ISlide {
     company_name: string,
     slide_image: Image,
     image_title: string,
-    createdAt: Date,
-    updatedAt: Date,
 }
 
 export interface IProject {

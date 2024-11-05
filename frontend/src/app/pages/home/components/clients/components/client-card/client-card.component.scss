@@ -1,0 +1,44 @@
+.client-card-container {
+    width: auto;
+    height: auto;
+}
+
+.row {
+    margin: 0;
+    border: 1px solid #0e0e01;
+}
+
+.col {
+    padding: 0;
+}
+
+.card-container {
+    position: relative;
+    display: flex;
+    padding-bottom: 100%;
+    background-color: #fff;
+    border: 1px solid #0e0e01;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        z-index: 30;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-wrapper {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border: none;
+        background-color: transparent;
+
+        img {
+            width: 50%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+}
