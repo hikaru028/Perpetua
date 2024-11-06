@@ -1,1 +1,39 @@
-<p>news works!</p>
+<section class='w-100 m-0'>
+    <!-- Title -->
+    <h1>
+        The latest news
+    </h1>
+    <!-- Sorting buttons -->
+    <div class="sort-button-container">
+        <button class="sort-button" (click)="sortArticles('news')" [ngClass]="{'selected': selectedFilter === 'news'}">
+            News
+            <i class="bi" [ngClass]="{
+                'bi-chevron-down': selectedFilter !== 'news',
+                'bi-x': selectedFilter === 'news'
+            }"></i>
+        </button>
+        <button class="sort-button" (click)="sortArticles('article')"
+            [ngClass]="{'selected': selectedFilter === 'article'}">
+            Articles
+            <i class="bi" [ngClass]="{
+                'bi-chevron-down': selectedFilter !== 'article',
+                'bi-x': selectedFilter === 'article'
+            }"></i>
+        </button>
+        <button class="sort-button" [routerLink]="['/blogs']">
+            View all content
+            <i class="bi bi-arrow-right-short"></i>
+        </button>
+    </div>
+    <span class="separator"></span>
+    <!-- Article cards -->
+    <app-article-card [articles]="filteredArticles"></app-article-card>
+    <!-- Footer -->
+    <div class="footer-button-wrapper" [routerLink]="['/blogs']">
+        <button class="footer-button">
+            View all content
+            <i class="bi bi-arrow-right-short"></i>
+        </button>
+    </div>
+    <span class="separator"></span>
+</section>

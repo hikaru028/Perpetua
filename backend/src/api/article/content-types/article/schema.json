@@ -50,6 +50,10 @@
         "article",
         "video"
       ]
+    },
+    "author": {
+      "type": "string",
+      "required": true
     }
   }
 }

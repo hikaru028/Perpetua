@@ -13,7 +13,7 @@ export interface IMember {
     location: string,
     email: string,
     country: string,
-    portrait_image: Image,
+    portrait_image: IImage,
 }
 
 export interface IClient {
@@ -35,7 +35,7 @@ export interface IClient {
             ]
         }
     ],
-    company_logo: Image,
+    company_logo: IImage,
 }
 
 export interface IService {
@@ -48,14 +48,14 @@ export interface ISlide {
     id: number,
     documentId: string,
     company_name: string,
-    slide_image: Image,
+    slide_image: IImage,
     image_title: string,
 }
 
 export interface IProject {
     id: number,
     documentId: string,
-    project_image: Image,
+    project_image: IImage,
     project_title: string,
     project_type: string,
     industry: string,
@@ -63,7 +63,7 @@ export interface IProject {
     updatedAt: Date,
 }
 
-export interface Image {
+export interface IImage {
     id: number;
     documentId: string;
     name: string;
@@ -75,4 +75,28 @@ export interface Image {
     formats?: any;
     createdAt: Date;
     updatedAt: Date;
+}
+
+export interface IArticle {
+    id: number;
+    documentId: string;
+    title: string;
+    content: ArticleContent[];
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    type: string;
+    author: string;
+    thumbnail_image: IImage;
+    media: IImage[] | null;
+}
+
+export interface ArticleContent {
+    type: string;
+    children: ArticleContentChild[];
+}
+
+export interface ArticleContentChild {
+    text: string;
+    type: string;
 }
