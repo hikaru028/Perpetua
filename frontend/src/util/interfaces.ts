@@ -14,7 +14,6 @@ export interface IMember {
     email: string,
     country: string,
     portrait_image: Image,
-    fadeIn?: boolean;
 }
 
 export interface IClient {

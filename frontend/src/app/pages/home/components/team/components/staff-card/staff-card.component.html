@@ -1,15 +1,22 @@
 <div class="client-card-container container-fluid">
-    <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="members.length > 0;">
-        <div class="col" *ngFor="let member of displayedMembers; let i = index;">
-            <div class="card-container" [ngClass]="{'fade-in': member.fadeIn, 'fade-out': !member.fadeIn}">
-                <div class="image-wrapper">
-                    <img [src]="member.portrait_image.url" [alt]="member.full_name">
-                </div>
-                <div class="info-wrapper">
-                    <p class="role">{{member.role}}</p>
-                    <p class="member-name">{{member.full_name}}</p>
-                </div>
-            </div>
+    <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="shuffledMembers.length > 0;">
+        <div class="col" *ngFor="let shuffledMemberArray of shuffledMembers; let i = index;">
+            <swiper-container class="card-container" slides-per-view="1" autoplay-delay="4000"
+                autoplay-disable-on-interaction="true" effect="fade" speed="2000">
+                <swiper-slide *ngFor="let member of shuffledMemberArray">
+                    <div class="image-wrapper">
+                        <img [src]="member.portrait_image.url" [alt]="member.full_name">
+                    </div>
+                    <div class="info-wrapper">
+                        <p class="role">{{member.role}}</p>
+                        <p class="member-name">{{member.full_name}}</p>
+                    </div>
+                </swiper-slide>
+            </swiper-container>
         </div>
     </div>
 </div>
+
+<ng-template #noSlides>
+    <p>No slides available.</p>
+</ng-template>
