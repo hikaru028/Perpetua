@@ -5,10 +5,20 @@ export interface APIResponseModel {
     error: string,
 }
 
+export interface IMember {
+    id: number,
+    documentId: string,
+    full_name: string,
+    role: string,
+    location: string,
+    email: string,
+    country: string,
+    portrait_image: Image
+}
+
 export interface IClient {
     id: number,
     documentId: string,
-
     company_name: string,
     representative: string,
     address: string,

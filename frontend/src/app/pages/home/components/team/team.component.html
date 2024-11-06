@@ -1,1 +1,17 @@
-<p>team works!</p>
+<section class='w-100 m-0'>
+    <!-- Staff -->
+    <div class="team-container">
+        <h1>
+            Driven by a talented international team<br />spanning 3 countries⏤and counting
+        </h1>
+        <app-staff-card [members]="members"></app-staff-card>
+    </div>
+    <!-- Footer -->
+    <div class=" footer-button-wrapper" [routerLink]="['/team']">
+        <button class="footer-button">
+            Meet the team
+            <i class="bi bi-arrow-right-short"></i>
+        </button>
+    </div>
+    <span class="separator"></span>
+</section>

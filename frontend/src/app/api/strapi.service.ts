@@ -30,4 +30,8 @@ export class StrapiService {
   getClientById(id: number): Observable<APIResponseModel> {
     return this.http.get<APIResponseModel>(`${this.apiUrl}/clients/${id}`);
   }
+
+  getAllMembers(): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/members?populate=*`);
+  }
 }
