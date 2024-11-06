@@ -1,0 +1,29 @@
+section {
+    background-color: #0e0e01;
+    color: #ffffff;
+    padding: 65px;
+
+
+    .bottom-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            margin: 0;
+        }
+
+        .smaller-symbol {
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+        }
+
+        .link-bottom {
+            padding: 5px 15px;
+            background-color: red;
+            margin: 0 50px;
+            cursor: pointer;
+        }
+    }
+
+}
