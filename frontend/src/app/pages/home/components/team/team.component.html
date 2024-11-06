@@ -1,11 +1,11 @@
 <section class='w-100 m-0'>
     <!-- Staff -->
-    <div class="team-container">
+    <div class="title-wrapper">
         <h1>
             Driven by a talented international team<br />spanning 3 countries⏤and counting
         </h1>
-        <app-staff-card [members]="members"></app-staff-card>
     </div>
+    <app-staff-card [members]="members" [displayedMembers]="displayedMembers"></app-staff-card>
     <!-- Footer -->
     <div class=" footer-button-wrapper" [routerLink]="['/team']">
         <button class="footer-button">

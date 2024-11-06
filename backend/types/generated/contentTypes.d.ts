@@ -474,8 +474,7 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
       ['auckland', 'christchurch', 'sydney', 'yokohama']
     >;
     portrait_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
+      'images' | 'files' | 'videos' | 'audios'
     >;
     publishedAt: Schema.Attribute.DateTime;
     role: Schema.Attribute.String & Schema.Attribute.Required;

@@ -13,7 +13,8 @@ export interface IMember {
     location: string,
     email: string,
     country: string,
-    portrait_image: Image
+    portrait_image: Image,
+    fadeIn?: boolean;
 }
 
 export interface IClient {

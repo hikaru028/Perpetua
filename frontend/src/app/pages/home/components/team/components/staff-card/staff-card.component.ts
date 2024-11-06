@@ -11,4 +11,5 @@ import { IMember } from '../../../../../../../util/interfaces'
 })
 export class StaffCardComponent {
   @Input() members: IMember[] = [];
+  @Input() displayedMembers: IMember[] = [];
 }
