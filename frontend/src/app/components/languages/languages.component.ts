@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,7 +17,7 @@ export class LanguagesComponent {
     { code: 'japanese', label: '日本語' },
     { code: 'english', label: 'English' }
   ];
-
+  @Input() position: 'top' | 'bottom' = 'top';
   @ViewChild('languageForm', { static: true }) formElement!: ElementRef<HTMLFormElement>;
 
   get filteredLanguages() {

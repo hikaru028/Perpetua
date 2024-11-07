@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 import { PageListComponent } from './components/page-list/page-list.component';
-import { LanguagesComponent } from './components/languages/languages.component';
+import { LanguagesComponent } from '../languages/languages.component';
 
 @Component({
   selector: 'app-footer',

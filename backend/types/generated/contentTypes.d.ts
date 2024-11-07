@@ -458,7 +458,7 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
   };
   attributes: {
     country: Schema.Attribute.Enumeration<
-      ['New Zealand', 'Australia', 'Japan']
+      ['New Zealand', 'Australia', 'Japan', 'Korea']
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -488,6 +488,7 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
 export interface ApiOfficeOffice extends Struct.CollectionTypeSchema {
   collectionName: 'offices';
   info: {
+    description: '';
     displayName: 'Office';
     pluralName: 'offices';
     singularName: 'office';
@@ -496,6 +497,9 @@ export interface ApiOfficeOffice extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    country: Schema.Attribute.Enumeration<
+      ['New Zealand', 'Australia', 'Japan', 'Korea']
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -507,6 +511,9 @@ export interface ApiOfficeOffice extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     location: Schema.Attribute.String & Schema.Attribute.Required;
+    office_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     office_name: Schema.Attribute.String & Schema.Attribute.Required;
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;

@@ -49,14 +49,14 @@ $frontend-theme: mat.define-theme((color: (theme-type: light,
 
 @font-face {
   font-family: 'Larsseit';
-  src: url('./assets/fonts/larsseit/Larsseit.otf') format('opentype');
+  src: url('./assets/fonts/larsseit/Larsseit.woff2') format('opentype');
   font-weight: 400; // Normal
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Larsseit';
-  src: url('./assets/fonts/larsseit/Larsseit-Medium.otf') format('opentype');
+  src: url('./assets/fonts/larsseit/Larsseit-Medium.woff') format('opentype');
   font-weight: 500; // Medium
   font-style: normal;
 }

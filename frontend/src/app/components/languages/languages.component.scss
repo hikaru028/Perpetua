@@ -1,0 +1,173 @@
+.lang-option-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+
+    i.bi-chevron-left {
+        color: #ffffff;
+        font-size: 1rem;
+        margin-bottom: 4px;
+        transition: transform 0.3s ease;
+    }
+
+    form {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        opacity: 0;
+        transition: right 0.3s ease, opacity 0.3s ease;
+        width: max-content;
+        white-space: nowrap;
+
+        &.visible {
+            right: 0;
+            opacity: 1;
+        }
+
+        .language-container {
+            border: none;
+            padding: 0;
+
+            .lang-options {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+
+                .lang-option {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+
+                    .hidden-radio {
+                        display: none;
+                    }
+
+                    .radio-label {
+                        color: #ffffff;
+                        font-family: 'Larsseit', sans-serif;
+                        font-weight: 300;
+                        font-size: 1.125rem;
+                        transition: 0.3s ease, color 0.3s ease;
+                    }
+
+                    .radio-label:hover {
+                        color: #a8a8a8;
+                    }
+                }
+            }
+        }
+    }
+
+    .current-lang-wrapper {
+        margin-left: 10px;
+        padding-right: 20px;
+        cursor: pointer;
+        background-color: #0e0e01;
+        z-index: 20;
+
+        .current-lang {
+            font-family: 'Larsseit', sans-serif;
+            font-weight: 300;
+            font-size: 1.125rem;
+            color: #ffffff;
+        }
+    }
+
+    &:hover form {
+        right: 95px;
+        opacity: 1;
+    }
+
+    &:hover i.bi-chevron-left {
+        transform: translateX(-150px);
+    }
+}
+
+// Footer section language option
+.bottom-lang-option {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    cursor: pointer;
+    position: relative;
+
+    i.bi-chevron-left {
+        margin-left: 15px;
+        margin-bottom: -5px;
+        transform: rotate(90deg);
+        transition: transform 0.1s ease;
+    }
+
+    form {
+        position: absolute;
+        padding-left: 15px;
+        left: 0;
+        bottom: 0;
+        opacity: 0;
+        width: max-content;
+        white-space: nowrap;
+        transition: transform 0.3s ease, opacity 0.1s ease;
+
+        &.visible {
+            opacity: 1;
+            transform: translateY(-50px);
+        }
+
+        .language-container {
+            border: none;
+            padding: 0;
+
+            .lang-options {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+
+                .lang-option {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+
+                    .hidden-radio {
+                        display: none;
+                    }
+
+                    .radio-label {
+                        color: #ffffff;
+                        font-family: 'Larsseit', sans-serif;
+                        font-weight: 300;
+                        font-size: 1rem;
+                        transition: 0.3s ease, color 0.3s ease;
+                    }
+
+                    .radio-label:hover {
+                        color: #a8a8a8;
+                    }
+                }
+            }
+        }
+    }
+
+    .current-lang-wrapper {
+        padding: 8px;
+        margin-bottom: 21px;
+        cursor: pointer;
+        background-color: #0e0e01;
+        z-index: 20;
+
+        .current-lang {
+            font-family: 'Larsseit', sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+        }
+    }
+
+    &:hover i.bi-chevron-left {
+        transform: rotate(90deg) translateX(-90px);
+    }
+}

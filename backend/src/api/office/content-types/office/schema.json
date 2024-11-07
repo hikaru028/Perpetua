@@ -4,7 +4,8 @@
   "info": {
     "singularName": "office",
     "pluralName": "offices",
-    "displayName": "Office"
+    "displayName": "Office",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,6 +25,26 @@
     },
     "phone": {
       "type": "string"
+    },
+    "country": {
+      "type": "enumeration",
+      "enum": [
+        "New Zealand",
+        "Australia",
+        "Japan",
+        "Korea"
+      ]
+    },
+    "office_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

@@ -49,7 +49,8 @@
       "enum": [
         "New Zealand",
         "Australia",
-        "Japan"
+        "Japan",
+        "Korea"
       ]
     }
   }

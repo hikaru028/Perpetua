@@ -1,0 +1,80 @@
+.select-trigger {
+    display: flex;
+    justify-content: center;
+    border: none;
+    padding: 5px 8px;
+    gap: 5px;
+    background-color: transparent;
+
+    .country-name,
+    .bi-chevron-down {
+        height: 46px;
+        margin: 0;
+        color: #a7a7a7;
+        font-family: 'Larsseit' !important;
+        font-size: 1.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover .bi-chevron-down {
+        transform: translateY(2px);
+        ;
+    }
+}
+
+.example-menu {
+    display: inline-flex;
+    flex-direction: column;
+    min-width: 180px;
+    max-width: 280px;
+    background-color: rgba(255, 255, 255);
+    padding: 6px 0;
+    transition: transform 0.2s ease;
+}
+
+.example-menu-item,
+.example-standalone-trigger {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    background-color: rgba(255, 255, 255);
+    user-select: none;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex: 1;
+}
+
+.example-menu-item:hover {
+    background-color: rgb(208, 208, 208);
+}
+
+.example-menu-item:active {
+    background-color: rgb(170, 170, 170);
+}
+
+.example-standalone-item {
+    background-color: rgb(239, 239, 239);
+}
+
+.example-standalone-item:hover {
+    background-color: rgb(208, 208, 208);
+}
+
+.example-standalone-item[aria-expanded='true'] {
+    background-color: rgb(208, 208, 208);
+}
+
+.info-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'Sohne' !important;
+    font-size: 2rem;
+    font-weight: 500;
+    gap: 50px;
+}

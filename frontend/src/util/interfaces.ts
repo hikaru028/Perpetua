@@ -5,6 +5,17 @@ export interface APIResponseModel {
     error: string,
 }
 
+export interface IOffice {
+    id: number,
+    documentId: string,
+    office_name: string,
+    location: string,
+    email: string,
+    phone: string,
+    country: string,
+    office_image: IImage,
+}
+
 export interface IMember {
     id: number,
     documentId: string,

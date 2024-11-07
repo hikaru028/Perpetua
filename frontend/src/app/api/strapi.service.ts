@@ -38,4 +38,8 @@ export class StrapiService {
   getAllArticles(): Observable<APIResponseModel> {
     return this.http.get<APIResponseModel>(`${this.apiUrl}/articles?populate=*`);
   }
+
+  getAllOffices(): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/offices`);
+  }
 }

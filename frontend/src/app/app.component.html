@@ -1,23 +1,19 @@
-<style>
-  .main {
-    width: 100%;
-    min-height: 100%;
-    padding: 0;
-    margin: 0;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow-x: hidden;
-  }
-
-  @media screen and (max-width: 650px) {
-    .content {
-      flex-direction: column;
-      width: max-content;
-    }
-  }
-</style>
-
 <main class="main">
+  <div class='header-container'>
+    <div class='header-left'>
+      <!-- Logo -->
+      <div class='logo-wrapper'>
+        <app-logo></app-logo>
+      </div>
+      <!-- Header menu bar -->
+      <div class="">
+        <app-menu></app-menu>
+      </div>
+    </div>
+    <!-- Language options -->
+    <div class='header-right'>
+      <app-languages position="top"></app-languages>
+    </div>
+  </div>
   <router-outlet></router-outlet>
 </main>
