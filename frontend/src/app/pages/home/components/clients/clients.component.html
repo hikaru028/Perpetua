@@ -2,7 +2,7 @@
     <div class="row" *ngIf="clients.length > 0;">
         <!-- Testimonial -->
         <div class="col-6 col-md-5 left-container" *ngIf="selectedClientIndex !== null">
-            <span class="quotation">"</span>
+            <span class="quotation">&#x201F;</span>
             <p *ngFor="let testimonial of clients[selectedClientIndex].testimonial" class="testimonial">
                 {{testimonial.children[0].text}}
             </p>

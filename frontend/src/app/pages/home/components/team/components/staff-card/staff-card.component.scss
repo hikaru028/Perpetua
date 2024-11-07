@@ -16,7 +16,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     overflow: hidden;
 
     .image-wrapper {
@@ -53,15 +52,13 @@
 
 
         .role {
-            font-family: 'Larsseit' !important;
-            font-weight: 300;
+            font-family: 'Larsseit-300' !important;
             font-size: 1rem;
             margin: 0;
         }
 
         .member-name {
             font-family: 'Larsseit' !important;
-            font-weight: 400;
             font-size: 1.5rem;
             margin: 0;
         }

@@ -1,8 +1,4 @@
 h1 {
-    color: #000000;
-    font-family: 'Sohne' !important;
-    font-weight: 400;
-    font-size: 2.25rem;
     margin: 65px;
 }
 
@@ -22,8 +18,7 @@ h1 {
         border: none;
         background-color: transparent;
         font-family: 'Larsseit' !important;
-        font-weight: 300;
-        font-size: 1.125rem;
+        font-size: 1.5rem;
 
         &.selected,
         &:hover {
@@ -31,7 +26,7 @@ h1 {
         }
 
         i {
-            font-size: 1.125rem;
+            font-size: 1.5rem;
             margin-left: 5px;
             padding-top: 5px;
             transition: transform 0.3s ease;
@@ -79,12 +74,11 @@ h1 {
         margin-right: 15px;
         border: none;
         background-color: transparent;
-        font-family: 'Larsseit' !important;
-        font-weight: 400;
-        font-size: 1.125rem;
+        font-family: 'Sohne-500' !important;
+        font-size: 1.75rem;
 
         i {
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-left: 5px;
             padding-top: 5px;
             transition: transform 0.3s ease;

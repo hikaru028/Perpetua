@@ -1,4 +1,4 @@
-<div class="search-bar-container">
+<div class="search-bar-container" [ngClass]="{'search-articles': data === 'articles'}">
     <!-- Search box -->
     <div class="search-bar-wrapper">
         <div class="search-icon-wrapper">
@@ -9,17 +9,19 @@
             </svg>
         </div>
         <div class="input-wrapper">
-            <input type="text" [placeholder]="placeholder" />
+            <input type="text" [placeholder]="placeholder" [formControl]="searchControl" (input)="onSearchInput()" />
             <span class="b-bottom"></span>
         </div>
     </div>
 
     <!-- Search result display -->
-    <div class="search-result-container">
-        <span class="search-result-item">OCP Group Website</span>
-        <span class="search-result-item">MyOCP App</span>
-        <span class="search-result-item">Oceania Healthcare Native App</span>
-        <span class="search-result-item">Another Result That Include OC</span>
-        <span class="search-result-item">Maximum Five ‘OC’ Results Display</span>
+    <div class="search-result-container" *ngIf="searchResults.length > 0">
+        <div *ngFor="let result of searchResults" class="search-result-item" [routerLink]="result.path"
+            [innerHTML]="result.highlightedTitle">
+            {{ result.title }}
+        </div>
+        <div *ngIf="searchResults.length > 0" class="search-result-all" routerLink="/articles">
+            <p>Browse all results</p><i class="bi bi-arrow-right-short"></i>
+        </div>
     </div>
 </div>

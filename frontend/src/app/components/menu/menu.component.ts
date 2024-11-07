@@ -1,10 +1,12 @@
 import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { SearchBarComponent } from "./search-bar/search-bar.component";
+import { RouterLink } from '@angular/router';
+import { TranslatePipe, TranslateDirective } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [SearchBarComponent],
+  imports: [SearchBarComponent, RouterLink, TranslatePipe, TranslateDirective],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
   encapsulation: ViewEncapsulation.None,

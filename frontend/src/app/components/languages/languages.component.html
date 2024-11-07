@@ -5,9 +5,9 @@
         <fieldset class="language-container">
             <div class="lang-options">
                 <div class="lang-option" *ngFor="let lang of filteredLanguages">
-                    <input [id]="lang.code" name="language" type="radio" [value]="lang.code" class="hidden-radio"
-                        (change)="onLanguageChange(lang.label)" />
-                    <label [for]="lang.code" class="radio-label">{{ lang.label }}</label>
+                    <input [id]="lang.key" name="language" type="radio" [value]="lang.key" class="hidden-radio"
+                        (change)="onLanguageChange(lang.label, lang.code)" />
+                    <label [for]="lang.key" class="radio-label">{{ lang.label }}</label>
                 </div>
             </div>
         </fieldset>

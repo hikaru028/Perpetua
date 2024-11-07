@@ -27,9 +27,12 @@
     flex-direction: column;
     min-width: 180px;
     max-width: 280px;
-    background-color: rgba(255, 255, 255);
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.6);
     padding: 6px 0;
-    transition: transform 0.2s ease;
+    backdrop-filter: blur(5px);
+    transform: translateY(-15px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .example-menu-item,
@@ -37,12 +40,10 @@
     background-color: transparent;
     cursor: pointer;
     border: none;
-    background-color: rgba(255, 255, 255);
     user-select: none;
     min-width: 64px;
     line-height: 36px;
     padding: 0 16px;
-
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -50,7 +51,8 @@
 }
 
 .example-menu-item:hover {
-    background-color: rgb(208, 208, 208);
+    background-color: #737373;
+    color: #ffffff;
 }
 
 .example-menu-item:active {
@@ -73,8 +75,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-family: 'Sohne' !important;
-    font-size: 2rem;
+    font-family: 'Sohne-500' !important;
+    font-size: 2.25rem;
     font-weight: 500;
     gap: 50px;
 }

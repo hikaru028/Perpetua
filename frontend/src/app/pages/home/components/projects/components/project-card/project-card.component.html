@@ -1,7 +1,7 @@
 <div class="project-card-container container-fluid">
     <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="projects.length > 0; else noProjects">
         <div class="col" *ngFor="let project of projects">
-            <div class="card-container">
+            <div class="card-container" routerLink="/projects">
                 <!-- Image -->
                 <div class="image-wrapper">
                     <img [src]="project.project_image.url" alt="project">

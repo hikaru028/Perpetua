@@ -30,7 +30,6 @@
                 outline: none;
                 color: #ffffff;
                 font-family: 'Larsseit' !important;
-                font-weight: 300;
                 font-size: 1.125rem;
 
                 input::placeholder {
@@ -62,7 +61,6 @@
         .search-result-item {
             color: #a8a8a8;
             font-family: 'Larsseit' !important;
-            font-weight: 300;
             font-size: 1.125rem;
             margin-bottom: 15px;
             cursor: pointer;
@@ -70,6 +68,39 @@
 
         .search-result-item:hover {
             color: #ffffff;
+        }
+
+        .search-result-all {
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+            font-family: 'Larsseit' !important;
+            font-size: 1.125rem;
+            color: #a8a8a8;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: #ffffff;
+
+                .bi-arrow-right-short {
+                    transform: translateX(3px);
+                }
+            }
+
+            p {
+                margin: 0;
+            }
+
+            .bi-arrow-right-short {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: transform 0.3s ease;
+            }
         }
     }
 }

@@ -23,7 +23,6 @@
             padding: 0 21px;
             color: #ffffff;
             font-family: 'Larsseit' !important;
-            font-weight: 300;
             font-size: 1.125rem;
             background-color: transparent;
             border: none;
@@ -120,7 +119,7 @@
             .submenu-item {
                 list-style: none;
                 background-color: transparent;
-                font-family: 'Sohne' !important;
+                font-family: 'Sohne-500' !important;
                 font-size: 1.5rem;
                 border: none;
                 user-select: none;
@@ -133,6 +132,12 @@
                     color: rgba(255, 255, 255, 0.7);
                 }
 
+                .ampersand {
+                    font-family: sans-serif;
+                    font-weight: 600;
+                    font-size: 1.438rem;
+                }
+
             }
 
             .page-link {
@@ -142,7 +147,6 @@
                 justify-content: start;
                 align-items: center;
                 font-family: 'Larsseit' !important;
-                font-weight: 400;
                 font-size: 1.125rem;
                 color: #a8a8a8;
                 margin-bottom: 16px;

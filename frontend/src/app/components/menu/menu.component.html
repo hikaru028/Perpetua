@@ -2,7 +2,7 @@
 <div class="menu-container">
     <div class="menu-wrapper">
         <button class="menu-item" id="projects" (click)="onMenuClick('projects', $event)"
-            (mouseenter)="onMenuClick('projects', $event)">Projects</button>
+            (mouseenter)="onMenuClick('projects', $event)">{{ 'menu.project' | translate }}</button>
         <i class="chevron bi bi-chevron-down"></i>
     </div>
     <div class="menu-wrapper">
@@ -31,26 +31,26 @@
 <div id="submenu-projects" class="submenu-container">
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
-            <li class="submenu-item">MyOCP App</li>
-            <li class="submenu-item">Duncan Taylor Builders Website</li>
-            <li class="submenu-item">Perpetua Website</li>
-            <li class="submenu-item">OCP Group Website</li>
-            <li class="submenu-item">Ecoglo Cost-calculator</li>
-            <li class="submenu-item">First Class First Aid Website</li>
+            <li class="submenu-item" routerLink="/projects">MyOCP App</li>
+            <li class="submenu-item" routerLink="/projects">Duncan Taylor Builders Website</li>
+            <li class="submenu-item" routerLink="/projects">Perpetua Website</li>
+            <li class="submenu-item" routerLink="/projects">OCP Group Website</li>
+            <li class="submenu-item" routerLink="/projects">Ecoglo Cost-calculator</li>
+            <li class="submenu-item" routerLink="/projects">First Class First Aid Website</li>
         </ul>
         <ul class="submenu-item-wrapper">
-            <li class="page-link">
+            <li class="page-link" routerLink="/projects">
                 <p>View all work</p><i class="bi bi-arrow-right-short"></i>
             </li>
-            <li class="page-link">
+            <li class="page-link" routerLink="/projects">
                 <p>Browse by project type</p><i class="bi bi-arrow-right-short"></i>
             </li>
-            <li class="page-link">
+            <li class="page-link" routerLink="/projects">
                 <p>Browse by industry</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>
         <div class="submenu-item-wrapper">
-            <app-search-bar placeholder="Search projects"></app-search-bar>
+            <app-search-bar placeholder="Search projects" data="projects"></app-search-bar>
         </div>
     </div>
 </div>
@@ -58,18 +58,18 @@
 <div id="submenu-services" class="submenu-container">
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
-            <li class="submenu-item">Custom Software</li>
-            <li class="submenu-item">Websites & CMS</li>
-            <li class="submenu-item">Native & Web Apps</li>
-            <li class="submenu-item">Artificial Intelligence</li>
-            <li class="submenu-item">Hosting & Cloud</li>
-            <li class="submenu-item">Data & Analytics</li>
+            <li class="submenu-item" routerLink="/services">Custom Software</li>
+            <li class="submenu-item" routerLink="/services">Websites <span class="ampersand">&#38;</span> CMS</li>
+            <li class="submenu-item" routerLink="/services">Native <span class="ampersand">&#38;</span> Web Apps</li>
+            <li class="submenu-item" routerLink="/services">Artificial Intelligence</li>
+            <li class="submenu-item" routerLink="/services">Hosting <span class="ampersand">&#38;</span> Cloud</li>
+            <li class="submenu-item" routerLink="/services">Data <span class="ampersand">&#38;</span> Analytics</li>
         </ul>
         <ul class="submenu-item-wrapper">
-            <li class="page-link">
+            <li class="page-link" routerLink="/services">
                 <p>Learn more</p><i class="bi bi-arrow-right-short"></i>
             </li>
-            <li class="page-link">
+            <li class="page-link" routerLink="/services">
                 <p>Book a free consultation</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>
@@ -79,16 +79,16 @@
 <div id="submenu-about" class="submenu-container">
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
-            <li class="submenu-item">About Us</li>
-            <li class="submenu-item">Our Team</li>
-            <li class="submenu-item">Our Clients</li>
-            <li class="submenu-item">Testimonials</li>
+            <li class="submenu-item" routerLink="/about">About Us</li>
+            <li class="submenu-item" routerLink="/about">Our Team</li>
+            <li class="submenu-item" routerLink="/about">Our Clients</li>
+            <li class="submenu-item" routerLink="/about">Testimonials</li>
         </ul>
         <ul class="submenu-item-wrapper">
-            <li class="page-link">
+            <li class="page-link" routerLink="/about">
                 <p>Join the team</p><i class="bi bi-arrow-right-short"></i>
             </li>
-            <li class="page-link">
+            <li class="page-link" routerLink="/about">
                 <p>View our locations</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>
@@ -98,19 +98,19 @@
 <div id="submenu-blog" class="submenu-container">
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
-            <li class="submenu-item">News</li>
-            <li class="submenu-item">Articles</li>
+            <li class="submenu-item" routerLink="/articles">News</li>
+            <li class="submenu-item" routerLink="/articles">Articles</li>
         </ul>
         <ul class="submenu-item-wrapper">
-            <li class="page-link">
+            <li class="page-link" routerLink="/articles">
                 <p>View all content</p><i class="bi bi-arrow-right-short"></i>
             </li>
-            <li class="page-link">
+            <li class="page-link" routerLink="/articles">
                 <p>Browse by tag</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>
         <div class="submenu-item-wrapper">
-            <app-search-bar placeholder="Search content"></app-search-bar>
+            <app-search-bar placeholder="Search content" data="articles"></app-search-bar>
         </div>
     </div>
 </div>
@@ -118,15 +118,15 @@
 <div id="submenu-contact" class="submenu-container">
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
-            <li class="submenu-item">Contact us</li>
-            <li class="submenu-item">Our locations</li>
-            <li class="submenu-item">Careers</li>
+            <li class="submenu-item" routerLink="/contact">Contact us</li>
+            <li class="submenu-item" routerLink="/contact">Our locations</li>
+            <li class="submenu-item" routerLink="/contact">Careers</li>
         </ul>
         <ul class="submenu-item-wrapper">
-            <li class="page-link">
+            <li class="page-link" routerLink="/contact">
                 <p>Send us a message</p><i class="bi bi-arrow-right-short"></i>
             </li>
-            <li class="page-link">
+            <li class="page-link" routerLink="/contact">
                 <p>Book a consultation</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>

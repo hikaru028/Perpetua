@@ -7,16 +7,17 @@
         width: 200px;
         height: 380px;
         margin-top: 80px;
+        margin-left: 40px;
         color: #000000;
         font-family: 'Sohne' !important;
-        font-weight: 600;
-        font-size: 21.875rem;
+        font-size: 25rem;
+        transform: rotate(180deg);
+        transform: scaleY(-1);
     }
 
     .testimonial {
         text-align: left;
-        font-family: 'Larsseit' !important;
-        font-weight: 300;
+        font-family: 'Sohne' !important;
         font-size: 2rem;
         margin-left: 50px;
         margin-bottom: 80px;
@@ -37,8 +38,7 @@
 
         p {
             font-family: 'Larsseit' !important;
-            font-weight: 300;
-            font-size: 2rem;
+            font-size: 2.25rem;
             margin: 0 0 0 20px;
             color: #000000;
         }
@@ -48,10 +48,6 @@
 }
 
 h1 {
-    color: #000000;
-    font-family: 'Sohne' !important;
-    font-weight: 400;
-    font-size: 2.25rem;
     margin: 65px 10px 65px;
 }
 
@@ -72,12 +68,11 @@ h1 {
         margin-right: 15px;
         border: none;
         background-color: transparent;
-        font-family: 'Larsseit' !important;
-        font-weight: 400;
-        font-size: 1.125rem;
+        font-family: 'Sohne-500' !important;
+        font-size: 1.75rem;
 
         i {
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-left: 5px;
             padding-top: 5px;
             transition: transform 0.3s ease;
