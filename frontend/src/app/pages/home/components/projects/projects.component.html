@@ -9,39 +9,41 @@
     <!-- Sorting buttons -->
     <div class="sort-button-container">
         <button class="sort-button" (click)="sortProjects('software')"
-            [ngClass]="{'selected': selectedFilter === 'software'}">
+            [ngClass]="{'selected': (selectedFilter$ | async) === 'software'}">
             Software
             <i class="bi" [ngClass]="{
-                'bi-chevron-down': selectedFilter !== 'software',
-                'bi-x': selectedFilter === 'software'
+                'bi-chevron-down': (selectedFilter$ | async) !== 'software',
+                'bi-x': (selectedFilter$ | async) === 'software'
             }"></i>
         </button>
         <button class="sort-button" (click)="sortProjects('website')"
-            [ngClass]="{'selected': selectedFilter === 'website'}">
+            [ngClass]="{'selected': (selectedFilter$ | async) === 'website'}">
             Websites
             <i class="bi" [ngClass]="{
-                'bi-chevron-down': selectedFilter !== 'website',
-                'bi-x': selectedFilter === 'website'
+                'bi-chevron-down': (selectedFilter$ | async) !== 'website',
+                'bi-x': (selectedFilter$ | async) === 'website'
             }"></i>
         </button>
-        <button class="sort-button" (click)="sortProjects('app')" [ngClass]="{'selected': selectedFilter === 'app'}">
+        <button class="sort-button" (click)="sortProjects('app')"
+            [ngClass]="{'selected': (selectedFilter$ | async) === 'app'}">
             Apps
             <i class="bi" [ngClass]="{
-                'bi-chevron-down': selectedFilter !== 'app',
-                'bi-x': selectedFilter === 'app'
+                'bi-chevron-down': (selectedFilter$ | async) !== 'app',
+                'bi-x': (selectedFilter$ | async) === 'app'
             }"></i>
         </button>
-        <button class="sort-button" [routerLink]="['/projects']">
+        <button class="sort-button" [routerLink]="['/projects']" (click)="sortProjects('')">
             View all works
             <i class="bi bi-arrow-right-short"></i>
         </button>
     </div>
     <span class="separator"></span>
     <!-- Project cards -->
-    <app-project-card [projects]="filteredProjects"></app-project-card>
+    <app-project-card *ngIf="filteredProjects$ | async as filteredProjects"
+        [projects]="filteredProjects"></app-project-card>
     <!-- Footer -->
-    <div class="footer-button-wrapper" [routerLink]="['/projects']">
-        <button class="footer-button">
+    <div class="footer-button-wrapper">
+        <button class="footer-button" [routerLink]="['/projects']" (click)="sortProjects('')">
             View all works
             <i class="bi bi-arrow-right-short"></i>
         </button>

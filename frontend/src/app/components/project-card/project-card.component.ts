@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IProject } from '../../../../../../../util/interfaces';
+import { IProject } from '../../../util/interfaces';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,4 +12,5 @@ import { RouterLink } from '@angular/router';
 })
 export class ProjectCardComponent {
   @Input() projects: IProject[] = [];
+  @Input() showTitleAsIndustry: boolean = false;
 }
