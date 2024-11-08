@@ -12,7 +12,7 @@
             </div>
         </fieldset>
     </form>
-    <div class="current-lang-wrapper">
+    <div class="current-lang-wrapper" [ngClass]="{'bottom-lang-wrapper': position === 'bottom'}">
         <span class="current-lang">{{ selectedLanguage }}</span>
     </div>
 </div>
