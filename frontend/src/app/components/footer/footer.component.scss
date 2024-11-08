@@ -3,6 +3,24 @@ section {
     color: #ffffff;
     padding: 65px;
 
+    .logo-wrapper {
+        width: auto;
+        height: auto;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .cls-1 {
+            fill: #fff;
+        }
+
+        .cls-2 {
+            fill: #414042;
+        }
+    }
+
 
     .bottom-container {
         display: flex;
@@ -11,6 +29,8 @@ section {
 
         p {
             margin: 0;
+            font-family: 'Larsseit', sans-serif;
+            font-size: 1.125rem;
         }
 
         .smaller-symbol {
