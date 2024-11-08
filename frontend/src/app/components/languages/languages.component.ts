@@ -18,7 +18,7 @@ export class LanguagesComponent {
   ];
   @Input() position: 'top' | 'bottom' = 'top';
   @ViewChild('languageForm', { static: true }) formElement!: ElementRef<HTMLFormElement>;
-  translate: TranslateService = inject(TranslateService)
+  translate: TranslateService = inject(TranslateService);
 
   get filteredLanguages() {
     return this.allLanguages.filter(lang => lang.label !== this.selectedLanguage);
@@ -35,7 +35,8 @@ export class LanguagesComponent {
   onLanguageChange(language: string, code: string) {
     console.log(language, code);
     this.selectedLanguage = language;
-    this.translate.use(code);
+    this.translate.use(code.trim());
+
     this.onMouseLeave();
   }
 }

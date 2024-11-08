@@ -1,3 +1,15 @@
 {
-	"menu.project": "Project"
+	"home.section.title.clients-L1": "Creating great things",
+	"home.section.title.clients-L2": "for great people since 2016",
+	"home.section.title.projects-L1": "At Perpetua, we make beautiful",
+	"home.section.title.projects-L2-af": "app",
+	"home.section.title.projects-L2-bf": "software, websites",
+	"home.section.title.services-L1": "We empower organisations with simple,",
+	"home.section.title.services-L2-af": "future-proof technology",
+	"home.section.title.services-L2-bf": "functional",
+	"menu.about": "About us",
+	"menu.blog": "Blog",
+	"menu.contact": "Contact",
+	"menu.projects": "Projects",
+	"menu.services": "What we do"
 }

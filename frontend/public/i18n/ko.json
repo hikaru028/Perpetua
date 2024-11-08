@@ -1,3 +1,15 @@
 {
-	"menu.project": "프로젝트"
+	"home.section.title.clients-L1": "위대한 사람들을 위한",
+	"home.section.title.clients-L2": "2016년부터 위대한 사람들을 위해",
+	"home.section.title.projects-L1": "퍼페투아는 아름다운",
+	"home.section.title.projects-L2-af": "",
+	"home.section.title.projects-L2-bf": "소프트웨어, 웹사이트 및 앱",
+	"home.section.title.services-L1": "당사는 단순하고",
+	"home.section.title.services-L2-af": "",
+	"home.section.title.services-L2-bf": "기능적이고 미래 지향적인 기술",
+	"menu.about": "회사 소개",
+	"menu.blog": "블로그",
+	"menu.contact": "연락처",
+	"menu.projects": "프로젝트",
+	"menu.services": "우리가 하는 일"
 }

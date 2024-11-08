@@ -4,11 +4,12 @@ import { ClientCardComponent } from './components/client-card/client-card.compon
 import { RouterLink } from '@angular/router';
 import { IClient, APIResponseModel } from '../../../../../util/interfaces';
 import { StrapiService } from '../../../../api/strapi.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [ClientCardComponent, RouterLink, CommonModule],
+  imports: [ClientCardComponent, RouterLink, CommonModule, TranslateModule],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.scss'
 })
@@ -17,6 +18,7 @@ export class ClientsComponent implements OnInit {
   selectedClientIndex: number = 0;
   strapiService = inject(StrapiService);
   strapiUrl = 'http://localhost:1337';
+  translate: TranslateService = inject(TranslateService);
 
   ngOnInit(): void {
     this.strapiService.getAllClients().subscribe((result: APIResponseModel) => {

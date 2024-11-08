@@ -1,3 +1,15 @@
 {
-	"menu.project": "プロジェクト"
+	"home.section.title.clients-L1": "2016年以来、素晴らしい人々のために",
+	"home.section.title.clients-L2": "素晴らしいものを創り続けています",
+	"home.section.title.projects-L1": "Perpetuaは美しいソフトウェア、",
+	"home.section.title.projects-L2-af": "",
+	"home.section.title.projects-L2-bf": "ウェブサイト、アプリを提供します",
+	"home.section.title.services-L1": "シンプルで機能的、かつ将来性のあるテクノロジーで",
+	"home.section.title.services-L2-af": "",
+	"home.section.title.services-L2-bf": "組織を強化します",
+	"menu.about": "会社概要",
+	"menu.blog": "ブログ",
+	"menu.contact": "お問い合わせ",
+	"menu.projects": "プロジェクト",
+	"menu.services": "事業内容"
 }

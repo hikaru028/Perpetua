@@ -6,9 +6,12 @@ import { LanguagesComponent } from './components/languages/languages.component';
 import {
   TranslateService,
   TranslatePipe,
-  TranslateDirective
+  TranslateDirective,
+  TranslateModule
 } from "@ngx-translate/core";
 import translationsEN from "../../public/i18n/en.json";
+import translationsJP from "../../public/i18n/ja.json";
+import translationsKO from "../../public/i18n/ko.json";
 
 @Component({
   selector: 'app-root',
@@ -18,8 +21,7 @@ import translationsEN from "../../public/i18n/en.json";
     LogoComponent,
     MenuComponent,
     LanguagesComponent,
-    TranslatePipe,
-    TranslateDirective
+    TranslateModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -30,6 +32,8 @@ export class AppComponent {
   constructor(private translate: TranslateService) {
     this.translate.addLangs(['en', 'ja', 'ko']);
     this.translate.setTranslation('en', translationsEN);
+    this.translate.setTranslation('ja', translationsJP);
+    this.translate.setTranslation('ko', translationsKO);
     this.translate.setDefaultLang('en');
     this.translate.use(this.translate.getBrowserLang() || "en");
   }

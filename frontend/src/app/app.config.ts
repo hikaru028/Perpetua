@@ -3,13 +3,15 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient, withFetch } from '@angular/common/http';
 import { TranslateModule, TranslateLoader, provideTranslateService } from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
-  new TranslateHttpLoader(http, '../../public/i18n/', '.json');
+// const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
+//   new TranslateHttpLoader(http, './i18n/', '.json');
+export function httpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './i18n/', '.json');
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,7 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideAnimationsAsync(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
     importProvidersFrom([TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -27,6 +29,6 @@ export const appConfig: ApplicationConfig = {
     })]),
     provideTranslateService({
       defaultLanguage: 'en'
-    })
+    }),
   ]
 };

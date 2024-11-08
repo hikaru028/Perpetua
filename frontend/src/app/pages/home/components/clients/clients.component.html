@@ -17,7 +17,8 @@
         <div class="col-md-7">
             <!-- Title -->
             <h1>
-                Creating great things<br />for great people since 2016
+                {{ 'home.section.title.clients-L1' | translate }}<br>
+                {{ 'home.section.title.clients-L2' | translate }}
             </h1>
             <!-- Client logos -->
             <app-client-card [clients]="clients" (clientSelected)="onClientSelected($event)"></app-client-card>
