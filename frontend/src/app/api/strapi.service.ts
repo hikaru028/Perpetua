@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment'
 })
 export class StrapiService {
   private apiUrl = environment.strapiUrl;
-  private apiToken = environment.strapiToken;
+  private apiToken = environment.strapiApi;
 
   constructor(private http: HttpClient) { }
 
