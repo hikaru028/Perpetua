@@ -40,7 +40,7 @@
     <span class="separator"></span>
     <!-- Project cards -->
     <app-project-card *ngIf="filteredProjects$ | async as filteredProjects"
-        [projects]="filteredProjects"></app-project-card>
+        [projects]="filteredProjects | slice:0:6"></app-project-card>
     <!-- Footer -->
     <div class="footer-button-wrapper">
         <button class="footer-button" [routerLink]="['/projects']" (click)="sortProjects('')">

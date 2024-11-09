@@ -1,7 +1,7 @@
 <div class="client-card-container container-fluid">
     <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="clients.length > 0;">
         <div class="col" *ngFor="let client of clients; let i = index">
-            <!-- Logo image -->
+            <!-- Company logo image -->
             <div class="card-container" (click)="selectClient(i)">
                 <button class="image-wrapper">
                     <img [src]="client.company_logo.url" [alt]="client.company_name">

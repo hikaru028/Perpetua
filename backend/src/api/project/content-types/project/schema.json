@@ -58,7 +58,8 @@
         "technology",
         "telecommunications",
         "transportation & logistics"
-      ]
+      ],
+      "required": true
     }
   }
 }

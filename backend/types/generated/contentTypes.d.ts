@@ -561,7 +561,8 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
         'telecommunications',
         'transportation & logistics',
       ]
-    >;
+    > &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
