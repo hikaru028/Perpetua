@@ -18,9 +18,11 @@ export class StaffCardComponent implements OnInit {
   shuffledMembers: IMember[][] = [];
 
   ngOnInit() {
+    console.log("all members: ", this.members);
     if (this.members.length >= 6) {
       for (let i = 0; i < 6; i++) {
         this.shuffledMembers.push(this.generateCyclicArray(i));
+        console.log("shuffled members: ", this.shuffledMembers);
       }
     }
   }

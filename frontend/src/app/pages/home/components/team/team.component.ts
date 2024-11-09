@@ -28,7 +28,6 @@ export class TeamComponent implements OnInit {
           url: this.strapiUrl + member.portrait_image.url || "../../../../../assets/images/img_n.a.png"
         }
       }));
-
     }, error => {
       console.error('Error fetching members:', error);
     });

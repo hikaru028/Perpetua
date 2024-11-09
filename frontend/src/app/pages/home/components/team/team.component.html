@@ -5,7 +5,9 @@
             Driven by a talented international team<br />spanning 3 countries⏤and counting
         </h1>
     </div>
-    <app-staff-card [members]="members"></app-staff-card>
+    <ng-container *ngIf="members.length > 0">
+        <app-staff-card [members]="members"></app-staff-card>
+    </ng-container>
     <!-- Footer -->
     <div class=" footer-button-wrapper" [routerLink]="['/team']">
         <button class="footer-button">
