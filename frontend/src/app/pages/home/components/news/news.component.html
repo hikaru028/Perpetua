@@ -27,7 +27,7 @@
     </div>
     <span class="separator"></span>
     <!-- Article cards -->
-    <app-article-card [articles]="filteredArticles"></app-article-card>
+    <app-article-card [articles]="filteredArticles | slice:0:6"></app-article-card>
     <!-- Footer -->
     <div class="footer-button-wrapper" [routerLink]="['/blogs']">
         <button class="footer-button">
