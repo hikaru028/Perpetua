@@ -435,6 +435,7 @@ export interface ApiClientClient extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     phone: Schema.Attribute.String;
+    projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     representative: Schema.Attribute.String;
     testimonial: Schema.Attribute.Blocks;
@@ -569,12 +570,23 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'api::project.project'
     > &
       Schema.Attribute.Private;
-    project_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
+    project_client: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::client.client'
     >;
+    project_date: Schema.Attribute.Date;
+    project_description: Schema.Attribute.Text;
+    project_images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    project_link: Schema.Attribute.String;
     project_title: Schema.Attribute.String & Schema.Attribute.Required;
     project_type: Schema.Attribute.Enumeration<['software', 'website', 'app']>;
     publishedAt: Schema.Attribute.DateTime;
+    thumbnail_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

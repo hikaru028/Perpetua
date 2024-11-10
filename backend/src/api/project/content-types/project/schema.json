@@ -16,9 +16,9 @@
       "type": "string",
       "required": true
     },
-    "project_image": {
+    "project_images": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "allowedTypes": [
         "images",
@@ -60,6 +60,33 @@
         "transportation & logistics"
       ],
       "required": true
+    },
+    "project_description": {
+      "type": "text",
+      "required": false
+    },
+    "project_link": {
+      "type": "string"
+    },
+    "project_date": {
+      "type": "date"
+    },
+    "project_client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "projects"
+    },
+    "thumbnail_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

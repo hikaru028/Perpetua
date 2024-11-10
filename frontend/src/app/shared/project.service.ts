@@ -20,6 +20,9 @@ export class ProjectService {
     private projectsByIndustrySubject = new BehaviorSubject<{ [industry: string]: IProject[] }>({});
     projectsByIndustry$ = this.projectsByIndustrySubject.asObservable();
 
+    public moreProjectsSubject = new BehaviorSubject<IProject[]>([]);
+    moreProjects$ = this.moreProjectsSubject.asObservable();
+
     strapiUrl = 'http://localhost:1337';
 
     constructor(private strapiService: StrapiService) {
@@ -30,9 +33,9 @@ export class ProjectService {
         this.strapiService.getAllProjects().subscribe((result: APIResponseModel) => {
             const projects = result.data.map((project: IProject) => ({
                 ...project,
-                project_image: {
-                    ...project.project_image,
-                    url: this.strapiUrl + project.project_image.url || "../../../../../assets/images/img_n.a.png"
+                thumbnail_image: {
+                    ...project.thumbnail_image,
+                    url: this.strapiUrl + project.thumbnail_image.url || "../../../../../assets/images/img_n.a.png"
                 }
             }));
             this.projectsSubject.next(projects);
@@ -70,5 +73,20 @@ export class ProjectService {
         });
 
         this.projectsByIndustrySubject.next(projectsByIndustry);
+    }
+
+    public selectMoreProjectByDate(currentDocumentId: string): void {
+        const allProjects = this.projectsSubject.getValue();
+
+        const filteredProjects = allProjects.filter(project => project.documentId !== currentDocumentId);
+
+        const sortedProjects = filteredProjects.sort((a, b) => {
+            const dateA = new Date(a.project_date).getTime();
+            const dateB = new Date(b.project_date).getTime();
+            return dateB - dateA; // Sort by descending order (latest projects first)
+        });
+
+        const moreProjects = sortedProjects.slice(0, 3);
+        this.moreProjectsSubject.next(moreProjects);
     }
 }

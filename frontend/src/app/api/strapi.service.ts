@@ -29,8 +29,8 @@ export class StrapiService {
     });
   }
 
-  getProjectById(id: number): Observable<APIResponseModel> {
-    return this.http.get<APIResponseModel>(`${this.apiUrl}/projects/${id}`, {
+  getProjectById(id: string): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/projects/${id}?populate=*`, {
       headers: this.getHeaders(),
     });
   }
@@ -41,8 +41,8 @@ export class StrapiService {
     });
   }
 
-  getClientById(id: number): Observable<APIResponseModel> {
-    return this.http.get<APIResponseModel>(`${this.apiUrl}/clients/${id}`, {
+  getClientById(id: string): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/clients/${id}?populate=*`, {
       headers: this.getHeaders(),
     });
   }

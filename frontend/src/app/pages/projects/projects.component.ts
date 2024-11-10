@@ -1,12 +1,12 @@
 // Libraries
-import { Component, OnInit, inject, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // Components
-import { ProjectCardComponent } from '../../components/project-card/project-card.component'
+import { ProjectCardComponent } from '../../components/project-card/project-card.component';
 import { CallActionComponent } from '../../components/call-action/call-action.component';
+import { BackToTopButtonComponent } from '../../components/buttons/back-to-top-button/back-to-top-button.component';
 // Service
 import { ProjectService } from '../../shared/project.service';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ import { IProject } from '../../../util/interfaces';
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectCardComponent, RouterLink, TranslateModule, CallActionComponent],
+  imports: [CommonModule, ProjectCardComponent, TranslateModule, CallActionComponent, BackToTopButtonComponent],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })
@@ -34,11 +34,8 @@ export class ProjectsComponent implements OnInit {
   translate: TranslateService = inject(TranslateService);
   projectService: ProjectService = inject(ProjectService);
   currentLanguage: string = 'en';
-  private renderer = inject(Renderer2);
-  private hostElement = inject(ElementRef);
 
   constructor(private titleService: Title, private metaService: Meta) {
-    // this.projects$ = this.projectService.projects$;
     this.filteredProjects$ = this.projectService.filteredProjects$;
     this.selectedFilter$ = this.projectService.selectedFilter$;
     this.projectsByIndustry$ = this.projectService.projectsByIndustry$;
@@ -47,7 +44,7 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     // Meta info for SEO
     this.titleService.setTitle('Projects - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'Browse our projects to learn more about the amazing things we have done at Perpeture' });
+    this.metaService.updateTag({ name: 'description', content: 'Browse our projects to learn more about the amazing things we have done at Perpeture.' });
 
     this.selectedFilter$.subscribe((filter) => {
       if (filter) {
@@ -88,12 +85,5 @@ export class ProjectsComponent implements OnInit {
 
   getIndustryKeys(projectsByIndustry: { [industry: string]: IProject[] }): string[] {
     return Object.keys(projectsByIndustry);
-  }
-
-  scrollToTop(): void {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
   }
 }

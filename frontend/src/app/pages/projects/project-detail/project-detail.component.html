@@ -1,0 +1,63 @@
+<div *ngIf="project" class="project-detail">
+    <section class='w-100 m-0'>
+        <div class="header-section">
+            <h1>{{project.project_title}}</h1>
+            <p class="description">{{project.project_description}}</p>
+            <div class="live-button-wrapper">
+                <button class="live-button">
+                    View live project
+                    <i class="bi bi-arrow-right-short"></i>
+                </button>
+            </div>
+        </div>
+        <div class="image-wrapper">
+            <img *ngIf="project.thumbnail_image; else fallbackImage" [src]="project.thumbnail_image.url"
+                [alt]="project.project_title || 'No Title Available'" />
+            <ng-template #fallbackImage>
+                <img src="../../../assets/images/img_n.a.png" alt="No Available" />
+            </ng-template>
+        </div>
+    </section>
+    <!-- Body components -->
+
+    <!-- Testimonial -->
+    <section class="w-100 m-0 testimonial-section">
+        <span class="quotation">&#x201F;</span>
+        <div class="testimonial-container">
+            <p class="testimonial" *ngIf="project.project_client.testimonial.length > 0">
+                {{project.project_client.testimonial[0].children[0].text}}
+            </p>
+            <div class="name-wrapper">
+                <span class="bar"></span>
+                <p>
+                    {{project.project_client.representative}},
+                    <strong>{{project.project_client.company_name}}</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+    <div class="live-button-wrapper">
+        <button class="live-button live-button-btm">
+            View live project
+            <i class="bi bi-arrow-right-short"></i>
+        </button>
+    </div>
+    <span class="separator"></span>
+    <!-- Other projects -->
+    <app-more-projects [currentProjectId]="project.documentId"></app-more-projects>
+    <!-- Others -->
+    <div class="footer-button-wrapper">
+        <button class="footer-button" (click)="goBack()">
+            <i class="bi bi-arrow-left-short"></i>
+            Back to all projects
+        </button>
+        <app-back-to-top-button></app-back-to-top-button>
+    </div>
+    <span class="separator"></span>
+    <app-call-action></app-call-action>
+    <app-footer></app-footer>
+</div>
+
+<div *ngIf="!project">
+    <app-project-detail-skeleton></app-project-detail-skeleton>
+</div>

@@ -1,0 +1,8 @@
+<section class='w-100 m-0'>
+    <h1>More projects</h1>
+    <div class="row row-cols-1 row-cols-md-3">
+        <div *ngFor="let project of moreProjects$ | async" class="col">
+            <app-project-card [projects]="[project]"></app-project-card>
+        </div>
+    </div>
+</section>
