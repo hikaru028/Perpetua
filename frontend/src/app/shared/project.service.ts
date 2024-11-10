@@ -11,10 +11,10 @@ export class ProjectService {
     private projectsSubject = new BehaviorSubject<IProject[]>([]);
     projects$ = this.projectsSubject.asObservable();
 
-    private filteredProjectsSubject = new BehaviorSubject<IProject[]>([]);
+    public filteredProjectsSubject = new BehaviorSubject<IProject[]>([]);
     filteredProjects$ = this.filteredProjectsSubject.asObservable();
 
-    private selectedFilterSubject = new BehaviorSubject<string | null>('');
+    private selectedFilterSubject = new BehaviorSubject<string | null>('all');
     selectedFilter$ = this.selectedFilterSubject.asObservable();
 
     private projectsByIndustrySubject = new BehaviorSubject<{ [industry: string]: IProject[] }>({});
@@ -46,8 +46,8 @@ export class ProjectService {
     filterProjects(type: string): void {
         const currentProjects = this.projectsSubject.getValue();
 
-        if (this.selectedFilterSubject.getValue() === type || type === '') {
-            this.selectedFilterSubject.next('');
+        if (this.selectedFilterSubject.getValue() === type || type === 'all') {
+            this.selectedFilterSubject.next('all');
             this.filteredProjectsSubject.next(currentProjects);
         } else {
             this.selectedFilterSubject.next(type);

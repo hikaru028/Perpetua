@@ -32,7 +32,7 @@
                 'bi-x': (selectedFilter$ | async) === 'app'
             }"></i>
         </button>
-        <button class="sort-button" [routerLink]="['/projects']" (click)="sortProjects('')">
+        <button class="sort-button" [routerLink]="['/projects']" (click)="sortProjects('all')">
             View all works
             <i class="bi bi-arrow-right-short"></i>
         </button>
@@ -43,7 +43,7 @@
         [projects]="filteredProjects | slice:0:6"></app-project-card>
     <!-- Footer -->
     <div class="footer-button-wrapper">
-        <button class="footer-button" [routerLink]="['/projects']" (click)="sortProjects('')">
+        <button class="footer-button" [routerLink]="['/projects']" (click)="sortProjects('all')">
             View all works
             <i class="bi bi-arrow-right-short"></i>
         </button>

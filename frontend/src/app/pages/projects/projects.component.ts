@@ -1,8 +1,7 @@
 // Libraries
-import { Meta } from '@angular/platform-browser';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // Components
@@ -21,34 +20,49 @@ import { IProject } from '../../../util/interfaces';
   styleUrl: './projects.component.scss'
 })
 export class ProjectsComponent implements OnInit {
-  projects$: Observable<IProject[]>;
+  // projects$: Observable<IProject[]>;
   filteredProjects$: Observable<IProject[]>;
   selectedFilter$!: Observable<string | null>;
   projectsByIndustry$!: Observable<{ [industry: string]: IProject[] }>;
 
+  // Lazy loading
+  visibleProjects: IProject[] = [];
+  private allProjects: IProject[] = [];
+  projectsToLoad: number = 6;
+  loadMoreButtonVisible: boolean = false;
+
   translate: TranslateService = inject(TranslateService);
   projectService: ProjectService = inject(ProjectService);
   currentLanguage: string = 'en';
+  private renderer = inject(Renderer2);
+  private hostElement = inject(ElementRef);
 
   constructor(private titleService: Title, private metaService: Meta) {
-    this.projects$ = this.projectService.projects$;
+    // this.projects$ = this.projectService.projects$;
     this.filteredProjects$ = this.projectService.filteredProjects$;
     this.selectedFilter$ = this.projectService.selectedFilter$;
     this.projectsByIndustry$ = this.projectService.projectsByIndustry$;
   }
 
   ngOnInit(): void {
+    // Meta info for SEO
     this.titleService.setTitle('Projects - Perpeture');
     this.metaService.updateTag({ name: 'description', content: 'Browse our projects to learn more about the amazing things we have done at Perpeture' });
 
     this.selectedFilter$.subscribe((filter) => {
       if (filter) {
-        this.titleService.setTitle(`${filter} Projects - Perpeture`);
+        const upperCaseFilter = filter.charAt(0).toUpperCase() + filter.slice(1).toLowerCase(); // capitalise only the first letter
+        this.titleService.setTitle(`${upperCaseFilter} Projects - Perpeture`);
         this.metaService.updateTag({ name: 'description', content: `Browse ${filter} projects by Perpeture` });
       } else {
         this.titleService.setTitle('All Projects - Perpeture');
         this.metaService.updateTag({ name: 'description', content: 'Browse all projects by Perpeture' });
       }
+    });
+
+    this.filteredProjects$.subscribe((projects) => {
+      this.allProjects = projects;
+      this.initializeVisibleProjects();
     });
 
     this.translate.onLangChange.subscribe(event => {
@@ -57,11 +71,29 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
+  initializeVisibleProjects(): void {
+    this.visibleProjects = this.allProjects.slice(0, this.projectsToLoad);
+    this.loadMoreButtonVisible = this.visibleProjects.length < this.allProjects.length;
+  }
+
+  loadMoreProjects(): void {
+    const newProjects = this.allProjects.slice(this.visibleProjects.length, this.visibleProjects.length + this.projectsToLoad);
+    this.visibleProjects = [...this.visibleProjects, ...newProjects];
+    this.loadMoreButtonVisible = this.visibleProjects.length < this.allProjects.length;
+  }
+
   sortProjects(type: string): void {
     this.projectService.filterProjects(type);
   }
 
   getIndustryKeys(projectsByIndustry: { [industry: string]: IProject[] }): string[] {
     return Object.keys(projectsByIndustry);
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 }

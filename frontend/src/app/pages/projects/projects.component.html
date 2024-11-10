@@ -37,12 +37,12 @@
                     'bi-x': (selectedFilter$ | async) === 'app'
                 }"></i>
         </button>
-        <button class="sort-button" (click)="sortProjects('')"
-            [ngClass]="{'selected': (selectedFilter$ | async) === ''}">
+        <button class="sort-button" (click)="sortProjects('all')"
+            [ngClass]="{'selected': (selectedFilter$ | async) === 'all'}">
             All work
             <i class="bi" [ngClass]="{
-                'bi-chevron-down': (selectedFilter$ | async) !== '',
-                'bi-x': (selectedFilter$ | async) === ''
+                'bi-chevron-down': (selectedFilter$ | async) !== 'all',
+                'bi-x': (selectedFilter$ | async) === 'all'
             }"></i>
         </button>
     </div>
@@ -58,18 +58,19 @@
             </div>
         </div>
         <ng-container *ngIf="selectedFilter !== 'industry'">
-            <app-project-card *ngIf="filteredProjects$ | async as filteredProjects" [projects]="filteredProjects">
+            <app-project-card *ngIf="visibleProjects.length > 0" [projects]="visibleProjects">
             </app-project-card>
         </ng-container>
     </ng-container>
 
     <!-- Footer -->
     <div class="footer-button-wrapper">
-        <button class="footer-button">
+        <button id="loadMoreButton" *ngIf="loadMoreButtonVisible" class="footer-button" (click)="loadMoreProjects()">
             Load more
             <i class="bi bi-arrow-down-short"></i>
         </button>
-        <button class="footer-button" routerLink="#pageTop">
+
+        <button class="footer-button" (click)="scrollToTop()">
             Back to top
             <i class="bi bi-arrow-right-short"></i>
         </button>
