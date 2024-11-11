@@ -40,6 +40,7 @@ export class ProjectService {
                     url: this.strapiUrl + project.thumbnail_image.url || "../../../../../assets/images/img_n.a.png"
                 }
             }));
+
             this.projectsSubject.next(projects);
             this.filteredProjectsSubject.next(projects);
             this.groupProjectsByIndustry(projects);

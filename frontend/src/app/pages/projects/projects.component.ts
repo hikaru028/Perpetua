@@ -20,7 +20,6 @@ import { IProject } from '../../../util/interfaces';
   styleUrl: './projects.component.scss'
 })
 export class ProjectsComponent implements OnInit {
-  // projects$: Observable<IProject[]>;
   filteredProjects$: Observable<IProject[]>;
   selectedFilter$!: Observable<string | null>;
   projectsByIndustry$!: Observable<{ [industry: string]: IProject[] }>;

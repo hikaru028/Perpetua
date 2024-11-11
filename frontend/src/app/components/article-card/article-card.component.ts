@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { IArticle } from '../../../../../../../util/interfaces';
+import { IArticle } from '../../../util/interfaces';
 import { RouterLink } from '@angular/router';
 
 @Component({

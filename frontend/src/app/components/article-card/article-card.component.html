@@ -1,15 +1,13 @@
 <div class="article-card-container container-fluid">
     <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="articles.length > 0; else noArticles">
         <div class="col" *ngFor="let article of articles">
-            <div class="card-container" routerLink="/articles">
+            <div class="card-container" [routerLink]="['/articles', article.documentId]">
                 <!-- Image -->
                 <div class="image-wrapper">
                     <img [src]="article.thumbnail_image.url" [alt]="article.author">
                 </div>
                 <!-- Title -->
-                <p>
-                    {{ article.title || 'No Title Available' }}
-                </p>
+                <p>{{ article.title || 'No Title Available' }}</p>
             </div>
         </div>
     </div>

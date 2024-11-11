@@ -23,8 +23,8 @@ export class ProjectsComponent implements OnInit {
   filteredProjects$: Observable<IProject[]>;
   selectedFilter$!: Observable<string | null>;
 
-  translate: TranslateService = inject(TranslateService);
   projectService: ProjectService = inject(ProjectService);
+  translate: TranslateService = inject(TranslateService);
   currentLanguage: string = 'en';
 
   constructor() {
