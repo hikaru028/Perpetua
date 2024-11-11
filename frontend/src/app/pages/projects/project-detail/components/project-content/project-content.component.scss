@@ -12,22 +12,6 @@ section {
         }
     }
 
-    .grid {
-        column-gap: 5px;
-        row-gap: 5px;
-
-        .row {
-            width: auto;
-            padding: 0;
-        }
-
-        .col {
-            width: 100%;
-            height: 100%;
-            background-color: red;
-        }
-    }
-
     .image-wrapper {
         width: 100%;
         height: 858px;
@@ -50,6 +34,29 @@ section {
             font-size: 2rem;
             padding-top: 5px;
             transition: transform 0.3s ease;
+        }
+    }
+
+    .grid {
+        display: grid;
+        height: auto;
+        column-gap: 15px;
+        row-gap: 15px;
+
+        .row {
+            width: auto;
+            height: 530px;
+            padding: 0;
+        }
+
+        .col {
+            max-height: 530px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
     }
 

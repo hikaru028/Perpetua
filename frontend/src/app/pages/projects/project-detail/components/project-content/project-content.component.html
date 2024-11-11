@@ -12,7 +12,10 @@
                 this had to be developed. Discuss the problem OCP faced in detail.</p>
             <i class="bi bi-chevron-down"></i>
         </div>
-        <div class="image-wrapper"></div>
+        <div class="image-wrapper">
+            <img *ngIf="project?.thumbnail_image; else fallbackImage" [src]="project?.thumbnail_image?.url"
+                [alt]="project?.project_title || 'No Title Available'" />
+        </div>
     </div>
     <div class="section-small">
         <div class="comment-wrapper sub-comment-wrapper">
@@ -22,11 +25,20 @@
         </div>
         <div class="image-wrapper grid">
             <div class="row row-cols-md-2">
-                <div class="col"></div>
-                <div class="col"></div>
+                <div class="col">
+                    <img *ngIf="project?.thumbnail_image; else fallbackImage" [src]="project?.thumbnail_image?.url"
+                        [alt]="project?.project_title || 'No Title Available'" />
+                </div>
+                <div class="col">
+                    <img *ngIf="project?.thumbnail_image; else fallbackImage" [src]="project?.thumbnail_image?.url"
+                        [alt]="project?.project_title || 'No Title Available'" />
+                </div>
             </div>
             <div class="row">
-                <div class="col"></div>
+                <div class="col">
+                    <img *ngIf="project?.thumbnail_image; else fallbackImage" [src]="project?.thumbnail_image?.url"
+                        [alt]="project?.project_title || 'No Title Available'" />
+                </div>
             </div>
         </div>
     </div>
@@ -35,7 +47,10 @@
             <p>Example text discussing the project and the need OCP had to connect with their customers, essentially why
                 this had to be developed. Discuss the problem OCP faced in detail.</p>
         </div>
-        <div class="image-wrapper"></div>
+        <div class="image-wrapper">
+            <img *ngIf="project?.thumbnail_image; else fallbackImage" [src]="project?.thumbnail_image?.url"
+                [alt]="project?.project_title || 'No Title Available'" />
+        </div>
     </div>
     <div class="section-small">
         <div class="comment-wrapper sub-comment-wrapper">
@@ -43,6 +58,9 @@
                 this had to be developed. Discuss the problem OCP faced in detail.</p>
             <i class="bi bi-chevron-down"></i>
         </div>
-        <div class="image-wrapper"></div>
+        <div class="image-wrapper">
+            <img *ngIf="project?.thumbnail_image; else fallbackImage" [src]="project?.thumbnail_image?.url"
+                [alt]="project?.project_title || 'No Title Available'" />
+        </div>
     </div>
 </section>
