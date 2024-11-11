@@ -56,7 +56,6 @@ export class ProjectDetailComponent implements OnInit {
         this.project = result.data;
 
         if (this.project) {
-          console.log(this.project);
           const companyName = this.project?.project_client?.company_name || 'Unknown Company';
           this.titleService.setTitle(`${this.project.project_title} (${companyName}) - Perpeture`);
           this.metaService.updateTag({

@@ -1,5 +1,7 @@
+// Libraries
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+// Services
 import { StrapiService } from '../api/strapi.service';
 import { IProject, APIResponseModel } from '../../util/interfaces';
 
@@ -75,18 +77,29 @@ export class ProjectService {
         this.projectsByIndustrySubject.next(projectsByIndustry);
     }
 
-    public selectMoreProjectByDate(currentDocumentId: string): void {
-        const allProjects = this.projectsSubject.getValue();
+    public selectMoreProjectByDate(currentProjectDocumentId: string): void {
+        this.strapiService.getAllProjects().subscribe((result: APIResponseModel) => {
+            if (result && result.data) {
+                const allProjects: IProject[] = result.data.map((project: IProject) => ({
+                    ...project,
+                    thumbnail_image: {
+                        ...project.thumbnail_image,
+                        url: this.strapiUrl + project.thumbnail_image.url || "../../../../../assets/images/img_n.a.png"
+                    }
+                }));
 
-        const filteredProjects = allProjects.filter(project => project.documentId !== currentDocumentId);
+                const filteredProjects = allProjects.filter(project => project.documentId !== currentProjectDocumentId);
+                const sortedProjects = filteredProjects.sort((a, b) => {
+                    const dateA = new Date(a.project_date).getTime();
+                    const dateB = new Date(b.project_date).getTime();
+                    return dateB - dateA; // Sort by descending order (latest projects first)
+                });
 
-        const sortedProjects = filteredProjects.sort((a, b) => {
-            const dateA = new Date(a.project_date).getTime();
-            const dateB = new Date(b.project_date).getTime();
-            return dateB - dateA; // Sort by descending order (latest projects first)
+                const moreProjects = sortedProjects.slice(0, 3);
+                this.moreProjectsSubject.next(moreProjects);
+            }
+        }, error => {
+            console.error('Error fetching projects:', error);
         });
-
-        const moreProjects = sortedProjects.slice(0, 3);
-        this.moreProjectsSubject.next(moreProjects);
     }
 }

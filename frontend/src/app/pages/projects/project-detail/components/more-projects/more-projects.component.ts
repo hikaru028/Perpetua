@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
 })
 export class MoreProjectsComponent implements OnChanges {
   moreProjects$: Observable<IProject[]>;
-  @Input() currentProjectId: string | null = null;
+  @Input() currentProjectDocumentId: string | null = null;
   projectService: ProjectService = inject(ProjectService);
 
 
@@ -26,8 +26,8 @@ export class MoreProjectsComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['currentProjectId'] && this.currentProjectId) {
-      this.projectService.selectMoreProjectByDate(this.currentProjectId);
+    if (changes['currentProjectDocumentId'] && changes['currentProjectDocumentId'].currentValue) {
+      this.projectService.selectMoreProjectByDate(changes['currentProjectDocumentId'].currentValue);
     }
   }
 }
