@@ -12,6 +12,7 @@ import { FooterComponent } from '../../../components/footer/footer.component';
 import { BackToTopButtonComponent } from '../../../components/buttons/back-to-top-button/back-to-top-button.component';
 import { ProjectDetailSkeletonComponent } from '../../../components/skeletons/project-detail-skeleton/project-detail-skeleton.component';
 import { MoreProjectsComponent } from './components/more-projects/more-projects.component';
+import { ProjectContentComponent } from './components/project-content/project-content.component';
 
 @Component({
   selector: 'app-project-detail',
@@ -23,7 +24,8 @@ import { MoreProjectsComponent } from './components/more-projects/more-projects.
     CallActionComponent,
     FooterComponent,
     BackToTopButtonComponent,
-    MoreProjectsComponent
+    MoreProjectsComponent,
+    ProjectContentComponent
   ],
   templateUrl: './project-detail.component.html',
   styleUrl: './project-detail.component.scss'
@@ -31,6 +33,7 @@ import { MoreProjectsComponent } from './components/more-projects/more-projects.
 export class ProjectDetailComponent implements OnInit {
   documentId!: string;
   project?: IProject;
+  strapiUrl = 'http://localhost:1337';
 
   constructor(
     private metaService: Meta,
@@ -53,7 +56,13 @@ export class ProjectDetailComponent implements OnInit {
   loadProjectDetails(): void {
     this.strapiService.getProjectById(this.documentId).subscribe((result: APIResponseModel) => {
       if (result && result.data) {
-        this.project = result.data;
+        this.project = {
+          ...result.data,
+          thumbnail_image: {
+            ...result.data.thumbnail_image,
+            url: this.strapiUrl + result.data.thumbnail_image.url || "../../../../../assets/images/img_n.a.png"
+          },
+        };
 
         if (this.project) {
           const companyName = this.project?.project_client?.company_name || 'Unknown Company';
