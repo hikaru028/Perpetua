@@ -10,16 +10,9 @@
                 </button>
             </div>
         </div>
-        <div class="image-wrapper">
-            <img *ngIf="project.thumbnail_image; else fallbackImage" [src]="project.thumbnail_image.url"
-                [alt]="project.project_title || 'No Title Available'" />
-            <ng-template #fallbackImage>
-                <img src="../../../assets/images/img_n.a.png" alt="No Available" />
-            </ng-template>
-        </div>
     </section>
     <!-- Body components -->
-    <app-project-content></app-project-content>
+    <app-project-content [project]="project"></app-project-content>
     <!-- Testimonial -->
     <section class="w-100 m-0 testimonial-section">
         <span class="quotation">&#x201F;</span>
