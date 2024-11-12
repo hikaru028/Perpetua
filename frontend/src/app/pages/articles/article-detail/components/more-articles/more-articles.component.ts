@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ArticleCardComponent } from '../../../../../components/article-card/article-card.component';
 // Services
 import { ArticleService } from '../../../../../shared/article.service';
-import { IProject } from '../../../../../../util/interfaces';
+import { IArticle } from '../../../../../../util/interfaces';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
 })
 export class MoreArticlesComponent implements OnChanges {
   @Input() currentArticleDocumentId: string | null = null;
-  moreArticles$: Observable<IProject[]>;
+  moreArticles$: Observable<IArticle[]>;
   articleService: ArticleService = inject(ArticleService);
 
 
@@ -27,7 +27,7 @@ export class MoreArticlesComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['currentArticleDocumentId'] && changes['currentArticleDocumentId'].currentValue) {
-      this.articleService.selectMoreProjectByDate(changes['currentArticleDocumentId'].currentValue);
+      this.articleService.selectMoreArticleByDate(changes['currentArticleDocumentId'].currentValue);
     }
   }
 }

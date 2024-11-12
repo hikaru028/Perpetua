@@ -19,8 +19,8 @@ export class ArticleService {
     private selectedFilterSubject = new BehaviorSubject<string | null>('all');
     selectedFilter$ = this.selectedFilterSubject.asObservable();
 
-    public moreProjectsSubject = new BehaviorSubject<IArticle[]>([]);
-    moreProjects$ = this.moreProjectsSubject.asObservable();
+    public moreArticlesSubject = new BehaviorSubject<IArticle[]>([]);
+    moreArticles$ = this.moreArticlesSubject.asObservable();
 
     strapiUrl = 'http://localhost:1337';
 
@@ -59,28 +59,28 @@ export class ArticleService {
     }
 
     public selectMoreArticleByDate(currentArticleDocumentId: string): void {
-        this.strapiService.getAllProjects().subscribe((result: APIResponseModel) => {
+        this.strapiService.getAllArticles().subscribe((result: APIResponseModel) => {
             if (result && result.data) {
-                const allProjects: IArticle[] = result.data.map((project: IArticle) => ({
-                    ...project,
+                const allArticles: IArticle[] = result.data.map((article: IArticle) => ({
+                    ...article,
                     thumbnail_image: {
-                        ...project.thumbnail_image,
-                        url: this.strapiUrl + project.thumbnail_image.url || "../../../../../assets/images/img_n.a.png"
+                        ...article.thumbnail_image,
+                        url: this.strapiUrl + article.thumbnail_image.url || "../../../../../assets/images/img_n.a.png"
                     }
                 }));
 
-                const filteredProjects = allProjects.filter(project => project.documentId !== currentArticleDocumentId);
-                const sortedProjects = filteredProjects.sort((a, b) => {
+                const filteredArticles = allArticles.filter(article => article.documentId !== currentArticleDocumentId);
+                const sortedArticles = filteredArticles.sort((a, b) => {
                     const dateA = new Date(a.createdAt).getTime();
                     const dateB = new Date(b.createdAt).getTime();
                     return dateB - dateA;
                 });
 
-                const moreProjects = sortedProjects.slice(0, 3);
-                this.moreProjectsSubject.next(moreProjects);
+                const moreArticles = sortedArticles.slice(0, 3);
+                this.moreArticlesSubject.next(moreArticles);
             }
         }, error => {
-            console.error('Error fetching projects:', error);
+            console.error('Error fetching articles:', error);
         });
     }
 }
