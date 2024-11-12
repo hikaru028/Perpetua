@@ -18,8 +18,9 @@
 
 <div *ngIf="!showTitleAsIndustry" class="project-card-container container-fluid">
     <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="projects.length > 0; else noProjects">
-        <div class="col" *ngFor="let project of projects">
-            <div class="card-container" [routerLink]="['/projects', project.documentId]">
+        <div class="col" *ngFor="let project of projects" (click)="navigateToProject(project.documentId)"
+            (keydown)="onKeyDown($event, project.documentId)">
+            <div class="card-container">
                 <!-- Image -->
                 <div class="image-wrapper">
                     <img [src]="project.thumbnail_image.url" [alt]="project.project_title">

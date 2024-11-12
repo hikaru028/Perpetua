@@ -1,7 +1,8 @@
 <div *ngIf="!fromArticlePage" class="article-card-container container-fluid">
     <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="articles.length > 0; else noArticles">
-        <div class="col" *ngFor="let article of articles">
-            <div class="card-container" [routerLink]="['/articles', article.documentId]">
+        <div class="col" *ngFor="let article of articles" (click)="navigateToArticle(article.documentId)"
+            (keydown)="onKeyDown($event, article.documentId)">
+            <div class="card-container">
                 <!-- Image -->
                 <div class="image-wrapper">
                     <img [src]="article.thumbnail_image.url" [alt]="article.author">
@@ -31,7 +32,8 @@
                     <p class="info-content">{{ article.content[0].children[0].text | truncate:24 }}</p>
                 </div>
                 <div class="read-button-wrapper">
-                    <button class="read-button" [routerLink]="['/articles', article.documentId]">
+                    <button class="read-button" [routerLink]="['/articles', article.documentId]"
+                        (click)="scrollToTop()">
                         Read more
                         <i class="bi bi-arrow-right-short"></i>
                     </button>

@@ -1,6 +1,7 @@
 .article-card-container {
     width: 100%;
     padding: 15px;
+    cursor: pointer;
 }
 
 .custom-gutter {
@@ -10,7 +11,6 @@
 .card-container {
     display: flex;
     flex-direction: column;
-    cursor: pointer;
 
     .image-wrapper {
         height: 400px;

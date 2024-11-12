@@ -1,5 +1,5 @@
 // Libraries
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { marked } from 'marked';
@@ -15,29 +15,43 @@ import { IArticle } from '../../../../../../util/interfaces';
   templateUrl: './article-content.component.html',
   styleUrl: './article-content.component.scss'
 })
-export class ArticleContentComponent implements OnInit {
+export class ArticleContentComponent implements OnChanges {
   @Input() article: IArticle | undefined;
   sanitizedContent: SafeHtml | undefined;
+  restOfContent: SafeHtml | undefined;
   firstLetter: string = '';
 
   constructor(private sanitizer: DomSanitizer) { }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['article'] && this.article?.content) {
+      this.parseContent();
+    }
+  }
+
+  parseContent(): void {
     const parsedContent = marked.parse(this.article?.content);
     if (typeof parsedContent === 'string') {
-      // Extract the first letter and rest of the content
-      const firstChar = parsedContent.charAt(3);
-      const restOfContent = parsedContent.slice(1);
+      const tempElement = document.createElement('div');
+      tempElement.innerHTML = parsedContent;
 
-      // Set the first letter for drop-cap
-      this.firstLetter = firstChar;
+      const textContent = tempElement.textContent || '';
+      if (textContent.length > 0) {
+        this.firstLetter = textContent.charAt(0);
 
-      // Update the rest of the content while sanitizing
-      const styledContent = restOfContent.replace(
-        /<img /g,
-        '<img style="width: 100%; height: auto; max-width: 100%;" '
-      );
-      this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(styledContent);
+        const updatedHTML = tempElement.innerHTML.replace(
+          textContent.charAt(0),
+          ''
+        );
+
+        // Style images in the content
+        const styledContent = updatedHTML.replace(
+          /<img /g,
+          '<img style="width: 100%; height: auto; max-width: 100%;" '
+        );
+
+        this.restOfContent = this.sanitizer.bypassSecurityTrustHtml(styledContent);
+      }
     }
   }
 }

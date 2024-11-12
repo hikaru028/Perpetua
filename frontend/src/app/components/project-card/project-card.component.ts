@@ -1,7 +1,9 @@
+// Libraries
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+// Services
 import { IProject } from '../../../util/interfaces';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-project-card',
@@ -13,4 +15,25 @@ import { RouterLink } from '@angular/router';
 export class ProjectCardComponent {
   @Input() projects: IProject[] = [];
   @Input() showTitleAsIndustry: boolean = false;
+
+  constructor(private router: Router) { }
+
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  navigateToProject(documentId: string): void {
+    this.scrollToTop();
+    this.router.navigate(['/projects', documentId]);
+  }
+
+  onKeyDown(event: KeyboardEvent, documentId: string): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.navigateToProject(documentId);
+    }
+  }
 }
