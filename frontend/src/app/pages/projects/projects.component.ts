@@ -30,8 +30,8 @@ export class ProjectsComponent implements OnInit {
   projectsToLoad: number = 6;
   loadMoreButtonVisible: boolean = false;
 
-  translate: TranslateService = inject(TranslateService);
   projectService: ProjectService = inject(ProjectService);
+  translate: TranslateService = inject(TranslateService);
   currentLanguage: string = 'en';
 
   constructor(private titleService: Title, private metaService: Meta) {

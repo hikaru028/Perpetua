@@ -1,0 +1,23 @@
+<section class='w-100 m-0'>
+    <div class="section-top">
+        <span class="page-title">News & blog &nbsp;&middot;&nbsp;</span>
+        <span>&nbsp;{{ article?.type | titlecase }}</span>
+        <p class="article-title">{{article?.title}}</p>
+        <p>{{article?.sub_heading}}</p>
+        <div class="image-wrapper">
+            <img *ngIf="article?.thumbnail_image; else fallbackImage" [src]="article?.thumbnail_image?.url"
+                [alt]="article?.title || 'No Title Available'" />
+            <ng-template #fallbackImage>
+                <img src="../../../assets/images/img_n.a.png" alt="No Available" />
+            </ng-template>
+        </div>
+        <div class="article-date-wrapper">
+            <p>{{ article?.createdAt | date: 'MMMM d' }}</p>
+            <app-share-article-button></app-share-article-button>
+        </div>
+    </div>
+    <div class="section-bottom">
+        <div class="first-letter">{{ firstLetter }}</div>
+        <div class="article-content" *ngIf="sanitizedContent" [innerHTML]="sanitizedContent"></div>
+    </div>
+</section>

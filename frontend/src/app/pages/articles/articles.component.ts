@@ -21,7 +21,7 @@ import { ArticleService } from '../../shared/article.service';
     TranslateModule,
     ArticleCardComponent,
     CallActionComponent,
-    BackToTopButtonComponent
+    BackToTopButtonComponent,
   ],
   templateUrl: './articles.component.html',
   styleUrl: './articles.component.scss'
@@ -77,9 +77,9 @@ export class ArticlesComponent implements OnInit {
     this.loadMoreButtonVisible = this.visibleArticles.length < this.allArticles.length;
   }
 
-  loadMoreProjects(): void {
-    const newProjects = this.allArticles.slice(this.visibleArticles.length, this.visibleArticles.length + this.articlesToLoad);
-    this.visibleArticles = [...this.visibleArticles, ...newProjects];
+  loadMoreArticles(): void {
+    const newArticles = this.allArticles.slice(this.visibleArticles.length, this.visibleArticles.length + this.articlesToLoad);
+    this.visibleArticles = [...this.visibleArticles, ...newArticles];
     this.loadMoreButtonVisible = this.visibleArticles.length < this.allArticles.length;
   }
 

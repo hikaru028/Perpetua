@@ -35,11 +35,7 @@ export class ArticleService {
                 thumbnail_image: {
                     ...article.thumbnail_image,
                     url: this.strapiUrl + article.thumbnail_image.url || "../../../../../assets/images/img_n.a.png"
-                },
-                media: article.media?.map((mediaItem: IImage) => ({
-                    ...mediaItem,
-                    url: this.strapiUrl + mediaItem.url || "../../../../../assets/images/img_n.a.png"
-                })) || null
+                }
             }));
 
             this.articlesSubject.next(articles);
@@ -50,21 +46,15 @@ export class ArticleService {
     }
 
     sortArticles(type: string): void {
-        console.log("Selected type: ", type);
-
-        const articles = this.articlesSubject.getValue(); // Always start with the full list
+        const articles = this.articlesSubject.getValue();
 
         if (type === 'all' || this.selectedFilterSubject.getValue() === type) {
-            // Show all articles
             this.selectedFilterSubject.next('all');
             this.filteredArticlesSubject.next(articles);  // Reset to all articles
-            console.log("Articles (all): ", articles);
         } else {
-            // Filter articles based on the selected type
             this.selectedFilterSubject.next(type);
             const filteredArticles = articles.filter(article => article.type === type);
             this.filteredArticlesSubject.next(filteredArticles);
-            console.log("Articles by type: ", filteredArticles);
         }
     }
 

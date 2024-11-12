@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ClientsComponent } from './pages/clients/clients.component';
 import { TeamComponent } from './pages/team/team.component';
 import { ProjectDetailComponent } from './pages/projects/project-detail/project-detail.component';
+import { ArticleDetailComponent } from './pages/articles/article-detail/article-detail.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ export const routes: Routes = [
     { path: 'services', component: ServicesComponent },
     { path: 'about', component: AboutComponent },
     { path: 'articles', component: ArticlesComponent },
+    { path: 'articles/:id', component: ArticleDetailComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'clients', component: ClientsComponent },
     { path: 'team', component: TeamComponent }

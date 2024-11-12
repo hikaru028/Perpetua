@@ -1,0 +1,23 @@
+<div *ngIf="article" class="article-detail">
+    <!-- Article section -->
+    <app-article-content [article]="article"></app-article-content>
+
+    <span class="separator"></span>
+    <!-- Other articles -->
+    <app-more-articles [currentArticleDocumentId]="article.documentId"></app-more-articles>
+    <!-- Others -->
+    <div class="footer-button-wrapper">
+        <button class="footer-button" (click)="goBack()">
+            <i class="bi bi-arrow-left-short"></i>
+            Back to all articles
+        </button>
+        <app-back-to-top-button></app-back-to-top-button>
+    </div>
+    <span class="separator"></span>
+    <app-call-action></app-call-action>
+    <app-footer></app-footer>
+</div>
+
+<div *ngIf="!article">
+    <app-article-detail-skeleton></app-article-detail-skeleton>
+</div>

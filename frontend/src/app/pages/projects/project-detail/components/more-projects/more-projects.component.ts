@@ -16,8 +16,8 @@ import { Observable } from 'rxjs';
   styleUrl: './more-projects.component.scss'
 })
 export class MoreProjectsComponent implements OnChanges {
-  moreProjects$: Observable<IProject[]>;
   @Input() currentProjectDocumentId: string | null = null;
+  moreProjects$: Observable<IProject[]>;
   projectService: ProjectService = inject(ProjectService);
 
 

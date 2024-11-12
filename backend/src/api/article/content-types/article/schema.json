@@ -16,24 +16,9 @@
       "type": "string",
       "required": true
     },
-    "content": {
-      "type": "blocks",
-      "required": true
-    },
     "thumbnail_image": {
       "type": "media",
       "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "media": {
-      "type": "media",
-      "multiple": true,
       "required": false,
       "allowedTypes": [
         "images",
@@ -53,6 +38,13 @@
     },
     "author": {
       "type": "string",
+      "required": true
+    },
+    "sub_heading": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext",
       "required": true
     }
   }

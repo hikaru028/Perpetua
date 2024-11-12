@@ -1,4 +1,4 @@
-<div class="article-card-container container-fluid">
+<div *ngIf="!fromArticlePage" class="article-card-container container-fluid">
     <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="articles.length > 0; else noArticles">
         <div class="col" *ngFor="let article of articles">
             <div class="card-container" [routerLink]="['/articles', article.documentId]">
@@ -8,6 +8,34 @@
                 </div>
                 <!-- Title -->
                 <p>{{ article.title || 'No Title Available' }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="fromArticlePage" class="article-page-container container-fluid">
+    <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="articles.length > 0; else noArticles">
+        <div class="col" *ngFor="let article of articles">
+            <div class="card-container">
+                <!-- Image -->
+                <div class="image-wrapper">
+                    <img [src]="article.thumbnail_image.url" [alt]="article.author">
+                </div>
+                <div class="information-container">
+                    <!-- Type/Date -->
+                    <p class="info-date">{{ article.type | titlecase }} &nbsp;&middot;&nbsp; {{ article.createdAt |
+                        date: 'MMMM d' }}</p>
+                    <!-- Title -->
+                    <p class="info-title">{{ article.title || 'No Title Available' }}</p>
+                    <!-- First two sentences -->
+                    <p class="info-content">{{ article.content[0].children[0].text | truncate:24 }}</p>
+                </div>
+                <div class="read-button-wrapper">
+                    <button class="read-button" [routerLink]="['/articles', article.documentId]">
+                        Read more
+                        <i class="bi bi-arrow-right-short"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

@@ -97,22 +97,12 @@ export interface IArticle {
     id: number;
     documentId: string;
     title: string;
-    content: ArticleContent[];
-    createdAt: string;
-    updatedAt: string;
+    sub_heading: string;
+    content: any;
     publishedAt: string;
     type: string;
     author: string;
     thumbnail_image: IImage;
-    media: IImage[] | null;
-}
-
-export interface ArticleContent {
-    type: string;
-    children: ArticleContentChild[];
-}
-
-export interface ArticleContentChild {
-    text: string;
-    type: string;
+    createdAt: string;
+    updatedAt: string;
 }

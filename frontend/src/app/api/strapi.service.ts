@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment'
 @Injectable({
   providedIn: 'root'
 })
+
 export class StrapiService {
   private apiUrl = environment.strapiUrl;
   private apiToken = environment.strapiApi;
@@ -55,6 +56,12 @@ export class StrapiService {
 
   getAllArticles(): Observable<APIResponseModel> {
     return this.http.get<APIResponseModel>(`${this.apiUrl}/articles?populate=*`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  getArticleById(id: string): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/articles/${id}?populate=*`, {
       headers: this.getHeaders(),
     });
   }
