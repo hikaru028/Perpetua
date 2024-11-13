@@ -468,7 +468,10 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
       'api::member.member'
     > &
       Schema.Attribute.Private;
-    location: Schema.Attribute.Relation<'manyToOne', 'api::office.office'>;
+    office_location: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::office.office'
+    >;
     phone: Schema.Attribute.String;
     portrait_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'

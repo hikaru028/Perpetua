@@ -32,7 +32,7 @@ export interface IMember {
     email: string,
     phone: string,
     portrait_image: IImage,
-    bio: any
+    bio: any,
 }
 
 export interface IClient {

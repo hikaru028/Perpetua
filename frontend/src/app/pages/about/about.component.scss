@@ -32,7 +32,7 @@
             margin-right: 50px;
         }
 
-        .location-icon {
+        .menu-icon {
             transform: rotate(45deg);
             display: inline-block;
         }
@@ -79,4 +79,34 @@
 
 .sub-title {
     margin: 80px 0 60px 65px;
+}
+
+.team-section {
+    padding: 40px 0;
+
+    menu {
+        width: 100%;
+        padding-left: 65px;
+        margin-bottom: 50px;
+        row-gap: 30px;
+
+        .member-button {
+            list-style: none;
+            border: none;
+            background-color: transparent;
+            font-family: 'Larsseit' !important;
+            color: #000000;
+            font-size: 1.5rem;
+
+            p {
+                margin-bottom: 5px;
+            }
+
+            .menu-icon {
+                transform: rotate(45deg);
+                display: inline-block;
+            }
+        }
+
+    }
 }

@@ -17,7 +17,7 @@
         <menu>
             <li *ngFor="let location of locations" class="location-button">
                 {{ location }}
-                <i class="bi bi-arrow-up-short location-icon"></i>
+                <i class="bi bi-arrow-up-short menu-icon"></i>
             </li>
         </menu>
         <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -40,13 +40,17 @@
     <!-- Team -->
     <section class="team-section">
         <h1 class="sub-title">Our team</h1>
-        <menu>
-            <li *ngFor="let member of memberNames" class="member-button">
-                {{ member }}
-                <i class="bi bi-arrow-right-short"></i>
-            </li>
+        <menu class="row row-cols-2 row-cols-md-4 row-cols-lg-6">
+            <button *ngFor="let member of members" (click)="displayMember(member.documentId)"
+                (keydown)="onKeyDown($event, member.documentId)"
+                class="col d-flex align-items-center justify-content-start member-button">
+                <p>{{ member.first_name }}&nbsp;{{ member.last_name }}</p>
+                <i class="bi bi-arrow-right-short menu-icon"></i>
+            </button>
         </menu>
-        <app-staff-card [members]="members"></app-staff-card>
+        <ng-container *ngIf="selectedMember">
+            <app-staff-card [member]="selectedMember"></app-staff-card>
+        </ng-container>
     </section>
     <!-- Call to action -->
     <app-call-action></app-call-action>

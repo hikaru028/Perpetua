@@ -1,1 +1,10 @@
-<p>staff-card works!</p>
+<div *ngIf="member" class="staff-card-container">
+    <div class="container-left">
+        <p class="name">{{ member.first_name }}&nbsp;{{ member.last_name }}</p>
+        <p class="role">{{ member.role }}</p>
+        <div class="bio" [innerHTML]="sanitizedBios[member.id]"></div>
+    </div>
+    <div class="image-wrapper">
+        <img [src]="member.portrait_image.url" [alt]="member.first_name + ' ' + member.last_name">
+    </div>
+</div>

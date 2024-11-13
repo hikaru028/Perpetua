@@ -33,6 +33,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   members: IMember[] = [];
   locations: string[] = [];
   memberNames: string[] = [];
+  selectedMember: IMember | undefined;
   strapiUrl = 'http://localhost:1337';
   private intervalId: any;
   private timeoutId: any;
@@ -70,14 +71,26 @@ export class AboutComponent implements OnInit, OnDestroy {
     });
 
     this.strapiService.getAllMembers().subscribe((response: APIResponseModel) => {
-      this.members = response.data.map((member: IMember) => ({
-        ...member,
-        portrait_image: {
-          ...member.portrait_image,
-          url: this.strapiUrl + member.portrait_image.url || "../../../assets/images/img_n.a.png"
-        }
-      }));
-      this.memberNames = this.members.map((member: IMember) => member.first_name + ' ' + member.last_name);
+      this.members = response.data
+        .map((member: IMember) => ({
+          ...member,
+          portrait_image: {
+            ...member.portrait_image,
+            url: this.strapiUrl + member.portrait_image.url || "../../../assets/images/img_n.a.png"
+          }
+        }))
+        .sort((a: IMember, b: IMember) => {
+          const lastNameComparison = a.last_name.localeCompare(b.last_name);
+          if (lastNameComparison !== 0) {
+            return lastNameComparison;
+          }
+          return a.first_name.localeCompare(b.first_name);
+        });
+
+      // Set the default member
+      if (this.members.length > 0) {
+        this.selectedMember = this.members[0];
+      }
     });
   }
 
@@ -95,10 +108,7 @@ export class AboutComponent implements OnInit, OnDestroy {
     const millisecondsUntilNextMinute = (60 - now.getSeconds()) * 1000;
 
     this.timeoutId = setTimeout(() => {
-      // Update the time now that we're aligned with the next minute
       this.updateCurrentTimes();
-
-      // Start the interval after this
       this.intervalId = setInterval(() => {
         this.updateCurrentTimes();
       }, 60000);
@@ -108,7 +118,6 @@ export class AboutComponent implements OnInit, OnDestroy {
   updateCurrentTimes(): void {
     this.offices.forEach(office => {
       office.currentTime = this.getCurrentTime(office.office_location);
-      console.log(`Office location: ${office.office_location}, Current time: ${office.currentTime}`);
     });
   }
 
@@ -128,6 +137,20 @@ export class AboutComponent implements OnInit, OnDestroy {
     } catch (error) {
       console.error(`Error fetching time for location ${location}:`, error);
       return "00:00 AM";
+    }
+  }
+
+  displayMember(documentId: string): void {
+    const selected = this.members.find(member => member.documentId === documentId);
+    if (selected) {
+      this.selectedMember = selected;
+    }
+  }
+
+  onKeyDown(event: KeyboardEvent, documentId: string): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.displayMember(documentId);
     }
   }
 }

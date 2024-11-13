@@ -29,12 +29,6 @@
         "audios"
       ]
     },
-    "members": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::member.member",
-      "mappedBy": "location"
-    },
     "address_1": {
       "type": "string"
     },
@@ -76,6 +70,12 @@
     },
     "ward": {
       "type": "string"
+    },
+    "members": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::member.member",
+      "mappedBy": "office_location"
     }
   }
 }

@@ -43,7 +43,7 @@
     "phone": {
       "type": "string"
     },
-    "location": {
+    "office_location": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::office.office",
