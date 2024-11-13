@@ -20,7 +20,9 @@
                 <i class="bi bi-arrow-up-short"></i>
             </li>
         </menu>
-        <app-location-card [offices]="offices"></app-location-card>
+        <div class="row row-cols-2">
+            <app-location-card [offices]="offices"></app-location-card>
+        </div>
         <div class="footer-button-wrapper">
             <button class="footer-button" routerLink="/contact">
                 <i class="bi bi-arrow-left-short"></i>

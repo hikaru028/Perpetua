@@ -1,6 +1,6 @@
 // Libraries
 import { Title, Meta } from '@angular/platform-browser';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 // Components
@@ -27,13 +27,15 @@ import { IClient, IMember, IOffice, APIResponseModel } from '../../../util/inter
   styleUrl: './about.component.scss'
 })
 
-export class AboutComponent implements OnInit {
+export class AboutComponent implements OnInit, OnDestroy {
   offices: IOffice[] = [];
   clients: IClient[] = [];
   members: IMember[] = [];
   locations: string[] = [];
   memberNames: string[] = [];
   strapiUrl = 'http://localhost:1337';
+  private intervalId: any;
+  private timeoutId: any;
 
   constructor(private titleService: Title, private metaService: Meta, private strapiService: StrapiService) {
   }
@@ -49,9 +51,12 @@ export class AboutComponent implements OnInit {
         office_image: {
           ...office.office_image,
           url: this.strapiUrl + office.office_image.url || "../../../assets/images/img_n.a.png"
-        }
+        },
+        currentTime: this.getCurrentTime(office.office_location)
       }));
       this.locations = this.offices.map((office: IOffice) => office.office_location);
+
+      this.alignToNextMinute();
     });
 
     this.strapiService.getAllClients().subscribe((response: APIResponseModel) => {
@@ -74,5 +79,55 @@ export class AboutComponent implements OnInit {
       }));
       this.memberNames = this.members.map((member: IMember) => member.first_name + ' ' + member.last_name);
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  }
+
+  alignToNextMinute(): void {
+    const now = new Date();
+    const millisecondsUntilNextMinute = (60 - now.getSeconds()) * 1000;
+
+    this.timeoutId = setTimeout(() => {
+      // Update the time now that we're aligned with the next minute
+      this.updateCurrentTimes();
+
+      // Start the interval after this
+      this.intervalId = setInterval(() => {
+        this.updateCurrentTimes();
+      }, 60000);
+    }, millisecondsUntilNextMinute);
+  }
+
+  updateCurrentTimes(): void {
+    this.offices.forEach(office => {
+      office.currentTime = this.getCurrentTime(office.office_location);
+      console.log(`Office location: ${office.office_location}, Current time: ${office.currentTime}`);
+    });
+  }
+
+  getCurrentTime(location: string): string {
+    if (location === 'Christchurch') location = 'Pacific/Auckland';
+    if (location === 'Sydney') location = 'Australia/Sydney';
+    if (location === 'Yokohama') location = 'Asia/Tokyo';
+
+    try {
+      const date = new Date().toLocaleString("en-US", {
+        timeZone: location,
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      });
+      return date;
+    } catch (error) {
+      console.error(`Error fetching time for location ${location}:`, error);
+      return "00:00 AM";
+    }
   }
 }

@@ -19,6 +19,7 @@ export interface IOffice {
     email: string,
     phone: string,
     office_image: IImage,
+    currentTime?: string,
 }
 
 export interface IMember {

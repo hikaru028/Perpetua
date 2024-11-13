@@ -1,16 +1,21 @@
-<div *ngIf="offices.length > 0">
-    <ng-container *ngFor="let office of offices">
+<ng-container *ngIf="offices.length > 0">
+    <div *ngFor="let office of offices" class="col">
         <div class="image_wrapper">
             <img [src]="office.office_image.url" [alt]="office.office_location">
         </div>
-        <div>
-            <div>
-                <p>{{ office.office_location }}</p><i class="bi bi-arrow-up-short"></i>
-                <p>{{ currentTime }}</p>
+        <div class="office_info_container">
+            <div class="office_info_left">
+                <span class="location">{{ office.office_location }}</span><i class="bi bi-arrow-up-short"></i>
+                <p *ngIf="office.currentTime" class="time">
+                    {{ office.currentTime.split(':')[0] }} <!-- Hours -->
+                    <span>:</span> <!-- Colon -->
+                    {{ office.currentTime.split(':')[1].slice(0, 2) }} <!-- Minutes -->
+                    <span>{{ office.currentTime.split(' ')[1] }}</span> <!-- AM/PM -->
+                </p>
                 <p>{{ office.email }}</p>
                 <p>{{ office.phone }}</p>
             </div>
-            <div>
+            <div class="office_info_right">
                 @if (office.country !== 'Japan') {
                 <p>{{ office.address_1 }}</p>
                 <p>{{ office.address_2 }}</p>
@@ -22,11 +27,11 @@
                 <p>{{ office.prefecture }}, {{ office.post_code}}</p>
                 <p>{{ office.country }}</p>
                 }
-            </div>
-            <div>
-                <button>Get directions</button>
-                <i class="bi bi-arrow-right-short"></i>
+                <div>
+                    <button>Get directions</button>
+                    <i class="bi bi-arrow-right-short"></i>
+                </div>
             </div>
         </div>
-    </ng-container>
-</div>
+    </div>
+</ng-container>
