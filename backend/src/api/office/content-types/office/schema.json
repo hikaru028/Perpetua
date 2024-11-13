@@ -12,28 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "office_name": {
-      "type": "string",
-      "required": true
-    },
-    "location": {
-      "type": "string",
-      "required": true
-    },
     "email": {
       "type": "email"
     },
     "phone": {
       "type": "string"
-    },
-    "country": {
-      "type": "enumeration",
-      "enum": [
-        "New Zealand",
-        "Australia",
-        "Japan",
-        "Korea"
-      ]
     },
     "office_image": {
       "type": "media",
@@ -44,6 +27,51 @@
         "files",
         "videos",
         "audios"
+      ]
+    },
+    "members": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::member.member",
+      "mappedBy": "location"
+    },
+    "address_1": {
+      "type": "string"
+    },
+    "address_2": {
+      "type": "string"
+    },
+    "office_location": {
+      "type": "enumeration",
+      "enum": [
+        "Christchurch",
+        "Sydney",
+        "Yokohama"
+      ]
+    },
+    "country": {
+      "type": "enumeration",
+      "enum": [
+        "New Zealand",
+        "Australia",
+        "Japan"
+      ]
+    },
+    "post_code": {
+      "type": "string"
+    },
+    "Prefecture": {
+      "type": "enumeration",
+      "enum": [
+        "Kanagawa"
+      ]
+    },
+    "city": {
+      "type": "enumeration",
+      "enum": [
+        "Christchurch",
+        "Sydney",
+        "Yokohama"
       ]
     }
   }

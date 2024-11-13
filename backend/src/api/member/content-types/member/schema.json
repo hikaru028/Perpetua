@@ -12,10 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "full_name": {
-      "type": "string",
-      "required": true
-    },
     "role": {
       "type": "string",
       "required": true
@@ -35,23 +31,23 @@
         "audios"
       ]
     },
-    "location": {
-      "type": "enumeration",
-      "enum": [
-        "auckland",
-        "christchurch",
-        "sydney",
-        "yokohama"
-      ]
+    "first_name": {
+      "type": "string"
     },
-    "country": {
-      "type": "enumeration",
-      "enum": [
-        "New Zealand",
-        "Australia",
-        "Japan",
-        "Korea"
-      ]
+    "last_name": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "richtext"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "location": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::office.office",
+      "inversedBy": "members"
     }
   }
 }

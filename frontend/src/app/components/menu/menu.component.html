@@ -1,5 +1,5 @@
 <!-- Menu bar -->
-<div class="menu-container">
+<menu class="menu-container">
     <div class="menu-wrapper">
         <button class="menu-item" id="projects" (click)="onMenuClick('projects', $event)"
             (mouseenter)="onMenuClick('projects', $event)">{{ 'menu.projects' | translate }}</button>
@@ -25,7 +25,7 @@
             (mouseenter)="onMenuClick('contact', $event)">{{ 'menu.contact' | translate }}</button>
         <i class="chevron bi bi-chevron-down"></i>
     </div>
-</div>
+</menu>
 <!-- Submenu -->
 <!-- Projects -->
 <div id="submenu-projects" class="submenu-container">

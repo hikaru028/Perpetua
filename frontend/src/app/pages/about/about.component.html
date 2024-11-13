@@ -1,1 +1,49 @@
-<p>about works!</p>
+<div class='w-100 m-0'>
+    <!-- Header -->
+    <section class="header-section">
+        <p class="header-text">
+            Perpetua is an integrated software development studio creating beautiful
+            websites, software & applications for our clients and their customers.
+        </p>
+        <p class="header-text">
+            Simplicity, beauty, & attention to detail—these values underpin all that we
+            do, and continue to guide our talented, international team in creating the
+            best software in the world.
+        </p>
+    </section>
+    <!-- Location -->
+    <section class="location-section">
+        <h1>Our locations</h1>
+        <menu>
+            <li *ngFor="let location of locations" class="location-button">
+                {{ location }}
+                <i class="bi bi-arrow-up-short"></i>
+            </li>
+        </menu>
+        <app-location-card [offices]="offices"></app-location-card>
+        <div class="footer-button-wrapper">
+            <button class="footer-button" routerLink="/contact">
+                <i class="bi bi-arrow-left-short"></i>
+                Back to all projects
+            </button>
+        </div>
+    </section>
+    <!-- Clients -->
+    <section class="client-section">
+        <h1>Our clients</h1>
+        <app-client-block [clients]="clients"></app-client-block>
+    </section>
+    <!-- Team -->
+    <section class="team-section">
+        <h1>Our team</h1>
+        <menu>
+            <li *ngFor="let member of memberNames" class="member-button">
+                {{ member }}
+                <i class="bi bi-arrow-right-short"></i>
+            </li>
+        </menu>
+        <app-staff-card [members]="members"></app-staff-card>
+    </section>
+    <!-- Call to action -->
+    <app-call-action></app-call-action>
+</div>

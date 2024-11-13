@@ -455,23 +455,21 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    country: Schema.Attribute.Enumeration<
-      ['New Zealand', 'Australia', 'Japan', 'Korea']
-    >;
+    bio: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.Email;
-    full_name: Schema.Attribute.String & Schema.Attribute.Required;
+    first_name: Schema.Attribute.String;
+    last_name: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::member.member'
     > &
       Schema.Attribute.Private;
-    location: Schema.Attribute.Enumeration<
-      ['auckland', 'christchurch', 'sydney', 'yokohama']
-    >;
+    location: Schema.Attribute.Relation<'manyToOne', 'api::office.office'>;
+    phone: Schema.Attribute.String;
     portrait_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
@@ -495,8 +493,11 @@ export interface ApiOfficeOffice extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    address_1: Schema.Attribute.String;
+    address_2: Schema.Attribute.String;
+    city: Schema.Attribute.Enumeration<['Christchurch', 'Sydney', 'Yokohama']>;
     country: Schema.Attribute.Enumeration<
-      ['New Zealand', 'Australia', 'Japan', 'Korea']
+      ['New Zealand', 'Australia', 'Japan']
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -508,12 +509,16 @@ export interface ApiOfficeOffice extends Struct.CollectionTypeSchema {
       'api::office.office'
     > &
       Schema.Attribute.Private;
-    location: Schema.Attribute.String & Schema.Attribute.Required;
+    members: Schema.Attribute.Relation<'oneToMany', 'api::member.member'>;
     office_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
-    office_name: Schema.Attribute.String & Schema.Attribute.Required;
+    office_location: Schema.Attribute.Enumeration<
+      ['Christchurch', 'Sydney', 'Yokohama']
+    >;
     phone: Schema.Attribute.String;
+    post_code: Schema.Attribute.String;
+    Prefecture: Schema.Attribute.Enumeration<['Kanagawa']>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

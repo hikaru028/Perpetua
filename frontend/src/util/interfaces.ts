@@ -8,23 +8,30 @@ export interface APIResponseModel {
 export interface IOffice {
     id: number,
     documentId: string,
+    office_location: string,
     office_name: string,
-    location: string,
+    address_1: string,
+    address_2: string,
+    city: string,
+    prefecture: string,
+    country: string,
+    post_code: string,
     email: string,
     phone: string,
-    country: string,
     office_image: IImage,
 }
 
 export interface IMember {
     id: number,
     documentId: string,
-    full_name: string,
+    first_name: string,
+    last_name: string,
     role: string,
     location: string,
     email: string,
-    country: string,
+    phone: string,
     portrait_image: IImage,
+    bio: any
 }
 
 export interface IClient {
