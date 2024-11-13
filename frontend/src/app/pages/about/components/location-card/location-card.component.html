@@ -1,1 +1,32 @@
-<p>location-card works!</p>
+<div *ngIf="offices.length > 0">
+    <ng-container *ngFor="let office of offices">
+        <div class="image_wrapper">
+            <img [src]="office.office_image.url" [alt]="office.office_location">
+        </div>
+        <div>
+            <div>
+                <p>{{ office.office_location }}</p><i class="bi bi-arrow-up-short"></i>
+                <p>{{ currentTime }}</p>
+                <p>{{ office.email }}</p>
+                <p>{{ office.phone }}</p>
+            </div>
+            <div>
+                @if (office.country !== 'Japan') {
+                <p>{{ office.address_1 }}</p>
+                <p>{{ office.address_2 }}</p>
+                <p>{{ office.city }}, {{ office.post_code}}</p>
+                <p>{{ office.country }}</p>
+                } @else {
+                <p>{{ office.address_1 }}, {{ office.address_2}}</p>
+                <p>{{ office.ward }}, {{ office.city}}</p>
+                <p>{{ office.prefecture }}, {{ office.post_code}}</p>
+                <p>{{ office.country }}</p>
+                }
+            </div>
+            <div>
+                <button>Get directions</button>
+                <i class="bi bi-arrow-right-short"></i>
+            </div>
+        </div>
+    </ng-container>
+</div>

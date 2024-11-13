@@ -518,11 +518,12 @@ export interface ApiOfficeOffice extends Struct.CollectionTypeSchema {
     >;
     phone: Schema.Attribute.String;
     post_code: Schema.Attribute.String;
-    Prefecture: Schema.Attribute.Enumeration<['Kanagawa']>;
+    prefecture: Schema.Attribute.Enumeration<['Kanagawa']>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    ward: Schema.Attribute.String;
   };
 }
 

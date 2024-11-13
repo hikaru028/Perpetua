@@ -60,7 +60,7 @@
     "post_code": {
       "type": "string"
     },
-    "Prefecture": {
+    "prefecture": {
       "type": "enumeration",
       "enum": [
         "Kanagawa"
@@ -73,6 +73,9 @@
         "Sydney",
         "Yokohama"
       ]
+    },
+    "ward": {
+      "type": "string"
     }
   }
 }

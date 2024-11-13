@@ -67,7 +67,7 @@ export class StrapiService {
   }
 
   getAllOffices(): Observable<APIResponseModel> {
-    return this.http.get<APIResponseModel>(`${this.apiUrl}/offices`, {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/offices?populate=*`, {
       headers: this.getHeaders(),
     });
   }

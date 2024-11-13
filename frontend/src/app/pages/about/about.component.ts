@@ -44,16 +44,34 @@ export class AboutComponent implements OnInit {
     this.metaService.updateTag({ name: 'description', content: 'Browse About up to learn more about our amazing clients and team at Perpeture.' });
 
     this.strapiService.getAllOffices().subscribe((response: APIResponseModel) => {
-      this.offices = response.data;
+      this.offices = response.data.map((office: IOffice) => ({
+        ...office,
+        office_image: {
+          ...office.office_image,
+          url: this.strapiUrl + office.office_image.url || "../../../assets/images/img_n.a.png"
+        }
+      }));
       this.locations = this.offices.map((office: IOffice) => office.office_location);
     });
 
     this.strapiService.getAllClients().subscribe((response: APIResponseModel) => {
-      this.clients = response.data;
+      this.clients = response.data.map((client: IClient) => ({
+        ...client,
+        company_logo: {
+          ...client.company_logo,
+          url: this.strapiUrl + client.company_logo.url || "../../../assets/images/img_n.a.png"
+        }
+      }));
     });
 
     this.strapiService.getAllMembers().subscribe((response: APIResponseModel) => {
-      this.members = response.data;
+      this.members = response.data.map((member: IMember) => ({
+        ...member,
+        portrait_image: {
+          ...member.portrait_image,
+          url: this.strapiUrl + member.portrait_image.url || "../../../assets/images/img_n.a.png"
+        }
+      }));
       this.memberNames = this.members.map((member: IMember) => member.first_name + ' ' + member.last_name);
     });
   }
