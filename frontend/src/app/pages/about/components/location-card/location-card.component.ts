@@ -1,7 +1,6 @@
 // Libraries
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// Components
 // Services
 import { IOffice } from '../../../../../util/interfaces';
 
@@ -13,5 +12,13 @@ import { IOffice } from '../../../../../util/interfaces';
   styleUrl: './location-card.component.scss'
 })
 export class LocationCardComponent {
-  @Input() offices: IOffice[] = [];
+  @Input() office: IOffice | undefined;
+
+  openGoogleMaps(office: IOffice): void {
+    let address = `${office.address_1}, ${office.address_2 ? office.address_2 + ', ' : ''}${office.city}, ${office.country}`;
+    const encodedAddress = encodeURIComponent(address);
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+
+    window.open(googleMapsUrl, '_blank');
+  }
 }

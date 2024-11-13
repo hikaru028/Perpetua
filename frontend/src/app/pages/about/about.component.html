@@ -17,27 +17,29 @@
         <menu>
             <li *ngFor="let location of locations" class="location-button">
                 {{ location }}
-                <i class="bi bi-arrow-up-short"></i>
+                <i class="bi bi-arrow-up-short location-icon"></i>
             </li>
         </menu>
-        <div class="row row-cols-2">
-            <app-location-card [offices]="offices"></app-location-card>
-        </div>
-        <div class="footer-button-wrapper">
-            <button class="footer-button" routerLink="/contact">
-                <i class="bi bi-arrow-left-short"></i>
-                Back to all projects
-            </button>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div *ngFor="let office of offices" class="col">
+                <app-location-card [office]="office"></app-location-card>
+            </div>
         </div>
     </section>
+    <div class="contact-button-wrapper">
+        <button class="contact-button" routerLink="/contact">
+            Contact us
+            <i class="bi bi-arrow-right-short contact-icon"></i>
+        </button>
+    </div>
     <!-- Clients -->
     <section class="client-section">
-        <h1>Our clients</h1>
+        <h1 class="sub-title">Our clients</h1>
         <app-client-block [clients]="clients"></app-client-block>
     </section>
     <!-- Team -->
     <section class="team-section">
-        <h1>Our team</h1>
+        <h1 class="sub-title">Our team</h1>
         <menu>
             <li *ngFor="let member of memberNames" class="member-button">
                 {{ member }}
