@@ -5,11 +5,11 @@
                 autoplay-disable-on-interaction="true" effect="fade" speed="2000">
                 <swiper-slide *ngFor="let member of shuffledMemberArray">
                     <div class="image-wrapper">
-                        <img [src]="member.portrait_image.url" [alt]="member.full_name">
+                        <img [src]="member.portrait_image.url" [alt]="member.first_name + ' ' + member.last_name">
                     </div>
                     <div class="info-wrapper">
                         <p class="role">{{member.role}}</p>
-                        <p class="member-name">{{member.full_name}}</p>
+                        <p class="member-name">{{member.first_name}}&nbsp;{{member.last_name}}</p>
                     </div>
                 </swiper-slide>
             </swiper-container>
