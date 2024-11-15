@@ -1,12 +1,12 @@
 import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { SearchBarComponent } from "./search-bar/search-bar.component";
 import { RouterLink } from '@angular/router';
-import { TranslatePipe, TranslateDirective } from "@ngx-translate/core";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [SearchBarComponent, RouterLink, TranslatePipe, TranslateDirective],
+  imports: [SearchBarComponent, RouterLink, TranslatePipe],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -18,11 +18,9 @@ export class MenuComponent {
   onMenuClick(menuItem: string, event: Event) {
     event.stopPropagation();
 
-    // Hide all submenus
     const submenus = document.querySelectorAll('.submenu-container');
     submenus.forEach(submenu => submenu.classList.remove('visible'));
 
-    // Deselect previously selected items
     const menuWrappers = document.querySelectorAll('.menu-wrapper');
     menuWrappers.forEach(wrapper => {
       const menuButton = wrapper.querySelector('.menu-item');
@@ -35,7 +33,6 @@ export class MenuComponent {
       }
     });
 
-    // Show the corresponding submenu
     const correspondingSubmenu = document.getElementById(`submenu-${menuItem}`);
     if (correspondingSubmenu) {
       correspondingSubmenu.classList.add('visible');
@@ -46,7 +43,6 @@ export class MenuComponent {
       }
     }
 
-    // Add "selected" class to the clicked item
     const clickedMenuItem = document.getElementById(menuItem);
     if (clickedMenuItem) {
       clickedMenuItem.classList.add('selected');
@@ -59,7 +55,6 @@ export class MenuComponent {
       }
     }
 
-    // Update the selected menu item state
     this.selectedMenuItem = menuItem;
   }
 
@@ -68,15 +63,12 @@ export class MenuComponent {
   onDocumentClick(event: MouseEvent) {
     const targetElement = event.target as HTMLElement;
 
-    // Check if the click happened inside the menu container or submenu container
     const isMenuClick = targetElement.closest('.menu-container') || targetElement.closest('.submenu-container');
 
     if (!isMenuClick) {
-      // Click happened outside of the menu/submenu; hide all submenus
       const submenus = document.querySelectorAll('.submenu-container');
       submenus.forEach(submenu => submenu.classList.remove('visible'));
 
-      // Deselect all menu items (removing the "selected" state)
       const menuWrappers = document.querySelectorAll('.menu-wrapper');
       menuWrappers.forEach(wrapper => {
         const menuButton = wrapper.querySelector('.menu-item');
@@ -96,7 +88,6 @@ export class MenuComponent {
         }
       });
 
-      // Reset the selectedMenuItem state
       this.selectedMenuItem = null;
     }
   }
@@ -105,17 +96,13 @@ export class MenuComponent {
   onDocumentMouseMove(event: MouseEvent) {
     const targetElement = event.target as HTMLElement;
 
-    // Check if the hover is on the menu container or submenu container
     const isMenuHover = targetElement.closest('.menu-container');
     const isSubmenuHover = targetElement.closest('.submenu-container');
 
-    // Only hide submenus if the hover is not on the menu container and not on the submenu container
     if (!isMenuHover && !isSubmenuHover) {
-      // Mouse is outside of the menu/submenu; hide all submenus
       const submenus = document.querySelectorAll('.submenu-container');
       submenus.forEach(submenu => submenu.classList.remove('visible'));
 
-      // Deselect all menu items (removing the "selected" state)
       const menuWrappers = document.querySelectorAll('.menu-wrapper');
       menuWrappers.forEach(wrapper => {
         const menuButton = wrapper.querySelector('.menu-item');
@@ -128,7 +115,6 @@ export class MenuComponent {
         }
       });
 
-      // Reset the selectedMenuItem state
       this.selectedMenuItem = null;
     }
   }

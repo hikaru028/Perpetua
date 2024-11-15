@@ -1,8 +1,12 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { ServiceCardComponent } from './components/service-card/service-card.component';
+// Libraries
+import { Component, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+// Components
+import { ServiceCardComponent } from './components/service-card/service-card.component';
+// Services
+import { TranslationHelper } from '../../../../shared/translation-helper';
 
 @Component({
   selector: 'app-services',
@@ -11,14 +15,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss'
 })
-export class ServicesComponent implements OnInit {
-  translate: TranslateService = inject(TranslateService);
+
+export class ServicesComponent implements OnDestroy {
   currentLanguage: string = 'en';
 
-  ngOnInit(): void {
-    this.currentLanguage = this.translate.currentLang || this.translate.getDefaultLang();
-    this.translate.onLangChange.subscribe(event => {
-      this.currentLanguage = event.lang;
-    });
+  constructor(private translationHelper: TranslationHelper) {
+    this.currentLanguage = this.translationHelper.getCurrentLanguage();
+  }
+
+  ngOnDestroy(): void {
+    this.translationHelper.unsubscribe();
   }
 }

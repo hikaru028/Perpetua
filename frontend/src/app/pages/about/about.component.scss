@@ -106,7 +106,16 @@
                 transform: rotate(45deg);
                 display: inline-block;
             }
-        }
 
+            &:hover {
+                p {
+                    color: #a8a8a8;
+                }
+
+                .menu-icon {
+                    color: #a8a8a8;
+                }
+            }
+        }
     }
 }

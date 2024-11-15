@@ -1,11 +1,12 @@
 // Libraries
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 // Components
 import { ProjectCardComponent } from '../../../../components/project-card/project-card.component'
 // Services
+import { TranslationHelper } from '../../../../shared/translation-helper';
 import { ProjectService } from '../../../../shared/project.service';
 import { Observable } from 'rxjs';
 import { IProject } from '../../../../../util/interfaces';
@@ -18,25 +19,23 @@ import { IProject } from '../../../../../util/interfaces';
   styleUrl: './projects.component.scss'
 })
 
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnDestroy {
   projects$: Observable<IProject[]>;
   filteredProjects$: Observable<IProject[]>;
   selectedFilter$!: Observable<string | null>;
 
   projectService: ProjectService = inject(ProjectService);
-  translate: TranslateService = inject(TranslateService);
   currentLanguage: string = 'en';
 
-  constructor() {
+  constructor(private translationHelper: TranslationHelper) {
     this.projects$ = this.projectService.projects$;
     this.filteredProjects$ = this.projectService.filteredProjects$;
     this.selectedFilter$ = this.projectService.selectedFilter$;
+    this.currentLanguage = this.translationHelper.getCurrentLanguage();
   }
 
-  ngOnInit(): void {
-    this.translate.onLangChange.subscribe(event => {
-      this.currentLanguage = event.lang;
-    });
+  ngOnDestroy(): void {
+    this.translationHelper.unsubscribe();
   }
 
   sortProjects(type: string): void {

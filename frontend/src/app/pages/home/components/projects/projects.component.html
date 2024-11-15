@@ -1,16 +1,16 @@
 <section class='w-100 m-0'>
     <!-- Title -->
     <h1>
-        {{ 'home.section.title.projects-L1' | translate }}<br>
-        {{ 'home.section.title.projects-L2-bf' | translate }}
+        {{ 'home.section-title.projects-L1' | translate }}<br>
+        {{ 'home.section-title.projects-L2-bf' | translate }}
         <span *ngIf="currentLanguage === 'en'"> &#38; </span>
-        {{ 'home.section.title.projects-L2-af' | translate }}
+        {{ 'home.section-title.projects-L2-af' | translate }}
     </h1>
     <!-- Sorting buttons -->
     <div class="sort-button-container">
         <button class="sort-button" (click)="sortProjects('software')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'software'}">
-            Software
+            {{ 'project.nav.software' | translate }}
             <i class="bi" [ngClass]="{
                 'bi-chevron-down': (selectedFilter$ | async) !== 'software',
                 'bi-x': (selectedFilter$ | async) === 'software'
@@ -18,7 +18,7 @@
         </button>
         <button class="sort-button" (click)="sortProjects('website')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'website'}">
-            Websites
+            {{ 'project.nav.website' | translate }}
             <i class="bi" [ngClass]="{
                 'bi-chevron-down': (selectedFilter$ | async) !== 'website',
                 'bi-x': (selectedFilter$ | async) === 'website'
@@ -26,14 +26,14 @@
         </button>
         <button class="sort-button" (click)="sortProjects('app')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'app'}">
-            Apps
+            {{ 'project.nav.apps' | translate }}
             <i class="bi" [ngClass]="{
                 'bi-chevron-down': (selectedFilter$ | async) !== 'app',
                 'bi-x': (selectedFilter$ | async) === 'app'
             }"></i>
         </button>
         <button class="sort-button" [routerLink]="['/projects']" (click)="sortProjects('all')">
-            View all works
+            {{ 'project.nav.all' | translate }}
             <i class="bi bi-arrow-right-short"></i>
         </button>
     </div>
@@ -44,7 +44,7 @@
     <!-- Footer -->
     <div class="footer-button-wrapper">
         <button class="footer-button" [routerLink]="['/projects']" (click)="sortProjects('all')">
-            View all works
+            {{ 'project.nav.all' | translate }}
             <i class="bi bi-arrow-right-short"></i>
         </button>
     </div>

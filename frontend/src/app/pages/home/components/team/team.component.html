@@ -2,7 +2,8 @@
     <!-- Staff -->
     <div class="title-wrapper">
         <h1>
-            Driven by a talented international team<br />spanning 3 countries⏤and counting
+            {{ 'home.section-title.team-L1' | translate }}<br />
+            {{ 'home.section-title.team-L2' | translate }}
         </h1>
     </div>
     <ng-container *ngIf="members.length > 0">
@@ -11,7 +12,7 @@
     <!-- Footer -->
     <div class=" footer-button-wrapper" [routerLink]="['/team']">
         <button class="footer-button">
-            Meet the team
+            {{ 'team.all' | translate }}
             <i class="bi bi-arrow-right-short"></i>
         </button>
     </div>

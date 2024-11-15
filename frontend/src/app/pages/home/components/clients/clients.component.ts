@@ -1,10 +1,14 @@
-import { Component, OnInit, inject } from '@angular/core';
+// Libraries
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientCardComponent } from './components/client-card/client-card.component';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+// Components
+import { ClientCardComponent } from './components/client-card/client-card.component';
+// Services
 import { IClient, APIResponseModel } from '../../../../../util/interfaces';
 import { StrapiService } from '../../../../api/strapi.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslationHelper } from '../../../../shared/translation-helper';
 
 @Component({
   selector: 'app-clients',
@@ -13,12 +17,16 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.scss'
 })
-export class ClientsComponent implements OnInit {
+export class ClientsComponent implements OnInit, OnDestroy {
   clients: IClient[] = [];
   selectedClientIndex: number = 0;
   strapiService = inject(StrapiService);
   strapiUrl = 'http://localhost:1337';
-  translate: TranslateService = inject(TranslateService);
+  currentLanguage: string = 'en';
+
+  constructor(private translationHelper: TranslationHelper) {
+    this.currentLanguage = this.translationHelper.getCurrentLanguage();
+  }
 
   ngOnInit(): void {
     this.strapiService.getAllClients().subscribe((result: APIResponseModel) => {
@@ -33,6 +41,10 @@ export class ClientsComponent implements OnInit {
     }, error => {
       console.error('Error fetching clients:', error);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.translationHelper.unsubscribe();
   }
 
   onClientSelected(index: number): void {
