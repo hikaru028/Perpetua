@@ -5,8 +5,8 @@ const IMAGE_BASE_PATH = '../../../../../../../assets/images/';
 export const ServiceData: IService[] = [
     {
         image: `${IMAGE_BASE_PATH}service1.svg`,
-        title: 'service.1.title', // Use translation keys here
-        description: 'service.1.describe', // Use translation keys here
+        title: 'service.1.title',
+        description: 'service.1.describe',
     },
     {
         image: `${IMAGE_BASE_PATH}service2.svg`,

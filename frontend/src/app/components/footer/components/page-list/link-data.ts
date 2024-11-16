@@ -1,11 +1,11 @@
-export const ServiceData: any[] = [
+export const LinksData: any[] = [
     {
-        section: 'Projects',
+        section: 'menu.projects',
         items: {
             top: [
-                { title: 'All projects', path: '/projects' },
-                { title: 'Browse by type', path: '/projects' },
-                { title: 'Browse by industry', path: '/projects' }
+                { title: 'project.nav.all-projects', path: '/projects' },
+                { title: 'project.nav.type', path: '/projects' },
+                { title: 'project.nav.industry', path: '/projects' }
             ],
             bottom: [
                 { title: 'MyOCP App', path: '/projects' },
@@ -16,49 +16,49 @@ export const ServiceData: any[] = [
         }
     },
     {
-        section: 'What we do',
+        section: 'menu.services',
         items: {
             top: [
-                { title: 'Custom software', path: '/services' },
-                { title: 'Websites & CMS', path: '/services' },
-                { title: 'Mobile & native apps', path: '/services' },
-                { title: 'Artificial intelligence', path: '/services' },
-                { title: 'Hosting & cloud services', path: '/services' },
-                { title: 'Data & analytics', path: '/services' }
+                { title: 'footer.services.software', path: '/services' },
+                { title: 'footer.services.websites', path: '/services' },
+                { title: 'footer.services.mobile', path: '/services' },
+                { title: 'footer.services.ai', path: '/services' },
+                { title: 'footer.services.hosting', path: '/services' },
+                { title: 'footer.services.data', path: '/services' }
             ],
             // bottom: []
         }
     },
     {
-        section: 'About us',
+        section: 'menu.about',
         items: {
             top: [
-                { title: 'Our team', path: '/about' },
-                { title: 'Our history', path: '/about' },
-                { title: 'Our clients', path: '/about' },
-                { title: 'Testimonials', path: '/about' }
+                { title: 'about.nav.team', path: '/about' },
+                { title: 'about.nav.history', path: '/about' },
+                { title: 'about.nav.clients', path: '/about' },
+                { title: 'about.nav.testimonials', path: '/about' }
             ],
             // bottom: []
         }
     },
     {
-        section: 'Blog',
+        section: 'menu.blog',
         items: {
             top: [
-                { title: 'All content', path: '/blog' },
-                { title: 'News posts', path: '/blog' },
-                { title: 'Articles', path: '/blog' }
+                { title: 'articles.nav.all-content', path: '/blog' },
+                { title: 'articles.nav.news-posts', path: '/blog' },
+                { title: 'articles.nav.articles', path: '/blog' }
             ],
             // bottom: []
         }
     },
     {
-        section: 'Contact',
+        section: 'menu.contact',
         items: {
             top: [
-                { title: 'Send us a message', path: '/contact' },
-                { title: 'Our locations', path: '/contact' },
-                { title: 'Careers', path: '/contact' }
+                { title: 'contact.nav.message', path: '/contact' },
+                { title: 'contact.nav.locations', path: '/contact' },
+                { title: 'contact.nav.career', path: '/contact' }
             ],
             // bottom: []
         }

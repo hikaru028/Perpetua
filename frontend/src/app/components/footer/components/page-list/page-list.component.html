@@ -1,15 +1,15 @@
 <div class="link-container">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
         <div class="col" *ngFor="let link of links">
-            <p class="section-title">{{ link.section }}</p>
+            <p class="section-title"> {{ link.translatedSection || 'No Title' }}</p>
             <ul>
                 <li *ngFor="let item of link.items.top" [routerLink]="item.path">
-                    {{ item.title }}
+                    {{ item.translatedTitle || 'No Title' }}
                 </li>
             </ul>
             <ul>
                 <li *ngFor="let item of link.items.bottom" [routerLink]="item.path" class="separator">
-                    {{ item.title }}
+                    {{ item.translatedTitle || 'No Title' }}
                 </li>
             </ul>
         </div>

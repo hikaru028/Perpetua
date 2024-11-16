@@ -1,17 +1,20 @@
 <div>
     <!-- Dropdown menu trigger -->
     <button [cdkMenuTriggerFor]="menu" class="select-trigger">
-        <p class="country-name">{{ offices[selectedOfficeIndex].country }}</p>
+        <p class="country-name">{{ offices[selectedOfficeIndex].translatedCountryName }}</p>
         <i class="bi bi-chevron-down"></i>
     </button>
+
     <!-- Dropdown menu -->
     <ng-template #menu>
         <div class="example-menu" cdkMenu>
-            <button class="example-menu-item" cdkMenuItem (click)="onOfficeSelected(0)">New Zealand</button>
-            <button class="example-menu-item" cdkMenuItem (click)="onOfficeSelected(1)">Australia</button>
-            <button class="example-menu-item" cdkMenuItem (click)="onOfficeSelected(2)">Japan</button>
+            <button class="example-menu-item" *ngFor="let office of offices; let i = index" cdkMenuItem
+                (click)="onOfficeSelected(i)">
+                {{ office.translatedCountryName }}
+            </button>
         </div>
     </ng-template>
+
     <!-- Office information -->
     <div class="info-wrapper">
         <p class="office-email">{{ offices[selectedOfficeIndex].email }}</p>
