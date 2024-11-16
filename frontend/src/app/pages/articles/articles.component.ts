@@ -1,8 +1,8 @@
 // Libraries
 import { Meta, Title } from '@angular/platform-browser';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 // Components
 import { ArticleCardComponent } from '../../components/article-card/article-card.component';
@@ -11,7 +11,7 @@ import { BackToTopButtonComponent } from '../../components/buttons/back-to-top-b
 // Service
 import { IArticle } from '../../../util/interfaces';
 import { ArticleService } from '../../shared/article.service';
-
+import { TranslationHelper } from '../../shared/translation-helper';
 
 @Component({
   selector: 'app-articles',
@@ -26,9 +26,11 @@ import { ArticleService } from '../../shared/article.service';
   templateUrl: './articles.component.html',
   styleUrl: './articles.component.scss'
 })
-export class ArticlesComponent implements OnInit {
+export class ArticlesComponent implements OnInit, OnDestroy {
   articles$: Observable<IArticle[]>;
   selectedFilter$: Observable<string | null>;
+  articleService = inject(ArticleService);
+  currentLanguage: string = 'en';
 
   // Lazy loading
   visibleArticles: IArticle[] = [];
@@ -36,13 +38,10 @@ export class ArticlesComponent implements OnInit {
   articlesToLoad: number = 6;
   loadMoreButtonVisible: boolean = false;
 
-  articleService = inject(ArticleService);
-  translate: TranslateService = inject(TranslateService);
-  currentLanguage: string = 'en';
-
-  constructor(private titleService: Title, private metaService: Meta) {
+  constructor(private titleService: Title, private metaService: Meta, private translationHelper: TranslationHelper) {
     this.articles$ = this.articleService.filteredArticles$;
     this.selectedFilter$ = this.articleService.selectedFilter$;
+    this.currentLanguage = this.translationHelper.getCurrentLanguage();
   }
 
   ngOnInit(): void {
@@ -62,14 +61,14 @@ export class ArticlesComponent implements OnInit {
     });
 
     this.articles$.subscribe((articles) => {
+      console.log('Articles received:', articles);
       this.allArticles = articles;
       this.initializeVisibleArticles();
     });
+  }
 
-    this.translate.onLangChange.subscribe(event => {
-      this.currentLanguage = event.lang;
-      this.titleService.setTitle(this.translate.instant('projects.title') + ' - Perpeture');
-    });
+  ngOnDestroy(): void {
+    this.translationHelper.unsubscribe();
   }
 
   initializeVisibleArticles(): void {

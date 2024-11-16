@@ -29,7 +29,7 @@
     <span class="separator"></span>
     <!-- Article cards -->
     <ng-container *ngIf="(articles$ | async) as articles">
-        <app-article-card [articles]="articles | slice:0:6"></app-article-card>
+        <app-article-card [articles]="articles | slice:0:6" [fromArticlePage]="false"></app-article-card>
     </ng-container>
     <!-- Footer -->
     <div class="footer-button-wrapper" [routerLink]="['/articles']">
