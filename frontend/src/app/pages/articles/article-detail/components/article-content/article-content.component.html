@@ -13,7 +13,8 @@
         </div>
         <div class="article-date-wrapper">
             <p>{{ article?.createdAt | date: 'MMMM d' }}</p>
-            <app-share-article-button></app-share-article-button>
+            <app-share-article-button [articleDocumentId]="article?.documentId || ''"
+                [articleTitle]="article?.title || 'No Title Available'"></app-share-article-button>
         </div>
     </div>
     <div class="section-bottom">

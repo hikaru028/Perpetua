@@ -1,6 +1,13 @@
 <div class="share-button-wrapper">
-    <button class="share-button">
+    <button class="share-button" (click)="showModal()">
         Share article
         <i class="bi bi-arrow-right-short"></i>
     </button>
+
+    <div class="sm-modal" *ngIf="isModalVisible">
+        <button (click)="shareOnTwitter()"><i class="bi bi-twitter-x"></i></button>
+        <button (click)="shareOnLinkedIn()"><i class="bi bi-linkedin"></i></button>
+        <button (click)="shareOnFacebook()"><i class="bi bi-facebook"></i></button>
+        <button (click)="shareByEmail()"><i class="bi bi-envelope-at"></i></button>
+    </div>
 </div>
