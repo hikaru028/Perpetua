@@ -1,0 +1,31 @@
+<div class="article-page-container container-fluid">
+    <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="visibleArticles.length > 0; else noArticles">
+        <div class="col" *ngFor="let article of visibleArticles">
+            <div class="card-container">
+                <!-- Image -->
+                <div class="image-wrapper">
+                    <img [src]="article.thumbnail_image.url" [alt]="article.author">
+                </div>
+                <div class="information-container">
+                    <!-- Type/Date -->
+                    <p class="info-date">{{ article.type | titlecase }} &nbsp;&middot;&nbsp; {{ article.createdAt |
+                        date: 'MMMM d' }}</p>
+                    <!-- Title -->
+                    <p class="info-title">{{ article.title || 'No Title Available' }}</p>
+                    <!-- First two sentences -->
+                    <p class="info-content" *ngIf="truncatedText" [innerHTML]="truncatedText"></p>
+                </div>
+                <div class="read-button-wrapper">
+                    <button class="read-button" (click)="navigateToArticle(article.documentId)">
+                        {{ 'articles.nav.read-more' | translate }}
+                        <i class="bi bi-arrow-right-short"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noArticles>
+    <p>No Articles available.</p>
+</ng-template>

@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 // Components
-import { ArticleCardComponent } from '../../components/article-card/article-card.component';
+import { ArticleCardPlusInfoComponent } from '../../components/article-cards/article-card-plus-info/article-card-plus-info.component';
 import { CallActionComponent } from '../../components/call-action/call-action.component';
 import { BackToTopButtonComponent } from '../../components/buttons/back-to-top-button/back-to-top-button.component';
 // Service
@@ -19,7 +19,7 @@ import { TranslationHelper } from '../../shared/translation-helper';
   imports: [
     CommonModule,
     TranslateModule,
-    ArticleCardComponent,
+    ArticleCardPlusInfoComponent,
     CallActionComponent,
     BackToTopButtonComponent,
   ],

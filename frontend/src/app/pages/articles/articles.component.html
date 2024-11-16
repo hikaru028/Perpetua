@@ -39,8 +39,7 @@
     <!-- Article cards -->
     <ng-container *ngIf="articles$ | async as articles">
         <div *ngIf="articles.length > 0">
-            <p>Articles count: {{ articles.length }}</p> <!-- Debugging log -->
-            <app-article-card [articles]="articles" [fromArticlePage]="true"></app-article-card>
+            <app-article-card-plus-info [visibleArticles]="visibleArticles"></app-article-card-plus-info>
         </div>
     </ng-container>
 

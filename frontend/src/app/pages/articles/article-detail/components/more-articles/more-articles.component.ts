@@ -2,7 +2,7 @@
 import { Component, inject, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // Components
-import { ArticleCardComponent } from '../../../../../components/article-card/article-card.component';
+import { ArticleCardComponent } from '../../../../../components/article-cards/article-card/article-card.component';
 // Services
 import { ArticleService } from '../../../../../shared/article.service';
 import { IArticle } from '../../../../../../util/interfaces';

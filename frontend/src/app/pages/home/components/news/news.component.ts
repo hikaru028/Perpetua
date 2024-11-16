@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 // Components
-import { ArticleCardComponent } from '../../../../components/article-card/article-card.component';
+import { ArticleCardComponent } from '../../../../components/article-cards/article-card/article-card.component';
 // Services
 import { IArticle } from '../../../../../util/interfaces';
 import { ArticleService } from '../../../../shared/article.service';
