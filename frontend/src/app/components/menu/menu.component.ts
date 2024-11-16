@@ -1,7 +1,9 @@
-import { Component, HostListener, ViewEncapsulation } from '@angular/core';
-import { SearchBarComponent } from "./search-bar/search-bar.component";
+// Libraries
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe } from "@ngx-translate/core";
+import { TranslatePipe, TranslateService } from "@ngx-translate/core";
+// Components
+import { SearchBarComponent } from "./search-bar/search-bar.component";
 
 @Component({
   selector: 'app-menu',
@@ -12,8 +14,22 @@ import { TranslatePipe } from "@ngx-translate/core";
   encapsulation: ViewEncapsulation.None,
 })
 
-export class MenuComponent {
+export class MenuComponent implements OnInit {
   selectedMenuItem: string | null = null;
+  searchProjects: string = '';
+  searchContent: string = '';
+
+  constructor(private translateService: TranslateService) { }
+
+  ngOnInit(): void {
+    this.searchProjects = this.translateService.instant('menu.search.projects');
+    this.searchContent = this.translateService.instant('menu.search.articles');
+
+    this.translateService.onLangChange.subscribe(() => {
+      this.searchProjects = this.translateService.instant('menu.search.projects');
+      this.searchContent = this.translateService.instant('menu.search.articles');
+    });
+  }
 
   onMenuClick(menuItem: string, event: Event) {
     event.stopPropagation();

@@ -1,10 +1,13 @@
-import { Component, ElementRef, ViewChild, Input, OnInit, inject } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { IProject, IArticle, APIResponseModel } from '../../../../util/interfaces';
-import { RouterLink } from '@angular/router';
-import { StrapiService } from '../../../api/strapi.service';
+// Libraries
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+// Components
+import { IProject, IArticle, APIResponseModel } from '../../../../util/interfaces';
+// Services
+import { StrapiService } from '../../../api/strapi.service';
 
 @Component({
   selector: 'app-search-bar',

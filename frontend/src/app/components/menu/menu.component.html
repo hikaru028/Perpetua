@@ -40,17 +40,17 @@
         </ul>
         <ul class="submenu-item-wrapper">
             <li class="page-link" routerLink="/projects">
-                <p>View all work</p><i class="bi bi-arrow-right-short"></i>
+                <p>{{ 'project.nav.all' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
             <li class="page-link" routerLink="/projects">
-                <p>Browse by project type</p><i class="bi bi-arrow-right-short"></i>
+                <p>{{ 'project.nav.type' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
             <li class="page-link" routerLink="/projects">
-                <p>Browse by industry</p><i class="bi bi-arrow-right-short"></i>
+                <p>{{ 'project.nav.industry' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>
         <div class="submenu-item-wrapper">
-            <app-search-bar placeholder="Search projects" data="projects"></app-search-bar>
+            <app-search-bar [placeholder]="searchProjects" data="projects"></app-search-bar>
         </div>
     </div>
 </div>
@@ -58,19 +58,35 @@
 <div id="submenu-services" class="submenu-container">
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
-            <li class="submenu-item" routerLink="/services">Custom Software</li>
-            <li class="submenu-item" routerLink="/services">Websites <span class="ampersand">&#38;</span> CMS</li>
-            <li class="submenu-item" routerLink="/services">Native <span class="ampersand">&#38;</span> Web Apps</li>
-            <li class="submenu-item" routerLink="/services">Artificial Intelligence</li>
-            <li class="submenu-item" routerLink="/services">Hosting <span class="ampersand">&#38;</span> Cloud</li>
-            <li class="submenu-item" routerLink="/services">Data <span class="ampersand">&#38;</span> Analytics</li>
+            <li class="submenu-item" routerLink="/services">{{ 'service.nav.software' | translate }}</li>
+            <li class="submenu-item" routerLink="/services">
+                {{ 'service.nav.websites-bf' | translate }}
+                <span class="ampersand">&#38;</span>
+                {{ 'service.nav.websites-bf' | translate }}
+            </li>
+            <li class="submenu-item" routerLink="/services">
+                {{ 'service.nav.native-bf' | translate }}
+                <span class="ampersand">&#38;</span>
+                {{ 'service.nav.native-af' | translate }}
+            </li>
+            <li class="submenu-item" routerLink="/services">{{ 'service.nav.ai' | translate }}</li>
+            <li class="submenu-item" routerLink="/services">
+                {{ 'service.nav.hosting-bf' | translate }}
+                <span class="ampersand">&#38;</span>
+                {{ 'service.nav.hosting-af' | translate }}
+            </li>
+            <li class="submenu-item" routerLink="/services">
+                {{ 'service.nav.data-bf' | translate }}
+                <span class="ampersand">&#38;</span>
+                {{ 'service.nav.data-af' | translate }}
+            </li>
         </ul>
         <ul class="submenu-item-wrapper">
             <li class="page-link" routerLink="/services">
-                <p>Learn more</p><i class="bi bi-arrow-right-short"></i>
+                <p>{{ 'service.learn-more' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
             <li class="page-link" routerLink="/services">
-                <p>Book a free consultation</p><i class="bi bi-arrow-right-short"></i>
+                <p>{{ 'service.nav.consultation' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>
     </div>
@@ -79,17 +95,17 @@
 <div id="submenu-about" class="submenu-container">
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
-            <li class="submenu-item" routerLink="/about">About Us</li>
-            <li class="submenu-item" routerLink="/about">Our Team</li>
-            <li class="submenu-item" routerLink="/about">Our Clients</li>
-            <li class="submenu-item" routerLink="/about">Testimonials</li>
+            <li class="submenu-item" routerLink="/about">{{ 'about.nav.us' | translate }}</li>
+            <li class="submenu-item" routerLink="/about">{{ 'about.nav.team' | translate }}</li>
+            <li class="submenu-item" routerLink="/about">{{ 'about.nav.clients' | translate }}</li>
+            <li class="submenu-item" routerLink="/about">{{ 'about.nav.testimonials' | translate }}</li>
         </ul>
         <ul class="submenu-item-wrapper">
             <li class="page-link" routerLink="/about">
-                <p>Join the team</p><i class="bi bi-arrow-right-short"></i>
+                <p>{{ 'about.nav.career' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
             <li class="page-link" routerLink="/about">
-                <p>View our locations</p><i class="bi bi-arrow-right-short"></i>
+                <p>{{ 'about.nav.locations' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>
     </div>
@@ -98,19 +114,19 @@
 <div id="submenu-blog" class="submenu-container">
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
-            <li class="submenu-item" routerLink="/articles">News</li>
-            <li class="submenu-item" routerLink="/articles">Articles</li>
+            <li class="submenu-item" routerLink="/articles">{{ 'articles.nav.news' | translate }}</li>
+            <li class="submenu-item" routerLink="/articles">{{ 'articles.nav.articles' | translate }}</li>
         </ul>
         <ul class="submenu-item-wrapper">
             <li class="page-link" routerLink="/articles">
-                <p>View all content</p><i class="bi bi-arrow-right-short"></i>
+                <p>{{ 'articles.nav.all' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
             <li class="page-link" routerLink="/articles">
-                <p>Browse by tag</p><i class="bi bi-arrow-right-short"></i>
+                <p>{{ 'articles.nav.tag' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>
         <div class="submenu-item-wrapper">
-            <app-search-bar placeholder="Search content" data="articles"></app-search-bar>
+            <app-search-bar [placeholder]="searchContent" data="articles"></app-search-bar>
         </div>
     </div>
 </div>
@@ -118,16 +134,16 @@
 <div id="submenu-contact" class="submenu-container">
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
-            <li class="submenu-item" routerLink="/contact">Contact us</li>
-            <li class="submenu-item" routerLink="/contact">Our locations</li>
-            <li class="submenu-item" routerLink="/contact">Careers</li>
+            <li class="submenu-item" routerLink="/contact">{{ 'contact.nav.us' | translate }}</li>
+            <li class="submenu-item" routerLink="/contact">{{ 'contact.nav.locations' | translate }}</li>
+            <li class="submenu-item" routerLink="/contact">{{ 'contact.nav.career' | translate }}</li>
         </ul>
         <ul class="submenu-item-wrapper">
             <li class="page-link" routerLink="/contact">
-                <p>Send us a message</p><i class="bi bi-arrow-right-short"></i>
+                <p>{{ 'contact.nav.message' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
             <li class="page-link" routerLink="/contact">
-                <p>Book a consultation</p><i class="bi bi-arrow-right-short"></i>
+                <p>{{ 'contact.nav.consultation' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>
     </div>
