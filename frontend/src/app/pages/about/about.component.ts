@@ -2,7 +2,7 @@
 import { Title, Meta } from '@angular/platform-browser';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 // Components
 import { ClientBlockComponent } from './components/client-block/client-block.component';
 import { LocationCardComponent } from './components/location-card/location-card.component';
@@ -38,8 +38,12 @@ export class AboutComponent implements OnInit, OnDestroy {
   private intervalId: any;
   private timeoutId: any;
 
-  constructor(private titleService: Title, private metaService: Meta, private strapiService: StrapiService) {
-  }
+  constructor(
+    private titleService: Title,
+    private metaService: Meta,
+    private strapiService: StrapiService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     // Meta info for SEO
@@ -90,6 +94,12 @@ export class AboutComponent implements OnInit, OnDestroy {
       // Set the default member
       if (this.members.length > 0) {
         this.selectedMember = this.members[0];
+      }
+    });
+
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment) {
+        this.scrollToSection(fragment);
       }
     });
   }
@@ -151,6 +161,13 @@ export class AboutComponent implements OnInit, OnDestroy {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       this.displayMember(documentId);
+    }
+  }
+
+  scrollToSection(sectionId: string): void {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   }
 }

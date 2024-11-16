@@ -95,16 +95,24 @@
 <div id="submenu-about" class="submenu-container">
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
-            <li class="submenu-item" routerLink="/about">{{ 'about.nav.us' | translate }}</li>
-            <li class="submenu-item" routerLink="/about">{{ 'about.nav.team' | translate }}</li>
-            <li class="submenu-item" routerLink="/about">{{ 'about.nav.clients' | translate }}</li>
-            <li class="submenu-item" routerLink="/about">{{ 'about.nav.testimonials' | translate }}</li>
+            <li class="submenu-item" [routerLink]="['/about']" fragment="aboutUs">
+                {{ 'about.nav.us' | translate }}
+            </li>
+            <li class="submenu-item" [routerLink]="['/about']" fragment="aboutTeam">
+                {{ 'about.nav.team' | translate }}
+            </li>
+            <li class="submenu-item" [routerLink]="['/about']" fragment="aboutClients">
+                {{ 'about.nav.clients' | translate }}
+            </li>
+            <li class="submenu-item" [routerLink]="['/about']">
+                {{ 'about.nav.testimonials' | translate }}
+            </li>
         </ul>
         <ul class="submenu-item-wrapper">
-            <li class="page-link" routerLink="/about">
+            <li class="page-link" [routerLink]="['/about']">
                 <p>{{ 'about.nav.career' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
-            <li class="page-link" routerLink="/about">
+            <li class="page-link" [routerLink]="['/about']" fragment="aboutLocations">
                 <p>{{ 'about.nav.locations' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>

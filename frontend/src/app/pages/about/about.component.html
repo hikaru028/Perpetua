@@ -1,4 +1,4 @@
-<div class='w-100 m-0'>
+<div id="aboutUs" class='w-100 m-0'>
     <!-- Header -->
     <section class="header-section">
         <p class="header-text">
@@ -12,7 +12,7 @@
         </p>
     </section>
     <!-- Location -->
-    <section class="location-section">
+    <section id="aboutLocations" class="location-section">
         <h1>Our locations</h1>
         <menu>
             <li *ngFor="let location of locations" class="location-button">
@@ -33,12 +33,12 @@
         </button>
     </div>
     <!-- Clients -->
-    <section class="client-section">
+    <section id="aboutClients" class="client-section">
         <h1 class="sub-title">Our clients</h1>
         <app-client-block [clients]="clients"></app-client-block>
     </section>
     <!-- Team -->
-    <section class="team-section">
+    <section id="aboutTeam" class="team-section">
         <h1 class="sub-title">Our team</h1>
         <menu class="row row-cols-2 row-cols-md-4 row-cols-lg-6">
             <button *ngFor="let member of members" (click)="displayMember(member.documentId)"
