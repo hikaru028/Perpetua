@@ -7,7 +7,7 @@
     <div class="sort-button-container">
         <button class="sort-button" (click)="sortProjects('article')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'article'}">
-            Articles
+            {{ 'articles.nav.articles' | translate }}
             <i class="bi" [ngClass]="{
                     'bi-chevron-down': (selectedFilter$ | async) !== 'article',
                     'bi-x': (selectedFilter$ | async) === 'article'
@@ -15,7 +15,7 @@
         </button>
         <button class="sort-button" (click)="sortProjects('news')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'news'}">
-            News
+            {{ 'articles.nav.news' | translate }}
             <i class="bi" [ngClass]="{
                     'bi-chevron-down': (selectedFilter$ | async) !== 'news',
                     'bi-x': (selectedFilter$ | async) === 'news'
@@ -23,7 +23,7 @@
         </button>
         <button class="sort-button" (click)="sortProjects('blog')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'blog'}">
-            Work
+            {{ 'articles.nav.work' | translate }}
             <i class="bi" [ngClass]="{
                     'bi-chevron-down': (selectedFilter$ | async) !== 'blog',
                     'bi-x': (selectedFilter$ | async) === 'blog'
@@ -31,7 +31,7 @@
         </button>
         <button class="sort-button" (click)="sortProjects('all')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'all'}">
-            Clear filters
+            {{ 'articles.nav.clear' | translate }}
             <i class="bi bi-arrow-down-short"></i>
         </button>
     </div>
@@ -46,7 +46,7 @@
     <!-- Footer -->
     <div class="footer-button-wrapper">
         <button id="loadMoreButton" *ngIf="loadMoreButtonVisible" class="footer-button" (click)="loadMoreArticles()">
-            Load more
+            {{ 'articles.nav.load-more' | translate }}
             <i class="bi bi-arrow-down-short"></i>
         </button>
         <app-back-to-top-button></app-back-to-top-button>

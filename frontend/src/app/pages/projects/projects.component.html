@@ -7,7 +7,7 @@
     <div class="sort-button-container">
         <button class="sort-button" (click)="sortProjects('industry')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'industry'}">
-            By industry
+            {{ 'project.nav.by-industry' | translate }}
             <i class="bi" [ngClass]="{
                     'bi-chevron-down': (selectedFilter$ | async) !== 'industry',
                     'bi-x': (selectedFilter$ | async) === 'industry'
@@ -15,7 +15,7 @@
         </button>
         <button class="sort-button" (click)="sortProjects('software')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'software'}">
-            Software
+            {{ 'project.nav.software' | translate }}
             <i class="bi" [ngClass]="{
                     'bi-chevron-down': (selectedFilter$ | async) !== 'software',
                     'bi-x': (selectedFilter$ | async) === 'software'
@@ -23,7 +23,7 @@
         </button>
         <button class="sort-button" (click)="sortProjects('website')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'website'}">
-            Websites
+            {{ 'project.nav.website' | translate }}
             <i class="bi" [ngClass]="{
                     'bi-chevron-down': (selectedFilter$ | async) !== 'website',
                     'bi-x': (selectedFilter$ | async) === 'website'
@@ -31,7 +31,7 @@
         </button>
         <button class="sort-button" (click)="sortProjects('app')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'app'}">
-            Apps
+            {{ 'project.nav.apps' | translate }}
             <i class="bi" [ngClass]="{
                     'bi-chevron-down': (selectedFilter$ | async) !== 'app',
                     'bi-x': (selectedFilter$ | async) === 'app'
@@ -39,7 +39,7 @@
         </button>
         <button class="sort-button" (click)="sortProjects('all')"
             [ngClass]="{'selected': (selectedFilter$ | async) === 'all'}">
-            All work
+            {{ 'project.nav.all-work' | translate }}
             <i class="bi" [ngClass]="{
                 'bi-chevron-down': (selectedFilter$ | async) !== 'all',
                 'bi-x': (selectedFilter$ | async) === 'all'
@@ -66,7 +66,7 @@
     <!-- Footer -->
     <div class="footer-button-wrapper">
         <button id="loadMoreButton" *ngIf="loadMoreButtonVisible" class="footer-button" (click)="loadMoreProjects()">
-            Load more
+            {{ 'button.load-more' | translate }}
             <i class="bi bi-arrow-down-short"></i>
         </button>
         <app-back-to-top-button></app-back-to-top-button>
