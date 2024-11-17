@@ -6,6 +6,8 @@
 	"about.nav.history": "私たちの歴史",
 	"about.nav.career": "採用情報",
 	"about.nav.locations": "拠点を見る",
+	"about.description.P1": "Perpetuaは、クライアントとその顧客のために美しいウェブサイト、ソフトウェア、アプリケーションを作成する統合ソフトウェア開発スタジオです。",
+	"about.description.P2": "シンプルさ、美しさ、細部へのこだわり—これらの価値観が私たちのすべての活動の基盤となり、国際的な才能あふれるチームが世界最高のソフトウェアを作り続ける指針となっています。",
 	"articles.title-af": "ブログ",
 	"articles.title-bf": "ニュース",
 	"articles.nav.news": "ニュース",
@@ -24,6 +26,7 @@
 	"call-action.phrase-L2": "優れた企業とその顧客をつなぎます",
 	"call-action.button": "さあ、一緒に創りましょう",
 	"clients.all-clients": "すべてのクライアントを見る",
+	"clients.our-clients": "私たちののクライアント",
 	"contact.nav.us": "お問い合わせ",
 	"contact.nav.locations": "拠点一覧",
 	"contact.nav.career": "採用情報",
@@ -58,7 +61,7 @@
 	"menu.contact": "お問い合わせ",
 	"menu.projects": "プロジェクト",
 	"menu.services": "事業内容",
-	"projects.title": "ワーク",
+	"projects.title": "実績",
 	"project.nav.software": "ソフトウェア",
 	"project.nav.website": "ウェブサイト",
 	"project.nav.apps": "アプリ",
@@ -92,5 +95,6 @@
 	"service.nav.data-bf": "データ",
 	"service.nav.data-af": "分析",
 	"service.nav.consultation": "無料相談を予約する",
-	"team.all": "チームに会う"
+	"team.all": "チームに会う",
+	"team.our-team": "私たちのチーム"
 }

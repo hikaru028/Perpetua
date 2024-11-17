@@ -6,6 +6,8 @@
 	"about.nav.history": "Our history",
 	"about.nav.career": "Join the team",
 	"about.nav.locations": "View our locations",
+	"about.description.P1": "Perpetua is an integrated software development studio creating beautiful websites, software & applications for our clients and their customers.",
+	"about.description.P2": "Simplicity, beauty, & attention to detail—these values underpin all that we do, and continue to guide our talented, international team in creating the best software in the world.",
 	"articles.title-af": "blog",
 	"articles.title-bf": "News",
 	"articles.nav.news": "News",
@@ -24,6 +26,7 @@
 	"call-action.phrase-L2": "through the power of technology",
 	"call-action.button": "Let's make something together",
 	"clients.all-clients": "View all clients",
+	"clients.our-clients": "Our clients",
 	"contact.nav.us": "Contact us",
 	"contact.nav.locations": "Our locations",
 	"contact.nav.career": "Careers",
@@ -92,5 +95,6 @@
 	"service.nav.data-bf": "Data",
 	"service.nav.data-af": "Analytics",
 	"service.nav.consultation": "Book a free consultation",
-	"team.all": "Meet the team"
+	"team.all": "Meet the team",
+	"team.our-team": "Our team"
 }

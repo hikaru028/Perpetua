@@ -1,19 +1,12 @@
 <div id="aboutUs" class='w-100 m-0'>
     <!-- Header -->
     <section class="header-section">
-        <p class="header-text">
-            Perpetua is an integrated software development studio creating beautiful
-            websites, software & applications for our clients and their customers.
-        </p>
-        <p class="header-text">
-            Simplicity, beauty, & attention to detail—these values underpin all that we
-            do, and continue to guide our talented, international team in creating the
-            best software in the world.
-        </p>
+        <p class="header-text">{{ 'about.description.P1' | translate }}</p>
+        <p class="header-text">{{ 'about.description.P2' | translate }}</p>
     </section>
     <!-- Location -->
     <section id="aboutLocations" class="location-section">
-        <h1>Our locations</h1>
+        <h1>{{ 'contact.nav.locations' | translate }}</h1>
         <menu>
             <li *ngFor="let location of locations" class="location-button">
                 {{ location }}
@@ -28,18 +21,18 @@
     </section>
     <div class="contact-button-wrapper">
         <button class="contact-button" routerLink="/contact">
-            Contact us
+            {{ 'contact.nav.us' | translate }}
             <i class="bi bi-arrow-right-short contact-icon"></i>
         </button>
     </div>
     <!-- Clients -->
     <section id="aboutClients" class="client-section">
-        <h1 class="sub-title">Our clients</h1>
+        <h1 class="sub-title">{{ 'contact.our-clients' | translate }}</h1>
         <app-client-block [clients]="clients"></app-client-block>
     </section>
     <!-- Team -->
     <section id="aboutTeam" class="team-section">
-        <h1 class="sub-title">Our team</h1>
+        <h1 class="sub-title">{{ 'team.our-team' | translate }}</h1>
         <menu class="row row-cols-2 row-cols-md-4 row-cols-lg-6">
             <button *ngFor="let member of members" (click)="displayMember(member.documentId)"
                 (keydown)="onKeyDown($event, member.documentId)"

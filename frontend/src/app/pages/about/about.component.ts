@@ -3,6 +3,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 // Components
 import { ClientBlockComponent } from './components/client-block/client-block.component';
 import { LocationCardComponent } from './components/location-card/location-card.component';
@@ -11,6 +12,7 @@ import { CallActionComponent } from '../../components/call-action/call-action.co
 // Services
 import { StrapiService } from '../../api/strapi.service';
 import { IClient, IMember, IOffice, APIResponseModel } from '../../../util/interfaces';
+import { TranslationHelper } from '../../shared/translation-helper';
 
 @Component({
   selector: 'app-about',
@@ -21,7 +23,8 @@ import { IClient, IMember, IOffice, APIResponseModel } from '../../../util/inter
     LocationCardComponent,
     StaffCardComponent,
     CallActionComponent,
-    RouterLink
+    RouterLink,
+    TranslateModule
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
@@ -37,13 +40,17 @@ export class AboutComponent implements OnInit, OnDestroy {
   strapiUrl = 'http://localhost:1337';
   private intervalId: any;
   private timeoutId: any;
+  currentLanguage: string = 'en';
 
   constructor(
     private titleService: Title,
     private metaService: Meta,
     private strapiService: StrapiService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private translationHelper: TranslationHelper
+  ) {
+    this.currentLanguage = this.translationHelper.getCurrentLanguage();
+  }
 
   ngOnInit(): void {
     // Meta info for SEO
@@ -58,7 +65,8 @@ export class AboutComponent implements OnInit, OnDestroy {
           url: this.strapiUrl + office.office_image.url || "../../../assets/images/img_n.a.png"
         },
         currentTime: this.getCurrentTime(office.office_location)
-      }));
+      }))
+        .sort((a: IOffice, b: IOffice) => a.office_location.localeCompare(b.office_location));
       this.locations = this.offices.map((office: IOffice) => office.office_location);
 
       this.alignToNextMinute();
@@ -105,6 +113,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.translationHelper.unsubscribe();
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
