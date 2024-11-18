@@ -1,8 +1,9 @@
 // Libraries
 import { Meta, Title } from '@angular/platform-browser';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 // Components
 import { CallActionComponent } from '../../../components/call-action/call-action.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
@@ -13,6 +14,7 @@ import { ArticleDetailSkeletonComponent } from '../../../components/skeletons/ar
 // Services
 import { StrapiService } from '../../../api/strapi.service';
 import { IArticle, APIResponseModel } from '../../../../util/interfaces';
+import { TranslationHelper } from '../../../shared/translation-helper';
 
 @Component({
   selector: 'app-article-detail',
@@ -25,14 +27,16 @@ import { IArticle, APIResponseModel } from '../../../../util/interfaces';
     BackToTopButtonComponent,
     ArticleContentComponent,
     MoreArticlesComponent,
-    ArticleDetailSkeletonComponent
+    ArticleDetailSkeletonComponent,
+    TranslateModule
   ],
   templateUrl: './article-detail.component.html',
   styleUrl: './article-detail.component.scss'
 })
-export class ArticleDetailComponent implements OnInit {
+export class ArticleDetailComponent implements OnInit, OnDestroy {
   documentId!: string;
   article?: IArticle;
+  currentLanguage: string = 'en';
   strapiUrl = 'http://localhost:1337';
 
   constructor(
@@ -40,8 +44,11 @@ export class ArticleDetailComponent implements OnInit {
     private titleService: Title,
     private location: Location,
     private activatedRoute: ActivatedRoute,
-    private strapiService: StrapiService
-  ) { }
+    private strapiService: StrapiService,
+    private translationHelper: TranslationHelper
+  ) {
+    this.currentLanguage = this.translationHelper.getCurrentLanguage();
+  }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -51,6 +58,10 @@ export class ArticleDetailComponent implements OnInit {
         this.loadArticleDetails();
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.translationHelper.unsubscribe();
   }
 
   loadArticleDetails(): void {

@@ -44,13 +44,24 @@ export class ArticleContentComponent implements OnChanges {
           ''
         );
 
-        // Style images in the content
-        const styledContent = updatedHTML.replace(
-          /<img /g,
-          '<img style="width: 100%; height: auto; max-width: 100%;" '
-        );
+        const contentWithoutFirstLetter = textContent.slice(1); // Removing the first letter
+        const words = contentWithoutFirstLetter.trim().split(/\s+/);
 
-        this.restOfContent = this.sanitizer.bypassSecurityTrustHtml(styledContent);
+        if (words.length > 1) {
+          const firstTwoWordsUpperCase = words.slice(0, 2).join(' ').toUpperCase();
+          const restOfWords = words.slice(2).join(' ');
+
+          const modifiedTextContent = `${this.firstLetter}${firstTwoWordsUpperCase} ${restOfWords}`;
+          tempElement.textContent = modifiedTextContent;
+
+          // Style images in the content
+          const styledContent = updatedHTML.replace(
+            /<img /g,
+            '<img style="width: 100%; height: auto; max-width: 100%;" '
+          );
+
+          this.restOfContent = this.sanitizer.bypassSecurityTrustHtml(styledContent);
+        }
       }
     }
   }
