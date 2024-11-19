@@ -61,7 +61,6 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     });
 
     this.articles$.subscribe((articles) => {
-      console.log('Articles received:', articles);
       this.allArticles = articles;
       this.initializeVisibleArticles();
     });

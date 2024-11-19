@@ -16,19 +16,17 @@ register();
 })
 export class SlidesComponent implements OnInit {
   slides: ISlide[] = [];
-  strapiUrl = 'https://blessed-gem-87ec063b67.strapiapp.com';
   strapiService = inject(StrapiService);
   showSwiper: boolean = false;
 
   ngOnInit(): void {
     this.strapiService.getSlides().subscribe((result: APIResponseModel) => {
       this.slides = result.data;
-      console.log(this.slides);
       this.slides = this.slides.map(slide => ({
         ...slide,
         slide_image: {
           ...slide.slide_image,
-          url: this.strapiUrl + slide.slide_image.url || "../../../../../assets/images/img_n.a.png"
+          url: slide.slide_image.url || "../../../../../assets/images/img_n.a.png"
         }
       }));
 

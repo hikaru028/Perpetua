@@ -9,6 +9,7 @@ import { StaffCardComponent } from './components/staff-card/staff-card.component
 import { IMember, APIResponseModel } from '../../../../../util/interfaces';
 import { StrapiService } from '../../../../api/strapi.service';
 import { TranslationHelper } from '../../../../shared/translation-helper';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-team',
@@ -20,7 +21,7 @@ import { TranslationHelper } from '../../../../shared/translation-helper';
 export class TeamComponent implements OnInit, OnDestroy {
   members: IMember[] = [];
   strapiService = inject(StrapiService);
-  strapiUrl = 'http://localhost:1337/';
+  strapiUrl = environment.strapiMediaUrl;
   intervalId: any;
   currentLanguage: string = 'en';
 

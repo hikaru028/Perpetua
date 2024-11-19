@@ -3,9 +3,6 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-// Services
-import { StrapiService } from '../../../api/strapi.service';
-import { IProject, APIResponseModel } from '../../../../util/interfaces';
 // Components
 import { CallActionComponent } from '../../../components/call-action/call-action.component';
 import { FooterComponent } from '../../../components/footer/footer.component';
@@ -13,6 +10,10 @@ import { BackToTopButtonComponent } from '../../../components/buttons/back-to-to
 import { ProjectDetailSkeletonComponent } from '../../../components/skeletons/project-detail-skeleton/project-detail-skeleton.component';
 import { MoreProjectsComponent } from './components/more-projects/more-projects.component';
 import { ProjectContentComponent } from './components/project-content/project-content.component';
+// Services
+import { StrapiService } from '../../../api/strapi.service';
+import { IProject, APIResponseModel } from '../../../../util/interfaces';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-project-detail',
@@ -33,7 +34,7 @@ import { ProjectContentComponent } from './components/project-content/project-co
 export class ProjectDetailComponent implements OnInit {
   documentId!: string;
   project?: IProject;
-  strapiUrl = 'http://localhost:1337';
+  strapiUrl = environment.strapiMediaUrl;
 
   constructor(
     private metaService: Meta,

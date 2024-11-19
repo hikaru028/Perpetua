@@ -1,5 +1,6 @@
 export const environment = {
     production: false,
-    strapiUrl: 'http://localhost:1337/api',
-    strapiApi: 'a3834d5d1499b20265d5f0e63de11f22a69c2cd4cc5d08e24818cc4a77829cd47a5ce9e98d3f774ced20495999657035e490869e4dcd7bbb98c14abbc3b9fc47ce5367872530dbc1eba2045dce96970f365e77d09fc376a985f0ce7511bcc627662412e740040e2c3dafa67728790f54e72afcc8aa4015877e83483ba7ba8bf9',
+    strapiUrl: 'https://blessed-gem-87ec063b67.strapiapp.com/api',
+    strapiApi: '16736469d5ddc7fbcffa3feb095a34d5cd12946b757afbab9e33a4397920d165b7298039aa066fb24c4ccbd50061242375d90800190b98b1f654a8d5612c32f9464a4a3d0e152569f2becb84b1f268ee53be9f00681ddb2596f9c8b4954860d6ff23f8410de86df4a4fc672f717cc51e707db10ff2d5ee45074af5169c34acc6',
+    strapiMediaUrl: 'https://blessed-gem-87ec063b67.media.strapiapp.com/',
 };

@@ -33,7 +33,6 @@ export class LanguagesComponent {
   }
 
   onLanguageChange(language: string, code: string) {
-    console.log(language, code);
     this.selectedLanguage = language;
     this.translate.use(code.trim());
 

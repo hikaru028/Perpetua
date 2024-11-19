@@ -13,6 +13,7 @@ import { CallActionComponent } from '../../components/call-action/call-action.co
 import { StrapiService } from '../../api/strapi.service';
 import { IClient, IMember, IOffice, APIResponseModel } from '../../../util/interfaces';
 import { TranslationHelper } from '../../shared/translation-helper';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-about',
@@ -37,7 +38,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   locations: string[] = [];
   memberNames: string[] = [];
   selectedMember: IMember | undefined;
-  strapiUrl = 'http://localhost:1337';
+  strapiUrl = environment.strapiMediaUrl;
   private intervalId: any;
   private timeoutId: any;
   currentLanguage: string = 'en';

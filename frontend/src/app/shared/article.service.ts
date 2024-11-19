@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 // Services
 import { IArticle, APIResponseModel, IImage } from '../../util/interfaces';
 import { StrapiService } from '../api/strapi.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +23,7 @@ export class ArticleService {
     public moreArticlesSubject = new BehaviorSubject<IArticle[]>([]);
     moreArticles$ = this.moreArticlesSubject.asObservable();
 
-    strapiUrl = 'http://localhost:1337';
+    strapiUrl = environment.strapiMediaUrl;
 
     constructor(private strapiService: StrapiService) {
         this.fetchArticles();

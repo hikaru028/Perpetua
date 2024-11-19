@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 // Services
 import { StrapiService } from '../api/strapi.service';
 import { IProject, APIResponseModel } from '../../util/interfaces';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -25,7 +26,7 @@ export class ProjectService {
     public moreProjectsSubject = new BehaviorSubject<IProject[]>([]);
     moreProjects$ = this.moreProjectsSubject.asObservable();
 
-    strapiUrl = 'http://localhost:1337';
+    strapiUrl = environment.strapiMediaUrl;
 
     constructor(private strapiService: StrapiService) {
         this.fetchProjects();

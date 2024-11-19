@@ -23,7 +23,7 @@ export class SearchBarComponent implements OnInit {
   projects: IProject[] = [];
   articles: IArticle[] = [];
   strapiService = inject(StrapiService);
-  strapiUrl = 'http://localhost:1337';
+
   searchResultAll: string[] = [];
   searchResults: { title: string, path: string, highlightedTitle: SafeHtml }[] = [];
   sanitizer = inject(DomSanitizer);

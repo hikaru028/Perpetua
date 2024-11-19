@@ -9,6 +9,7 @@ import { ClientCardComponent } from './components/client-card/client-card.compon
 import { IClient, APIResponseModel } from '../../../../../util/interfaces';
 import { StrapiService } from '../../../../api/strapi.service';
 import { TranslationHelper } from '../../../../shared/translation-helper';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-clients',
@@ -21,7 +22,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
   clients: IClient[] = [];
   selectedClientIndex: number = 0;
   strapiService = inject(StrapiService);
-  strapiUrl = 'http://localhost:1337';
+  strapiUrl = environment.strapiMediaUrl;
   currentLanguage: string = 'en';
 
   constructor(private translationHelper: TranslationHelper) {

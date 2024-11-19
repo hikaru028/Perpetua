@@ -22,7 +22,6 @@ export class ShareArticleButtonComponent {
   }
 
   shareOnTwitter() {
-    console.log(this.articleUrl);
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(this.articleTitle)}&url=${encodeURIComponent(this.articleUrl)}`;
     window.open(twitterUrl, '_blank');
   }
