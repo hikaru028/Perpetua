@@ -2,7 +2,7 @@
 <swiper-container *ngIf="showSwiper && slides.length > 0" class="slide-container" navigation="true" slides-per-view="1"
     speed="500" direction="horizontal" autoplay-delay="3000" autoplay-disable-on-interaction="false">
     <swiper-slide *ngFor="let slide of slides">
-        <img [src]="slide.slide_image.url" [alt]="slide.image_title" />
+        <img [src]="slide.slide_image.url" [alt]="slide.documentId" />
         <p class="title">{{slide.company_name}}</p>
     </swiper-slide>
 </swiper-container>
