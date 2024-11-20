@@ -39,29 +39,21 @@ export class ArticleContentComponent implements OnChanges {
       if (textContent.length > 0) {
         this.firstLetter = textContent.charAt(0);
 
-        const updatedHTML = tempElement.innerHTML.replace(
-          textContent.charAt(0),
-          ''
+        const restText = textContent.slice(1).trim();
+        const words = restText.split(/\s+/);
+        if (words.length >= 2) {
+          words[0] = words[0].toUpperCase();
+          words[1] = words[1].toUpperCase();
+        }
+
+        tempElement.textContent = `${words.join(' ')}`;
+
+        const styledContent = tempElement.innerHTML.replace(
+          /<img /g,
+          '<img style="width: 100%; height: auto; max-width: 100%;" '
         );
 
-        const contentWithoutFirstLetter = textContent.slice(1); // Removing the first letter
-        const words = contentWithoutFirstLetter.trim().split(/\s+/);
-
-        if (words.length > 1) {
-          const firstTwoWordsUpperCase = words.slice(0, 2).join(' ').toUpperCase();
-          const restOfWords = words.slice(2).join(' ');
-
-          const modifiedTextContent = `${this.firstLetter}${firstTwoWordsUpperCase} ${restOfWords}`;
-          tempElement.textContent = modifiedTextContent;
-
-          // Style images in the content
-          const styledContent = updatedHTML.replace(
-            /<img /g,
-            '<img style="width: 100%; height: auto; max-width: 100%;" '
-          );
-
-          this.restOfContent = this.sanitizer.bypassSecurityTrustHtml(styledContent);
-        }
+        this.restOfContent = this.sanitizer.bypassSecurityTrustHtml(styledContent);
       }
     }
   }
