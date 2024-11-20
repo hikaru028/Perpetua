@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../environments/environment'
 
 @Component({
   selector: 'app-share-article-button',
@@ -12,9 +13,10 @@ export class ShareArticleButtonComponent {
   @Input() articleDocumentId: string = '';
   @Input() articleTitle: string = '';
   isModalVisible: boolean = false;
+  strapiUrl = environment.strapiUrl;
 
   get articleUrl(): string {
-    return `http://localhost:4200/articles/${this.articleDocumentId}`;
+    return `${this.strapiUrl}/articles/${this.articleDocumentId}`;
   }
 
   showModal() {

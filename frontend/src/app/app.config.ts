@@ -9,8 +9,6 @@ import { HttpClient, provideHttpClient, withFetch, withInterceptorsFromDi } from
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
-// const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
-//   new TranslateHttpLoader(http, './i18n/', '.json');
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');
 }
@@ -21,7 +19,8 @@ const firebaseConfig = {
   projectId: "perpeture-test",
   storageBucket: "perpeture-test.firebasestorage.app",
   messagingSenderId: "340039899364",
-  appId: "1:340039899364:web:f22bf87e49a5193c29b4f1"
+  appId: "1:340039899364:web:f22bf87e49a5193c29b4f1",
+  measurementId: "G-MQVR5MSX2D"
 };
 
 export const appConfig: ApplicationConfig = {
