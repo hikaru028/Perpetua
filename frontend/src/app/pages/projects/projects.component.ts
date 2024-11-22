@@ -7,6 +7,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
 import { CallActionComponent } from '../../components/call-action/call-action.component';
 import { BackToTopButtonComponent } from '../../components/buttons/back-to-top-button/back-to-top-button.component';
+import { ProjectCardSkeletonComponent } from '../../components/skeletons/project-card-skeleton/project-card-skeleton.component';
 // Service
 import { ProjectService } from '../../shared/project.service';
 import { Observable } from 'rxjs';
@@ -15,7 +16,7 @@ import { IProject } from '../../../util/interfaces';
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectCardComponent, TranslateModule, CallActionComponent, BackToTopButtonComponent],
+  imports: [CommonModule, ProjectCardComponent, TranslateModule, CallActionComponent, BackToTopButtonComponent, ProjectCardSkeletonComponent],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })
@@ -23,6 +24,7 @@ export class ProjectsComponent implements OnInit {
   filteredProjects$: Observable<IProject[]>;
   selectedFilter$!: Observable<string | null>;
   projectsByIndustry$!: Observable<{ [industry: string]: IProject[] }>;
+  isLoading$!: Observable<boolean | null>;
 
   // Lazy loading
   visibleProjects: IProject[] = [];
@@ -38,6 +40,7 @@ export class ProjectsComponent implements OnInit {
     this.filteredProjects$ = this.projectService.filteredProjects$;
     this.selectedFilter$ = this.projectService.selectedFilter$;
     this.projectsByIndustry$ = this.projectService.projectsByIndustry$;
+    this.isLoading$ = this.projectService.isLoading$;
   }
 
   ngOnInit(): void {

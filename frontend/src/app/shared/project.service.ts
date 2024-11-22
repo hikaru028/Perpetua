@@ -26,6 +26,9 @@ export class ProjectService {
     public moreProjectsSubject = new BehaviorSubject<IProject[]>([]);
     moreProjects$ = this.moreProjectsSubject.asObservable();
 
+    private loadingSubject = new BehaviorSubject<boolean>(true);
+    isLoading$ = this.loadingSubject.asObservable();
+
     strapiUrl = environment.strapiMediaUrl;
 
     constructor(private strapiService: StrapiService) {
@@ -33,6 +36,7 @@ export class ProjectService {
     }
 
     private fetchProjects(): void {
+        this.loadingSubject.next(true);
         this.strapiService.getAllProjects().subscribe((result: APIResponseModel) => {
             const projects = result.data.map((project: IProject) => ({
                 ...project,
@@ -45,8 +49,10 @@ export class ProjectService {
             this.projectsSubject.next(projects);
             this.filteredProjectsSubject.next(projects);
             this.groupProjectsByIndustry(projects);
+            this.loadingSubject.next(false);
         }, error => {
             console.error('Error fetching projects:', error);
+            this.loadingSubject.next(false);
         });
     }
 

@@ -23,6 +23,9 @@ export class ArticleService {
     public moreArticlesSubject = new BehaviorSubject<IArticle[]>([]);
     moreArticles$ = this.moreArticlesSubject.asObservable();
 
+    private loadingSubject = new BehaviorSubject<boolean>(true);
+    isLoading$ = this.loadingSubject.asObservable();
+
     strapiUrl = environment.strapiMediaUrl;
 
     constructor(private strapiService: StrapiService) {
@@ -30,6 +33,7 @@ export class ArticleService {
     }
 
     fetchArticles(): void {
+        this.loadingSubject.next(true);
         this.strapiService.getAllArticles().subscribe((result: APIResponseModel) => {
             const articles = result.data.map((article: IArticle) => ({
                 ...article,
@@ -41,8 +45,10 @@ export class ArticleService {
 
             this.articlesSubject.next(articles);
             this.filteredArticlesSubject.next(articles);
+            this.loadingSubject.next(false);
         }, error => {
             console.error('Error fetching articles:', error);
+            this.loadingSubject.next(false);
         });
     }
 

@@ -1,36 +1,36 @@
-<div *ngIf="showTitleAsIndustry" class="container-fluid">
-    <div class="custom-gutter" *ngIf="projects.length > 0; else noProjects">
+<div *ngIf="showTitleAsIndustry; else noProjects" class="container-fluid">
+    <div class="custom-gutter">
         <div *ngFor="let project of projects">
             <div class="card-container" [routerLink]="['/projects', project.industry]">
                 <!-- Image -->
                 <div class="image-wrapper">
-                    <img [src]="project.thumbnail_image.url" [alt]="project.project_title">
+                    <img [src]="project.thumbnail_image.url" [alt]="project.project_title" loading="lazy"
+                        (load)="onImageLoad()" />
                 </div>
                 <!-- Title -->
                 <p *ngIf="showTitleAsIndustry">{{ project.industry | titlecase }}</p>
             </div>
         </div>
     </div>
-    <ng-template #noProjects>
-        <p>No projects available.</p>
-    </ng-template>
 </div>
 
-<div *ngIf="!showTitleAsIndustry" class="project-card-container container-fluid">
-    <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="projects.length > 0; else noProjects">
+<div *ngIf="!showTitleAsIndustry; else noProjects" class="project-card-container container-fluid">
+    <div class="row row-cols-1 row-cols-md-3 custom-gutter">
         <div class="col" *ngFor="let project of projects" (click)="navigateToProject(project.documentId)"
             (keydown)="onKeyDown($event, project.documentId)">
             <div class="card-container">
                 <!-- Image -->
                 <div class="image-wrapper">
-                    <img [src]="project.thumbnail_image.url" [alt]="project.project_title">
+                    <img [src]="project.thumbnail_image.url" [alt]="project.project_title" loading="lazy"
+                        (load)="onImageLoad()" />
                 </div>
                 <!-- Title -->
                 <p *ngIf="!showTitleAsIndustry">{{ project.project_title || 'No Title Available' }}</p>
             </div>
         </div>
     </div>
-    <ng-template #noProjects>
-        <p>No projects available.</p>
-    </ng-template>
 </div>
+
+<ng-template #noProjects>
+    <!-- <p>No projects available.</p> -->
+</ng-template>

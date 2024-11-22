@@ -48,7 +48,11 @@
     </div>
     <span class="separator"></span>
     <!-- Project cards -->
-    <ng-container *ngIf="selectedFilter$ | async as selectedFilter">
+    <ng-container *ngIf="isLoading$ | async">
+        <app-project-card-skeleton></app-project-card-skeleton>
+    </ng-container>
+
+    <ng-template *ngIf="selectedFilter$ | async as selectedFilter">
         <div *ngIf="selectedFilter === 'industry' && (projectsByIndustry$ | async) as projectsByIndustry">
             <div class="row row-cols-1 row-cols-md-3 custom-gutter">
                 <div class="col" *ngFor="let industryKey of getIndustryKeys(projectsByIndustry)">
@@ -61,7 +65,7 @@
             <app-project-card *ngIf="visibleProjects.length > 0" [projects]="visibleProjects">
             </app-project-card>
         </ng-container>
-    </ng-container>
+    </ng-template>
 
     <!-- Footer -->
     <div class="footer-button-wrapper">

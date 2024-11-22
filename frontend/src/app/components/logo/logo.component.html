@@ -10,14 +10,12 @@
             cursor: pointer;
         }
 
-        /* Default: White path visible */
         .svg-path-white {
             fill: #ffffff;
             transition: opacity 0.3s ease-in-out;
             opacity: 1;
         }
 
-        /* Blurred Gradient path hidden initially */
         .svg-path-gradient-blurred {
             fill: url(#gradientFill);
             transition: opacity 0.3s ease-in-out;
@@ -25,14 +23,12 @@
             filter: blur(20px);
         }
 
-        /* Sharp Gradient path hidden initially */
         .svg-path-gradient-sharp {
             fill: url(#gradientFill);
             transition: opacity 0.3s ease-in-out;
             opacity: 0;
         }
 
-        /* Hover state - transition to gradient */
         .logo-wrapper:hover .svg-path-white {
             opacity: 0;
         }

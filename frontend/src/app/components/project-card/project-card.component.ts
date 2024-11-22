@@ -1,7 +1,8 @@
 // Libraries
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+// Components
 // Services
 import { IProject } from '../../../util/interfaces';
 
@@ -12,11 +13,18 @@ import { IProject } from '../../../util/interfaces';
   templateUrl: './project-card.component.html',
   styleUrls: ['./project-card.component.scss']
 })
-export class ProjectCardComponent {
+export class ProjectCardComponent implements OnInit {
   @Input() projects: IProject[] = [];
   @Input() showTitleAsIndustry: boolean = false;
+  @Input() isLoading: boolean = false;
 
   constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    if (this.projects.length > 0) {
+      this.isLoading = false;
+    }
+  }
 
   scrollToTop(): void {
     window.scrollTo({
@@ -35,5 +43,9 @@ export class ProjectCardComponent {
       event.preventDefault();
       this.navigateToProject(documentId);
     }
+  }
+
+  onImageLoad(): void {
+    this.isLoading = false;
   }
 }

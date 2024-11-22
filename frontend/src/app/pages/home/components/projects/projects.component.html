@@ -39,8 +39,15 @@
     </div>
     <span class="separator"></span>
     <!-- Project cards -->
-    <app-project-card *ngIf="filteredProjects$ | async as filteredProjects"
-        [projects]="filteredProjects | slice:0:6"></app-project-card>
+    <ng-container *ngIf="isLoading$ | async; else projectCards">
+        <app-project-card-skeleton></app-project-card-skeleton>
+    </ng-container>
+
+    <ng-template #projectCards>
+        <app-project-card *ngIf="filteredProjects$ | async as filteredProjects"
+            [projects]="filteredProjects | slice:0:6" [isLoading]="false"></app-project-card>
+    </ng-template>
+
     <!-- Footer -->
     <div class="footer-button-wrapper">
         <button class="footer-button" [routerLink]="['/projects']" (click)="sortProjects('all')">
