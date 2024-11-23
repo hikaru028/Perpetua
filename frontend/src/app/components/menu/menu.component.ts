@@ -1,5 +1,5 @@
 // Libraries
-import { Component, HostListener, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 // Components
@@ -14,7 +14,7 @@ import { SearchBarComponent } from "./search-bar/search-bar.component";
   encapsulation: ViewEncapsulation.None,
 })
 
-export class MenuComponent implements OnInit, AfterViewInit {
+export class MenuComponent implements OnInit {
   selectedMenuItem: string | null = null;
   searchProjects: string = '';
   searchContent: string = '';
@@ -33,16 +33,6 @@ export class MenuComponent implements OnInit, AfterViewInit {
       this.searchContent = this.translateService.instant('menu.search.articles');
     });
   }
-
-  ngAfterViewInit(): void {
-
-  }
-
-
-  // hideSubmenu(): void {
-  //   this.projectsSearchBar.hideSubmenu();
-  //   this.articlesSearchBar.hideSubmenu();
-  // }
 
   onMenuHover(menuItem: string, event: Event) {
     event.stopPropagation();

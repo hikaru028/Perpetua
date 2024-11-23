@@ -94,11 +94,6 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
-  // hideSubmenu(): void {
-  //   const submenus = document.querySelectorAll('.submenu-container');
-  //   submenus.forEach(submenu => submenu.classList.remove('visible'));
-  // }
-
   removeBottomBorder(): void {
     if (this.searchInput) {
       const border = this.searchInput.nativeElement.nextElementSibling;
@@ -127,10 +122,9 @@ export class SearchBarComponent implements OnInit {
       if (border) {
         border.classList.remove('visible');
       }
+      this.searchControl.setValue('');
       this.searchResults = [];
-      if (this.searchInput) {
-        this.searchInput.nativeElement.blur();
-      }
+      this.searchInput.nativeElement.blur();
     }
   }
 }
