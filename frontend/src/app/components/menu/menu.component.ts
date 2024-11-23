@@ -1,5 +1,5 @@
 // Libraries
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 // Components
@@ -14,10 +14,13 @@ import { SearchBarComponent } from "./search-bar/search-bar.component";
   encapsulation: ViewEncapsulation.None,
 })
 
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, AfterViewInit {
   selectedMenuItem: string | null = null;
   searchProjects: string = '';
   searchContent: string = '';
+  @ViewChild('projectsSearchBar') projectsSearchBar!: SearchBarComponent;
+  @ViewChild('articlesSearchBar') articlesSearchBar!: SearchBarComponent;
+  private clickedItem: string | null = null;
 
   constructor(private translateService: TranslateService) { }
 
@@ -31,8 +34,29 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  onMenuClick(menuItem: string, event: Event) {
+  ngAfterViewInit(): void {
+
+  }
+
+
+  // hideSubmenu(): void {
+  //   this.projectsSearchBar.hideSubmenu();
+  //   this.articlesSearchBar.hideSubmenu();
+  // }
+
+  onMenuHover(menuItem: string, event: Event) {
     event.stopPropagation();
+
+    if (this.projectsSearchBar) {
+      this.projectsSearchBar.removeBottomBorder();
+    }
+    if (this.articlesSearchBar) {
+      this.articlesSearchBar.removeBottomBorder();
+    }
+
+    if (this.clickedItem === menuItem) {
+      return;
+    }
 
     const submenus = document.querySelectorAll('.submenu-container');
     submenus.forEach(submenu => submenu.classList.remove('visible'));
@@ -75,47 +99,37 @@ export class MenuComponent implements OnInit {
   }
 
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent) {
-    const targetElement = event.target as HTMLElement;
+  onMenuHide(menuItem: string, event: Event) {
+    event.stopPropagation();
+    this.clickedItem = menuItem;
 
-    const isMenuClick = targetElement.closest('.menu-container') || targetElement.closest('.submenu-container');
+    const submenus = document.querySelectorAll('.submenu-container');
+    submenus.forEach(submenu => submenu.classList.remove('visible'));
 
-    if (!isMenuClick) {
-      const submenus = document.querySelectorAll('.submenu-container');
-      submenus.forEach(submenu => submenu.classList.remove('visible'));
+    const menuWrappers = document.querySelectorAll('.menu-wrapper');
+    menuWrappers.forEach(wrapper => {
+      const menuButton = wrapper.querySelector('.menu-item');
+      const chevron = wrapper.querySelector('.chevron');
+      if (menuButton) {
+        menuButton.classList.remove('selected');
+      }
+      if (chevron) {
+        chevron.classList.remove('visible');
+      }
+    });
 
-      const menuWrappers = document.querySelectorAll('.menu-wrapper');
-      menuWrappers.forEach(wrapper => {
-        const menuButton = wrapper.querySelector('.menu-item');
-        const chevron = wrapper.querySelector('.chevron');
-        const submenuBox = wrapper.querySelector('.submenu-box');
-        if (submenuBox) {
-          submenuBox.classList.add('visible');
-        }
-        if (menuButton) {
-          menuButton.classList.remove('selected');
-          if (chevron) {
-            chevron.classList.remove('visible');
-          }
-          if (submenuBox) {
-            submenuBox.classList.remove('visible');
-          }
-        }
-      });
+    setTimeout(() => {
+      this.clickedItem = null;
+    }, 200);
 
-      this.selectedMenuItem = null;
-    }
+    this.selectedMenuItem = null;
   }
 
   @HostListener('document:mousemove', ['$event'])
   onDocumentMouseMove(event: MouseEvent) {
     const targetElement = event.target as HTMLElement;
 
-    const isMenuHover = targetElement.closest('.menu-container');
-    const isSubmenuHover = targetElement.closest('.submenu-container');
-
-    if (!isMenuHover && !isSubmenuHover) {
+    if (!targetElement.closest('.menu-container') && !targetElement.closest('.submenu-container')) {
       const submenus = document.querySelectorAll('.submenu-container');
       submenus.forEach(submenu => submenu.classList.remove('visible'));
 

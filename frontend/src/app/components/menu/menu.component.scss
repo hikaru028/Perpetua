@@ -1,11 +1,13 @@
 .menu-container {
     position: relative;
-    z-index: 20;
+    width: auto;
     height: 40px;
-    margin-left: 50px;
+    margin: 0 0 0 70.75px;
+    padding: 0;
     display: flex;
-    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
+    z-index: 20;
 
     .menu-wrapper {
         display: flex;
@@ -14,13 +16,14 @@
         align-items: center;
         position: relative;
         z-index: 21;
+        margin: 0 42.75px 0 0;
 
         .menu-item {
             width: auto;
             height: 40px;
             min-width: 34px;
             line-height: 24px;
-            padding: 0 21px;
+            padding: 0;
             color: #ffffff;
             font-family: 'Larsseit' !important;
             font-size: 1.125rem;
@@ -44,7 +47,7 @@
         &.selected .chevron {
             display: block;
             top: 40px;
-            left: 21px;
+            left: 0px;
             opacity: 1;
         }
 
@@ -52,11 +55,11 @@
             font-size: 1rem;
             position: absolute;
             top: -100%;
-            left: 21px;
+            left: 0px;
             opacity: 0;
             color: #a8a8a8;
             z-index: 20;
-            transition: top 0.3s ease, opacity 0.3s ease;
+            transition: top 0.2s ease, opacity 0.2s ease;
             z-index: 120;
 
             &.visible {
@@ -113,18 +116,20 @@
             height: auto;
             display: flex;
             flex-direction: column;
-            padding: 6px 0;
-            margin-left: 117px;
+            padding-left: 0;
 
             .submenu-item {
+                max-width: 393.18px;
+                min-width: 113px;
+                height: 31px;
+                margin-left: 116.5px;
+                margin-bottom: 11.22px;
                 list-style: none;
                 background-color: transparent;
                 font-family: 'Sohne-500' !important;
                 font-size: 1.5rem;
                 border: none;
                 user-select: none;
-                min-width: 64px;
-                margin-bottom: 6px;
                 color: #ffffff;
                 cursor: pointer;
 
@@ -133,13 +138,17 @@
                 }
 
                 .ampersand {
-                    font-family: sans-serif;
+                    font-family: 'sohne';
                     font-weight: 600;
                     font-size: 1.438rem;
                 }
             }
 
             .page-link {
+                width: 200px;
+                height: 24px;
+                margin-left: 83.82px;
+                margin-bottom: 18.22px;
                 list-style: none;
                 display: flex;
                 flex-direction: row;
@@ -148,7 +157,6 @@
                 font-family: 'Larsseit' !important;
                 font-size: 1.125rem;
                 color: #a8a8a8;
-                margin-bottom: 16px;
                 cursor: pointer;
                 transition: color 0.3s ease;
 
