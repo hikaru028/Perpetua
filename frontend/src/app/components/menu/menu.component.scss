@@ -23,7 +23,7 @@
             height: 40px;
             min-width: 34px;
             line-height: 24px;
-            padding: 0;
+            padding: 3px 0;
             color: #ffffff;
             font-family: 'Larsseit' !important;
             font-size: 1.125rem;
@@ -63,7 +63,7 @@
             z-index: 120;
 
             &.visible {
-                top: 40px;
+                top: 44.38px;
                 opacity: 1;
             }
         }
@@ -100,7 +100,7 @@
         flex-direction: row;
         justify-content: start;
         align-items: start;
-        margin-top: 62.12px;
+        margin-top: 96.28px;
         padding-bottom: 73.38px;
         top: -100%;
         left: 0;
@@ -147,7 +147,8 @@
             }
 
             .page-link {
-                width: 200px;
+                min-width: 144px;
+                max-width: 200px;
                 height: 24px;
                 margin-left: 83.82px;
                 margin-bottom: 18.22px;
