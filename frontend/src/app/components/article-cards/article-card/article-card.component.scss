@@ -1,16 +1,23 @@
 .article-card-container {
     width: 100%;
-    padding: 15px;
-    cursor: pointer;
+    padding: 20px 15px 0 15px;
+    margin: 0 0 70.5px 0;
 }
 
 .custom-gutter {
+    padding: 0;
+    margin: 0;
     row-gap: 15px;
 }
 
-.card-container {
-    display: flex;
-    flex-direction: column;
+.col {
+    padding: 0 15px 0 0;
+    margin: 0;
+    cursor: pointer;
+
+    &:nth-child(3n) {
+        padding-right: 0;
+    }
 
     .image-wrapper {
         height: 400px;
@@ -21,80 +28,30 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
-
-            &:hover {
-                transform: scale(1.05)
-            }
         }
     }
 
-    p {
-        font-family: 'Sohne' !important;
-        font-size: 1.5rem;
-        color: #0e0e01;
-        margin-top: 10px;
-    }
-}
+    .title-wrapper {
+        width: 100%;
+        height: 31px;
+        overflow: hidden;
+        position: relative;
+        margin-top: 8px;
+        z-index: 0;
 
-.article-page-container {
-    width: 100%;
-    padding: 15px;
-
-    .information-container {
-        .info-date {
-            font-family: 'Larsseit' !important;
-            font-size: 1.25rem;
-            color: #a8a8a8;
+        &.expanded {
+            height: 62px;
         }
 
-        .info-title {
+        .title {
+            margin: 0;
             font-family: 'Sohne' !important;
             font-size: 1.5rem;
             color: #0e0e01;
         }
-
-        .info-content {
-            font-family: 'Larsseit' !important;
-            font-size: 1.25rem;
-            color: #0e0e01;
-        }
     }
 
-    .read-button-wrapper {
-        width: 100%;
-        margin: 10px 0;
-
-        .read-button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #0e0e01;
-            border: none;
-            padding: 0;
-            background-color: transparent;
-            font-family: 'Sohne-500' !important;
-            font-size: 1.75rem;
-        }
-
-        i {
-            font-size: 2rem;
-            margin-left: 5px;
-            padding-top: 5px;
-        }
-
-        .bi-arrow-right-short {
-            transform: rotateZ(-45deg);
-            transition: transform 0.3s ease;
-
-        }
-
-        .read-button:hover {
-            color: #a8a8a8;
-        }
-
-        .read-button:hover .bi-arrow-right-short {
-            transform: translateZ(2deg);
-            color: #a8a8a8;
-        }
+    &:hover img {
+        transform: scale(1.05)
     }
 }

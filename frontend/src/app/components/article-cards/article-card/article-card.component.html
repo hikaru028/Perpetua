@@ -1,13 +1,14 @@
 <div class="article-card-container container-fluid">
     <div class="row row-cols-1 row-cols-md-3 custom-gutter" *ngIf="articles.length > 0; else noArticles">
         <div class="col" *ngFor="let article of articles" (click)="navigateToArticle(article.documentId)"
-            (keydown)="onKeyDown($event, article.documentId)">
-            <div class="card-container">
-                <!-- Image -->
-                <div class="image-wrapper">
-                    <img [src]="article.thumbnail_image.url" [alt]="article.author">
-                </div>
-                <!-- Title -->
+            (keydown)="onKeyDown($event, article.documentId)" (mouseenter)="onMouseEnterTitle($event)"
+            (mouseleave)="onMouseLeaveTitle($event)">
+            <!-- Image -->
+            <div class="image-wrapper">
+                <img [src]="article.thumbnail_image.url" [alt]="article.author">
+            </div>
+            <!-- Title -->
+            <div class="title-wrapper">
                 <p>{{ article.title || 'No Title Available' }}</p>
             </div>
         </div>

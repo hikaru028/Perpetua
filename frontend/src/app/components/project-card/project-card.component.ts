@@ -1,8 +1,7 @@
 // Libraries
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-// Components
 // Services
 import { IProject } from '../../../util/interfaces';
 
@@ -13,10 +12,12 @@ import { IProject } from '../../../util/interfaces';
   templateUrl: './project-card.component.html',
   styleUrls: ['./project-card.component.scss']
 })
+
 export class ProjectCardComponent implements OnInit {
   @Input() projects: IProject[] = [];
   @Input() showTitleAsIndustry: boolean = false;
   @Input() isLoading: boolean = false;
+  @ViewChildren('titleWrapper') titleWrappers!: QueryList<ElementRef>;
 
   constructor(private router: Router) { }
 
@@ -47,5 +48,25 @@ export class ProjectCardComponent implements OnInit {
 
   onImageLoad(): void {
     this.isLoading = false;
+  }
+
+  onMouseEnterTitle(event: Event, projectTitle: string): void {
+    const targetElement = (event.target as HTMLElement).querySelector('.title-wrapper') as HTMLElement;
+
+    if (targetElement && this.isTextOverflowing(targetElement)) {
+      targetElement.classList.add('expanded');
+    }
+  }
+
+  onMouseLeaveTitle(event: Event): void {
+    const targetElement = (event.target as HTMLElement).querySelector('.title-wrapper') as HTMLElement;
+
+    if (targetElement) {
+      targetElement.classList.remove('expanded');
+    }
+  }
+
+  private isTextOverflowing(element: HTMLElement): boolean {
+    return element.scrollHeight > element.clientHeight;
   }
 }

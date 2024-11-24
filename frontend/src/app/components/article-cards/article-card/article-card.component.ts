@@ -1,6 +1,6 @@
 // Libraries
+import { Component, Input, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 // Services
@@ -15,6 +15,8 @@ import { IArticle } from '../../../../util/interfaces';
 })
 export class ArticleCardComponent {
   @Input() articles: IArticle[] = [];
+  @Input() isLoading: boolean = false;
+  @ViewChildren('titleWrapper') titleWrappers!: QueryList<ElementRef>;
 
   constructor(private router: Router) { }
 
@@ -35,5 +37,29 @@ export class ArticleCardComponent {
   navigateToArticle(documentId: string): void {
     this.scrollToTop();
     this.router.navigate(['/articles', documentId]);
+  }
+
+  onImageLoad(): void {
+    this.isLoading = false;
+  }
+
+  onMouseEnterTitle(event: Event): void {
+    const targetElement = (event.target as HTMLElement).querySelector('.title-wrapper') as HTMLElement;
+
+    if (targetElement && this.isTextOverflowing(targetElement)) {
+      targetElement.classList.add('expanded');
+    }
+  }
+
+  onMouseLeaveTitle(event: Event): void {
+    const targetElement = (event.target as HTMLElement).querySelector('.title-wrapper') as HTMLElement;
+
+    if (targetElement) {
+      targetElement.classList.remove('expanded');
+    }
+  }
+
+  private isTextOverflowing(element: HTMLElement): boolean {
+    return element.scrollHeight > element.clientHeight;
   }
 }
