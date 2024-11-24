@@ -20,6 +20,7 @@ h1 {
         justify-content: center;
         align-items: center;
         color: #0e0e01;
+        padding: 0;
         margin: 0 15px 3px 120px;
         border: none;
         background-color: transparent;
@@ -31,9 +32,17 @@ h1 {
             color: #a8a8a8;
         }
 
-        i {
+        .bi-chevron-down {
             font-size: 1.5rem;
             margin-left: 5px;
+            padding-top: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .bi-arrow-right-short {
+            font-size: 1.5rem;
+            margin-left: 2.2px;
+            margin-right: -4.5px;
             padding-top: 5px;
             transition: transform 0.3s ease;
         }
