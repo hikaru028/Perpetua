@@ -39,15 +39,11 @@ export class ArticleCardComponent {
     this.router.navigate(['/articles', documentId]);
   }
 
-  onImageLoad(): void {
-    this.isLoading = false;
-  }
-
   onMouseEnterTitle(event: Event): void {
     const targetElement = (event.target as HTMLElement).querySelector('.title-wrapper') as HTMLElement;
 
-    if (targetElement && this.isTextOverflowing(targetElement)) {
-      targetElement.classList.add('expanded');
+    if (targetElement) {
+      targetElement.classList.remove('expanded');
     }
   }
 

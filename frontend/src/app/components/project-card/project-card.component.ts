@@ -50,16 +50,16 @@ export class ProjectCardComponent implements OnInit {
     this.isLoading = false;
   }
 
-  onMouseEnterTitle(event: Event, projectTitle: string): void {
-    const targetElement = (event.target as HTMLElement).querySelector('.title-wrapper') as HTMLElement;
+  onMouseEnterTitle(event: MouseEvent): void {
+    const targetElement = (event.currentTarget as HTMLElement).querySelector('.title-wrapper') as HTMLElement;
 
     if (targetElement && this.isTextOverflowing(targetElement)) {
       targetElement.classList.add('expanded');
     }
   }
 
-  onMouseLeaveTitle(event: Event): void {
-    const targetElement = (event.target as HTMLElement).querySelector('.title-wrapper') as HTMLElement;
+  onMouseLeaveTitle(event: MouseEvent): void {
+    const targetElement = (event.currentTarget as HTMLElement).querySelector('.title-wrapper') as HTMLElement;
 
     if (targetElement) {
       targetElement.classList.remove('expanded');

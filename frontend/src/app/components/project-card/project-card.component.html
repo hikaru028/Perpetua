@@ -1,8 +1,8 @@
 <div *ngIf="!showTitleAsIndustry; else noProjects" class="project-card-container container-fluid">
     <div class="row row-cols-1 row-cols-md-3 custom-gutter">
         <div class="col" *ngFor="let project of projects" (click)="navigateToProject(project.documentId)"
-            (keydown)="onKeyDown($event, project.documentId)"
-            (mouseenter)="onMouseEnterTitle($event, project.project_title)" (mouseleave)="onMouseLeaveTitle($event)">
+            (keydown)="onKeyDown($event, project.documentId)" (mouseenter)="onMouseEnterTitle($event)"
+            (mouseleave)="onMouseLeaveTitle($event)">
             <!-- Image -->
             <div class="image-wrapper">
                 <img [src]="project.thumbnail_image.url" [alt]="project.project_title" loading="lazy"
