@@ -3,7 +3,7 @@
         <div class="col" *ngFor="let service of services; let i = index">
             <div class="card-container">
                 <!-- Image -->
-                <div class="image-wrapper">
+                <div class="image-wrapper" (click)="showDescription(i)" (keydown)="onKeyDown($event, i)">
                     <img [src]="service.image" [alt]="service.title + ' ' + (i + 1)">
                 </div>
                 <!-- Title -->
