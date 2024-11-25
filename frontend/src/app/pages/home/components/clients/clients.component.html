@@ -1,10 +1,10 @@
 <section class='w-100 m-0'>
-    <div class="row" *ngIf="clients.length > 0;">
+    <div class="testimonial-container" *ngIf="clients.length > 0;">
         <!-- Testimonial -->
-        <div class="col-6 col-md-5 left-container" *ngIf="selectedClientIndex !== null">
+        <div class="left-container" *ngIf="selectedClientIndex !== null">
             <span class="quotation">&#x201F;</span>
             <p *ngFor="let testimonial of clients[selectedClientIndex].testimonial" class="testimonial">
-                {{testimonial.children[0].text}}
+                {{testimonial.children[0].text}}”
             </p>
             <div class="name-wrapper">
                 <span class="bar"></span>
@@ -14,7 +14,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="right-container">
             <!-- Title -->
             <h1>
                 {{ 'home.section-title.clients-L1' | translate }}<br>

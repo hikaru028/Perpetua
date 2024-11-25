@@ -1,48 +1,44 @@
 .client-card-container {
-    width: auto;
+    width: 100%;
     height: auto;
-    margin: 5px;
+    margin: 0;
+    padding: 0;
     z-index: 0;
 }
 
 .row {
-    display: flex;
-    border: 1px solid #0e0e01;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #0e0e01;
+    border-bottom: 1px solid #0e0e01;
 }
 
 .col {
-    flex: 0 0 auto;
     padding: 0;
     margin: 0;
 }
 
-.card-container {
-    position: relative;
+.image-wrapper {
+    width: 325px;
+    height: 300px;
     display: flex;
-    padding-bottom: 100%;
-    background-color: #fff;
-    border: 1px solid #0e0e01;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #0e0e01;
+    border-left: 2px solid #0e0e01;
+    border-bottom: 1px solid #0e0e01;
+    background-color: #ffffff;
     cursor: pointer;
     transition: box-shadow 0.3s ease;
 
     &:hover {
-        z-index: 30;
+        z-index: 50;
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .image-wrapper {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        border: none;
-        background-color: transparent;
-
-        img {
-            width: 50%;
-            height: auto;
-            object-fit: cover;
-        }
+    img {
+        width: 50%;
+        height: auto;
+        object-fit: cover;
     }
 }

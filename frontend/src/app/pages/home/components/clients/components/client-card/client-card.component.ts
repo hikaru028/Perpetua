@@ -16,4 +16,11 @@ export class ClientCardComponent {
   selectClient(index: number): void {
     this.clientSelected.emit(index);
   }
+
+  onKeyDown(event: KeyboardEvent, index: number): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.selectClient(index);
+    }
+  }
 }

@@ -32,13 +32,15 @@ export class ClientsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.strapiService.getAllClients().subscribe((result: APIResponseModel) => {
       this.clients = result.data;
-      this.clients = this.clients.map(client => ({
-        ...client,
-        company_logo: {
-          ...client.company_logo,
-          url: this.strapiUrl + client.company_logo.url || "../../../../../assets/images/img_n.a.png"
-        }
-      }));
+      this.clients = this.clients
+        .map(client => ({
+          ...client,
+          company_logo: {
+            ...client.company_logo,
+            url: this.strapiUrl + client.company_logo.url || "../../../../../assets/images/img_n.a.png"
+          }
+        }))
+        .sort((a, b) => a.company_name.localeCompare(b.company_name));
     }, error => {
       console.error('Error fetching clients:', error);
     });
