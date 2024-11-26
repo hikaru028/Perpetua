@@ -7,7 +7,7 @@ import { filter } from 'rxjs/operators';
 // Components
 import { LogoComponent } from './components/logo/logo.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { LanguagesComponent } from './components/languages/languages.component';
+import { LanguagesComponent } from './components/languages/languages-header/languages.component';
 import translationsEN from "../../public/i18n/en.json";
 import translationsJP from "../../public/i18n/ja.json";
 import translationsKO from "../../public/i18n/ko.json";

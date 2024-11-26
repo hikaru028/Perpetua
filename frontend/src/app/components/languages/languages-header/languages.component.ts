@@ -17,7 +17,6 @@ export class LanguagesComponent implements AfterViewInit {
     { key: 'japanese', label: '日本語', code: 'ja' },
     { key: 'english', label: 'English', code: 'en' }
   ];
-  @Input() position: 'top' | 'bottom' = 'top';
   @ViewChild('languageForm', { static: false }) formElement!: ElementRef<HTMLFormElement>;
   @ViewChild('currentLangWrapper', { static: false }) currentLangWrapper!: ElementRef<HTMLDivElement>;
   @ViewChild('chevronIcon', { static: false }) chevronIcon!: ElementRef<HTMLElement>;
@@ -30,9 +29,6 @@ export class LanguagesComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.formElement) {
-      console.log('Form element is correctly initialized in ngAfterViewInit:', this.formElement);
-    }
   }
 
   toggleOption() {
@@ -45,7 +41,6 @@ export class LanguagesComponent implements AfterViewInit {
   }
 
   onMouseEnter() {
-    console.log('Mouse entered / opened');
     if (this.formElement) {
       this.renderer.addClass(this.formElement.nativeElement, 'visible');
     }
@@ -58,7 +53,6 @@ export class LanguagesComponent implements AfterViewInit {
   }
 
   onCloseOption() {
-    console.log('Mouse left / closed');
     if (this.formElement) {
       this.renderer.removeClass(this.formElement.nativeElement, 'visible');
     }

@@ -1,5 +1,5 @@
 // Libraries
-import { Component, Input, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, Input, ElementRef, ViewChildren, QueryList, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -13,18 +13,29 @@ import { IArticle } from '../../../../util/interfaces';
   templateUrl: './article-card.component.html',
   styleUrl: './article-card.component.scss'
 })
-export class ArticleCardComponent {
+export class ArticleCardComponent implements OnInit {
   @Input() articles: IArticle[] = [];
   @Input() isLoading: boolean = false;
   @ViewChildren('titleWrapper') titleWrappers!: QueryList<ElementRef>;
 
   constructor(private router: Router) { }
 
+  ngOnInit(): void {
+    if (this.articles.length > 0) {
+      this.isLoading = false;
+    }
+  }
+
   scrollToTop(): void {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
+  }
+
+  navigateToArticle(documentId: string): void {
+    this.scrollToTop();
+    this.router.navigate(['/articles', documentId]);
   }
 
   onKeyDown(event: KeyboardEvent, documentId: string): void {
@@ -34,9 +45,8 @@ export class ArticleCardComponent {
     }
   }
 
-  navigateToArticle(documentId: string): void {
-    this.scrollToTop();
-    this.router.navigate(['/articles', documentId]);
+  onImageLoad(): void {
+    this.isLoading = false;
   }
 
   onMouseEnterTitle(event: Event): void {

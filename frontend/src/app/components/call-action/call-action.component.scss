@@ -1,23 +1,26 @@
 .call-container {
     width: 100%;
     height: auto;
-    padding: 65px;
+    padding: 0 60px 0 15px;
 
     h1 {
-        margin: 90px 0 100px;
+        margin: 82.2px 0 0;
         height: 92px;
     }
 
     .footer-button-wrapper {
         width: 100%;
         display: flex;
-        justify-content: flex-start;
-        margin-top: 30px;
+        justify-content: start;
+        padding: 0;
+        margin: -6px 0 67.8px;
 
         .footer-button {
             display: flex;
-            justify-content: center;
+            justify-content: start;
             align-items: center;
+            margin: 0 0 0 -2.3px;
+            padding: 0;
             border: none;
             background-color: transparent;
             cursor: pointer;
@@ -37,8 +40,7 @@
                 font-size: 2.813rem;
                 font-weight: 800;
                 margin-top: 8px;
-                margin-left: 5px;
-                padding-top: 5px;
+                margin-left: -1.5px;
                 transition: transform 0.3s ease;
             }
 

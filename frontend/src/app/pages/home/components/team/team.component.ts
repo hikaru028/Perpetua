@@ -38,7 +38,8 @@ export class TeamComponent implements OnInit, OnDestroy {
           ...member.portrait_image,
           url: this.strapiUrl + member.portrait_image.url || "../../../../../assets/images/img_n.a.png"
         }
-      }));
+      }))
+        .sort((a, b) => a.last_name.localeCompare(b.last_name));
     }, error => {
       console.error('Error fetching members:', error);
     });

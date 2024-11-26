@@ -1,17 +1,21 @@
 <div>
     <!-- Dropdown menu trigger -->
-    <button [cdkMenuTriggerFor]="menu" class="select-trigger">
+    <button [cdkMenuTriggerFor]="menu" class="select-trigger" (click)="toggleMenu()">
         <p class="country-name">{{ offices[selectedOfficeIndex].translatedCountryName }}</p>
-        <i class="bi bi-chevron-down"></i>
+        <i class="bi bi-chevron-down" [ngClass]="{'invisible': isMenuOpen}"></i>
     </button>
 
     <!-- Dropdown menu -->
     <ng-template #menu>
         <div class="example-menu" cdkMenu>
-            <button class="example-menu-item" *ngFor="let office of offices; let i = index" cdkMenuItem
-                (click)="onOfficeSelected(i)">
-                {{ office.translatedCountryName }}
-            </button>
+            <ng-container *ngFor="let office of offices; let i = index">
+                <button *ngIf="selectedOfficeIndex !== i" class="example-menu-item" cdkMenuItem
+                    (click)="onOfficeSelected(i)">
+                    {{ office.translatedCountryName }}
+                </button>
+            </ng-container>
+            <i class="bi bi-chevron-down example-menu-icon" (click)="closeMenu()"
+                (keydown)="onCloseOptionKeydown($event)"></i>
         </div>
     </ng-template>
 

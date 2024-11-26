@@ -2,8 +2,9 @@
     display: flex;
     justify-content: center;
     border: none;
-    padding: 5px 8px;
-    gap: 5px;
+    padding: 0;
+    margin: 0;
+    gap: 7px;
     background-color: transparent;
 
     .country-name,
@@ -14,61 +15,80 @@
         font-family: 'Larsseit' !important;
         font-size: 1.5rem;
         transition: transform 0.3s ease;
+        opacity: 1;
     }
 
     &:hover .bi-chevron-down {
         transform: translateY(2px);
-        ;
+    }
+
+    .bi-chevron-down.invisible {
+        opacity: 0;
     }
 }
 
 .example-menu {
     display: inline-flex;
     flex-direction: column;
-    min-width: 180px;
-    max-width: 280px;
+    width: 138.8px;
     height: auto;
-    background-color: rgba(255, 255, 255, 0.6);
-    padding: 6px 0;
-    backdrop-filter: blur(5px);
+    margin-top: 13px;
+    background-color: #0e0e01;
+    padding: 0;
     transform: translateY(-15px);
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.example-menu-item,
-.example-standalone-trigger {
+.example-menu-item {
+    color: #a7a7a7;
+    font-family: 'Larsseit' !important;
+    font-size: 1.5rem;
     background-color: transparent;
     cursor: pointer;
     border: none;
     user-select: none;
-    min-width: 64px;
-    line-height: 36px;
-    padding: 0 16px;
+    padding: 0;
+    margin-bottom: 15.5px;
     display: flex;
     align-items: center;
     flex-direction: row;
     flex: 1;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: #ffffff;
+    }
 }
 
-.example-menu-item:hover {
-    background-color: #737373;
-    color: #ffffff;
+.example-menu-icon {
+    color: #a7a7a7;
+    font-family: 'Larsseit' !important;
+    font-size: 1.5rem;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    margin: 8px 0 0 -2px;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: #ffffff;
+    }
 }
 
 .example-menu-item:active {
-    background-color: rgb(170, 170, 170);
+    background-color: transparent;
 }
 
 .example-standalone-item {
-    background-color: rgb(239, 239, 239);
+    background-color: transparent;
 }
 
 .example-standalone-item:hover {
-    background-color: rgb(208, 208, 208);
+    background-color: transparent;
 }
 
 .example-standalone-item[aria-expanded='true'] {
-    background-color: rgb(208, 208, 208);
+    background-color: transparent;
 }
 
 .info-wrapper {
@@ -78,5 +98,6 @@
     font-family: 'Sohne-500' !important;
     font-size: 2.25rem;
     font-weight: 500;
-    gap: 50px;
+    gap: 121.5px;
+    margin: 43px 0 56px;
 }

@@ -1,6 +1,6 @@
 h1 {
-    margin: 90px 0 100px 65px;
-    height: 46px;
+    margin: 90px 0 60.75px 60px;
+    height: 92px;
 }
 
 .sort-button-container {
@@ -14,8 +14,8 @@ h1 {
         justify-content: center;
         align-items: center;
         color: #0e0e01;
-        margin-left: 120px;
-        margin-right: 15px;
+        padding: 0;
+        margin: 0 15px 3px 120px;
         border: none;
         background-color: transparent;
         font-family: 'Larsseit' !important;
@@ -26,9 +26,17 @@ h1 {
             color: #a8a8a8;
         }
 
-        i {
+        .bi-chevron-down {
             font-size: 1.5rem;
             margin-left: 5px;
+            padding-top: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .bi-arrow-right-short {
+            font-size: 1.5rem;
+            margin-left: 2.2px;
+            margin-right: -4.5px;
             padding-top: 5px;
             transition: transform 0.3s ease;
         }
@@ -71,8 +79,7 @@ h1 {
         justify-content: center;
         align-items: center;
         color: #0e0e01;
-        margin-left: 120px;
-        margin-right: 15px;
+        margin: 0 9px 1.7px 120px;
         border: none;
         background-color: transparent;
         font-family: 'Sohne-500' !important;

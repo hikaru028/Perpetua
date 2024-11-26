@@ -81,7 +81,7 @@
 
                     &:last-child {
                         .radio-label {
-                            margin-right: 22.04px;
+                            margin-right: 16.04px;
                         }
                     }
                 }
@@ -90,8 +90,7 @@
     }
 
     .current-lang-wrapper {
-
-        padding-right: 21px;
+        padding-right: 15px;
         padding-left: 12.96px;
         background-color: #0e0e01;
         cursor: pointer;
@@ -103,7 +102,6 @@
             display: flex;
             justify-content: start;
             align-items: center;
-            height: 24px;
             font-family: 'Larsseit', sans-serif;
             font-size: 1.125rem;
             color: #ffffff;

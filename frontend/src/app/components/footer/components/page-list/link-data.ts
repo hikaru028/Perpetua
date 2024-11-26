@@ -33,9 +33,9 @@ export const LinksData: any[] = [
         section: 'menu.about',
         items: {
             top: [
-                { title: 'about.nav.team', path: '/about' },
+                { title: 'about.nav.team-footer', path: '/about' },
                 { title: 'about.nav.history', path: '/about' },
-                { title: 'about.nav.clients', path: '/about' },
+                { title: 'about.nav.clients-footer', path: '/about' },
                 { title: 'about.nav.testimonials', path: '/about' }
             ],
             // bottom: []

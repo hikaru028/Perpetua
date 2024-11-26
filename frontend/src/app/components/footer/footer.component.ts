@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 // Components
 import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 import { PageListComponent } from './components/page-list/page-list.component';
-import { LanguagesComponent } from '../languages/languages.component';
+import { LanguageFooterComponent } from '../languages/language-footer/language-footer.component';
 // Services
 import { TranslationHelper } from '../../shared/translation-helper';
 
@@ -18,7 +18,7 @@ import { TranslationHelper } from '../../shared/translation-helper';
     RouterLink,
     ContactInfoComponent,
     PageListComponent,
-    LanguagesComponent,
+    LanguageFooterComponent,
     TranslateModule
   ],
   templateUrl: './footer.component.html',

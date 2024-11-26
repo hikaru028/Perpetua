@@ -7,49 +7,16 @@
     <div class="bottom-container">
         <!-- Logo -->
         <div class="logo-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1966.14 156.77" width="407.4" height="32.6">
-                <g id="Layer_1-2" data-name="Layer_1">
-                    <g>
-                        <g>
-                            <g>
-                                <path class="cls-2"
-                                    d="M0,82.08v.02h59.51v-.02H0ZM123.68,82.08h-57.61v.02h57.61v-.02Z" />
-                                <path class="cls-2"
-                                    d="M130.06,116.07v-41.38h-59.51v-33.98C70.55,17.25,57.44,0,35.19,0S0,17.25,0,40.71v41.38h59.51v33.98c0,23.46,13.11,40.71,35.36,40.71s35.19-17.25,35.19-40.71ZM6.39,74.69v-33.46C6.39,21.9,15.87,7.24,35.19,7.24s28.8,14.66,28.8,33.98v33.46H6.39ZM66.06,115.55v-33.46h57.61v33.46c0,19.32-9.49,33.98-28.8,33.98s-28.81-14.66-28.81-33.98Z" />
-                            </g>
-                            <path class="cls-2"
-                                d="M6.39,74.67h0s57.61.01,57.61.01h0s-57.61-.01-57.61-.01ZM130.06,74.67h-59.51s59.51.01,59.51.01h0Z" />
-                        </g>
-                        <g>
-                            <path class="cls-1"
-                                d="M276.97,131.62h-13.33V19.9h34.82c20.74,0,36.45,11.71,36.45,32s-15.71,32-36.45,32h-21.48v47.71ZM276.97,72.35h20.59c13.04,0,24.3-5.48,24.3-20.45s-11.26-20.45-24.3-20.45h-20.59v40.89Z" />
-                            <path class="cls-1"
-                                d="M495.73,19.9h63.56v11.85h-50.23v35.11h50.23v11.85h-50.23v41.04h50.23v11.85h-63.56V19.9Z" />
-                            <path class="cls-1"
-                                d="M738.29,131.62h-13.33V19.9h27.41c20.74,0,36.45,11.71,36.45,32,0,17.48-11.56,28.45-28,31.26l35.11,48.45h-15.41l-34.23-47.71h-8v47.71ZM738.29,72.8h13.19c13.04,0,24.3-5.93,24.3-20.89s-11.26-20.45-24.3-20.45h-13.19v41.34Z" />
-                            <path class="cls-1"
-                                d="M970.22,131.62h-13.33V19.9h34.82c20.74,0,36.45,11.71,36.45,32s-15.71,32-36.45,32h-21.48v47.71ZM970.22,72.35h20.59c13.04,0,24.3-5.48,24.3-20.45s-11.26-20.45-24.3-20.45h-20.59v40.89Z" />
-                            <path class="cls-1"
-                                d="M1188.98,19.9h63.56v11.85h-50.23v35.11h50.23v11.85h-50.23v41.04h50.23v11.85h-63.56V19.9Z" />
-                            <path class="cls-1"
-                                d="M1460.24,31.75v99.86h-13.33V31.75h-34.82v-11.85h82.97v11.85h-34.82Z" />
-                            <path class="cls-1"
-                                d="M1713.38,90.28V19.9h13.33v71.86c0,27.11-16.59,41.63-37.19,41.63s-36.89-14.52-36.89-41.63V19.9h13.33v70.38c0,19.71,9.33,30.23,23.56,30.23s23.85-10.52,23.85-30.23Z" />
-                            <path class="cls-1"
-                                d="M1941.99,103.32h-40.6l-10.67,28.3h-13.48l44.45-115.57,44.45,115.57h-13.63l-10.52-28.3ZM1905.84,91.46h31.71l-15.85-42.23-15.85,42.23Z" />
-                        </g>
-                    </g>
-                </g>
-            </svg>
+            <img src="../../../assets/images/footer-logo.png" alt="perpeture-software-footer-logo" />
         </div>
         <!-- Copyright -->
         <p>Copyright <span class="smaller-symbol">&#169;</span> Perpetua Software. All rights reserved.</p>
         <!-- Term/privacy -->
-        <div>
+        <div class="link-bottom-wrapper">
             <span class="link-bottom" routerLink="/">{{ 'footer.terms' | translate }}</span>
             <span class="link-bottom" routerLink="/">{{ 'footer.privacy' | translate }}</span>
         </div>
         <!-- Language option -->
-        <app-languages position="bottom"></app-languages>
+        <app-language-footer></app-language-footer>
     </div>
 </section>
