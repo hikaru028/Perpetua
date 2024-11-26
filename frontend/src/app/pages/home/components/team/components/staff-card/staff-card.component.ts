@@ -20,7 +20,7 @@ export class StaffCardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private swiperInstances: any[] = [];
   private hoverTimers: { [key: number]: any } = {};
-  private initialIndex: number = 0;
+  private initialIndices: { [key: number]: number } = {};
 
   ngOnInit() {
     if (this.members.length > 0) {
@@ -29,10 +29,10 @@ export class StaffCardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.swiperContainers.forEach((swiperContainer: ElementRef) => {
+    this.swiperContainers.forEach((swiperContainer: ElementRef, index: number) => {
       const swiperInstance = swiperContainer.nativeElement.swiper;
       if (swiperInstance) {
-        this.swiperInstances.push(swiperInstance);
+        this.swiperInstances[index] = swiperInstance;
       }
     });
   }
@@ -61,20 +61,27 @@ export class StaffCardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onMouseEnter(index: number): void {
-    this.initialIndex = this.swiperInstances[index].activeIndex;
-    if (this.swiperInstances[index]) {
-      this.swiperInstances[index].slideNext();
+    const swiperInstance = this.swiperInstances[index];
+    if (swiperInstance) {
+      // this.initialIndices[index] = swiperInstance.activeIndex;
+      swiperInstance.slideNext(2000);
+
       this.hoverTimers[index] = setInterval(() => {
-        this.swiperInstances[index].slideNext(4000);
+        swiperInstance.slideNext(1000);
       }, 4000);
     }
   }
 
   onMouseLeave(index: number): void {
+    const swiperInstance = this.swiperInstances[index];
+
     if (this.hoverTimers[index]) {
       clearInterval(this.hoverTimers[index]);
       delete this.hoverTimers[index];
     }
-    this.swiperInstances[index].slideNext(4000);
+
+    if (swiperInstance) {
+      swiperInstance.slideNext(this.initialIndices[index], 2000);
+    }
   }
 }
