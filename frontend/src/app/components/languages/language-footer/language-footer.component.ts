@@ -1,6 +1,10 @@
-import { Component, ElementRef, ViewChild, inject, Renderer2, ChangeDetectorRef } from '@angular/core';
+// Libraries
+import { Component, ElementRef, ViewChild, inject, Renderer2, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateService } from "@ngx-translate/core";
+import { Subscription } from 'rxjs';
+// Services
+import { LanguageService } from '../../../shared/language.service';
 
 @Component({
   selector: 'app-language-footer',
@@ -9,14 +13,15 @@ import { TranslateService } from "@ngx-translate/core";
   templateUrl: './language-footer.component.html',
   styleUrls: ['./language-footer.component.scss']
 })
-export class LanguageFooterComponent {
-  isOpen: boolean = false;
-  selectedLanguage: string = 'English';
+export class LanguageFooterComponent implements OnInit, OnDestroy {
   allLanguages: { key: string, label: string, code: string }[] = [
     { key: 'korean', label: '한국어', code: 'ko' },
     { key: 'japanese', label: '日本語', code: 'ja' },
     { key: 'english', label: 'English', code: 'en' }
   ];
+  isOpen: boolean = false;
+  selectedLanguage: string = 'English';
+  private languageSubscription: Subscription | undefined;
 
   @ViewChild('languageForm', { static: false }) formElement!: ElementRef<HTMLFormElement>;
   @ViewChild('currentLangWrapper', { static: false }) currentLangWrapper!: ElementRef<HTMLDivElement>;
@@ -25,9 +30,23 @@ export class LanguageFooterComponent {
   translate: TranslateService = inject(TranslateService);
   renderer = inject(Renderer2);
   cdr = inject(ChangeDetectorRef);
+  languageService = inject(LanguageService);
 
   get filteredLanguages() {
     return this.allLanguages.filter(lang => lang.label !== this.selectedLanguage);
+  }
+
+  ngOnInit() {
+    this.languageSubscription = this.languageService.selectedLanguage$.subscribe((language) => {
+      this.selectedLanguage = language;
+      this.cdr.detectChanges();
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
   }
 
   toggleOption() {
@@ -47,21 +66,19 @@ export class LanguageFooterComponent {
     }
   }
 
-  langOption(lang: string) {
-    this.isOpen = !this.isOpen;
-    this.cdr.detectChanges();
-    this.selectedLanguage = lang;
-    if (this.isOpen) {
-      this.onOpenOption();
-    } else {
+  langOption(lang: string, code: string) {
+    this.isOpen = false;
+    this.languageService.updateLanguage(lang);
+    this.translate.use(code.trim()).subscribe(() => {
       this.onCloseOption();
-    }
+      this.cdr.detectChanges();
+    });
   }
 
-  onLangOptionKeyDown(event: KeyboardEvent, lang: string): void {
+  onLangOptionKeyDown(event: KeyboardEvent, lang: string, code: string): void {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      this.langOption(lang);
+      this.langOption(lang, code);
     }
   }
 

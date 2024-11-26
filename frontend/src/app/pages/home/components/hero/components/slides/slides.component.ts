@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, AfterViewInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, inject, OnInit, AfterViewInit, OnDestroy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as bootstrap from 'bootstrap';
 // Components
@@ -15,10 +15,11 @@ import { ISlide, APIResponseModel } from '../../../../../../../util/interfaces';
   styleUrls: ['./slides.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class SlidesComponent implements OnInit, AfterViewInit {
+export class SlidesComponent implements OnInit, AfterViewInit, OnDestroy {
   slides: ISlide[] = [];
   isLoading: boolean = false;
   strapiService = inject(StrapiService);
+  autoSlideInterval: any;
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -39,25 +40,15 @@ export class SlidesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const carouselImages = document.getElementById('carouselImages');
-    const carouselText = document.getElementById('carouselText');
-
-    if (carouselImages && carouselText) {
-      const bootstrapCarouselImages = bootstrap.Carousel.getOrCreateInstance(carouselImages);
-      const bootstrapCarouselText = bootstrap.Carousel.getOrCreateInstance(carouselText);
-
-      carouselImages.addEventListener('slide.bs.carousel', () => {
-        bootstrapCarouselText.next();
-      });
-
-      carouselText.addEventListener('slide.bs.carousel', () => {
-        bootstrapCarouselImages.next();
-      });
-    }
-
-    setTimeout(() => {
+    this.autoSlideInterval = setInterval(() => {
       this.controlCarousel('next');
     }, 3000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
+    }
   }
 
   controlCarousel(direction: 'prev' | 'next'): void {

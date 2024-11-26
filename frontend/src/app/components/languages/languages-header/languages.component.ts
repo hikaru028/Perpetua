@@ -1,6 +1,10 @@
-import { Component, ElementRef, ViewChild, Input, inject, Renderer2, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+// Libraries
+import { Component, ElementRef, ViewChild, inject, Renderer2, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateService } from "@ngx-translate/core";
+import { Subscription } from 'rxjs';
+// Services
+import { LanguageService } from '../../../shared/language.service';
 
 @Component({
   selector: 'app-languages',
@@ -9,14 +13,15 @@ import { TranslateService } from "@ngx-translate/core";
   standalone: true,
   imports: [CommonModule]
 })
-export class LanguagesComponent implements AfterViewInit {
-  isOpen: boolean = false;
-  selectedLanguage: string = 'English';
+export class LanguagesComponent implements OnInit, OnDestroy {
   allLanguages: { key: string, label: string, code: string }[] = [
     { key: 'korean', label: '한국어', code: 'ko' },
     { key: 'japanese', label: '日本語', code: 'ja' },
     { key: 'english', label: 'English', code: 'en' }
   ];
+  isOpen: boolean = false;
+  selectedLanguage: string = 'English';
+  private languageSubscription: Subscription | undefined;
 
   @ViewChild('languageForm', { static: false }) formElement!: ElementRef<HTMLFormElement>;
   @ViewChild('currentLangWrapper', { static: false }) currentLangWrapper!: ElementRef<HTMLDivElement>;
@@ -24,14 +29,24 @@ export class LanguagesComponent implements AfterViewInit {
 
   translate: TranslateService = inject(TranslateService);
   renderer = inject(Renderer2);
-  cdr = inject(ChangeDetectorRef); // Inject ChangeDetectorRef to force UI update
+  cdr = inject(ChangeDetectorRef);
+  languageService = inject(LanguageService);
 
   get filteredLanguages() {
     return this.allLanguages.filter(lang => lang.label !== this.selectedLanguage);
   }
 
-  ngAfterViewInit() {
-    // This can be left empty if no specific logic is needed here.
+  ngOnInit() {
+    this.languageSubscription = this.languageService.selectedLanguage$.subscribe((language) => {
+      this.selectedLanguage = language;
+      this.cdr.detectChanges();
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
   }
 
   toggleOption() {
@@ -41,13 +56,29 @@ export class LanguagesComponent implements AfterViewInit {
 
   updateDropdownVisibility() {
     if (this.isOpen) {
-      this.onMouseEnter();
+      this.onOpenOption();
     } else {
       this.onCloseOption();
     }
   }
 
-  onMouseEnter() {
+  onLanguageChange(language: string, code: string, event: Event) {
+    event.stopPropagation();
+    this.languageService.updateLanguage(language); // Notify service of language change
+    this.translate.use(code.trim()).subscribe(() => {
+      this.onCloseOption();
+      this.cdr.detectChanges();
+    });
+  }
+
+  onToggleOptionKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.toggleOption();
+    }
+  }
+
+  onOpenOption() {
     if (this.formElement) {
       this.renderer.addClass(this.formElement.nativeElement, 'visible');
     }
@@ -71,22 +102,7 @@ export class LanguagesComponent implements AfterViewInit {
     }
     this.isOpen = false;
   }
-
-  onLanguageChange(language: string, code: string, event: Event) {
-    event.stopPropagation(); // Prevent other unintended clicks
-    this.selectedLanguage = language;
-
-    // Update the language immediately
-    this.translate.use(code.trim()).subscribe(() => {
-      this.cdr.detectChanges(); // Force Angular to detect changes and update the UI
-      this.onCloseOption(); // Close the dropdown properly after the language change
-    });
-  }
-
-  onToggleOptionKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      this.toggleOption();
-    }
-  }
 }
+
+
+
