@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, Input, inject, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateService } from "@ngx-translate/core";
 
@@ -7,9 +7,9 @@ import { TranslateService } from "@ngx-translate/core";
   standalone: true,
   imports: [CommonModule],
   templateUrl: './language-footer.component.html',
-  styleUrls: ['./language-footer.component.scss'] // Updated to "styleUrls"
+  styleUrls: ['./language-footer.component.scss']
 })
-export class LanguageFooterComponent implements AfterViewInit {
+export class LanguageFooterComponent {
   isOpen: boolean = false;
   selectedLanguage: string = 'English';
   allLanguages: { key: string, label: string, code: string }[] = [
@@ -24,19 +24,44 @@ export class LanguageFooterComponent implements AfterViewInit {
 
   translate: TranslateService = inject(TranslateService);
   renderer = inject(Renderer2);
+  cdr = inject(ChangeDetectorRef);
 
   get filteredLanguages() {
     return this.allLanguages.filter(lang => lang.label !== this.selectedLanguage);
   }
 
-  ngAfterViewInit() { }
-
   toggleOption() {
     this.isOpen = !this.isOpen;
+    this.cdr.detectChanges();
     if (this.isOpen) {
       this.onOpenOption();
     } else {
       this.onCloseOption();
+    }
+  }
+
+  onToggleOptionKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.toggleOption();
+    }
+  }
+
+  langOption(lang: string) {
+    this.isOpen = !this.isOpen;
+    this.cdr.detectChanges();
+    this.selectedLanguage = lang;
+    if (this.isOpen) {
+      this.onOpenOption();
+    } else {
+      this.onCloseOption();
+    }
+  }
+
+  onLangOptionKeyDown(event: KeyboardEvent, lang: string): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.langOption(lang);
     }
   }
 
@@ -63,20 +88,5 @@ export class LanguageFooterComponent implements AfterViewInit {
       this.renderer.removeClass(this.chevronIcon.nativeElement, 'visible');
     }
     this.isOpen = false;
-  }
-
-  onLanguageChange(language: string, code: string, event: Event) {
-    event.stopPropagation();
-    this.selectedLanguage = language;
-    this.translate.use(code.trim());
-
-    this.onCloseOption();
-  }
-
-  onToggleOptionKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      this.toggleOption();
-    }
   }
 }

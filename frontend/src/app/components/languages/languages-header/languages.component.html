@@ -12,7 +12,8 @@
         </fieldset>
     </form>
     <div class="lang-display-wrapper">
-        <i #chevronIcon class="bi bi-chevron-left"></i>
+        <i #chevronIcon class="bi bi-chevron-left" (click)="toggleOption()"
+            (keydown)="onToggleOptionKeyDown($event)"></i>
         <div #currentLangWrapper class="current-lang-wrapper" (click)="toggleOption()"
             (keydown)="onToggleOptionKeyDown($event)">
             <span class="current-lang">{{ selectedLanguage }}</span>

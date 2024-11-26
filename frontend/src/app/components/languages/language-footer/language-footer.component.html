@@ -4,9 +4,9 @@
             <div class="lang-options">
                 <div class="lang-option" *ngFor="let lang of filteredLanguages">
                     <input [id]="lang.key" name="language" type="radio" [value]="lang.key" class="hidden-radio"
-                        (change)="onLanguageChange(lang.label, lang.code, $event)"
-                        (keydown)="onToggleOptionKeyDown($event)" />
-                    <label [for]="lang.key" class="radio-label">{{ lang.label }}</label>
+                        (click)="toggleOption()" (keydown)="onToggleOptionKeyDown($event)" />
+                    <label [for]="lang.key" class="radio-label" (click)="langOption(lang.label)"
+                        (keydown)="onLangOptionKeyDown($event, lang.label)">{{ lang.label }}</label>
                 </div>
             </div>
         </fieldset>
