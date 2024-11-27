@@ -15,10 +15,10 @@
     <app-project-content [project]="project"></app-project-content>
     <!-- Testimonial -->
     <section class="w-100 m-0 testimonial-section">
-        <span class="quotation">&#x201F;</span>
+        <span class="quotation-start">&#x201F;</span>
         <div class="testimonial-container">
             <p class="testimonial" *ngIf="project.project_client.testimonial.length > 0">
-                {{project.project_client.testimonial[0].children[0].text}}
+                {{project.project_client.testimonial[0].children[0].text}}<span class="quotation-finish">&#x201F;</span>
             </p>
             <div class="name-wrapper">
                 <span class="bar"></span>

@@ -52,20 +52,21 @@
         <app-project-card-skeleton></app-project-card-skeleton>
     </ng-container>
 
-    <ng-template *ngIf="selectedFilter$ | async as selectedFilter">
-        <div *ngIf="selectedFilter === 'industry' && (projectsByIndustry$ | async) as projectsByIndustry">
-            <div class="row row-cols-1 row-cols-md-3 custom-gutter">
-                <div class="col" *ngFor="let industryKey of getIndustryKeys(projectsByIndustry)">
-                    <app-project-card [projects]="[projectsByIndustry[industryKey][0]]" [showTitleAsIndustry]="true">
-                    </app-project-card>
+    <ng-container *ngIf="!(isLoading$ | async)">
+        <ng-container *ngIf="selectedFilter$ | async as selectedFilter">
+            <div *ngIf="selectedFilter === 'industry' && (projectsByIndustry$ | async) as projectsByIndustry">
+                <div class="row row-cols-1 row-cols-md-3 custom-gutter">
+                    <div class="col" *ngFor="let industryKey of getIndustryKeys(projectsByIndustry)">
+                        <app-project-card [projects]="[projectsByIndustry[industryKey][0]]"
+                            [showTitleAsIndustry]="true"></app-project-card>
+                    </div>
                 </div>
             </div>
-        </div>
-        <ng-container *ngIf="selectedFilter !== 'industry'">
-            <app-project-card *ngIf="visibleProjects.length > 0" [projects]="visibleProjects">
-            </app-project-card>
+            <div *ngIf="selectedFilter !== 'industry'">
+                <app-project-card *ngIf="visibleProjects.length > 0" [projects]="visibleProjects"></app-project-card>
+            </div>
         </ng-container>
-    </ng-template>
+    </ng-container>
 
     <!-- Footer -->
     <div class="footer-button-wrapper">

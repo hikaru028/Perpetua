@@ -42,7 +42,7 @@ export class SlidesComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.autoSlideInterval = setInterval(() => {
       this.controlCarousel('next');
-    }, 3000);
+    }, 5000);
   }
 
   ngOnDestroy(): void {

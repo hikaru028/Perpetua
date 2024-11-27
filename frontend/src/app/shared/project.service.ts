@@ -45,7 +45,6 @@ export class ProjectService {
                     url: this.strapiUrl + project.thumbnail_image.url || "../../../../../assets/images/img_n.a.png"
                 }
             }));
-
             this.projectsSubject.next(projects);
             this.filteredProjectsSubject.next(projects);
             this.groupProjectsByIndustry(projects);
@@ -58,13 +57,16 @@ export class ProjectService {
 
     filterProjects(type: string): void {
         const currentProjects = this.projectsSubject.getValue();
+        console.log("Filter Type:", type);
+        console.log("Current Projects:", currentProjects); // Debugging line
 
         if (this.selectedFilterSubject.getValue() === type || type === 'all') {
             this.selectedFilterSubject.next('all');
             this.filteredProjectsSubject.next(currentProjects);
         } else {
-            this.selectedFilterSubject.next(type);
             const filteredProjects = currentProjects.filter(project => project.project_type === type);
+            console.log("Filtered Projects:", filteredProjects); // Debugging line
+            this.selectedFilterSubject.next(type);
             this.filteredProjectsSubject.next(filteredProjects);
         }
     }

@@ -2,6 +2,8 @@
 import { Meta, Title } from '@angular/platform-browser';
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // Components
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
@@ -10,7 +12,6 @@ import { BackToTopButtonComponent } from '../../components/buttons/back-to-top-b
 import { ProjectCardSkeletonComponent } from '../../components/skeletons/project-card-skeleton/project-card-skeleton.component';
 // Service
 import { ProjectService } from '../../shared/project.service';
-import { Observable } from 'rxjs';
 import { IProject } from '../../../util/interfaces';
 
 @Component({
@@ -59,15 +60,19 @@ export class ProjectsComponent implements OnInit {
       }
     });
 
-    this.filteredProjects$.subscribe((projects) => {
-      this.allProjects = projects;
-      this.initializeVisibleProjects();
-    });
-
     this.translate.onLangChange.subscribe(event => {
       this.currentLanguage = event.lang;
       this.titleService.setTitle(this.translate.instant('projects.title') + ' - Perpeture');
     });
+
+    this.filteredProjects$
+      .pipe(
+        filter(projects => projects.length > 0)
+      )
+      .subscribe((projects) => {
+        this.allProjects = projects;
+        this.initializeVisibleProjects();
+      });
   }
 
   initializeVisibleProjects(): void {

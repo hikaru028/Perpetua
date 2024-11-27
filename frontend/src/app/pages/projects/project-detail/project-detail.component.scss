@@ -1,9 +1,10 @@
 .header-section {
     width: 100%;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 77px 0;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 80px 105px;
+    margin: 0;
 
     h1 {
         max-width: 500px;
@@ -13,54 +14,58 @@
         max-width: 450px;
         font-family: 'Sohne' !important;
         font-size: 1.5rem;
+        // margin-right: 150px;
     }
-}
 
-.live-button-wrapper {
-    width: auto;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    .live-button {
+    .live-button-wrapper {
+        width: auto;
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
-        color: #0e0e01;
-        border: none;
-        background-color: transparent;
-        font-family: 'Larsseit' !important;
-        font-size: 1.5rem;
 
-        i {
-            font-size: 2rem;
-            margin-left: 5px;
-            padding-top: 5px;
-            transition: transform 0.3s ease;
+        .live-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #0e0e01;
+            padding: 0;
+            margin: 0 -6px 1.7px 0;
+            border: none;
+            background-color: transparent;
+            font-family: 'Larsseit' !important;
+            font-size: 1.5rem;
+
+            i {
+                font-size: 2rem;
+                margin-left: 0.5px;
+                padding-top: 5px;
+                transition: transform 0.3s ease;
+            }
+
+            &:hover {
+                color: #a8a8a8;
+            }
+
+            &:hover .bi-arrow-right-short {
+                transform: translateX(2px);
+                color: #a8a8a8;
+            }
         }
 
-        &:hover {
-            color: #a8a8a8;
+        .live-button-btm {
+            margin-right: 15px;
+            font-family: 'Sohne-500' !important;
+            font-size: 1.75rem;
         }
-
-        &:hover .bi-arrow-right-short {
-            transform: translateX(2px);
-            color: #a8a8a8;
-        }
-    }
-
-    .live-button-btm {
-        margin-right: 15px;
-        font-family: 'Sohne-500' !important;
-        font-size: 1.75rem;
     }
 }
+
 
 .testimonial-section {
     display: flex;
     padding: 100px 0 100px 195px;
 
-    .quotation {
+    .quotation-start {
         width: auto;
         height: 165px;
         font-family: 'Sohne' !important;
@@ -83,6 +88,14 @@
             font-size: 1.75rem;
             color: #000000;
             margin-bottom: 40px;
+
+            .quotation-finish {
+                font-family: 'Larsseit' !important;
+                font-size: 1.75rem;
+                color: #000000;
+                transform: rotate(45deg);
+                transform: scaleX(-1);
+            }
         }
 
         .name-wrapper {
