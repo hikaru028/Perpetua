@@ -2,23 +2,23 @@
 <div *ngIf="isLoading" class="slide-container">
     <app-slides-skeleton></app-slides-skeleton>
 </div>
-
-<!-- Images -->
-<div *ngIf="!isLoading && slides.length > 0" id="carouselImages" class="carousel slide" data-bs-ride="carousel"
-    data-bs-interval="5000">
-    <div class="carousel-inner images-container">
-        <div class="carousel-item" *ngFor="let slide of slides; let i = index" [ngClass]="{'active': i === 0}">
+<!-- Custom Image Carousel -->
+<div *ngIf="!isLoading && slides.length > 0" class="carousel-container">
+    <div class="images-container">
+        <div *ngFor="let slide of slides; let i = index" class="carousel-item"
+            [ngClass]="{ 'active': i === currentIndex, 'previous': i === previousIndex }"
+            [ngStyle]="getTransformStyle(i)">
             <img [src]="slide.slide_image.url" alt="Slide {{ i + 1 }}" class="d-block w-100">
         </div>
     </div>
 </div>
 
-<!-- Title and Counter -->
+<!-- Title and Counter Carousel (keeping Bootstrap for text carousel) -->
 <div *ngIf="!isLoading && slides.length > 0" id="carouselText" class="carousel slide carousel-fade header-container"
-    data-bs-ride="carousel" data-bs-interval="5000">
+    data-bs-interval="false">
     <div class="carousel-inner">
         <div class="carousel-item text-wrapper" *ngFor="let slide of slides; let i = index"
-            [ngClass]="{'active': i === 0}">
+            [ngClass]="{'active': i === currentIndex}">
             <p class="counter">{{ i + 1 }}</p>
             <p class="title">{{ slide.company_name }}</p>
         </div>
