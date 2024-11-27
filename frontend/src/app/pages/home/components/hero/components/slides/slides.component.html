@@ -2,7 +2,7 @@
 <div *ngIf="isLoading" class="slide-container">
     <app-slides-skeleton></app-slides-skeleton>
 </div>
-<!-- Custom Image Carousel -->
+<!-- Image Carousel -->
 <div *ngIf="!isLoading && slides.length > 0" class="carousel-container">
     <div class="images-container">
         <div *ngFor="let slide of slides; let i = index" class="carousel-item"
@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<!-- Title and Counter Carousel (keeping Bootstrap for text carousel) -->
+<!-- Header -->
 <div *ngIf="!isLoading && slides.length > 0" id="carouselText" class="carousel slide carousel-fade header-container"
     data-bs-interval="false">
     <div class="carousel-inner">
@@ -23,7 +23,7 @@
             <p class="title">{{ slide.company_name }}</p>
         </div>
     </div>
-    <!-- Shared Carousel Controls -->
+    <!-- Controls -->
     <button class="carousel-control-prev" type="button" (click)="controlCarousel('prev')">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>

@@ -42,7 +42,6 @@ export class SlidesComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }));
 
-      // Initialize array1 and array2 with the same slide data
       this.array1 = [...this.slides];
       this.array2 = [...this.slides];
 
@@ -68,16 +67,14 @@ export class SlidesComponent implements OnInit, AfterViewInit, OnDestroy {
     if (direction === 'next') {
       this.currentIndex++;
       if (this.currentIndex >= this.getCurrentSlides().length) {
-        // Switch arrays when reaching the end of the current one
         this.currentArray = this.currentArray === 'array1' ? 'array2' : 'array1';
         this.currentIndex = 0; // Reset to start of new array
       }
     } else if (direction === 'prev') {
       this.currentIndex--;
       if (this.currentIndex < 0) {
-        // Switch arrays when reaching the beginning of the current one
         this.currentArray = this.currentArray === 'array1' ? 'array2' : 'array1';
-        this.currentIndex = this.getCurrentSlides().length - 1; // Go to last slide of new array
+        this.currentIndex = this.getCurrentSlides().length - 1;
       }
     }
 
@@ -103,12 +100,10 @@ export class SlidesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getCurrentSlides(): ISlide[] {
-    // Get the currently active array of slides
     return this.currentArray === 'array1' ? this.array1 : this.array2;
   }
 
   getTransformStyle(index: number): { [key: string]: string | number } {
-    // Determine the transform style based on the index, current slide, and direction
     if (index === this.currentIndex) {
       return { transform: 'translateX(0)', zIndex: 5 }; // Current slide stays in place
     } else if (index === this.previousIndex) {
