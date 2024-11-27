@@ -4,7 +4,8 @@
 </div>
 
 <!-- Images -->
-<div *ngIf="!isLoading && slides.length > 0" id="carouselImages" class="carousel slide" data-bs-interval="false">
+<div *ngIf="!isLoading && slides.length > 0" id="carouselImages" class="carousel slide" data-bs-ride="carousel"
+    data-bs-interval="5000">
     <div class="carousel-inner images-container">
         <div class="carousel-item" *ngFor="let slide of slides; let i = index" [ngClass]="{'active': i === 0}">
             <img [src]="slide.slide_image.url" alt="Slide {{ i + 1 }}" class="d-block w-100">
@@ -14,7 +15,7 @@
 
 <!-- Title and Counter -->
 <div *ngIf="!isLoading && slides.length > 0" id="carouselText" class="carousel slide carousel-fade header-container"
-    data-bs-interval="false">
+    data-bs-ride="carousel" data-bs-interval="5000">
     <div class="carousel-inner">
         <div class="carousel-item text-wrapper" *ngFor="let slide of slides; let i = index"
             [ngClass]="{'active': i === 0}">

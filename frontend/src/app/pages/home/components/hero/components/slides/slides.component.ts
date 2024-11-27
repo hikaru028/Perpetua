@@ -46,8 +46,27 @@ export class SlidesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.autoSlideInterval) {
-      clearInterval(this.autoSlideInterval);
+    const carouselImages = document.getElementById('carouselImages');
+    const carouselText = document.getElementById('carouselText');
+
+    if (carouselImages && carouselText) {
+      const bootstrapCarouselImages = bootstrap.Carousel.getOrCreateInstance(carouselImages);
+      const bootstrapCarouselText = bootstrap.Carousel.getOrCreateInstance(carouselText);
+
+      // Listen for the slide event on images and sync with text
+      carouselImages.addEventListener('slide.bs.carousel', () => {
+        bootstrapCarouselText.next();
+      });
+
+      // Listen for the slide event on text and sync with images (to be safe)
+      carouselText.addEventListener('slide.bs.carousel', () => {
+        bootstrapCarouselImages.next();
+      });
+
+      // Automatically slide to the next item every 5 seconds
+      this.autoSlideInterval = setInterval(() => {
+        bootstrapCarouselImages.next();
+      }, 5000);
     }
   }
 
