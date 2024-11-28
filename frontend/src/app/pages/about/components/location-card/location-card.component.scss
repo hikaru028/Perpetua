@@ -1,5 +1,4 @@
-.col,
-p {
+.col {
     padding: 0;
     margin: 0;
 }
@@ -19,11 +18,17 @@ p {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    margin: 10px 0 80px 0;
+    margin: 10px 0 70px 0;
+
+    p {
+        padding: 0;
+        margin: 0;
+    }
 
 
     .office_info_left {
-        width: 50%;
+        width: 269px;
+        margin-right: 59px;
         font-family: 'Sohne' !important;
         color: #000000;
 
@@ -38,7 +43,7 @@ p {
             font-size: 2.25rem;
 
             .location {
-                margin-bottom: 5px;
+                margin: 0;
             }
 
             .location-icon {
@@ -50,7 +55,7 @@ p {
 
         .time {
             font-size: 1.75rem;
-            margin-bottom: 15px;
+            margin: 16px 0 24px 0;
 
             .colon {
                 animation: blink 1s infinite;
@@ -72,9 +77,14 @@ p {
             }
         }
 
-        .email-phone {
+        .email,
+        .phone {
             font-size: 1.5rem;
             color: #0e0e01;
+        }
+
+        .email {
+            text-decoration: underline;
         }
     }
 
@@ -87,7 +97,8 @@ p {
 
         .direction-button-wrapper {
             width: 150px;
-            margin-top: 10px;
+            height: 33px;
+            margin-top: 35px;
             display: flex;
             justify-content: space-between;
             align-items: center;

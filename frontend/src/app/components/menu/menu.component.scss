@@ -2,7 +2,7 @@
     position: relative;
     width: auto;
     height: 40px;
-    margin: 0 0 0 60px;
+    margin: 0 0 0 56px;
     padding: 0;
     display: flex;
     justify-content: flex-start;
@@ -41,6 +41,10 @@
             &.selected {
                 color: #a8a8a8;
             }
+
+            &.active {
+                color: #a8a8a8;
+            }
         }
 
         &:hover .chevron,
@@ -50,6 +54,7 @@
             left: 0px;
             opacity: 1;
         }
+
 
         .chevron {
             font-size: 1rem;

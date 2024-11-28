@@ -33,18 +33,25 @@
     <!-- Team -->
     <section id="aboutTeam" class="team-section">
         <h1 class="sub-title">{{ 'team.our-team' | translate }}</h1>
-        <menu class="row row-cols-2 row-cols-md-4 row-cols-lg-6">
-            <button *ngFor="let member of members" (click)="displayMember(member.documentId)"
-                (keydown)="onKeyDown($event, member.documentId)"
-                class="col d-flex align-items-center justify-content-start member-button">
-                <p>{{ member.first_name }}&nbsp;{{ member.last_name }}</p>
-                <i class="bi bi-arrow-right-short menu-icon"></i>
+        <ng-container *ngIf="members.length > 0">
+            <app-staff-card [members]="members"></app-staff-card>
+        </ng-container>
+        <div class=" footer-button-wrapper" [routerLink]="['/team']">
+            <button class="footer-button">
+                {{ 'team.all' | translate }}
+                <i class="bi bi-arrow-right-short"></i>
             </button>
-        </menu>
-        <ng-container *ngIf="selectedMember">
-            <app-staff-card [member]="selectedMember"></app-staff-card>
+        </div>
+        <span class="separator"></span>
+    </section>
+    <!-- Careers -->
+    <section id="aboutCareers" class="careers-section">
+        <div class="sub-title-contatiner">
+            <h1 class="sub-title">{{ 'contact.nav.career' | translate }}</h1>
+            <p>We’re always looking to hire great people—from anywhere in the world—to better serve our clients
+                internationally. Check out our going positions below.</p>
+        </div>
+        <ng-container *ngIf="members.length > 0">
         </ng-container>
     </section>
-    <!-- Call to action -->
-    <app-call-action></app-call-action>
 </div>

@@ -405,6 +405,54 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCareerCareer extends Struct.CollectionTypeSchema {
+  collectionName: 'careers';
+  info: {
+    displayName: 'Career';
+    pluralName: 'careers';
+    singularName: 'career';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    job_type: Schema.Attribute.Enumeration<
+      ['Full-time', 'Part-time', 'Contract/Temp', 'Internship']
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::career.career'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.Enumeration<
+      ['Christchurch', 'Auckland', 'Sydney', 'Yokohama', 'Any location']
+    >;
+    location_type: Schema.Attribute.Enumeration<
+      ['On-site', 'Hybrid', 'Remote', 'Hybrid/Remote']
+    >;
+    position: Schema.Attribute.Enumeration<
+      [
+        'Executive Assistant',
+        'Account Executive',
+        'Senior Designer',
+        'Junior Graphic Designer ',
+        'Senior Graphic Designer ',
+        'Junior Software Developer',
+        'Senior Software Developer',
+        'Photographer',
+      ]
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiClientClient extends Struct.CollectionTypeSchema {
   collectionName: 'clients';
   info: {
@@ -1140,6 +1188,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::article.article': ApiArticleArticle;
+      'api::career.career': ApiCareerCareer;
       'api::client.client': ApiClientClient;
       'api::member.member': ApiMemberMember;
       'api::office.office': ApiOfficeOffice;

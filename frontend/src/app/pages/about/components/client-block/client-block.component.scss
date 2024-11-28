@@ -1,25 +1,30 @@
 .row {
     width: 100%;
+    height: auto;
     margin: 0;
     padding: 0;
-    background-color: #000000;
-    row-gap: 2px;
-    padding: 2px 0 2px 2px;
+    border-bottom: 2px solid #000000;
 }
 
 .col {
     height: 319px;
+    padding: 0 65px;
+    margin: 0;
     background-color: #ffffff;
+    border-top: 2px solid #000000;
     border-right: 2px solid #000000;
+
+    &:nth-child(5n) {
+        border-right: none;
+    }
 }
 
 .client-logo-container {
-    width: 150px;
-    height: 150px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 0;
     background-color: #fff;
 
     img {
@@ -31,16 +36,17 @@
 
 
 .client-button-cell {
-    padding: 270px 0 0 130px;
+    padding: 287.4px 0 0 97px;
+    margin: 0;
     border: none;
-    border-right: 2px solid #000000;
+    border-top: 2px solid #000000;
     cursor: pointer;
 
     .contact-button {
         font-family: 'Sohne-500' !important;
         font-size: 1.75rem;
         color: #000000;
-        margin-top: 8px;
+        margin: 0 -6px 7px 0;
     }
 
     .client-icon {

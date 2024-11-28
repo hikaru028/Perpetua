@@ -14,8 +14,8 @@
                 {{ office.currentTime.split(':')[1].slice(0, 2) }}
                 <span>{{ office.currentTime.split(' ')[1].toLowerCase() }}</span>
             </p>
-            <p class="email-phone">{{ office.email }}</p>
-            <p class="email-phone">{{ office.phone }}</p>
+            <p class="email">{{ office.email }}</p>
+            <p class="phone">{{ office.phone }}</p>
         </div>
         <div class="office_info_right">
             @if (office.country !== 'Japan') {

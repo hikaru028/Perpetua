@@ -93,6 +93,14 @@ export class MenuComponent implements OnInit {
     event.stopPropagation();
     this.clickedItem = menuItem;
 
+    const allMenuItems = document.querySelectorAll('.menu-item');
+    allMenuItems.forEach(item => item.classList.remove('active'));
+
+    const clickedMenuItem = document.getElementById(menuItem);
+    if (clickedMenuItem) {
+      clickedMenuItem.classList.add('active');
+    }
+
     const submenus = document.querySelectorAll('.submenu-container');
     submenus.forEach(submenu => submenu.classList.remove('visible'));
 

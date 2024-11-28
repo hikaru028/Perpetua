@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 // Components
-import { StaffCardComponent } from './components/staff-card/staff-card.component';
+import { StaffCardComponent } from '../../../../components/staff-card/staff-card.component';
 // Services
 import { IMember, APIResponseModel } from '../../../../../util/interfaces';
 import { StrapiService } from '../../../../api/strapi.service';

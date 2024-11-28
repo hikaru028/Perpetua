@@ -5,6 +5,15 @@ export interface APIResponseModel {
     error: string,
 }
 
+export interface ICareer {
+    id: number,
+    documentId: string,
+    job_title: string,
+    job_description: string,
+    job_location: string,
+    location_type: string,
+}
+
 export interface IOffice {
     id: number,
     documentId: string,

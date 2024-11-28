@@ -7,11 +7,10 @@ import { TranslateModule } from '@ngx-translate/core';
 // Components
 import { ClientBlockComponent } from './components/client-block/client-block.component';
 import { LocationCardComponent } from './components/location-card/location-card.component';
-import { StaffCardComponent } from './components/staff-card/staff-card.component';
-import { CallActionComponent } from '../../components/call-action/call-action.component';
+import { StaffCardComponent } from '../../components/staff-card/staff-card.component';
 // Services
 import { StrapiService } from '../../api/strapi.service';
-import { IClient, IMember, IOffice, APIResponseModel } from '../../../util/interfaces';
+import { IClient, IMember, IOffice, ICareer, APIResponseModel } from '../../../util/interfaces';
 import { TranslationHelper } from '../../shared/translation-helper';
 import { environment } from '../../../environments/environment';
 
@@ -23,7 +22,6 @@ import { environment } from '../../../environments/environment';
     ClientBlockComponent,
     LocationCardComponent,
     StaffCardComponent,
-    CallActionComponent,
     RouterLink,
     TranslateModule
   ],
@@ -35,6 +33,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   offices: IOffice[] = [];
   clients: IClient[] = [];
   members: IMember[] = [];
+  careers: ICareer[] = [];
   locations: string[] = [];
   memberNames: string[] = [];
   selectedMember: IMember | undefined;

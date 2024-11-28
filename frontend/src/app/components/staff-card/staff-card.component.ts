@@ -1,6 +1,6 @@
 import { Component, Input, CUSTOM_ELEMENTS_SCHEMA, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IMember } from '../../../../../../../util/interfaces';
+import { IMember } from '../../../util/interfaces';
 import { register } from 'swiper/element/bundle';
 
 register();
