@@ -51,7 +51,7 @@
             <p>{{ 'about.careers.header' | translate }}</p>
         </div>
         <ng-container *ngIf="careers.length > 0">
-            <app-career-card></app-career-card>
+            <app-career-card [careers]="careers"></app-career-card>
         </ng-container>
     </section>
 </div>

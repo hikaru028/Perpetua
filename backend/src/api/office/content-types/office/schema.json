@@ -76,6 +76,12 @@
       "relation": "oneToMany",
       "target": "api::member.member",
       "mappedBy": "office_location"
+    },
+    "career": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::career.career",
+      "mappedBy": "office_address"
     }
   }
 }

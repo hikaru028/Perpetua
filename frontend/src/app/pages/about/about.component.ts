@@ -35,7 +35,41 @@ export class AboutComponent implements OnInit, OnDestroy {
   offices: IOffice[] = [];
   clients: IClient[] = [];
   members: IMember[] = [];
-  careers: ICareer[] = [];
+  careers: ICareer[] = [
+    {
+      id: 1,
+      documentId: '123abc',
+      job_title: 'Executive Assistant',
+      job_type: 'Full-time',
+      job_description: 'a position is open',
+      job_location: 'Yokohama',
+      location_type: 'Hybrid',
+      branch_name: 'Perpetua Japan',
+      office_address: [],
+    },
+    {
+      id: 2,
+      documentId: '123abcd',
+      job_title: 'Senior Designer',
+      job_type: 'Full-time',
+      job_description: 'a position is open',
+      job_location: 'Any location',
+      location_type: 'Hybrid/Remote',
+      branch_name: '',
+      office_address: [],
+    },
+    {
+      id: 3,
+      documentId: '123abcde',
+      job_title: 'Account Executive',
+      job_type: 'Full-time',
+      job_description: 'a position is open',
+      job_location: 'Christchurch',
+      location_type: 'Hybrid/Remote',
+      branch_name: 'Perpetua Christchurch',
+      office_address: [],
+    }
+  ];
   locations: string[] = [];
   memberNames: string[] = [];
   selectedMember: IMember | undefined;
@@ -70,6 +104,30 @@ export class AboutComponent implements OnInit, OnDestroy {
       }))
         .sort((a: IOffice, b: IOffice) => a.office_location.localeCompare(b.office_location));
       this.locations = this.offices.map((office: IOffice) => office.office_location);
+
+
+
+
+
+
+
+
+      //TODO: Delete later
+      this.careers.forEach((career) => {
+        if (career.job_location !== 'Any location') {
+          career.office_address = this.offices.filter(office => office.office_location === career.job_location);
+        } else {
+          career.office_address = this.offices; // For any location jobs
+        }
+      });
+
+
+
+
+
+
+
+
 
       this.alignToNextMinute();
     });

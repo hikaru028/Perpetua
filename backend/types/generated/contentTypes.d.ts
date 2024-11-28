@@ -408,6 +408,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
 export interface ApiCareerCareer extends Struct.CollectionTypeSchema {
   collectionName: 'careers';
   info: {
+    description: '';
     displayName: 'Career';
     pluralName: 'careers';
     singularName: 'career';
@@ -416,25 +417,22 @@ export interface ApiCareerCareer extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    branch_name: Schema.Attribute.Enumeration<
+      [
+        'Perpeture Christchurch',
+        'Perpeture Australia',
+        'Perpeture Japan',
+        'MDMC',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    job_type: Schema.Attribute.Enumeration<
-      ['Full-time', 'Part-time', 'Contract/Temp', 'Internship']
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::career.career'
-    > &
-      Schema.Attribute.Private;
-    location: Schema.Attribute.Enumeration<
+    job_description: Schema.Attribute.RichText;
+    job_location: Schema.Attribute.Enumeration<
       ['Christchurch', 'Auckland', 'Sydney', 'Yokohama', 'Any location']
     >;
-    location_type: Schema.Attribute.Enumeration<
-      ['On-site', 'Hybrid', 'Remote', 'Hybrid/Remote']
-    >;
-    position: Schema.Attribute.Enumeration<
+    job_title: Schema.Attribute.Enumeration<
       [
         'Executive Assistant',
         'Account Executive',
@@ -446,6 +444,19 @@ export interface ApiCareerCareer extends Struct.CollectionTypeSchema {
         'Photographer',
       ]
     >;
+    job_type: Schema.Attribute.Enumeration<
+      ['Full-time', 'Part-time', 'Contract/Temp', 'Internship']
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::career.career'
+    > &
+      Schema.Attribute.Private;
+    location_type: Schema.Attribute.Enumeration<
+      ['On-site', 'Hybrid', 'Remote', 'Hybrid/Remote']
+    >;
+    office_address: Schema.Attribute.Relation<'oneToOne', 'api::office.office'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -546,6 +557,7 @@ export interface ApiOfficeOffice extends Struct.CollectionTypeSchema {
   attributes: {
     address_1: Schema.Attribute.String;
     address_2: Schema.Attribute.String;
+    career: Schema.Attribute.Relation<'oneToOne', 'api::career.career'>;
     city: Schema.Attribute.Enumeration<['Christchurch', 'Sydney', 'Yokohama']>;
     country: Schema.Attribute.Enumeration<
       ['New Zealand', 'Australia', 'Japan']

@@ -9,9 +9,12 @@ export interface ICareer {
     id: number,
     documentId: string,
     job_title: string,
+    job_type: string,
     job_description: string,
     job_location: string,
     location_type: string,
+    branch_name: string,
+    office_address: IOffice[],
 }
 
 export interface IOffice {
