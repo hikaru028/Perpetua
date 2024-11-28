@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ClientBlockComponent } from './components/client-block/client-block.component';
 import { LocationCardComponent } from './components/location-card/location-card.component';
 import { StaffCardComponent } from '../../components/staff-card/staff-card.component';
+import { CareerCardComponent } from './components/career-card/career-card.component';
 // Services
 import { StrapiService } from '../../api/strapi.service';
 import { IClient, IMember, IOffice, ICareer, APIResponseModel } from '../../../util/interfaces';
@@ -22,6 +23,7 @@ import { environment } from '../../../environments/environment';
     ClientBlockComponent,
     LocationCardComponent,
     StaffCardComponent,
+    CareerCardComponent,
     RouterLink,
     TranslateModule
   ],

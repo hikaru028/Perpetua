@@ -46,12 +46,12 @@
     </section>
     <!-- Careers -->
     <section id="aboutCareers" class="careers-section">
-        <div class="sub-title-contatiner">
+        <div class="sub-title-container">
             <h1 class="sub-title">{{ 'contact.nav.career' | translate }}</h1>
-            <p>We’re always looking to hire great people—from anywhere in the world—to better serve our clients
-                internationally. Check out our going positions below.</p>
+            <p>{{ 'about.careers.header' | translate }}</p>
         </div>
-        <ng-container *ngIf="members.length > 0">
+        <ng-container *ngIf="careers.length > 0">
+            <app-career-card></app-career-card>
         </ng-container>
     </section>
 </div>

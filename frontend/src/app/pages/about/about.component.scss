@@ -137,9 +137,11 @@
 }
 
 .careers-section {
-    margin: 77px 0 100px 65px;
+    width: 100%;
+    padding: 77px 0 100px 65px;
+    border-bottom: 1px solid #989898;
 
-    .sub-title-contatiner {
+    .sub-title-container {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
@@ -149,9 +151,10 @@
         }
 
         p {
-            max-width: 1152px;
+            max-width: 1000px;
             font-family: 'Sohne' !important;
             font-size: 1.5rem;
+            margin: 0;
         }
     }
 }
