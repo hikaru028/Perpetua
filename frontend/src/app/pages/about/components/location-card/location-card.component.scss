@@ -41,15 +41,28 @@
             align-items: center;
             font-family: 'Sohne-500' !important;
             font-size: 2.25rem;
+            cursor: pointer;
 
             .location {
                 margin: 0;
+                transition: color 0.3s ease;
             }
 
             .location-icon {
                 font-size: 3.25rem;
                 transform: rotate(45deg);
                 display: inline-block;
+                transition: color 0.3s ease;
+            }
+
+            &:hover {
+                .location {
+                    color: #a8a8a8;
+                }
+
+                .location-icon {
+                    color: #a8a8a8;
+                }
             }
         }
 
@@ -85,7 +98,14 @@
 
         .email {
             text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: #a8a8a8;
+            }
         }
+
     }
 
     .office_info_right {

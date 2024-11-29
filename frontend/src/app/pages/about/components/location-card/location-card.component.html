@@ -5,7 +5,7 @@
     <div class="office_info_container">
         <div class="office_info_left">
             <div class="location-wrapper">
-                <p class="location">{{ office.office_location }}</p>
+                <p class="location" [routerLink]="['/about', office.documentId]">{{ office.office_location }}</p>
                 <i class="bi bi-arrow-up-short location-icon"></i>
             </div>
             <p *ngIf="office.currentTime" class="time">
@@ -14,7 +14,9 @@
                 {{ office.currentTime.split(':')[1].slice(0, 2) }}
                 <span>{{ office.currentTime.split(' ')[1].toLowerCase() }}</span>
             </p>
-            <p class="email">{{ office.email }}</p>
+            <p class="email" (click)="sendEmail()" (keydown)="sendEmailKeyDown($event)">
+                {{ office.email }}
+            </p>
             <p class="phone">{{ office.phone }}</p>
         </div>
         <div class="office_info_right">

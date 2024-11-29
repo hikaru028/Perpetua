@@ -70,7 +70,6 @@ export class AboutComponent implements OnInit, OnDestroy {
       office_address: [],
     }
   ];
-  locations: string[] = [];
   memberNames: string[] = [];
   selectedMember: IMember | undefined;
   strapiUrl = environment.strapiMediaUrl;
@@ -103,7 +102,7 @@ export class AboutComponent implements OnInit, OnDestroy {
         currentTime: this.getCurrentTime(office.office_location)
       }))
         .sort((a: IOffice, b: IOffice) => a.office_location.localeCompare(b.office_location));
-      this.locations = this.offices.map((office: IOffice) => office.office_location);
+
 
 
 

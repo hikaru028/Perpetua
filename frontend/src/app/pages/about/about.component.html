@@ -8,8 +8,8 @@
     <section id="aboutLocations" class="location-section">
         <h1>{{ 'contact.nav.locations' | translate }}</h1>
         <menu>
-            <li *ngFor="let location of locations" class="location-button">
-                {{ location }}
+            <li *ngFor="let office of offices" class="location-button" [routerLink]="['/about', office.documentId]">
+                {{ office.office_location }}
                 <i class="bi bi-arrow-up-short menu-icon"></i>
             </li>
         </menu>

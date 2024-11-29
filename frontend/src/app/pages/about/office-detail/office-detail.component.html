@@ -1,0 +1,74 @@
+<div class='w-100 m-0'>
+    <section id="aboutLocations" class="location-section">
+        <h1>{{office?.office_location}}</h1>
+        <div>
+            <menu>
+                <ng-container *ngFor="let office of offices">
+                    <li *ngIf="office.documentId !== documentId" class="location-button"
+                        [routerLink]="['/about', office.documentId]">
+                        {{ office.office_location }}
+                        <i class="bi bi-arrow-up-short menu-icon"></i>
+                    </li>
+                </ng-container>
+            </menu>
+            <p *ngIf="formattedTime" class="time">
+                {{ formattedTime.hours }}
+                <span class="colon">:</span>
+                {{ formattedTime.minutes }}
+                <span>{{ formattedTime.period }}</span>
+            </p>
+        </div>
+        <div>
+            <img [src]="office?.office_image?.url" [alt]="office?.city">
+        </div>
+    </section>
+    <!-- Contacts -->
+    <section>
+        <div>
+            <h1>Contact</h1>
+            <div>
+                <p>{{office?.address_1}}</p>
+                <p>{{office?.address_2}}</p>
+            </div>
+            <div class="direction-button-wrapper">
+                <button (click)="openGoogleMaps()">Get directions</button>
+                <i class="bi bi-arrow-right-short"></i>
+            </div>
+            <div>
+                <a [href]="'mailto:' + office?.email">{{ office?.email }}</a>
+                <p class="phone">{{ office?.phone }}</p>
+            </div>
+        </div>
+        <div>
+            <div>
+                <p>New Business</p>
+                <div>
+                    <p>Liam Finlayson</p>
+                    <a href="mailto:liam@perpetua.studio">liam&commat;perpetua.studio</a>
+                </div>
+            </div>
+            <div>
+                <p>Job Opportunities</p>
+                <div>
+                    <p>Eve Webb</p>
+                    <a href="mailto:careers@perpetua.studio">careers&commat;perpetua.studio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Work -->
+    <section>
+        <h1>Selected Work</h1>
+        <app-project-card></app-project-card>
+    </section>
+    <!-- Careers -->
+    <section id="aboutCareers" class="careers-section">
+        <div class="sub-title-container">
+            <h1 class="sub-title">{{ 'contact.nav.career' | translate }}</h1>
+            <p>{{ 'about.careers.header' | translate }}</p>
+        </div>
+        <ng-container *ngIf="careers.length > 0">
+            <app-career-card [careers]="careers"></app-career-card>
+        </ng-container>
+    </section>
+</div>
