@@ -1,7 +1,7 @@
 <div class='w-100 m-0'>
     <section id="aboutLocations" class="location-section">
         <h1>{{office?.office_location}}</h1>
-        <div>
+        <div class="links-and-time">
             <menu>
                 <ng-container *ngFor="let office of offices">
                     <li *ngIf="office.documentId !== documentId" class="location-button"
@@ -13,12 +13,12 @@
             </menu>
             <p *ngIf="formattedTime" class="time">
                 {{ formattedTime.hours }}
-                <span class="colon">:</span>
-                {{ formattedTime.minutes }}
+                <span class="colon">&nbsp;:&nbsp;</span>
+                {{ formattedTime.minutes }}&nbsp;
                 <span>{{ formattedTime.period }}</span>
             </p>
         </div>
-        <div>
+        <div class="image-wrapper">
             <img [src]="office?.office_image?.url" [alt]="office?.city">
         </div>
     </section>

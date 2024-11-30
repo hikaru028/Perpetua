@@ -36,7 +36,7 @@ h1 {
             font-size: 1.5rem;
             margin-left: 5px;
             padding-top: 5px;
-            transition: transform 0.3s ease;
+            transition: transform 0.1s ease;
         }
 
         .bi-arrow-right-short {
@@ -44,7 +44,7 @@ h1 {
             margin-left: 2.2px;
             margin-right: -4.5px;
             padding-top: 5px;
-            transition: transform 0.3s ease;
+            transition: transform 0.1s ease;
         }
 
         &:hover .bi-chevron-down {
@@ -96,7 +96,7 @@ h1 {
             font-size: 2rem;
             margin-left: 0.5px;
             padding-top: 5px;
-            transition: transform 0.3s ease;
+            transition: transform 0.1s ease;
         }
 
         &:hover {

@@ -45,14 +45,14 @@
 
             .location {
                 margin: 0;
-                transition: color 0.3s ease;
+                transition: color 0.1s ease;
             }
 
             .location-icon {
                 font-size: 3.25rem;
                 transform: rotate(45deg);
                 display: inline-block;
-                transition: color 0.3s ease;
+                transition: color 0.1s ease;
             }
 
             &:hover {
@@ -99,7 +99,7 @@
         .email {
             text-decoration: underline;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: color 0.1s ease;
 
             &:hover {
                 color: #a8a8a8;
@@ -136,7 +136,7 @@
                 font-size: 1.75rem;
                 margin-left: 5px;
                 padding-top: 5px;
-                transition: transform 0.3s ease;
+                transition: transform 0.1s ease;
             }
 
             &:hover {

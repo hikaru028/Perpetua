@@ -16,7 +16,7 @@
         justify-content: center;
         width: max-content;
         white-space: nowrap;
-        transition: top 0.3s ease, opacity 0.3s ease;
+        transition: top 0.1s ease, opacity 0.1s ease;
 
         &.visible {
             opacity: 1 !important;
@@ -48,7 +48,7 @@
                         color: #ffffff;
                         font-family: 'Larsseit', sans-serif;
                         font-size: 1.125rem;
-                        transition: color 0.3s ease;
+                        transition: color 0.1s ease;
 
                         &:hover {
                             color: #a8a8a8;
@@ -90,7 +90,7 @@
             margin-right: -1px;
             color: #ffffff;
             font-size: 1rem;
-            transition: top 0.3s ease;
+            transition: top 0.1s ease;
             z-index: 20;
 
             &.visible {

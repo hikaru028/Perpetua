@@ -80,7 +80,7 @@
             color: #a8a8a8;
             margin-top: 23.5px;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: color 0.1s ease;
 
             &:hover {
                 color: #ffffff;
@@ -98,7 +98,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                transition: transform 0.3s ease;
+                transition: transform 0.1s ease;
             }
         }
     }
@@ -110,7 +110,7 @@
     background-color: #a8a8a8;
     border-radius: 20px;
     margin-top: 2px;
-    transition: width 0.3s ease;
+    transition: width 0.1s ease;
 }
 
 .search-bar-container .input-wrapper .b-bottom.visible {

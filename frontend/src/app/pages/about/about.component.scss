@@ -18,7 +18,7 @@
 }
 
 .location-section {
-    padding: 75px 65px 0 65px;
+    padding: 75px 0 0 65px;
 
     .col {
         margin-top: 20px;
@@ -70,7 +70,7 @@
         font-size: 2rem;
         margin-left: 0.5px;
         padding-top: 5px;
-        transition: transform 0.3s ease;
+        transition: transform 0.1s ease;
     }
 
     &:hover {
@@ -113,7 +113,7 @@
                 font-size: 2rem;
                 margin-left: 0.5px;
                 padding-top: 5px;
-                transition: transform 0.3s ease;
+                transition: transform 0.1s ease;
                 position: relative;
             }
 

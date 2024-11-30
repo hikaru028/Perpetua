@@ -64,7 +64,7 @@
             opacity: 0;
             color: #a8a8a8;
             z-index: 20;
-            transition: top 0.2s ease, opacity 0.2s ease;
+            transition: top 0.1s ease, opacity 0.1s ease;
             z-index: 120;
 
             &.visible {
@@ -85,7 +85,7 @@
     display: none;
     flex-direction: column;
     background-color: #0e0e01;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
 
     &.visible {
         display: flex;
@@ -166,7 +166,7 @@
                 font-size: 1.125rem;
                 color: #a8a8a8;
                 cursor: pointer;
-                transition: color 0.3s ease;
+                transition: color 0.1s ease;
 
                 &:hover {
                     color: #ffffff;
@@ -184,7 +184,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    transition: transform 0.3s ease;
+                    transition: transform 0.1s ease;
                 }
             }
         }
