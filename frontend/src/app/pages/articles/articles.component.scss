@@ -1,5 +1,5 @@
 h1 {
-    margin: 77.8px 116.5px;
+    margin: 77.86px 62.75px 105px;
 }
 
 .ampersand {
@@ -19,23 +19,36 @@ h1 {
         justify-content: center;
         align-items: center;
         color: #0e0e01;
-        margin-left: 120px;
-        margin-right: 15px;
+        padding: 0;
+        margin: 0 128px 3px 120px;
         border: none;
         background-color: transparent;
         font-family: 'Larsseit' !important;
         font-size: 1.5rem;
+
+        &:last-child {
+            margin: 0 15px 3px 120px;
+        }
 
         &.selected,
         &:hover {
             color: #a8a8a8;
         }
 
-        i {
+        .bi-chevron-down {
             font-size: 1.5rem;
             margin-left: 5px;
             padding-top: 5px;
             transition: transform 0.1s ease;
+        }
+
+        .bi-arrow-down-short {
+            font-size: 1.5rem;
+            margin-left: 2.2px;
+            margin-right: -4.5px;
+            padding-top: 5px;
+            transform: rotate(-45deg);
+
         }
 
         &:hover .bi-chevron-down {
@@ -71,6 +84,10 @@ h1 {
     height: 2px;
     background-color: #0e0e01;
     margin: 0;
+}
+
+.separator-bottom {
+    margin-bottom: 46px;
 }
 
 .footer-button-wrapper {

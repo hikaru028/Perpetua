@@ -48,4 +48,11 @@ export class ArticleCardPlusInfoComponent implements OnInit, OnDestroy {
     this.scrollToTop();
     this.router.navigate(['/articles', documentId]);
   }
+
+  handleKeydown(event: KeyboardEvent, documentId: string): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.navigateToArticle(documentId);
+    }
+  }
 }

@@ -35,7 +35,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   // Lazy loading
   visibleArticles: IArticle[] = [];
   private allArticles: IArticle[] = [];
-  articlesToLoad: number = 6;
+  articlesToLoad: number = 12;
   loadMoreButtonVisible: boolean = false;
 
   constructor(private titleService: Title, private metaService: Meta, private translationHelper: TranslationHelper) {

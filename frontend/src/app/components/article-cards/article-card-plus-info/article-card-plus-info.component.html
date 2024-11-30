@@ -3,23 +3,20 @@
         <div class="col" *ngFor="let article of visibleArticles">
             <div class="card-container">
                 <!-- Image -->
-                <div class="image-wrapper">
+                <div class="image-wrapper" (click)="navigateToArticle(article.documentId)"
+                    (keydown)="handleKeydown($event, article.documentId)">
                     <img [src]="article.thumbnail_image.url" [alt]="article.author">
                 </div>
                 <div class="information-container">
-                    <!-- Type/Date -->
-                    <p class="info-date">{{ article.type | titlecase }} &nbsp;&middot;&nbsp; {{ article.createdAt |
-                        date: 'MMMM d' }}</p>
                     <!-- Title -->
-                    <p class="info-title">{{ article.title || 'No Title Available' }}</p>
+                    <div class="info-title-wrapper">
+                        <p class="info-title" (click)="navigateToArticle(article.documentId)"
+                            (keydown)="handleKeydown($event, article.documentId)">
+                            {{ article.title || 'No Title Available' }}
+                        </p>
+                    </div>
                     <!-- First two sentences -->
-                    <p class="info-content" *ngIf="truncatedText" [innerHTML]="truncatedText"></p>
-                </div>
-                <div class="read-button-wrapper">
-                    <button class="read-button" (click)="navigateToArticle(article.documentId)">
-                        {{ 'articles.nav.read-more' | translate }}
-                        <i class="bi bi-arrow-right-short"></i>
-                    </button>
+                    <p class="info-content" *ngIf="article.content" [innerHTML]="article.content"></p>
                 </div>
             </div>
         </div>
