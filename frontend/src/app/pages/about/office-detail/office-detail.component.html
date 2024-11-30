@@ -3,7 +3,7 @@
         <h1>{{office?.office_location}}</h1>
         <div class="links-and-time">
             <menu>
-                <ng-container *ngFor="let office of offices">
+                <ng-container *ngFor="let office of (offices$ | async)">
                     <li *ngIf="office.documentId !== documentId" class="location-button"
                         [routerLink]="['/about', office.documentId]">
                         {{ office.office_location }}
@@ -11,55 +11,73 @@
                     </li>
                 </ng-container>
             </menu>
-            <p *ngIf="formattedTime" class="time">
-                {{ formattedTime.hours }}
-                <span class="colon">&nbsp;:&nbsp;</span>
-                {{ formattedTime.minutes }}&nbsp;
-                <span>{{ formattedTime.period }}</span>
-            </p>
+            <ng-container *ngIf="office?.currentTime as currentTime">
+                <p class="time">
+                    {{ currentTime.split(':')[0] }}
+                    <span class="colon">&nbsp;:&nbsp;</span>
+                    {{ currentTime.split(':')[1].slice(0, 2) }}
+                    <span>&nbsp;{{ currentTime.split(' ')[1].toLowerCase() }}</span>
+                </p>
+            </ng-container>
         </div>
         <div class="image-wrapper">
             <img [src]="office?.office_image?.url" [alt]="office?.city">
         </div>
     </section>
     <!-- Contacts -->
-    <section>
-        <div>
+    <section class="contact-section">
+        <div class="contact-container">
             <h1>Contact</h1>
             <div>
-                <p>{{office?.address_1}}</p>
-                <p>{{office?.address_2}}</p>
-            </div>
-            <div class="direction-button-wrapper">
-                <button (click)="openGoogleMaps()">Get directions</button>
-                <i class="bi bi-arrow-right-short"></i>
+                <div class="address">
+                    <p>{{office?.address_1}}</p>
+                    <p>{{office?.address_2}}</p>
+                </div>
+                <div class="personal-info-wrapper">
+                    <p class="subject">New Business</p>
+                    <div>
+                        <p class="personal-name">Liam Finlayson</p>
+                        <p class="email" (click)="sendEmail()" (keydown)="sendEmailKeyDown($event)">
+                            liam&commat;perpetua.studio
+                        </p>
+                    </div>
+                </div>
             </div>
             <div>
-                <a [href]="'mailto:' + office?.email">{{ office?.email }}</a>
+                <div class="direction-button-wrapper">
+                    <button (click)="openGoogleMaps()">Get directions</button>
+                    <i class="bi bi-arrow-right-short"></i>
+                    <p></p>
+                </div>
+                <div class="personal-info-wrapper">
+                    <p class="subject">Job Opportunities</p>
+                    <div>
+                        <p class="personal-name">Eve Webb</p>
+                        <p class="email" (click)="sendEmail()" (keydown)="sendEmailKeyDown($event)">
+                            careers&commat;perpetua.studio
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p class="email" (click)="sendEmail()" (keydown)="sendEmailKeyDown($event)">
+                    {{ office?.email }}
+                </p>
                 <p class="phone">{{ office?.phone }}</p>
-            </div>
-        </div>
-        <div>
-            <div>
-                <p>New Business</p>
-                <div>
-                    <p>Liam Finlayson</p>
-                    <a href="mailto:liam@perpetua.studio">liam&commat;perpetua.studio</a>
-                </div>
-            </div>
-            <div>
-                <p>Job Opportunities</p>
-                <div>
-                    <p>Eve Webb</p>
-                    <a href="mailto:careers@perpetua.studio">careers&commat;perpetua.studio</a>
-                </div>
             </div>
         </div>
     </section>
     <!-- Work -->
-    <section>
+    <section class="work-section">
         <h1>Selected Work</h1>
-        <app-project-card></app-project-card>
+        <ng-container *ngIf="isLoading$ | async; else projectCards">
+            <app-project-card-skeleton></app-project-card-skeleton>
+        </ng-container>
+
+        <ng-template #projectCards>
+            <app-project-card *ngIf="projects$ | async as projects" [projects]="projects | slice:0:6"
+                [isLoading]="false"></app-project-card>
+        </ng-template>
     </section>
     <!-- Careers -->
     <section id="aboutCareers" class="careers-section">
@@ -67,8 +85,11 @@
             <h1 class="sub-title">{{ 'contact.nav.career' | translate }}</h1>
             <p>{{ 'about.careers.header' | translate }}</p>
         </div>
-        <ng-container *ngIf="careers.length > 0">
-            <app-career-card [careers]="careers"></app-career-card>
+        <ng-container *ngFor="let career of careers">
+            <ng-container
+                *ngIf="career.job_location === 'Any location' || career.job_location === office?.office_location">
+                <app-career-card [career]="career"></app-career-card>
+            </ng-container>
         </ng-container>
     </section>
 </div>

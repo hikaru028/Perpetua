@@ -18,7 +18,7 @@
 }
 
 .location-section {
-    padding: 75px 0 0 65px;
+    padding: 75px 65px 0;
 
     .col {
         margin-top: 20px;
@@ -42,6 +42,14 @@
             transform: rotate(45deg);
             display: inline-block;
             margin: -5px;
+        }
+
+        .location-button:hover {
+            color: #a8a8a8;
+
+            .menu-icon {
+                color: #a8a8a8;
+            }
         }
     }
 }

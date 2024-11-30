@@ -4,6 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 // Components
 import { ClientBlockComponent } from './components/client-block/client-block.component';
 import { LocationCardComponent } from './components/location-card/location-card.component';
@@ -14,6 +15,8 @@ import { StrapiService } from '../../api/strapi.service';
 import { IClient, IMember, IOffice, ICareer, APIResponseModel } from '../../../util/interfaces';
 import { TranslationHelper } from '../../shared/translation-helper';
 import { environment } from '../../../environments/environment';
+import { CareerService } from '../../shared/career.service';
+import { OfficeService } from '../../shared/office.service';
 
 @Component({
   selector: 'app-about',
@@ -32,44 +35,10 @@ import { environment } from '../../../environments/environment';
 })
 
 export class AboutComponent implements OnInit, OnDestroy {
-  offices: IOffice[] = [];
+  offices$: Observable<IOffice[]>;
+  careers: ICareer[] = [];
   clients: IClient[] = [];
   members: IMember[] = [];
-  careers: ICareer[] = [
-    {
-      id: 1,
-      documentId: '123abc',
-      job_title: 'Executive Assistant',
-      job_type: 'Full-time',
-      job_description: 'a position is open',
-      job_location: 'Yokohama',
-      location_type: 'Hybrid',
-      branch_name: 'Perpetua Japan',
-      office_address: [],
-    },
-    {
-      id: 2,
-      documentId: '123abcd',
-      job_title: 'Senior Designer',
-      job_type: 'Full-time',
-      job_description: 'a position is open',
-      job_location: 'Any location',
-      location_type: 'Hybrid/Remote',
-      branch_name: '',
-      office_address: [],
-    },
-    {
-      id: 3,
-      documentId: '123abcde',
-      job_title: 'Account Executive',
-      job_type: 'Full-time',
-      job_description: 'a position is open',
-      job_location: 'Christchurch',
-      location_type: 'Hybrid/Remote',
-      branch_name: 'Perpetua Christchurch',
-      office_address: [],
-    }
-  ];
   memberNames: string[] = [];
   selectedMember: IMember | undefined;
   strapiUrl = environment.strapiMediaUrl;
@@ -82,54 +51,21 @@ export class AboutComponent implements OnInit, OnDestroy {
     private metaService: Meta,
     private strapiService: StrapiService,
     private route: ActivatedRoute,
-    private translationHelper: TranslationHelper
+    private translationHelper: TranslationHelper,
+    private careerService: CareerService,
+    private officeService: OfficeService,
   ) {
     this.currentLanguage = this.translationHelper.getCurrentLanguage();
+    this.offices$ = this.officeService.offices$;
   }
 
   ngOnInit(): void {
+    this.careers = this.careerService.getAllCareers();
+    this.officeService.offices$.subscribe();
     // Meta info for SEO
     this.titleService.setTitle('About us - Perpeture');
     this.metaService.updateTag({ name: 'description', content: 'Browse About up to learn more about our amazing clients and team at Perpeture.' });
 
-    this.strapiService.getAllOffices().subscribe((response: APIResponseModel) => {
-      this.offices = response.data.map((office: IOffice) => ({
-        ...office,
-        office_image: {
-          ...office.office_image,
-          url: this.strapiUrl + office.office_image.url || "../../../assets/images/img_n.a.png"
-        },
-        currentTime: this.getCurrentTime(office.office_location)
-      }))
-        .sort((a: IOffice, b: IOffice) => a.office_location.localeCompare(b.office_location));
-
-
-
-
-
-
-
-
-
-      //TODO: Delete later
-      this.careers.forEach((career) => {
-        if (career.job_location !== 'Any location') {
-          career.office_address = this.offices.filter(office => office.office_location === career.job_location);
-        } else {
-          career.office_address = this.offices; // For any location jobs
-        }
-      });
-
-
-
-
-
-
-
-
-
-      this.alignToNextMinute();
-    });
 
     this.strapiService.getAllClients().subscribe((response: APIResponseModel) => {
       this.clients = response.data.map((client: IClient) => ({
@@ -181,43 +117,6 @@ export class AboutComponent implements OnInit, OnDestroy {
     }
   }
 
-  alignToNextMinute(): void {
-    const now = new Date();
-    const millisecondsUntilNextMinute = (60 - now.getSeconds()) * 1000;
-
-    this.timeoutId = setTimeout(() => {
-      this.updateCurrentTimes();
-      this.intervalId = setInterval(() => {
-        this.updateCurrentTimes();
-      }, 60000);
-    }, millisecondsUntilNextMinute);
-  }
-
-  updateCurrentTimes(): void {
-    this.offices.forEach(office => {
-      office.currentTime = this.getCurrentTime(office.office_location);
-    });
-  }
-
-  getCurrentTime(location: string): string {
-    if (location === 'Christchurch') location = 'Pacific/Auckland';
-    if (location === 'Sydney') location = 'Australia/Sydney';
-    if (location === 'Yokohama') location = 'Asia/Tokyo';
-
-    try {
-      const date = new Date().toLocaleString("en-US", {
-        timeZone: location,
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-      });
-      return date;
-    } catch (error) {
-      console.error(`Error fetching time for location ${location}:`, error);
-      return "00:00 AM";
-    }
-  }
-
   displayMember(documentId: string): void {
     const selected = this.members.find(member => member.documentId === documentId);
     if (selected) {
@@ -231,6 +130,11 @@ export class AboutComponent implements OnInit, OnDestroy {
       this.displayMember(documentId);
     }
   }
+
+  // navigateToOfficeDetail(career: ICareer) {
+  //   this.careerService.setCareer(career);
+  //   this.router.navigate(['/about', career.documentId]);
+  // }
 
   scrollToSection(sectionId: string): void {
     const element = document.getElementById(sectionId);

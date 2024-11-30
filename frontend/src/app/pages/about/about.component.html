@@ -8,13 +8,14 @@
     <section id="aboutLocations" class="location-section">
         <h1>{{ 'contact.nav.locations' | translate }}</h1>
         <menu>
-            <li *ngFor="let office of offices" class="location-button" [routerLink]="['/about', office.documentId]">
+            <li *ngFor="let office of (offices$ | async)" class="location-button"
+                [routerLink]="['/about', office.documentId]">
                 {{ office.office_location }}
                 <i class="bi bi-arrow-up-short menu-icon"></i>
             </li>
         </menu>
         <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div *ngFor="let office of offices" class="col">
+            <div *ngFor="let office of (offices$ | async)" class="col">
                 <app-location-card [office]="office"></app-location-card>
             </div>
         </div>

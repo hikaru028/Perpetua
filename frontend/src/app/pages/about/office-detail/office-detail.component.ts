@@ -1,33 +1,50 @@
 // Libraries
 import { Title, Meta } from '@angular/platform-browser';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, Input } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 // Components
 import { ProjectCardComponent } from '../../../components/project-card/project-card.component';
 import { CareerCardComponent } from '../components/career-card/career-card.component';
+import { ProjectCardSkeletonComponent } from '../../../components/skeletons/project-card-skeleton/project-card-skeleton.component';
 // Services
 import { StrapiService } from '../../../api/strapi.service';
 import { IOffice, ICareer, APIResponseModel } from '../../../../util/interfaces';
 import { TranslationHelper } from '../../../shared/translation-helper';
 import { environment } from '../../../../environments/environment';
+import { ProjectService } from '../../../shared/project.service';
+import { CareerService } from '../../../shared/career.service';
+import { OfficeService } from '../../../shared/office.service';
+import { IProject } from '../../../../util/interfaces';
 
 @Component({
   selector: 'app-office-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink, TranslateModule, ProjectCardComponent, CareerCardComponent],
+  imports: [
+    CommonModule,
+    RouterLink,
+    TranslateModule,
+    ProjectCardComponent,
+    CareerCardComponent,
+    ProjectCardSkeletonComponent
+  ],
   templateUrl: './office-detail.component.html',
   styleUrl: './office-detail.component.scss'
 })
 export class OfficeDetailComponent implements OnInit, OnDestroy {
+  career: ICareer | null = null;
+  careers: ICareer[] = [];
+  offices$: Observable<IOffice[]>;
+  projects$: Observable<IProject[]>;
+  isLoading$!: Observable<boolean | null>;
   documentId!: string;
   office?: IOffice;
-  offices: IOffice[] = [];
-  careers: ICareer[] = [];
   memberNames: string[] = [];
   formattedTime: { hours: string, minutes: string, period: string } | null = null;
   strapiUrl = environment.strapiMediaUrl;
+  projectService: ProjectService = inject(ProjectService);
   private intervalId: any;
   private timeoutId: any;
   currentLanguage: string = 'en';
@@ -38,9 +55,16 @@ export class OfficeDetailComponent implements OnInit, OnDestroy {
     private location: Location,
     private strapiService: StrapiService,
     private activatedRoute: ActivatedRoute,
-    private translationHelper: TranslationHelper
+    private translationHelper: TranslationHelper,
+    private careerService: CareerService,
+    private officeService: OfficeService
   ) {
     this.currentLanguage = this.translationHelper.getCurrentLanguage();
+    this.projects$ = this.projectService.projects$;
+    this.isLoading$ = this.projectService.isLoading$;
+    this.offices$ = this.officeService.offices$;
+    this.career = this.careerService.getCareerData();
+    this.careers = this.careerService.getAllCareers();
   }
 
   ngOnInit(): void {
@@ -49,37 +73,19 @@ export class OfficeDetailComponent implements OnInit, OnDestroy {
       if (id) {
         this.documentId = id;
 
-        this.strapiService.getAllOffices().subscribe(
-          (response: APIResponseModel) => {
-            this.offices = response.data.map((office: IOffice) => ({
-              ...office,
-              office_image: {
-                ...office.office_image,
-                url: this.strapiUrl + (office.office_image.url || "../../../assets/images/img_n.a.png")
-              },
-              currentTime: this.getCurrentTime(office.office_location)
-            }))
-              .sort((a: IOffice, b: IOffice) => a.office_location.localeCompare(b.office_location));
+        this.offices$.subscribe(offices => {
+          this.office = offices.find(office => office.documentId === this.documentId);
 
-            this.office = this.offices.find(office => office.documentId === this.documentId);
-
-            if (this.office && this.office.currentTime) {
-              this.formatCurrentTime(this.office.currentTime);
-              this.titleService.setTitle(`${this.office.office_location} - Perpeture`);
-              this.metaService.updateTag({
-                name: 'description',
-                content: `Learn more about our office in ${this.office.office_location}.`
-              });
-            } else {
-              console.error('Office not found for the given document ID');
-            }
-
-            this.alignToNextMinute();
-          },
-          (error) => {
-            console.error('Error fetching offices:', error);
+          if (this.office) {
+            this.titleService.setTitle(`${this.office.office_location} - Perpeture`);
+            this.metaService.updateTag({
+              name: 'description',
+              content: `Learn more about our office in ${this.office.office_location}.`
+            });
+          } else {
+            console.error('Office not found for the given document ID');
           }
-        );
+        });
       }
     });
   }
@@ -100,52 +106,25 @@ export class OfficeDetailComponent implements OnInit, OnDestroy {
     this.formattedTime = { hours, minutes, period: period.toLowerCase() };
   }
 
-  alignToNextMinute(): void {
-    const now = new Date();
-    const millisecondsUntilNextMinute = (60 - now.getSeconds()) * 1000;
-
-    this.timeoutId = setTimeout(() => {
-      this.updateCurrentTimes();
-      this.intervalId = setInterval(() => {
-        this.updateCurrentTimes();
-      }, 60000);
-    }, millisecondsUntilNextMinute);
-  }
-
-  updateCurrentTimes(): void {
-    this.offices.forEach(office => {
-      office.currentTime = this.getCurrentTime(office.office_location);
-    });
-
-    if (this.office && this.office.currentTime) {
-      this.formatCurrentTime(this.office.currentTime);
-    }
-  }
-
-  getCurrentTime(location: string): string {
-    if (location === 'Christchurch') location = 'Pacific/Auckland';
-    if (location === 'Sydney') location = 'Australia/Sydney';
-    if (location === 'Yokohama') location = 'Asia/Tokyo';
-
-    try {
-      const date = new Date().toLocaleString("en-US", {
-        timeZone: location,
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-      });
-      return date;
-    } catch (error) {
-      console.error(`Error fetching time for location ${location}:`, error);
-      return "00:00 AM";
-    }
-  }
-
   openGoogleMaps(): void {
     let address = `${this.office?.address_1}, ${this.office?.address_2 ? this.office?.address_2 + ', ' : ''}${this.office?.city}, ${this.office?.country}`;
     const encodedAddress = encodeURIComponent(address);
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
 
     window.open(googleMapsUrl, '_blank');
+  }
+
+  sendEmail(): void {
+    if (this.office?.email) {
+      const mailtoLink = `mailto:${this.office.email}`;
+      window.location.href = mailtoLink;
+    }
+  }
+
+  sendEmailKeyDown(event: KeyboardEvent): void {
+    if ((event.key === 'Enter' || event.key === ' ') && this.office?.email) {
+      event.preventDefault();
+      this.sendEmail();
+    }
   }
 }

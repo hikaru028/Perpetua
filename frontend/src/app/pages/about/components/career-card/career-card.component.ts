@@ -5,7 +5,6 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 // Services
 import { ICareer, IOffice } from '../../../../../util/interfaces';
-import { TranslationHelper } from '../../../../shared/translation-helper';
 
 @Component({
   selector: 'app-career-card',
@@ -17,4 +16,5 @@ import { TranslationHelper } from '../../../../shared/translation-helper';
 
 export class CareerCardComponent {
   @Input() careers: ICareer[] = [];
+  @Input() career: ICareer | null = null;
 }
