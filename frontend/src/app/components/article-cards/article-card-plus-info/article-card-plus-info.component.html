@@ -9,14 +9,15 @@
                 </div>
                 <div class="information-container">
                     <!-- Title -->
-                    <div class="info-title-wrapper">
+                    <div class=".info-title-wrapper">
                         <p class="info-title" (click)="navigateToArticle(article.documentId)"
-                            (keydown)="handleKeydown($event, article.documentId)">
-                            {{ article.title || 'No Title Available' }}
-                        </p>
+                            (keydown)="handleKeydown($event, article.documentId)">{{
+                            article.title || 'No
+                            Title
+                            Available' }}</p>
                     </div>
                     <!-- First two sentences -->
-                    <p class="info-content" *ngIf="article.content" [innerHTML]="article.content"></p>
+                    <p class="info-content" *ngIf="truncatedText" [innerHTML]="truncatedText"></p>
                 </div>
             </div>
         </div>
