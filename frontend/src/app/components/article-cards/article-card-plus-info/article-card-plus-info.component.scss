@@ -1,54 +1,44 @@
-.article-card-container {
-    width: 100%;
-    padding: 15px;
-    cursor: pointer;
-}
-
-.custom-gutter {
-    row-gap: 15px;
-}
-
-.card-container {
-    display: flex;
-    flex-direction: column;
-
-    .image-wrapper {
-        height: 400px;
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.1s ease;
-
-            &:hover {
-                transform: scale(1.05)
-            }
-        }
-    }
-
-    p {
-        font-family: 'Sohne' !important;
-        font-size: 1.5rem;
-        color: #0e0e01;
-        margin-top: 10px;
-    }
-}
-
 .article-page-container {
     width: 100%;
-    padding: 15px;
+    padding: 20px 15px 0 15px;
+    margin: 0 0 105px 0;
 
-    .information-container {
+    .custom-gutter {
+        padding: 0;
+        margin: 0;
+        row-gap: 15px;
+    }
 
-        .info-title-wrapper {
+    .col {
+        padding: 0 15px 0 0;
+        margin: 0;
+        cursor: pointer;
+
+        &:nth-child(3n) {
+            padding-right: 0;
+        }
+
+        .image-wrapper {
+            height: 400px;
+            overflow: hidden;
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.1s ease;
+            }
+        }
+
+        .title-wrapper {
             width: 100%;
             height: 62px;
             overflow: hidden;
             position: relative;
             margin-top: 8px;
             z-index: 0;
+            cursor: pointer;
 
             &::after {
                 display: block;
@@ -62,22 +52,32 @@
                 transition: height 0.1s ease;
             }
 
-            .info-title {
+            .title {
                 margin: 0;
                 font-family: 'Sohne' !important;
                 font-size: 1.5rem;
                 color: #0e0e01;
+                overflow: hidden;
             }
         }
 
-        .info-content {
+        .content {
+            width: 100%;
+            height: 54px;
+            margin: 25px 0 0;
             font-family: 'Larsseit' !important;
             font-size: 1.25rem;
             color: #0e0e01;
         }
-    }
 
-    &:hover ::after {
-        height: 0;
+        &:hover {
+            img {
+                transform: scale(1.05)
+            }
+
+            .title-wrapper::after {
+                height: 0;
+            }
+        }
     }
 }

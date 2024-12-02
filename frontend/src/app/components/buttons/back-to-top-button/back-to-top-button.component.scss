@@ -13,12 +13,11 @@
 
 i {
     font-size: 2rem;
-    margin-left: -3px;
+    margin-left: 0px;
     padding-top: 5px;
 }
 
 .bi-arrow-right-short {
-    transform: rotateZ(-45deg);
     transition: transform 0.1s ease;
 
 }
@@ -28,6 +27,5 @@ i {
 }
 
 .footer-button:hover .bi-arrow-right-short {
-    transform: translateZ(2deg);
     color: #a8a8a8;
 }

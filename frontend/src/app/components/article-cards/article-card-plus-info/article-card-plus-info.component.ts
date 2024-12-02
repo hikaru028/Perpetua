@@ -27,8 +27,8 @@ export class ArticleCardPlusInfoComponent implements OnInit, OnDestroy {
     this.visibleArticles.forEach((article: IArticle) => {
       if (article.content) {
         const words = article.content.split(' ');
-        const truncatedWords = words.slice(0, 24).join(' ');
-        this.truncatedText = truncatedWords + '...';
+        const truncatedWords = words.slice(0, 22).join(' ');
+        this.truncatedText = truncatedWords + ' ...';
       }
     })
   }

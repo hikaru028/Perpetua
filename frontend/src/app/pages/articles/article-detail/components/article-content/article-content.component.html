@@ -1,24 +1,38 @@
 <section class='w-100 m-0'>
-    <div class="section-top">
-        <span class="page-title">News & blog &nbsp;&middot;&nbsp;</span>
-        <span>&nbsp;{{ article?.type | titlecase }}</span>
-        <p class="article-title">{{article?.title}}</p>
-        <p>{{article?.sub_heading}}</p>
-        <div class="image-wrapper">
-            <img *ngIf="article?.thumbnail_image; else fallbackImage" [src]="article?.thumbnail_image?.url"
-                [alt]="article?.title || 'No Title Available'" />
-            <ng-template #fallbackImage>
-                <img src="../../../assets/images/img_n.a.png" alt="No Available" />
-            </ng-template>
-        </div>
-        <div class="article-date-wrapper">
-            <p>{{ article?.createdAt | date: 'MMMM d' }}</p>
-            <app-share-article-button [articleDocumentId]="article?.documentId || ''"
-                [articleTitle]="article?.title || 'No Title Available'"></app-share-article-button>
-        </div>
+    <div class="image-wrapper">
+        <img *ngIf="article?.thumbnail_image; else fallbackImage" [src]="article?.thumbnail_image?.url"
+            [alt]="article?.title || 'No Title Available'" />
+        <ng-template #fallbackImage>
+            <img src="../../../assets/images/img_n.a.png" alt="No Available" />
+        </ng-template>
     </div>
-    <div class="section-bottom">
-        <div class="first-letter">{{ firstLetter }}</div>
-        <div class="article-content" *ngIf="restOfContent" [innerHTML]="restOfContent"></div>
+
+    <div class="content-container">
+        <!-- Left section -->
+        <div class="content-left">
+            <div class="more-articles-container">
+                <p class="title">Related articles</p>
+                <div class="more-article">
+                    <p>Perpetua assists OCP Group with industry-leading online booking system
+                        <i class="bi bi-arrow-up-short"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Right section -->
+        <div class="content-right">
+            <p class="article-title">{{article?.title}}</p>
+            <p class="article-sub-title">{{article?.sub_heading}}</p>
+            <div class="article-date-wrapper">
+                <p>{{ article?.createdAt | date: 'MMMM d' }}</p>
+                <app-share-article-button [articleDocumentId]="article?.documentId || ''"
+                    [articleTitle]="article?.title || 'No Title Available'"></app-share-article-button>
+            </div>
+
+            <div class="article-content">
+                <div class="first-letter">{{ firstLetter }}</div>
+                <div class="rest-of-content" *ngIf="restOfContent" [innerHTML]="restOfContent"></div>
+            </div>
+        </div>
     </div>
 </section>

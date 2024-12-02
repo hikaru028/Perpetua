@@ -63,11 +63,13 @@
         }
     }
 
-    &:hover img {
-        transform: scale(1.05)
-    }
+    &:hover {
+        img {
+            transform: scale(1.05)
+        }
 
-    &:hover ::after {
-        height: 0;
+        ::after {
+            height: 0;
+        }
     }
 }

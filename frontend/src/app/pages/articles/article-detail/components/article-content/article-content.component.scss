@@ -1,76 +1,125 @@
 section {
-    padding: 151px 223px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
 
-    .section-top,
-    .section-bottom {
+    p {
+        padding: 0;
+        margin: 0;
+        font-family: 'Sohne' !important;
+        color: #0e0e01;
+        font-size: 1.5rem;
+    }
+
+    .image-wrapper {
+        width: 100%;
+        height: 645px;
+        background-color: #a8a8a8;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .content-container {
         width: 100%;
         height: auto;
-    }
-
-    .section-top {
-        color: #0e0e01;
-        font-family: 'Sohne' !important;
-        font-size: 1.5rem;
-
-        .page-title {
-            color: #a8a8a8;
-        }
-
-        .article-title {
-            color: #000000;
-            font-size: 2.5rem;
-            margin: 20px 0;
-        }
-
-        .image-wrapper {
-            width: 100%;
-            height: 611px;
-            margin: 50px 0;
-            background-color: #a8a8a8;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-        }
-
-        .article-date-wrapper {
-            width: 100%;
-            height: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #0e0e01;
-        }
-    }
-
-    .section-bottom {
         display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        text-align: left;
-        padding: 70px 200px 70px 0;
-        color: #0e0e01;
-        font-family: 'Larsseit' !important;
-        font-size: 1.5rem;
+        padding: 75px 240px 0 30px;
+        column-gap: 149px;
 
-        .first-letter {
-            font-size: 4.5rem;
-            margin-right: 5px;
-            margin-top: -17px;
+        .content-left {
+            width: 40%;
+            background-color: red;
+
+            .title {
+                width: 100%;
+                padding: 5px 0 25px;
+                font-family: 'Sohne-500' !important;
+                border-bottom: 2px solid #989898;
+            }
+
+            .more-articles-container {
+                width: 100%;
+                height: auto;
+                transition: transform 0.2s ease-out;
+                background-color: yellow;
+
+                .more-article {
+                    padding: 25px 0;
+                    border-bottom: 2px solid #989898;
+                    transform: color 0.2s ease;
+
+                    i {
+                        font-size: 1.5rem;
+                        margin: 5px 0 0 -2px;
+                        transform: rotateZ(45deg) translateY(3px);
+                        display: inline-block;
+                        transform: color 0.2s ease;
+                    }
+                }
+
+                &:hover {
+
+                    p,
+                    i {
+                        color: #a8a8a8;
+                    }
+                }
+            }
         }
 
-        .article-content {
-            width: 100%;
+        .content-right {
+            width: 60%;
+            background-color: blue;
 
-            img {
-                @apply w-full h-auto;
+            .article-title {
+                width: 80%;
+                color: #000000;
+                font-size: 2.5rem;
+                margin: 0 0 44px;
+            }
+
+            .article-sub-title {
+                margin-bottom: 77px;
+            }
+
+            .article-date-wrapper {
+                width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-bottom: 20px;
+                border-bottom: 2px solid #0e0e01;
+            }
+
+            .article-content {
+                font-family: 'Larsseit' !important;
+                color: #0e0e01;
+                font-size: 1.5rem;
+                margin-top: 60px;
+                // line-height: 1.6;
+            }
+
+            .first-letter {
+                font-size: 4.5rem;
+                float: left;
+                line-height: 0.8;
+                margin-right: 8px;
+                margin-top: 4px;
+            }
+
+            .rest-of-content {
+                display: inline;
             }
         }
     }
+
+    .section-bottom {}
 }
