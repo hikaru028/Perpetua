@@ -73,16 +73,11 @@ export class ArticleContentComponent implements OnChanges {
       const maxTranslateY = contentLeftRect.height - moreArticlesRect.height;
 
       if (scrollPosition > 400) {
-        // Calculate the new parallax effect value
         let parallaxValue = (scrollPosition - 400) * 0.9;
-
-        // Stop the parallax when reaching the bottom of content-left
         parallaxValue = Math.min(parallaxValue, maxTranslateY);
 
-        // Apply the transformation
         moreArticlesElement.style.transform = `translateY(${parallaxValue}px)`;
       } else {
-        // Reset to the initial position if scrolling back above 300px
         moreArticlesElement.style.transform = `translateY(0)`;
       }
     }

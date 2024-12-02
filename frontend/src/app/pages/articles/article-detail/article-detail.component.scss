@@ -1,114 +1,6 @@
-.header-section {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 77px 0;
-
-    h1 {
-        max-width: 500px;
-    }
-
-    .description {
-        max-width: 450px;
-        font-family: 'Sohne' !important;
-        font-size: 1.5rem;
-    }
-}
-
-.live-button-wrapper {
-    width: auto;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    .live-button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #0e0e01;
-        border: none;
-        background-color: transparent;
-        font-family: 'Larsseit' !important;
-        font-size: 1.5rem;
-
-        i {
-            font-size: 2rem;
-            margin-left: 5px;
-            padding-top: 5px;
-            transition: transform 0.1s ease;
-        }
-
-        &:hover {
-            color: #a8a8a8;
-        }
-
-        &:hover .bi-arrow-right-short {
-            transform: translateX(2px);
-            color: #a8a8a8;
-        }
-    }
-
-    .live-button-btm {
-        margin-right: 15px;
-        font-family: 'Sohne-500' !important;
-        font-size: 1.75rem;
-    }
-}
-
-.testimonial-section {
-    display: flex;
-    padding: 100px 0 100px 195px;
-
-    .quotation {
-        width: auto;
-        height: 165px;
-        font-family: 'Sohne' !important;
-        font-size: 17.813rem;
-        transform: rotate(180deg);
-        transform: scaleY(-1);
-    }
-
-    .testimonial-container {
-        max-width: 570px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        margin-left: 140px;
-
-        .testimonial {
-            text-align: left;
-            font-family: 'Larsseit' !important;
-            font-size: 1.75rem;
-            color: #000000;
-            margin-bottom: 40px;
-        }
-
-        .name-wrapper {
-            width: auto;
-            height: auto;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-
-            .bar {
-                width: 20px;
-                height: 2px;
-                margin-right: 5px;
-                background-color: #000000;
-            }
-
-            font-size: 1.75rem;
-
-            p {
-                font-family: 'Larsseit' !important;
-
-                margin: 0;
-                color: #000000;
-            }
-        }
-    }
+.article-detail {
+    border-bottom: 2px solid #0e0e01;
+    margin-bottom: 68px;
 }
 
 .footer-button-wrapper {
@@ -116,6 +8,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding-top: 38px;
 
     .footer-button {
         display: flex;

@@ -64,8 +64,4 @@ export class ArticleCardComponent implements OnInit {
       targetElement.classList.remove('expanded');
     }
   }
-
-  private isTextOverflowing(element: HTMLElement): boolean {
-    return element.scrollHeight > element.clientHeight;
-  }
 }

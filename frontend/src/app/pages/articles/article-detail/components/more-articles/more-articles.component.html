@@ -1,7 +1,7 @@
 <section class='w-100 m-0' *ngIf="moreArticles$ | async as moreArticles; else loading">
     <h1>{{ 'articles.more-articles' | translate }}</h1>
     <div *ngIf="moreArticles.length > 0; else noArticles">
-        <app-article-card [articles]="moreArticles"></app-article-card>
+        <app-article-card-plus-info [visibleArticles]="moreArticles"></app-article-card-plus-info>
     </div>
 </section>
 <ng-template #loading>
