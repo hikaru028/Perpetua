@@ -1,5 +1,5 @@
 section {
-    padding: 15px;
+    padding: 15px 15px 0;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -35,7 +35,6 @@ section {
 
         .content-left {
             width: 40%;
-            background-color: red;
 
             .title {
                 width: 100%;
@@ -48,7 +47,7 @@ section {
                 width: 100%;
                 height: auto;
                 transition: transform 0.2s ease-out;
-                background-color: yellow;
+                padding-bottom: 25px;
 
                 .more-article {
                     padding: 25px 0;
@@ -76,7 +75,6 @@ section {
 
         .content-right {
             width: 60%;
-            background-color: blue;
 
             .article-title {
                 width: 80%;
@@ -121,5 +119,11 @@ section {
         }
     }
 
-    .section-bottom {}
+    .share-button-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 110px;
+    }
 }

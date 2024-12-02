@@ -1,5 +1,5 @@
 <div class="share-button-wrapper">
-    <button class="share-button" (click)="showModal()">
+    <button class="share-button" [ngClass]="{'footer-share-button': isFooterPosition}" (click)="showModal()">
         Share article
         <i class="bi bi-arrow-right-short"></i>
     </button>

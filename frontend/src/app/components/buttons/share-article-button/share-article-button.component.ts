@@ -12,11 +12,16 @@ import { environment } from '../../../../environments/environment'
 export class ShareArticleButtonComponent {
   @Input() articleDocumentId: string = '';
   @Input() articleTitle: string = '';
+  @Input() position?: string = '';
   isModalVisible: boolean = false;
   strapiUrl = environment.strapiUrl;
 
   get articleUrl(): string {
     return `${this.strapiUrl}/articles/${this.articleDocumentId}`;
+  }
+
+  get isFooterPosition(): boolean {
+    return this.position === 'footer';
   }
 
   showModal() {

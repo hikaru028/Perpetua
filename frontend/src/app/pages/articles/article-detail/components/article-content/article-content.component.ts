@@ -1,5 +1,5 @@
 // Libraries
-import { Component, Input, OnChanges, SimpleChanges, HostListener } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { marked } from 'marked';
@@ -21,7 +21,7 @@ export class ArticleContentComponent implements OnChanges {
   restOfContent: SafeHtml | undefined;
   firstLetter: string = '';
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private elRef: ElementRef) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['article'] && this.article?.content) {
@@ -62,13 +62,27 @@ export class ArticleContentComponent implements OnChanges {
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
     const scrollPosition = window.scrollY;
-    const moreArticlesElement = document.querySelector('.more-articles-container') as HTMLElement;
 
-    if (moreArticlesElement) {
-      if (scrollPosition > 300) {
-        const parallaxValue = (scrollPosition - 300) * 1.0;
+    const moreArticlesElement = this.elRef.nativeElement.querySelector('.more-articles-container') as HTMLElement;
+    const contentLeftElement = this.elRef.nativeElement.querySelector('.content-left') as HTMLElement;
+
+    if (moreArticlesElement && contentLeftElement) {
+      const contentLeftRect = contentLeftElement.getBoundingClientRect();
+      const moreArticlesRect = moreArticlesElement.getBoundingClientRect();
+
+      const maxTranslateY = contentLeftRect.height - moreArticlesRect.height;
+
+      if (scrollPosition > 400) {
+        // Calculate the new parallax effect value
+        let parallaxValue = (scrollPosition - 400) * 0.9;
+
+        // Stop the parallax when reaching the bottom of content-left
+        parallaxValue = Math.min(parallaxValue, maxTranslateY);
+
+        // Apply the transformation
         moreArticlesElement.style.transform = `translateY(${parallaxValue}px)`;
       } else {
+        // Reset to the initial position if scrolling back above 300px
         moreArticlesElement.style.transform = `translateY(0)`;
       }
     }
