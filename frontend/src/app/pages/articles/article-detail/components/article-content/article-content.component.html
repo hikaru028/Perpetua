@@ -9,10 +9,12 @@
     <div class="content-container">
         <!-- Left section -->
         <div class="content-left">
-            <div class="more-articles-container">
+            <div class="related-articles-container">
                 <p class="title">Related articles</p>
-                <div class="more-article">
-                    <p>Perpetua assists OCP Group with industry-leading online booking system
+                <div *ngFor="let article of moreArticles$ | async" class="related-article"
+                    (click)="navigateToArticle(article.documentId)"
+                    (keydown)="handleKeydown($event, article.documentId)">
+                    <p class="related-article-title">{{ article.title }}
                         <i class="bi bi-arrow-up-short"></i>
                     </p>
                 </div>

@@ -1,11 +1,14 @@
 // Libraries
-import { Component, Input, OnChanges, SimpleChanges, HostListener, ElementRef } from '@angular/core';
+import { Component, Input, inject, OnChanges, SimpleChanges, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { marked } from 'marked';
+import { Observable } from 'rxjs';
 // Components
 import { ShareArticleButtonComponent } from '../../../../../components/buttons/share-article-button/share-article-button.component';
 // Services
+import { ArticleService } from '../../../../../shared/article.service';
 import { IArticle } from '../../../../../../util/interfaces';
 
 @Component({
@@ -17,15 +20,24 @@ import { IArticle } from '../../../../../../util/interfaces';
 })
 export class ArticleContentComponent implements OnChanges {
   @Input() article: IArticle | undefined;
+  @Input() currentArticleDocumentId: string | null = null;
+  moreArticles$: Observable<IArticle[]>;
   sanitizedContent: SafeHtml | undefined;
   restOfContent: SafeHtml | undefined;
   firstLetter: string = '';
+  articleService: ArticleService = inject(ArticleService);
 
-  constructor(private sanitizer: DomSanitizer, private elRef: ElementRef) { }
+  constructor(private sanitizer: DomSanitizer, private router: Router, private elRef: ElementRef) {
+    this.moreArticles$ = this.articleService.moreArticles$;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['article'] && this.article?.content) {
       this.parseContent();
+    }
+
+    if (changes['currentArticleDocumentId'] && changes['currentArticleDocumentId'].currentValue) {
+      this.articleService.selectMoreArticleByDate(changes['currentArticleDocumentId'].currentValue);
     }
   }
 
@@ -63,7 +75,7 @@ export class ArticleContentComponent implements OnChanges {
   onWindowScroll(): void {
     const scrollPosition = window.scrollY;
 
-    const moreArticlesElement = this.elRef.nativeElement.querySelector('.more-articles-container') as HTMLElement;
+    const moreArticlesElement = this.elRef.nativeElement.querySelector('.related-articles-container') as HTMLElement;
     const contentLeftElement = this.elRef.nativeElement.querySelector('.content-left') as HTMLElement;
 
     if (moreArticlesElement && contentLeftElement) {
@@ -80,6 +92,25 @@ export class ArticleContentComponent implements OnChanges {
       } else {
         moreArticlesElement.style.transform = `translateY(0)`;
       }
+    }
+  }
+
+  backToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant'
+    });
+  }
+
+  navigateToArticle(documentId: string): void {
+    this.backToTop();
+    this.router.navigate(['/articles', documentId]);
+  }
+
+  handleKeydown(event: KeyboardEvent, documentId: string): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.navigateToArticle(documentId);
     }
   }
 }

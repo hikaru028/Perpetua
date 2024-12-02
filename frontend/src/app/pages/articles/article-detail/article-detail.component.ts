@@ -1,7 +1,8 @@
 // Libraries
 import { Meta, Title } from '@angular/platform-browser';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 // Components
@@ -22,9 +23,6 @@ import { environment } from '../../../../environments/environment';
   standalone: true,
   imports: [
     CommonModule,
-    // RouterLink,
-    CallActionComponent,
-    FooterComponent,
     BackToTopButtonComponent,
     ArticleContentComponent,
     MoreArticlesComponent,
@@ -43,7 +41,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   constructor(
     private metaService: Meta,
     private titleService: Title,
-    private location: Location,
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private strapiService: StrapiService,
     private translationHelper: TranslationHelper
@@ -92,6 +90,6 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/articles']);
   }
 }

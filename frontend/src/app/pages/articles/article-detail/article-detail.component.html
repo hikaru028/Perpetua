@@ -1,6 +1,6 @@
 <div *ngIf="article" class="article-detail">
     <!-- Article section -->
-    <app-article-content [article]="article"></app-article-content>
+    <app-article-content [article]="article" [currentArticleDocumentId]="article.documentId"></app-article-content>
     <span class="separator"></span>
     <!-- Other articles -->
     <app-more-articles [currentArticleDocumentId]="article.documentId"></app-more-articles>
