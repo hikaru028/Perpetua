@@ -60,11 +60,11 @@
         "Kanagawa"
       ]
     },
-    "city": {
+    "city_or_state": {
       "type": "enumeration",
       "enum": [
         "Christchurch",
-        "Sydney",
+        "NSW",
         "Yokohama"
       ]
     },

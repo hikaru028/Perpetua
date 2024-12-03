@@ -558,7 +558,9 @@ export interface ApiOfficeOffice extends Struct.CollectionTypeSchema {
     address_1: Schema.Attribute.String;
     address_2: Schema.Attribute.String;
     career: Schema.Attribute.Relation<'oneToOne', 'api::career.career'>;
-    city: Schema.Attribute.Enumeration<['Christchurch', 'Sydney', 'Yokohama']>;
+    city_or_state: Schema.Attribute.Enumeration<
+      ['Christchurch', 'NSW', 'Yokohama']
+    >;
     country: Schema.Attribute.Enumeration<
       ['New Zealand', 'Australia', 'Japan']
     >;

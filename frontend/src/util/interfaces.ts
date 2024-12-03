@@ -32,6 +32,7 @@ export interface IOffice {
     phone: string,
     office_image: IImage,
     currentTime?: string,
+    city_or_state: string,
 }
 
 export interface IMember {
@@ -40,7 +41,7 @@ export interface IMember {
     first_name: string,
     last_name: string,
     role: string,
-    location: string,
+    office_location: IOffice,
     email: string,
     phone: string,
     portrait_image: IImage,

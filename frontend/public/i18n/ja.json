@@ -103,5 +103,7 @@
 	"service.nav.data-af": "分析",
 	"service.nav.consultation": "無料相談を予約する",
 	"team.all": "チームに会う",
-	"team.our-team": "チーム"
+	"team.our-team": "チーム",
+	"team.nav.by-office": "オフィス別",
+	"team.nav.by-role": "職種別"
 }

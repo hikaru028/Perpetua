@@ -103,5 +103,7 @@
 	"service.nav.data-af": "Analytics",
 	"service.nav.consultation": "Book a free consultation",
 	"team.all": "Meet the team",
-	"team.our-team": "Our team"
+	"team.our-team": "Our team",
+	"team.nav.by-office": "By office",
+	"team.nav.by-role": "By role"
 }

@@ -1,10 +1,14 @@
 <div *ngIf="member" class="staff-card-container">
-    <div class="container-left">
-        <p class="name">{{ member.first_name }}&nbsp;{{ member.last_name }}</p>
-        <p class="role">{{ member.role }}</p>
-        <div class="bio" [innerHTML]="sanitizedBios[member.id]"></div>
-    </div>
     <div class="image-wrapper">
         <img [src]="member.portrait_image.url" [alt]="member.first_name + ' ' + member.last_name">
     </div>
+    <div class="name-role-wrapper">
+        <p class="name">{{ member.first_name }}&nbsp;{{ member.last_name }}</p>
+        <span class="role">{{ member.role }}&nbsp;&middot;&nbsp;</span>
+        <span class="role">{{ member.office_location.office_location }}</span>
+    </div>
 </div>
+
+<ng-template #noSlides>
+    <p>No slides available.</p>
+</ng-template>

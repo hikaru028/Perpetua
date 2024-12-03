@@ -23,11 +23,11 @@
             @if (office.country !== 'Japan') {
             <p>{{ office.address_1 }}</p>
             <p>{{ office.address_2 }}</p>
-            <p>{{ office.city }}, {{ office.post_code}}</p>
+            <p>{{ office.city_or_state }}, {{ office.post_code}}</p>
             <p>{{ office.country }}</p>
             } @else {
             <p>{{ office.address_1 }}, {{ office.address_2}}</p>
-            <p>{{ office.ward }}, {{ office.city}}</p>
+            <p>{{ office.ward }}, {{ office.city_or_state}}</p>
             <p>{{ office.prefecture }}, {{ office.post_code}}</p>
             <p>{{ office.country }}</p>
             }

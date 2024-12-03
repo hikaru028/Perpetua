@@ -103,5 +103,7 @@
 	"service.nav.data-af": "분석",
 	"service.nav.consultation": "무료 상담 예약",
 	"team.all": "팀 만나보기",
-	"team.our-team": "우리 팀"
+	"team.our-team": "우리 팀",
+	"team.nav.by-office": "사무소별",
+	"team.nav.by-role": "역할별"
 }
