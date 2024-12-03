@@ -29,14 +29,26 @@
     <span class="separator"></span>
 
     <!-- Member cards by office/role -->
-    <ng-container
-        *ngIf="membersByCategory && (selectedFilter$ | async) === 'office' || (selectedFilter$ | async) === 'role'">
+    <ng-container *ngIf="membersByCategory && (selectedFilter$ | async) === 'office'">
         <div class="staff-container">
             <div class="sorted-cards-wrapper" *ngFor="let group of membersByCategory">
                 <p class="sorting-title" [innerHTML]="group.category"></p>
                 <div class="row row-cols-1 row-cols-md-3 custom-gutter">
                     <div class="col" *ngFor="let member of group.members">
-                        <app-staff-card [member]="member"></app-staff-card>
+                        <app-staff-card [member]="member" filter="office"></app-staff-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="membersByCategory && (selectedFilter$ | async) === 'role'">
+        <div class="staff-container">
+            <div class="sorted-cards-wrapper" *ngFor="let group of membersByCategory">
+                <p class="sorting-title" [innerHTML]="group.category"></p>
+                <div class="row row-cols-1 row-cols-md-3 custom-gutter">
+                    <div class="col" *ngFor="let member of group.members">
+                        <app-staff-card [member]="member" filter="role"></app-staff-card>
                     </div>
                 </div>
             </div>
@@ -48,7 +60,7 @@
         <div class="staff-container">
             <div class="row row-cols-1 row-cols-md-3 custom-gutter">
                 <div class="col" *ngFor="let member of visibleMembers">
-                    <app-staff-card [member]="member"></app-staff-card>
+                    <app-staff-card [member]="member" filter="all"></app-staff-card>
                 </div>
             </div>
         </div>

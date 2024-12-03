@@ -15,6 +15,7 @@ import { IMember } from '../../../../../util/interfaces';
 })
 export class StaffCardComponent implements OnChanges {
   @Input() member: IMember | undefined;
+  @Input() filter: string = '';
   sanitizedBios: { [key: number]: SafeHtml } = {};
 
   constructor(private sanitizer: DomSanitizer) { }

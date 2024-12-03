@@ -1,5 +1,5 @@
 // Libraries
-import { Component, Input, inject, OnChanges, SimpleChanges, HostListener, ElementRef } from '@angular/core';
+import { Component, Input, inject, OnChanges, SimpleChanges, HostListener, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -27,7 +27,12 @@ export class ArticleContentComponent implements OnChanges {
   firstLetter: string = '';
   articleService: ArticleService = inject(ArticleService);
 
-  constructor(private sanitizer: DomSanitizer, private router: Router, private elRef: ElementRef) {
+  constructor(
+    private sanitizer: DomSanitizer,
+    private router: Router,
+    private elRef: ElementRef,
+    private cdr: ChangeDetectorRef
+  ) {
     this.moreArticles$ = this.articleService.moreArticles$;
   }
 
@@ -41,13 +46,21 @@ export class ArticleContentComponent implements OnChanges {
     }
   }
 
-  parseContent(): void {
-    const parsedContent = marked.parse(this.article?.content);
-    if (typeof parsedContent === 'string') {
+  async parseContent(): Promise<void> {
+    if (!this.article?.content) {
+      return;
+    }
+
+    try {
+      const parsedContent = await marked.parse(this.article.content);
+
+      // Create a temporary element to manipulate the HTML
       const tempElement = document.createElement('div');
       tempElement.innerHTML = parsedContent;
 
+      // Extract and manipulate text content while preserving HTML structure
       const textContent = tempElement.textContent || '';
+
       if (textContent.length > 0) {
         this.firstLetter = textContent.charAt(0).toUpperCase();
 
@@ -59,17 +72,36 @@ export class ArticleContentComponent implements OnChanges {
         }
         restText = `${words.join(' ')} *`;
 
-        tempElement.textContent = restText;
+        // Replace the text content back into the HTML structure
+        const nodes = tempElement.childNodes;
+        let currentIndex = 0;
+
+        const processNodes = (node: Node): void => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            if (currentIndex === 0) {
+              node.textContent = restText;
+              currentIndex++;
+            }
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            node.childNodes.forEach(childNode => processNodes(childNode));
+          }
+        };
+
+        tempElement.childNodes.forEach(processNodes.bind(this));
 
         const styledContent = tempElement.innerHTML.replace(
-          /<img /g,
-          '<img style="width: 100%; height: auto; max-width: 100%;" '
+          /<img\s+([^>]*?)>/g,
+          '<img style="width: 100%; height: auto; max-width: 100%;" $1>'
         );
 
         this.restOfContent = this.sanitizer.bypassSecurityTrustHtml(styledContent);
+        this.cdr.detectChanges();
       }
+    } catch (error) {
+      console.error('Error parsing content:', error);
     }
   }
+
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
@@ -84,8 +116,8 @@ export class ArticleContentComponent implements OnChanges {
 
       const maxTranslateY = contentLeftRect.height - moreArticlesRect.height;
 
-      if (scrollPosition > 400) {
-        let parallaxValue = (scrollPosition - 400) * 0.9;
+      if (scrollPosition > 550) {
+        let parallaxValue = (scrollPosition - 550) * 1.0;
         parallaxValue = Math.min(parallaxValue, maxTranslateY);
 
         moreArticlesElement.style.transform = `translateY(${parallaxValue}px)`;
