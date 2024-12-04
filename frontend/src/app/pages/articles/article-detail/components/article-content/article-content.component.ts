@@ -53,54 +53,41 @@ export class ArticleContentComponent implements OnChanges {
 
     try {
       const parsedContent = await marked.parse(this.article.content);
-
-      // Create a temporary element to manipulate the HTML
       const tempElement = document.createElement('div');
       tempElement.innerHTML = parsedContent;
 
-      // Extract and manipulate text content while preserving HTML structure
       const textContent = tempElement.textContent || '';
-
       if (textContent.length > 0) {
         this.firstLetter = textContent.charAt(0).toUpperCase();
 
-        let restText = textContent.slice(1).trim();
-        const words = restText.split(/\s+/);
-        if (words.length >= 2) {
-          words[0] = words[0].toUpperCase();
-          words[1] = words[1].toUpperCase();
-        }
-        restText = `${words.join(' ')} *`;
-
-        // Replace the text content back into the HTML structure
-        const nodes = tempElement.childNodes;
-        let currentIndex = 0;
-
-        const processNodes = (node: Node): void => {
-          if (node.nodeType === Node.TEXT_NODE) {
-            if (currentIndex === 0) {
-              node.textContent = restText;
-              currentIndex++;
-            }
-          } else if (node.nodeType === Node.ELEMENT_NODE) {
-            node.childNodes.forEach(childNode => processNodes(childNode));
-          }
-        };
-
-        tempElement.childNodes.forEach(processNodes.bind(this));
-
-        const styledContent = tempElement.innerHTML.replace(
+        let styledContent = tempElement.innerHTML.replace(
           /<img\s+([^>]*?)>/g,
           '<img style="width: 100%; height: auto; max-width: 100%;" $1>'
         );
+        const words = styledContent.split(/\s+/);
+        for (let i = words.length - 1; i >= 0; i--) {
+          if (words[i].includes('</p>')) {
+            words[i] = words[i].replace('</p>', '*</p>');
+            break;
+          }
+        }
+        styledContent = words.join(' ');
 
-        this.restOfContent = this.sanitizer.bypassSecurityTrustHtml(styledContent);
+        const firstTwoWords = words.slice(0, 2).map(word => word.toUpperCase()).join(' ');
+        const remainingText = words.slice(2).join(' ');
+
+        styledContent = styledContent.replace(textContent, remainingText);
+
+        const finalContent = `${firstTwoWords} ${remainingText}`.substring(4);
+
+        this.restOfContent = this.sanitizer.bypassSecurityTrustHtml(finalContent);
         this.cdr.detectChanges();
       }
     } catch (error) {
       console.error('Error parsing content:', error);
     }
   }
+
 
 
   @HostListener('window:scroll', [])

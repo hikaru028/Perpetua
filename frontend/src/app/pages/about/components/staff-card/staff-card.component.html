@@ -4,16 +4,10 @@
     </div>
     <div class="name-role-wrapper">
         <p class="name">{{ member.first_name }}&nbsp;{{ member.last_name }}</p>
-        <ng-template *ngIf="filter === 'all'">
-            <span class="role">{{ member.role }}&nbsp;&middot;&nbsp;</span>
-            <span class="role">{{ member.office_location.office_location }}</span>
-        </ng-template>
-        <ng-template *ngIf="filter === 'office'">
-            <span class="role">{{ member.role }}</span>
-        </ng-template>
-        <ng-template *ngIf="filter === 'role'">
-            <span class="role">{{ member.office_location.office_location }}</span>
-        </ng-template>
+        <span class="role" *ngIf="filter === 'all'">{{ member.role }}&nbsp;&middot;&nbsp;</span>
+        <span class="role" *ngIf="filter === 'office'">{{ member.role }}</span>
+        <span class="role" *ngIf="filter === 'all' || filter === 'role'">{{ member.office_location.office_location
+            }}</span>
     </div>
 </div>
 

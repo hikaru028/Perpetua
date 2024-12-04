@@ -1,1 +1,39 @@
-<p>contact works!</p>
+<div class='w-100 m-0'>
+    <!-- Header -->
+    <section class="header-section">
+        <p class="title">{{ 'contact.title' | translate }}</p>
+        <div>
+            <p class="header-bf">{{ 'contact.header-bf' | translate }}</p>
+            <span *ngIf="currentLanguage === 'en'" class="ampersand" aria-label="Ampersand">&amp;</span>
+            <p class="header-af">{{ 'contact.header-af' | translate }}</p>
+        </div>
+    </section>
+    <!-- Contact info -->
+    <menu>
+        <li *ngFor="let office of (offices$ | async)" class="location-button">
+            {{ office.office_location }}
+            <i class="bi bi-arrow-up-short menu-icon"></i>
+        </li>
+    </menu>
+    <!-- Form -->
+    <section class="form-section">
+        <h1>{{ 'contact.nav.message' | translate }}</h1>
+        <div class="form">
+        </div>
+        <div class="form">
+        </div>
+        <div class="form">
+        </div>
+    </section>
+    <!-- Location -->
+    <section class="location-section">
+        <h1>{{ 'contact.nav.locations' | translate }}</h1>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div *ngFor="let office of (offices$ | async)" class="col">
+                <app-location-card [office]="office"></app-location-card>
+            </div>
+        </div>
+    </section>
+
+
+</div>

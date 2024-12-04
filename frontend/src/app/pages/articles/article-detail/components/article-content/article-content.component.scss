@@ -102,19 +102,28 @@ section {
                 color: #0e0e01;
                 font-size: 1.5rem;
                 margin-top: 60px;
-                // line-height: 1.6;
-            }
 
-            .first-letter {
-                font-size: 4.5rem;
-                float: left;
-                line-height: 0.8;
-                margin-right: 8px;
-                margin-top: 4px;
-            }
+                p {
+                    display: inline;
+                }
 
-            .rest-of-content {
-                display: inline;
+                .first-letter {
+                    font-size: 4.5rem;
+                    float: left;
+                    line-height: 0.8;
+                    margin-right: 8px;
+                    margin-top: 4px;
+                }
+
+                .first-two-words {
+                    text-transform: uppercase;
+                }
+
+                .rest-of-content {}
+
+                // .asterisk {
+
+                // }
             }
         }
     }
