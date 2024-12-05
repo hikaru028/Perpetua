@@ -5,6 +5,14 @@ export interface APIResponseModel {
     error: string,
 }
 
+export interface IFlag {
+    id: number,
+    documentId: string,
+    country: string,
+    country_code: string,
+    flag_image: IImage
+}
+
 export interface ICareer {
     id: number,
     documentId: string,

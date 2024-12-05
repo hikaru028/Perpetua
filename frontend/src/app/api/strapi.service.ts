@@ -71,4 +71,10 @@ export class StrapiService {
       headers: this.getHeaders(),
     });
   }
+
+  getAllFlags(): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/flags?populate=*`, {
+      headers: this.getHeaders(),
+    });
+  }
 }
