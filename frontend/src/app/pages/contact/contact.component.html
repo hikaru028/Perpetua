@@ -1,29 +1,94 @@
 <div class='w-100 m-0'>
-    <!-- Header -->
     <section class="header-section">
-        <p class="title">{{ 'contact.title' | translate }}</p>
-        <div>
-            <p class="header-bf">{{ 'contact.header-bf' | translate }}</p>
-            <span *ngIf="currentLanguage === 'en'" class="ampersand" aria-label="Ampersand">&amp;</span>
-            <p class="header-af">{{ 'contact.header-af' | translate }}</p>
+        <!-- Header -->
+        <div class="header-container">
+            <h1 class="title">{{ 'contact.title' | translate }}</h1>
+            <div>
+                <span class="header-bf">{{ 'contact.header-bf' | translate }}&nbsp;</span>
+                <span *ngIf="currentLanguage === 'en'" class="ampersand" aria-label="Ampersand">&amp;</span>
+                <span class="header-af">&nbsp;{{ 'contact.header-af' | translate }}</span>
+            </div>
+        </div>
+        <div class="image-wrapper">
+            <img [src]="" [alt]="">
+        </div>
+        <!-- Contact info -->
+        <menu>
+            <li *ngFor="let office of (offices$ | async); let i = index" class="location-button"
+                [ngClass]="{'selected': selectedLocation === office.office_location}"
+                (click)="onLocationClick(office.office_location)"
+                (keydown)="onLocationKeydown($event, office.office_location)">
+                {{ office.office_location }}
+                <i class="bi bi-arrow-up-short menu-icon"></i>
+            </li>
+        </menu>
+        <div class="contact-info-container" *ngIf="selectedContactInfo">
+            <div class="contact-info-wrapper">
+                <p class="subject">Global New Business</p>
+                <p class="name">{{ selectedContactInfo.new_business[0]?.name }}</p>
+                <p class="email" (click)="sendEmail(selectedContactInfo.new_business[0]?.email)"
+                    (keydown)="sendEmailKeyDown($event, selectedContactInfo.new_business[0]?.email)">
+                    {{ selectedContactInfo.new_business[0]?.email }}
+                </p>
+            </div>
+            <div class="contact-info-wrapper">
+                <p class="subject">Global Job Opportunities</p>
+                <p class="name">{{ selectedContactInfo.job_opportunities[0]?.name }}</p>
+                <p class="email" (click)="sendEmail(selectedContactInfo.job_opportunities[0]?.email)"
+                    (keydown)="sendEmailKeyDown($event, selectedContactInfo.job_opportunities[0]?.email)">
+                    {{ selectedContactInfo.job_opportunities[0]?.email }}
+                </p>
+            </div>
+            <div class="contact-info-wrapper">
+                <p class="subject">General Enquiries</p>
+                <p class="email" (click)="sendEmail(selectedContactInfo.general_enquiries[0]?.email)"
+                    (keydown)="sendEmailKeyDown($event, selectedContactInfo.general_enquiries[0]?.email)">
+                    {{ selectedContactInfo.general_enquiries[0]?.email }}
+                </p>
+            </div>
         </div>
     </section>
-    <!-- Contact info -->
-    <menu>
-        <li *ngFor="let office of (offices$ | async)" class="location-button">
-            {{ office.office_location }}
-            <i class="bi bi-arrow-up-short menu-icon"></i>
-        </li>
-    </menu>
     <!-- Form -->
     <section class="form-section">
         <h1>{{ 'contact.nav.message' | translate }}</h1>
-        <div class="form">
-        </div>
-        <div class="form">
-        </div>
-        <div class="form">
-        </div>
+        <form action="" class="form-container" aria-labelledby="form-title">
+            <div class="form-wrapper">
+                <div class="input-wrapper">
+                    <input id="full-name" type="text" name="full-name" placeholder="Full name*" required
+                        aria-required="true" aria-labelledby="full-name-label">
+                    <label id="full-name-label" for="full-name">Full Name*</label>
+                </div>
+                <div class="input-wrapper">
+                    <input id="company" type="text" name="company" placeholder="Company"
+                        aria-labelledby="company-label">
+                    <label id="company-label" for="company">Company</label>
+                </div>
+            </div>
+            <div class="form-wrapper">
+                <div class="input-wrapper">
+                    <input id="email" type="email" name="email" placeholder="Email*" required aria-required="true"
+                        aria-labelledby="email-label">
+                    <label id="email-label" for="email">Email*</label>
+                </div>
+                <div class="input-wrapper">
+                    <div>
+                        country flag image
+                    </div>
+                    <input id="country-code" type="text" name="country-code" placeholder="Country Code"
+                        aria-labelledby="country-code-label">
+                    <label id="country-code-label" for="country-code">Country Code</label>
+                    <input id="phone" type="tel" name="phone" placeholder="Phone" aria-labelledby="phone-label">
+                    <label id="phone-label" for="phone">Phone</label>
+                </div>
+            </div>
+            <div class="form-wrapper">
+                <div class="input-wrapper">
+                    <label id="message-label" for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Enter your message here"
+                        aria-labelledby="message-label"></textarea>
+                </div>
+            </div>
+        </form>
     </section>
     <!-- Location -->
     <section class="location-section">
@@ -34,6 +99,4 @@
             </div>
         </div>
     </section>
-
-
 </div>

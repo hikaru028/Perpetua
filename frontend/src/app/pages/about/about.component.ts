@@ -131,11 +131,6 @@ export class AboutComponent implements OnInit, OnDestroy {
     }
   }
 
-  // navigateToOfficeDetail(career: ICareer) {
-  //   this.careerService.setCareer(career);
-  //   this.router.navigate(['/about', career.documentId]);
-  // }
-
   scrollToSection(sectionId: string): void {
     const element = document.getElementById(sectionId);
     if (element) {

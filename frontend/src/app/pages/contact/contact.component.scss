@@ -1,0 +1,188 @@
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.header-section {
+    width: 100%;
+    height: auto;
+    padding: 0 0 115px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid #0e0e01;
+
+    .header-container {
+        padding: 79px 65px 85px;
+        margin: 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: start;
+
+        .title {
+            min-width: 194px;
+            margin-right: 150px;
+        }
+
+        .header-bf,
+        .ampersand,
+        .header-af {
+            font-family: 'Sohne' !important;
+            font-size: 1.5rem;
+            color: #0e0e01;
+        }
+    }
+
+    .image-wrapper {
+        width: 100%;
+        height: 858px;
+        padding: 15px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    menu {
+        display: flex;
+        width: 100%;
+        padding: 62px 65px 77px;
+        margin: 0;
+        color: #000000;
+        font-size: 1.5rem;
+
+        .location-button {
+            list-style: none;
+            margin-right: 65px;
+            cursor: pointer;
+
+            &.selected {
+                color: #a8a8a8;
+            }
+        }
+
+        .menu-icon {
+            transform: rotate(135deg);
+            display: inline-block;
+            margin: -5px;
+        }
+
+
+        .location-button:hover {
+            color: #a8a8a8;
+
+            .menu-icon {
+                color: #a8a8a8;
+            }
+        }
+    }
+
+    .contact-info-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: start;
+        gap: 97px;
+        padding: 0 65px;
+        color: #0e0e01;
+        font-size: 1.5rem;
+
+        .subject {
+            font-family: 'Sohne-500' !important;
+            margin-bottom: 15px;
+        }
+
+        .email,
+        .phone {
+            font-family: 'Sohne' !important;
+        }
+
+        .email {
+            text-decoration: underline;
+        }
+    }
+}
+
+.form-section {
+
+    h1 {
+        padding: 77px 65px 82px;
+        margin: 0;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0 65px;
+        gap: 77px;
+
+        .form-wrapper {
+            display: flex;
+            row-gap: 52px;
+
+            .input-wrapper {
+                width: 100%;
+
+            }
+
+            label {
+                display: none;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                min-height: 38px;
+                border: none;
+                border-bottom: 2px solid #0e0e01;
+                padding: 0;
+                margin: 0;
+
+
+            }
+
+            textarea {
+                height: auto;
+            }
+
+            ::placeholder {
+                font-family: 'Sohne', sans-serif;
+                font-size: 1.5rem;
+                color: #0e0e01;
+            }
+
+            ::-webkit-input-placeholder {
+                font-family: 'Sohne', sans-serif;
+                font-size: 1.5rem;
+                color: #0e0e01;
+            }
+
+            :-moz-placeholder {
+                font-family: 'Sohne', sans-serif;
+                font-size: 1.5rem;
+                color: #0e0e01;
+            }
+
+            ::-moz-placeholder {
+                font-family: 'Sohne', sans-serif;
+                font-size: 1.5rem;
+                color: #0e0e01;
+            }
+
+            :-ms-input-placeholder {
+                font-family: 'Sohne', sans-serif;
+                font-size: 1.5rem;
+                color: #0e0e01;
+            }
+
+            ::-ms-input-placeholder {
+                font-family: 'Sohne', sans-serif;
+                font-size: 1.5rem;
+                color: #0e0e01;
+            }
+        }
+
+    }
+}
