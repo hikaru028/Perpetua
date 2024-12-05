@@ -5,6 +5,15 @@ export interface APIResponseModel {
     error: string,
 }
 
+export interface IMessage {
+    full_name: string,
+    company: string,
+    email: string,
+    country_code: string,
+    phone: string,
+    message: string
+}
+
 export interface IFlag {
     id: number,
     documentId: string,

@@ -25,6 +25,7 @@
     "@angular/router": "^18.2.0",
     "@angular/ssr": "^18.2.11",
     "@colsen1991/ngx-translate-extract-marker": "^2.0.8",
+    "@emailjs/browser": "^4.4.1",
     "@nguniversal/express-engine": "^7.0.1",
     "@ngx-translate/core": "^16.0.3",
     "@ngx-translate/http-loader": "^16.0.0",

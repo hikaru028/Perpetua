@@ -2,18 +2,18 @@
 import { Title, Meta } from '@angular/platform-browser';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 // Components
 import { LocationCardComponent } from '../about/components/location-card/location-card.component';
 import { ContactData } from './contact-data';
 // Services
 import { StrapiService } from '../../api/strapi.service';
-import { IClient, IOffice, APIResponseModel, IFlag } from '../../../util/interfaces';
+import { IMessage, IOffice, APIResponseModel, IFlag } from '../../../util/interfaces';
 import { TranslationHelper } from '../../shared/translation-helper';
 import { environment } from '../../../environments/environment';
-import { CareerService } from '../../shared/career.service';
 import { OfficeService } from '../../shared/office.service';
 
 @Component({
@@ -22,7 +22,7 @@ import { OfficeService } from '../../shared/office.service';
   imports: [
     CommonModule,
     LocationCardComponent,
-    RouterLink,
+    FormsModule,
     TranslateModule
   ],
   templateUrl: './contact.component.html',
@@ -37,15 +37,18 @@ export class ContactComponent implements OnInit, OnDestroy {
   flags: IFlag[] = [];
   selectedFlagUrl: string | null = '';
   selectedCountryName: string = 'New Zealand';
+  form: IMessage = {
+    full_name: '',
+    company: '',
+    email: '',
+    country_code: '',
+    phone: '',
+    message: ''
+  }
+  formSubmitted: boolean = false;
   strapiUrl = environment.strapiMediaUrl;
   private intervalId: any;
   private timeoutId: any;
-  private fullName = '';
-  private company = '';
-  private email = '';
-  private countryCode = ''
-  private phone = '';
-  private message = '';
   currentLanguage: string = 'en';
 
   constructor(
@@ -54,9 +57,18 @@ export class ContactComponent implements OnInit, OnDestroy {
     private strapiService: StrapiService,
     private translationHelper: TranslationHelper,
     private officeService: OfficeService,
+    private fb: FormBuilder,
   ) {
     this.currentLanguage = this.translationHelper.getCurrentLanguage();
     this.offices$ = this.officeService.offices$;
+    // this.form = this.fb.group({
+    //   full_name: ['', Validators.required],
+    //   company: [''],
+    //   email: ['', [Validators.required, Validators.email]],
+    //   country_code: ['+64'],
+    //   phone: [''],
+    //   message: ['', Validators.required]
+    // });
   }
 
   ngOnInit(): void {
@@ -162,43 +174,41 @@ export class ContactComponent implements OnInit, OnDestroy {
   verifyAndSendFormEmail(): void {
     const confirmation = window.confirm('Are you sure you want to send this message?');
     if (confirmation) {
-      this.sendFormEmail();
+      this.sendMessage();
     }
   }
 
-  sendFormEmail(): void {
-    try {
-      this.fullName = (document.getElementById('full-name') as HTMLInputElement).value;
-      this.company = (document.getElementById('company') as HTMLInputElement).value;
-      this.email = (document.getElementById('email') as HTMLInputElement).value;
-      this.countryCode = (document.getElementById('country-code') as HTMLInputElement).value;
-      this.phone = (document.getElementById('phone') as HTMLInputElement).value;
-      this.message = (document.getElementById('message') as HTMLTextAreaElement).value;
 
-      const emailBody = `
-        Full Name: ${this.fullName}
-        Company: ${this.company}
-        Email: ${this.email}
-        Country Code: ${this.countryCode}
-        Phone: ${this.phone}
-        Message:
-        ${this.message}
-      `;
+  public sendMessage() {
+    this.formSubmitted = true;
 
-      const mailtoLink = `mailto:h.suzuki.028@gmail.com?subject=Message from Perpeture website&body=${encodeURIComponent(emailBody)}`;
-      window.location.href = mailtoLink;
+    emailjs.send(
+      'service_cvy0zb6',
+      'template_x70ax2q',
+      { ...this.form },
+      { publicKey: 'W8luC9ul7Wgdj9Zdh' }
+    )
+      .then(
+        () => {
+          this.showMessage(true);
 
-      this.showMessage(true);
-
-      (document.getElementById('full-name') as HTMLInputElement).value = '';
-      (document.getElementById('company') as HTMLInputElement).value = '';
-      (document.getElementById('email') as HTMLInputElement).value = '';
-      (document.getElementById('country-code') as HTMLInputElement).value = '+64';
-      (document.getElementById('phone') as HTMLInputElement).value = '';
-      (document.getElementById('message') as HTMLTextAreaElement).value = '';
-    } catch (error) {
-      this.showMessage(false);
-    }
+          // Clear form fields if successful
+          this.form = {
+            full_name: '',
+            company: '',
+            email: '',
+            country_code: '+64',
+            phone: '',
+            message: ''
+          };
+          this.formSubmitted = false;
+        },
+        (error) => {
+          console.error('FAILED...', (error as EmailJSResponseStatus).text);
+          this.showMessage(false);
+          this.formSubmitted = false;
+        }
+      );
   }
 
   showMessage(success: boolean): void {

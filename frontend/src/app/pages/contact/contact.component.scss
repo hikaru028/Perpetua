@@ -118,13 +118,13 @@ p {
         height: 38px;
         font-family: 'Sohne', sans-serif;
         font-size: 1.5rem;
-        padding: 2px;
-        transition: right 3s ease-in-out;
+        padding: 2px 5px;
+        transition: right 0.3s ease-in-out;
     }
 
     .success-msg {
         color: #0e0e01;
-        background-color: #74ff89;
+        background-color: #8bfb9c;
     }
 
     .error-msg {
@@ -279,6 +279,20 @@ p {
                 transform: translateX(2px);
                 color: #a8a8a8;
             }
+
+
+            &:disabled {
+                color: #a8a8a8;
+                cursor: not-allowed;
+
+                .bi-arrow-right-short {
+                    color: #a8a8a8;
+                }
+            }
+        }
+
+        .sending {
+            color: #a8a8a8;
         }
     }
 }
