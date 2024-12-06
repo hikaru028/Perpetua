@@ -30,7 +30,7 @@ export class ProjectsComponent implements OnInit {
   // Lazy loading
   visibleProjects: IProject[] = [];
   private allProjects: IProject[] = [];
-  projectsToLoad: number = 6;
+  projectsToLoad: number = 12;
   loadMoreButtonVisible: boolean = false;
 
   projectService: ProjectService = inject(ProjectService);
