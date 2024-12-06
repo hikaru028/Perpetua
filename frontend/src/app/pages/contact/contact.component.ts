@@ -2,7 +2,7 @@
 import { Title, Meta } from '@angular/platform-browser';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
@@ -23,6 +23,7 @@ import { OfficeService } from '../../shared/office.service';
     CommonModule,
     LocationCardComponent,
     FormsModule,
+    ReactiveFormsModule,
     TranslateModule
   ],
   templateUrl: './contact.component.html',
@@ -37,14 +38,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   flags: IFlag[] = [];
   selectedFlagUrl: string | null = '';
   selectedCountryName: string = 'New Zealand';
-  form: IMessage = {
-    full_name: '',
-    company: '',
-    email: '',
-    country_code: '',
-    phone: '',
-    message: ''
-  }
+  contactForm: FormGroup;
   formSubmitted: boolean = false;
   strapiUrl = environment.strapiMediaUrl;
   private intervalId: any;
@@ -61,14 +55,14 @@ export class ContactComponent implements OnInit, OnDestroy {
   ) {
     this.currentLanguage = this.translationHelper.getCurrentLanguage();
     this.offices$ = this.officeService.offices$;
-    // this.form = this.fb.group({
-    //   full_name: ['', Validators.required],
-    //   company: [''],
-    //   email: ['', [Validators.required, Validators.email]],
-    //   country_code: ['+64'],
-    //   phone: [''],
-    //   message: ['', Validators.required]
-    // });
+    this.contactForm = this.fb.group({
+      full_name: ['', Validators.required],
+      company: [''],
+      email: ['', [Validators.required, Validators.email]],
+      country_code: ['+64'],
+      phone: [''],
+      message: ['', Validators.required]
+    });
   }
 
   ngOnInit(): void {
@@ -86,7 +80,7 @@ export class ContactComponent implements OnInit, OnDestroy {
           ...flag.flag_image,
           url: flag.flag_image && flag.flag_image.url
             ? this.strapiUrl + flag.flag_image.url
-            : "../../../assets/images/no-flag.png" // Fallback if the URL is missing
+            : "../../../assets/images/no-flag.png"
         }
       }));
       this.setDefaultFlag('+64');
@@ -106,7 +100,6 @@ export class ContactComponent implements OnInit, OnDestroy {
   setDefaultFlag(defaultCode: string): void {
     console.log("defaultCode:", defaultCode);
     const matchingFlag = this.flags.find(flag => flag.country_code === defaultCode);
-    console.log(matchingFlag)
     if (matchingFlag) {
       this.selectedFlagUrl = matchingFlag.flag_image.url;
       this.selectedCountryName = matchingFlag.country;
@@ -171,36 +164,26 @@ export class ContactComponent implements OnInit, OnDestroy {
     }
   }
 
-  verifyAndSendFormEmail(): void {
-    const confirmation = window.confirm('Are you sure you want to send this message?');
-    if (confirmation) {
-      this.sendMessage();
-    }
-  }
-
-
   public sendMessage() {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+
     this.formSubmitted = true;
 
     emailjs.send(
       'service_cvy0zb6',
       'template_x70ax2q',
-      { ...this.form },
+      this.contactForm.value,
       { publicKey: 'W8luC9ul7Wgdj9Zdh' }
     )
       .then(
         () => {
           this.showMessage(true);
-
-          // Clear form fields if successful
-          this.form = {
-            full_name: '',
-            company: '',
-            email: '',
-            country_code: '+64',
-            phone: '',
-            message: ''
-          };
+          this.contactForm.reset({
+            country_code: '+64'  // Default value for country code
+          });
           this.formSubmitted = false;
         },
         (error) => {

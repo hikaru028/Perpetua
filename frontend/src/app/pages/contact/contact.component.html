@@ -51,48 +51,62 @@
     <!-- Form -->
     <section class="form-section">
         <h1>{{ 'contact.nav.message' | translate }}</h1>
-        <form class="form-container" aria-labelledby="form-title">
+        <form [formGroup]="contactForm" class="form-container" (ngSubmit)="sendMessage()" aria-labelledby="form-title">
             <div class="form-wrapper">
                 <div class="input-wrapper">
                     <label id="full-name-label" for="full-name">Full Name*</label>
-                    <input id="full-name" type="text" name="full-name" placeholder="Full name*"
-                        [(ngModel)]="form.full_name" aria-required="true" aria-labelledby="full-name-label" required>
+                    <input id="full-name" type="text" formControlName="full_name" placeholder="Full name*"
+                        aria-required="true" aria-labelledby="full-name-label"
+                        [ngClass]="{ 'input-error': contactForm.get('full_name')?.invalid && contactForm.get('full_name')?.touched }">
+                    <div *ngIf="contactForm.get('full_name')?.invalid && contactForm.get('full_name')?.touched"
+                        class="error-message">
+                        Full name is required.
+                    </div>
                 </div>
                 <div class="input-wrapper">
                     <label id="company-label" for="company">Company</label>
-                    <input id="company" type="text" name="company" placeholder="Company" [(ngModel)]="form.company"
+                    <input id="company" type="text" formControlName="company" placeholder="Company"
                         aria-labelledby="company-label">
                 </div>
             </div>
             <div class="form-wrapper">
                 <div class="input-wrapper">
                     <label id="email-label" for="email">Email*</label>
-                    <input id="email" type="email" name="email" placeholder="Email*" [(ngModel)]="form.email"
-                        aria-required="true" aria-labelledby="email-label" required>
+                    <input id="email" type="email" formControlName="email" placeholder="Email*" aria-required="true"
+                        aria-labelledby="email-label"
+                        [ngClass]="{ 'input-error': contactForm.get('email')?.invalid && contactForm.get('email')?.touched }">
+                    <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+                        class="error-message">
+                        Please enter a valid email address.
+                    </div>
                 </div>
                 <div class="input-wrapper phone-wrapper">
                     <div class="image-wrapper">
                         <img [src]="selectedFlagUrl" [alt]="'Flag of ' + selectedCountryName" />
                     </div>
                     <label id="country-code-label" for="country-code">Country Code</label>
-                    <input id="country-code" class="country-code" type="text" name="country-code" placeholder="+"
-                        value="+64" [(ngModel)]="form.country_code" (input)="onCountryCodeInput($event)"
-                        aria-labelledby="country-code-label">
+                    <input id="country-code" class="country-code" type="text" formControlName="country_code"
+                        placeholder="+" (input)="onCountryCodeInput($event)" aria-labelledby="country-code-label">
                     <label id="phone-label" for="phone">Phone</label>
-                    <input id="phone" type="tel" name="phone" placeholder="Phone" aria-labelledby="phone-label">
+                    <input id="phone" type="tel" formControlName="phone" placeholder="Phone"
+                        aria-labelledby="phone-label">
                 </div>
             </div>
             <div class="form-wrapper">
                 <div class="input-wrapper message-wrapper">
                     <label id="message-label" for="message">Message</label>
-                    <textarea #messageTextarea id="message" name="message" placeholder="Message"
-                        [(ngModel)]="form.message" required (input)="autoResize(messageTextarea)"
-                        aria-labelledby="message-label"></textarea>
+                    <textarea #messageTextarea id="message" formControlName="message" placeholder="Message" required
+                        (input)="autoResize(messageTextarea)" aria-labelledby="message-label"
+                        [ngClass]="{ 'input-error': contactForm.get('message')?.invalid && contactForm.get('message')?.touched }">
+                    </textarea>
+                    <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+                        class="error-message">
+                        Please write a message.
+                    </div>
                 </div>
             </div>
-            <div class=" submit-button-wrapper">
-                <button type="button" class="submit-button" [disabled]="formSubmitted"
-                    [ngClass]="{'sending': formSubmitted}" (click)="verifyAndSendFormEmail()">
+            <div class="submit-button-wrapper">
+                <button type="submit" class="submit-button" [disabled]="contactForm.invalid">
                     {{ formSubmitted ? 'Sending...' : 'Send' }}
                     <i class="bi bi-arrow-right-short"></i>
                 </button>

@@ -154,6 +154,11 @@ p {
             .input-wrapper {
                 width: 100%;
 
+                .error-message {
+                    color: #ff6767;
+                    font-size: 1.25rem;
+                    margin-top: 5px;
+                }
             }
 
             label {
@@ -174,6 +179,10 @@ p {
 
                 &:focus {
                     outline: none;
+                }
+
+                &.input-error {
+                    border-bottom: 2px solid #ff6767;
                 }
             }
 
@@ -204,6 +213,10 @@ p {
                 box-sizing: border-box;
                 resize: none;
                 overflow: hidden;
+
+                &.input-error {
+                    border-bottom: 2px solid #ff6767;
+                }
             }
 
             ::placeholder {
@@ -288,6 +301,10 @@ p {
                 .bi-arrow-right-short {
                     color: #a8a8a8;
                 }
+            }
+
+            .error-message {
+                color: #ff6767;
             }
         }
 
