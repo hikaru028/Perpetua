@@ -97,8 +97,7 @@ export interface ISlide {
     id: number,
     documentId: string,
     company_name: string,
-    slide_image: IImage,
-    image_title: string,
+    project_image: IProject,
 }
 
 export interface IProject {

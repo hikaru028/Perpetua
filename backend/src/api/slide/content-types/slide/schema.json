@@ -12,23 +12,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "image_title": {
-      "type": "string"
-    },
-    "slide_image": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "company_name": {
       "type": "string",
       "required": true
+    },
+    "project_image": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project",
+      "inversedBy": "slide"
     }
   }
 }

@@ -878,6 +878,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     project_title: Schema.Attribute.String & Schema.Attribute.Required;
     project_type: Schema.Attribute.Enumeration<['software', 'website', 'app']>;
     publishedAt: Schema.Attribute.DateTime;
+    slide: Schema.Attribute.Relation<'oneToOne', 'api::slide.slide'>;
     thumbnail_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
@@ -903,15 +904,14 @@ export interface ApiSlideSlide extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    image_title: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::slide.slide'> &
       Schema.Attribute.Private;
+    project_image: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::project.project'
+    >;
     publishedAt: Schema.Attribute.DateTime;
-    slide_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    > &
-      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

@@ -8,7 +8,7 @@
         <div *ngFor="let slide of slides; let i = index" class="carousel-item"
             [ngClass]="{ 'active': i === currentIndex, 'previous': i === previousIndex }"
             [ngStyle]="getTransformStyle(i)">
-            <img [src]="slide.slide_image.url" alt="Slide {{ i + 1 }}" class="d-block w-100">
+            <img [src]="slide.project_image.thumbnail_image.url " alt="Slide {{ i + 1 }}" class="d-block w-100">
         </div>
     </div>
     <!-- Header -->

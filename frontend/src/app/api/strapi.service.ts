@@ -19,7 +19,7 @@ export class StrapiService {
   }
 
   getSlides(): Observable<APIResponseModel> {
-    return this.http.get<APIResponseModel>(`${this.apiUrl}/slides?populate=*`, {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/slides?populate[project_image][populate]=thumbnail_image`, {
       headers: this.getHeaders(),
     });
   }

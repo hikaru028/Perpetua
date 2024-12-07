@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 // Components
 import { SlidesSkeletonComponent } from '../../../../../../components/skeletons/slides-skeleton/slides-skeleton.component';
 // Services
+import { environment } from '../../../../../../../environments/environment';
 import { StrapiService } from '../../../../../../api/strapi.service';
 import { ISlide, APIResponseModel } from '../../../../../../../util/interfaces';
 
@@ -16,7 +17,7 @@ import { ISlide, APIResponseModel } from '../../../../../../../util/interfaces';
 export class SlidesComponent implements OnInit, AfterViewInit, OnDestroy {
   strapiService = inject(StrapiService);
   cdr = inject(ChangeDetectorRef);
-
+  strapiUrl = environment.strapiMediaUrl;
   slides: ISlide[] = [];
   isLoading: boolean = false;
   autoSlideInterval: any;
@@ -34,13 +35,19 @@ export class SlidesComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.strapiService.getSlides().subscribe((result: APIResponseModel) => {
       this.slides = result.data;
-      this.slides = this.slides.map(slide => ({
+      this.slides = result.data.map((slide: ISlide) => ({
         ...slide,
-        slide_image: {
-          ...slide.slide_image,
-          url: slide.slide_image.url || "../../../../../assets/images/img_n.a.png"
-        }
+        project_image: {
+          ...slide.project_image,
+          thumbnail_image: {
+            ...slide.project_image.thumbnail_image,
+            url: this.strapiUrl + slide.project_image.thumbnail_image.url || "../../../../../assets/images/img_n.a.png",
+          },
+        },
       }));
+
+
+      console.log(this.slides);
 
       this.array1 = [...this.slides];
       this.array2 = [...this.slides];

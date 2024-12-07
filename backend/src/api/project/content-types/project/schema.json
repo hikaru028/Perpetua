@@ -87,6 +87,12 @@
         "videos",
         "audios"
       ]
+    },
+    "slide": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::slide.slide",
+      "mappedBy": "project_image"
     }
   }
 }
