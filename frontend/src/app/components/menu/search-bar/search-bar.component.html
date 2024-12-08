@@ -22,7 +22,8 @@
             [innerHTML]="result.highlightedTitle">
             {{ result.title }}
         </div>
-        <div *ngIf="searchResults.length > 0" class="search-result-all" routerLink="/articles">
+        <div *ngIf="searchResults.length > 0" class="search-result-all"
+            [routerLink]="data === 'articles' ? '/articles' : '/projects'">
             <p>Browse all results</p><i class="bi bi-arrow-right-short"></i>
         </div>
     </div>

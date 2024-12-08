@@ -1,10 +1,13 @@
 // Libraries
-import { Component, HostListener, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation, ViewChild, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
+import { Observable } from 'rxjs';
 // Components
 import { SearchBarComponent } from "./search-bar/search-bar.component";
 import { MenuService } from '../../shared/menu.service';
+import { ProjectService } from '../../shared/project.service';
+import { IProject } from '../../../util/interfaces';
 
 @Component({
   selector: 'app-menu',
@@ -16,6 +19,7 @@ import { MenuService } from '../../shared/menu.service';
 })
 
 export class MenuComponent implements OnInit {
+  projects$: Observable<IProject[]>;
   selectedMenuItem: string | null = null;
   searchProjects: string = '';
   searchContent: string = '';
@@ -23,7 +27,14 @@ export class MenuComponent implements OnInit {
   @ViewChild('articlesSearchBar') articlesSearchBar!: SearchBarComponent;
   private clickedItem: string | null = null;
 
-  constructor(private translateService: TranslateService, private menuService: MenuService) { }
+  projectService: ProjectService = inject(ProjectService);
+
+  constructor(
+    private translateService: TranslateService,
+    private menuService: MenuService
+  ) {
+    this.projects$ = this.projectService.projects$;
+  }
 
   ngOnInit(): void {
     this.searchProjects = this.translateService.instant('menu.search.projects');
@@ -87,6 +98,16 @@ export class MenuComponent implements OnInit {
     this.selectedMenuItem = null;
   }
 
+  sortProjects(type: string): void {
+    this.projectService.filterProjects(type);
+  }
+
+  onKeyDown(e: KeyboardEvent, type: string): void {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      this.sortProjects(type);
+    }
+  }
 
   onMenuHide(menuItem: string, event: Event) {
     event.stopPropagation();

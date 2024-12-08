@@ -40,13 +40,16 @@
             <li class="submenu-item" routerLink="/projects/c4a5os0cv1u5nuet6x7bol6z">First Class First Aid Website</li>
         </ul>
         <ul class="submenu-item-wrapper">
-            <li class="page-link" routerLink="/projects">
+            <li class="page-link" routerLink="/projects" (click)="sortProjects('all')"
+                (keydown)="onKeyDown($event, 'all')">
                 <p>{{ 'project.nav.all' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
-            <li class="page-link" routerLink="/projects">
+            <li class="page-link" routerLink="/projects" (click)="sortProjects('software')"
+                (keydown)="onKeyDown($event, 'software')">
                 <p>{{ 'project.nav.type' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
-            <li class="page-link" routerLink="/projects">
+            <li class="page-link" routerLink="/projects" (click)="sortProjects('industry')"
+                (keydown)="onKeyDown($event, 'industry')">
                 <p>{{ 'project.nav.industry' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
         </ul>
