@@ -1,13 +1,14 @@
 // Libraries
 import { Component, Input, OnInit, inject, ViewChild, HostListener, ElementRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 // Components
 import { IProject, IArticle, APIResponseModel } from '../../../../util/interfaces';
 // Services
 import { StrapiService } from '../../../api/strapi.service';
+import { MenuService } from '../../../shared/menu.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -16,6 +17,7 @@ import { StrapiService } from '../../../api/strapi.service';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
+
 export class SearchBarComponent implements OnInit {
   @Input() placeholder: string = '';
   @Input() data: 'projects' | 'articles' = 'projects';
@@ -28,7 +30,11 @@ export class SearchBarComponent implements OnInit {
   strapiService = inject(StrapiService);
   sanitizer = inject(DomSanitizer);
 
-  constructor(private renderer: Renderer2) { }
+  constructor(
+    private renderer: Renderer2,
+    private menuService: MenuService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     if (this.data === 'projects') {
@@ -101,6 +107,19 @@ export class SearchBarComponent implements OnInit {
         this.renderer.removeClass(border, 'visible');
       }
     }
+  }
+
+  onClickAll(data: any) {
+    if (data === 'projects') {
+      this.router.navigate(['/projects/results'], { queryParams: { keyword: this.searchControl.value } });
+    } else if (data === 'articles') {
+      this.router.navigate(['/articles/results'], { queryParams: { keyword: this.searchControl.value } });
+    }
+  }
+
+  onKeyDown(event: KeyboardEvent, data: any) {
+    event.preventDefault();
+    this.onClickAll(data);
   }
 
   getHighlightedText(text: string, keyword: string): SafeHtml {
