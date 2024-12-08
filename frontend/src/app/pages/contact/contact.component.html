@@ -99,7 +99,7 @@
                         (input)="autoResize(messageTextarea)" aria-labelledby="message-label"
                         [ngClass]="{ 'input-error': contactForm.get('message')?.invalid && contactForm.get('message')?.touched }">
                     </textarea>
-                    <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+                    <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
                         class="error-message">
                         Please write a message.
                     </div>

@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 // Components
 import { SearchBarComponent } from "./search-bar/search-bar.component";
+import { MenuService } from '../../shared/menu.service';
 
 @Component({
   selector: 'app-menu',
@@ -22,7 +23,7 @@ export class MenuComponent implements OnInit {
   @ViewChild('articlesSearchBar') articlesSearchBar!: SearchBarComponent;
   private clickedItem: string | null = null;
 
-  constructor(private translateService: TranslateService) { }
+  constructor(private translateService: TranslateService, private menuService: MenuService) { }
 
   ngOnInit(): void {
     this.searchProjects = this.translateService.instant('menu.search.projects');
@@ -31,6 +32,10 @@ export class MenuComponent implements OnInit {
     this.translateService.onLangChange.subscribe(() => {
       this.searchProjects = this.translateService.instant('menu.search.projects');
       this.searchContent = this.translateService.instant('menu.search.articles');
+    });
+
+    this.menuService.resetMenu$.subscribe(() => {
+      this.clearSelectedMenu();
     });
   }
 
@@ -73,19 +78,13 @@ export class MenuComponent implements OnInit {
       }
     }
 
-    const clickedMenuItem = document.getElementById(menuItem);
-    if (clickedMenuItem) {
-      clickedMenuItem.classList.add('selected');
-      const menuWrapper = clickedMenuItem.closest('.menu-wrapper');
-      if (menuWrapper) {
-        const chevron = menuWrapper.querySelector('.chevron');
-        if (chevron) {
-          chevron.classList.add('visible');
-        }
-      }
-    }
-
     this.selectedMenuItem = menuItem;
+  }
+
+  clearSelectedMenu() {
+    const allMenuItems = document.querySelectorAll('.menu-item');
+    allMenuItems.forEach(item => item.classList.remove('selected', 'active'));
+    this.selectedMenuItem = null;
   }
 
 
