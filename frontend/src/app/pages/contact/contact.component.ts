@@ -143,9 +143,12 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   autoResize(textarea: HTMLTextAreaElement): void {
     textarea.style.height = 'auto';
+
     if (textarea.value.trim() === '') {
       textarea.style.height = '38px';
+      textarea.classList.remove('first-line');
     } else {
+      textarea.style.height = '38px';
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
   }

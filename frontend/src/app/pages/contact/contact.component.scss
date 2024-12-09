@@ -97,6 +97,7 @@ p {
         .email,
         .phone {
             font-family: 'Sohne' !important;
+            cursor: pointer;
         }
 
         .email {
@@ -184,6 +185,13 @@ p {
                 &.input-error {
                     border-bottom: 2px solid #ff6767;
                 }
+            }
+
+            .first-line {
+                max-height: 38px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
 
             .phone-wrapper {

@@ -19,7 +19,7 @@ export class LocationCardComponent {
     let address = '';
     if (location === 'Christchurch') address = '4 Ash Street, Christchurch Central City, Christchurch 8011'
     if (location === 'Sydney') address = '333 George Street, Sydney, NSW 2000'
-    if (location === 'Yokohama') address = 'Japan, 〒231-0014 Kanagawa, Yokohama, Naka Ward, Tokiwacho, 3 Chome−30番1 SOLACUBE横濱関内 3~4F'
+    if (location === 'Yokohama') address = 'Japan, 〒231-0014 Kanagawa, Yokohama, Naka Ward, Tokiwacho, 3 Chome−30番1 SOLACUBE横濱関内'
     const encodedAddress = encodeURIComponent(address);
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
 

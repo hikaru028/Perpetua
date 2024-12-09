@@ -68,6 +68,11 @@ export class OfficeDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant'
+    });
+
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {

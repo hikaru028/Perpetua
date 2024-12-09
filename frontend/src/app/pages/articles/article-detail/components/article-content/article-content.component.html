@@ -11,7 +11,7 @@
         <div class="content-left">
             <div class="related-articles-container">
                 <p class="title">Related articles</p>
-                <div *ngFor="let article of moreArticles$ | async" class="related-article"
+                <div *ngFor="let article of moreArticles$ | async | slice: 0:4" class="related-article"
                     (click)="navigateToArticle(article.documentId)"
                     (keydown)="handleKeydown($event, article.documentId)">
                     <p class="related-article-title">{{ article.title }}

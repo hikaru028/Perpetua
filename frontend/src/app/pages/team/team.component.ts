@@ -98,10 +98,10 @@ export class TeamComponent implements OnInit, OnDestroy {
     const members = this.allMembers;
 
     if (filter === 'office') {
-      const locations = ['Christchurch', 'Sydney', 'Yokohama'];
+      const locations = ['Christchurch', 'Auckland', 'Sydney', 'Yokohama'];
       this.membersByCategory = locations.map(location => ({
         category: this.sanitizer.bypassSecurityTrustHtml(location),
-        members: members.filter((member: IMember) => member.office_location?.office_location === location)
+        members: members.filter((member: IMember) => member.location === location)
       }));
     } else if (filter === 'role') {
       const roleCategories = [

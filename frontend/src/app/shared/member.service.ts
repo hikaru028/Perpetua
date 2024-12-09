@@ -58,11 +58,11 @@ export class MemberService {
         } else if (type === 'office') {
             this.selectedFilterSubject.next(type);
 
-            const locationOrder = ['Christchurch', 'Sydney', 'Yokohama'];
+            const locationOrder = ['Christchurch', 'Auckland', 'Sydney', 'Yokohama'];
             const filteredMembers = members
-                .filter(member => locationOrder.includes(member.office_location.office_location))
+                .filter(member => locationOrder.includes(member.location))
                 .sort((a, b) => {
-                    const locationComparison = locationOrder.indexOf(a.office_location.office_location) - locationOrder.indexOf(b.office_location.office_location);
+                    const locationComparison = locationOrder.indexOf(a.location) - locationOrder.indexOf(b.location);
                     if (locationComparison !== 0) {
                         return locationComparison;
                     }

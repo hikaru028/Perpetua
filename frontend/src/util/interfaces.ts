@@ -58,7 +58,7 @@ export interface IMember {
     first_name: string,
     last_name: string,
     role: string,
-    office_location: IOffice,
+    location: string,
     email: string,
     phone: string,
     portrait_image: IImage,

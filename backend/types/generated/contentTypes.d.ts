@@ -753,9 +753,8 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
       'api::member.member'
     > &
       Schema.Attribute.Private;
-    office_location: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::office.office'
+    location: Schema.Attribute.Enumeration<
+      ['Christchurch', 'Auckland', 'Sydney', 'Yokohama']
     >;
     phone: Schema.Attribute.String;
     portrait_image: Schema.Attribute.Media<
@@ -800,7 +799,6 @@ export interface ApiOfficeOffice extends Struct.CollectionTypeSchema {
       'api::office.office'
     > &
       Schema.Attribute.Private;
-    members: Schema.Attribute.Relation<'oneToMany', 'api::member.member'>;
     office_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;

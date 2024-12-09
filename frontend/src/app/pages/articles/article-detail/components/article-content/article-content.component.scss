@@ -52,22 +52,26 @@ section {
                 .related-article {
                     padding: 25px 0;
                     border-bottom: 2px solid #989898;
-                    transform: color 0.2s ease;
+
+                    .related-article-title {
+                        cursor: pointer;
+                        transform: color 0.1s ease;
+                    }
 
                     i {
                         font-size: 1.5rem;
                         margin: 5px 0 0 -2px;
                         transform: rotateZ(45deg) translateY(3px);
                         display: inline-block;
-                        transform: color 0.2s ease;
+                        transform: color 0.1s ease;
                     }
-                }
 
-                &:hover {
+                    &:hover {
 
-                    .related-article-title,
-                    i {
-                        color: #a8a8a8;
+                        .related-article-title,
+                        i {
+                            color: #a8a8a8;
+                        }
                     }
                 }
             }

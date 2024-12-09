@@ -6,8 +6,7 @@
         <p class="name">{{ member.first_name }}&nbsp;{{ member.last_name }}</p>
         <span class="role" *ngIf="filter === 'all'">{{ member.role }}&nbsp;&middot;&nbsp;</span>
         <span class="role" *ngIf="filter === 'office'">{{ member.role }}</span>
-        <span class="role" *ngIf="filter === 'all' || filter === 'role'">{{ member.office_location.office_location
-            }}</span>
+        <span class="role" *ngIf="filter === 'all' || filter === 'role'">{{ member.location }}</span>
     </div>
 </div>
 

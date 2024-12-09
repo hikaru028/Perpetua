@@ -72,6 +72,12 @@ export class StrapiService {
     });
   }
 
+  getAllCareers(): Observable<APIResponseModel> {
+    return this.http.get<APIResponseModel>(`${this.apiUrl}/careers?populate=*`, {
+      headers: this.getHeaders(),
+    });
+  }
+
   getAllFlags(): Observable<APIResponseModel> {
     return this.http.get<APIResponseModel>(`${this.apiUrl}/flags?populate=*`, {
       headers: this.getHeaders(),

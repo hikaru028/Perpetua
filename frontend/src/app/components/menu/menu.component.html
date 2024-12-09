@@ -32,12 +32,10 @@
 <div id="submenu-projects" class="submenu-container">
     <div class="submenu-box">
         <ul class="submenu-item-wrapper">
-            <li class="submenu-item" routerLink="/projects">MyOCP App</li>
-            <li class="submenu-item" routerLink="/projects/hd5436ledu5nx2sbyqd1l1qu">Duncan Taylor Builders Website</li>
-            <li class="submenu-item" routerLink="/">Perpetua Website</li>
-            <li class="submenu-item" routerLink="/projects/uwy020lswtkzqz0qv6z1p04h">OCP Group Website</li>
-            <li class="submenu-item" routerLink="/projects">Ecoglo Cost-calculator</li>
-            <li class="submenu-item" routerLink="/projects/c4a5os0cv1u5nuet6x7bol6z">First Class First Aid Website</li>
+            <li *ngFor="let project of filteredProjects$ | async" class="submenu-item"
+                [routerLink]="'/projects/' + project.documentId">
+                {{ project.project_title }}
+            </li>
         </ul>
         <ul class="submenu-item-wrapper">
             <li class="page-link" routerLink="/projects" (click)="sortProjects('all')"

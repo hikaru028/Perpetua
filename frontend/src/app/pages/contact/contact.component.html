@@ -96,7 +96,7 @@
                 <div class="input-wrapper message-wrapper">
                     <label id="message-label" for="message">Message</label>
                     <textarea #messageTextarea id="message" formControlName="message" placeholder="Message" required
-                        (input)="autoResize(messageTextarea)" aria-labelledby="message-label"
+                        (input)="autoResize(messageTextarea)" aria-labelledby="message-label" class="first-line"
                         [ngClass]="{ 'input-error': contactForm.get('message')?.invalid && contactForm.get('message')?.touched }">
                     </textarea>
                     <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"

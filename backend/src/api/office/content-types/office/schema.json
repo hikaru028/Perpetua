@@ -71,12 +71,6 @@
     "ward": {
       "type": "string"
     },
-    "members": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::member.member",
-      "mappedBy": "office_location"
-    },
     "career": {
       "type": "relation",
       "relation": "oneToOne",

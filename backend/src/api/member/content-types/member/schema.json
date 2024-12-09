@@ -43,11 +43,14 @@
     "phone": {
       "type": "string"
     },
-    "office_location": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::office.office",
-      "inversedBy": "members"
+    "location": {
+      "type": "enumeration",
+      "enum": [
+        "Christchurch",
+        "Auckland",
+        "Sydney",
+        "Yokohama"
+      ]
     }
   }
 }
