@@ -60,7 +60,6 @@ export class AboutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.careers = this.careerService.getAllCareers();
     this.officeService.offices$.subscribe();
     // Meta info for SEO
     this.titleService.setTitle('About us - Perpeture');
@@ -98,6 +97,10 @@ export class AboutComponent implements OnInit, OnDestroy {
       if (this.members.length > 0) {
         this.selectedMember = this.members[0];
       }
+    });
+
+    this.careerService.careers$.subscribe((careers) => {
+      this.careers = careers;
     });
 
     this.route.fragment.subscribe((fragment) => {

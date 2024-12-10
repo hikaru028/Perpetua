@@ -13,7 +13,7 @@
             <img [src]="" [alt]="">
         </div>
         <!-- Contact info -->
-        <menu>
+        <menu id="contactInformation">
             <li *ngFor="let office of (offices$ | async); let i = index" class="location-button"
                 [ngClass]="{'selected': selectedLocation === office.office_location}"
                 (click)="onLocationClick(office.office_location)"
@@ -49,7 +49,7 @@
         </div>
     </section>
     <!-- Form -->
-    <section class="form-section">
+    <section id="contactMessage" class="form-section">
         <h1>{{ 'contact.nav.message' | translate }}</h1>
         <form [formGroup]="contactForm" class="form-container" (ngSubmit)="sendMessage()" aria-labelledby="form-title">
             <div class="form-wrapper">
@@ -117,7 +117,7 @@
         </form>
     </section>
     <!-- Location -->
-    <section class="location-section">
+    <section id="contactLocations" class="location-section">
         <h1>{{ 'contact.nav.locations' | translate }}</h1>
         <div class="row row-cols-1 row-cols-md-2 g-4">
             <div *ngFor="let office of (offices$ | async)" class="col">

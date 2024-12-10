@@ -1,8 +1,6 @@
 // Libraries
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
 // Services
 import { ICareer, IOffice } from '../../../../../util/interfaces';
 
@@ -15,6 +13,6 @@ import { ICareer, IOffice } from '../../../../../util/interfaces';
 })
 
 export class CareerCardComponent {
-  @Input() careers: ICareer[] = [];
-  @Input() career: ICareer | null = null;
+  @Input() careers?: ICareer[] = [];
+  @Input() career?: ICareer | null = null;
 }

@@ -2,6 +2,7 @@
 import { Title, Meta } from '@angular/platform-browser';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
@@ -48,6 +49,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   constructor(
     private titleService: Title,
     private metaService: Meta,
+    private route: ActivatedRoute,
     private strapiService: StrapiService,
     private translationHelper: TranslationHelper,
     private officeService: OfficeService,
@@ -84,6 +86,12 @@ export class ContactComponent implements OnInit, OnDestroy {
         }
       }));
       this.setDefaultFlag('+64');
+    });
+
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment) {
+        this.scrollToSection(fragment);
+      }
     });
   }
 
@@ -214,5 +222,12 @@ export class ContactComponent implements OnInit, OnDestroy {
         errorMessage.classList.remove('visible');
       }
     }, 5000);
+  }
+
+  scrollToSection(sectionId: string): void {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }

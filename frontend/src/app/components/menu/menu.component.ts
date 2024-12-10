@@ -1,7 +1,7 @@
 // Libraries
 import { Component, HostListener, OnInit, ViewEncapsulation, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -42,7 +42,8 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private translateService: TranslateService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private router: Router
   ) {
     this.projects$ = this.projectService.projects$;
     this.filteredProjects$ = this.projects$.pipe(
@@ -63,8 +64,10 @@ export class MenuComponent implements OnInit {
       this.searchContent = this.translateService.instant('menu.search.articles');
     });
 
-    this.menuService.resetMenu$.subscribe(() => {
-      this.clearSelectedMenu();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.highlightActiveMenuItem(event.urlAfterRedirects);
+      }
     });
   }
 
@@ -85,7 +88,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  onMenuHover(menuItem: string, event: Event) {
+  onMenuHover(menuItem: string, event: Event): void {
     event.stopPropagation();
 
     if (this.projectsSearchBar) {
@@ -94,8 +97,6 @@ export class MenuComponent implements OnInit {
     if (this.articlesSearchBar) {
       this.articlesSearchBar.removeBottomBorder();
     }
-
-    if (this.clickedItem === menuItem) return;
 
     this.resetSubmenusAndChevron();
 
@@ -108,15 +109,11 @@ export class MenuComponent implements OnInit {
       if (submenuBox) {
         submenuBox.classList.add('visible');
       }
-
-      if (correspondingChevron) {
-        correspondingChevron.classList.add('visible');
-      }
     }
-
-    this.selectedMenuItem = menuItem;
+    if (correspondingChevron) {
+      correspondingChevron.classList.add('visible');
+    }
   }
-
 
   @HostListener('document:mousemove', ['$event'])
   onDocumentMouseMove(event: MouseEvent) {
@@ -134,33 +131,75 @@ export class MenuComponent implements OnInit {
 
     const chevrons = document.querySelectorAll('.chevron');
     chevrons.forEach(chevron => chevron.classList.remove('visible'));
-
-    const menuWrappers = document.querySelectorAll('.menu-wrapper');
-    menuWrappers.forEach(wrapper => {
-      const menuButton = wrapper.querySelector('.menu-item');
-      if (menuButton) {
-        menuButton.classList.remove('selected', 'active');
-      }
-    });
   }
 
-  onMenuHide(menuItem: string, event: Event) {
+  onMenuHide(menuItem: string, event: Event): void {
     event.stopPropagation();
     this.clickedItem = menuItem;
 
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => item.classList.remove('selected', 'active'));
+
     const clickedMenuItem = document.getElementById(menuItem);
     if (clickedMenuItem) {
-      clickedMenuItem.classList.add('active');
+      clickedMenuItem.classList.add('selected', 'active');
     }
 
     const submenus = document.querySelectorAll('.submenu-container');
     submenus.forEach(submenu => submenu.classList.remove('visible'));
 
-    const correspondingChevron = document.querySelector(`#${menuItem} + .chevron`);
-    if (correspondingChevron) {
-      correspondingChevron.classList.remove('visible');
-    }
+    const chevrons = document.querySelectorAll('.chevron');
+    chevrons.forEach(chevron => chevron.classList.remove('visible'));
 
-    this.selectedMenuItem = null;
+    this.selectedMenuItem = menuItem;
+  }
+
+  onKeyDownMenuHide(e: KeyboardEvent, menuItem: string): void {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      this.onMenuHide(menuItem, e);
+    }
+  }
+
+  handleClick(sortType: string, menuItem: string, event: Event): void {
+    event.stopPropagation();
+    this.sortProjects(sortType);
+    this.onMenuHide(menuItem, event);
+  }
+
+  handleKeydown(event: KeyboardEvent, sortType: string, menuItem: string): void {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.sortProjects(sortType);
+      this.onMenuHide(menuItem, event);
+    }
+  }
+
+  private highlightActiveMenuItem(currentUrl: string): void {
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => item.classList.remove('selected', 'active'));
+
+    const matchingMenuItemId = this.getMenuItemIdFromUrl(currentUrl);
+    if (matchingMenuItemId) {
+      const matchingMenuItem = document.getElementById(matchingMenuItemId);
+      if (matchingMenuItem) {
+        matchingMenuItem.classList.add('selected', 'active');
+      }
+    }
+  }
+
+  private getMenuItemIdFromUrl(url: string): string | null {
+    if (url.startsWith('/projects')) {
+      return 'projects';
+    } else if (url.startsWith('/services')) {
+      return 'services';
+    } else if (url.startsWith('/about')) {
+      return 'about';
+    } else if (url.startsWith('/articles')) {
+      return 'blog';
+    } else if (url.startsWith('/contact')) {
+      return 'contact';
+    }
+    return null;
   }
 }
