@@ -6,8 +6,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 // Components
-import { CallActionComponent } from '../../../components/call-action/call-action.component';
-import { FooterComponent } from '../../../components/footer/footer.component';
 import { BackToTopButtonComponent } from '../../../components/buttons/back-to-top-button/back-to-top-button.component';
 import { ArticleContentComponent } from './components/article-content/article-content.component';
 import { MoreArticlesComponent } from './components/more-articles/more-articles.component';

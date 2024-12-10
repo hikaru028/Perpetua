@@ -2,10 +2,8 @@
 import { Meta, Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 // Components
-import { CallActionComponent } from '../../../components/call-action/call-action.component';
-import { FooterComponent } from '../../../components/footer/footer.component';
 import { BackToTopButtonComponent } from '../../../components/buttons/back-to-top-button/back-to-top-button.component';
 import { ProjectDetailSkeletonComponent } from '../../../components/skeletons/project-detail-skeleton/project-detail-skeleton.component';
 import { MoreProjectsComponent } from './components/more-projects/more-projects.component';
@@ -20,10 +18,7 @@ import { environment } from '../../../../environments/environment';
   standalone: true,
   imports: [
     CommonModule,
-    // RouterLink,
     ProjectDetailSkeletonComponent,
-    CallActionComponent,
-    FooterComponent,
     BackToTopButtonComponent,
     MoreProjectsComponent,
     ProjectContentComponent
@@ -39,7 +34,7 @@ export class ProjectDetailComponent implements OnInit {
   constructor(
     private metaService: Meta,
     private titleService: Title,
-    private location: Location,
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private strapiService: StrapiService
   ) { }
@@ -82,6 +77,6 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/projects']);
   }
 }

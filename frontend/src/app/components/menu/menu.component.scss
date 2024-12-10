@@ -47,37 +47,32 @@
             }
         }
 
-
         .chevron {
             font-size: 1rem;
             position: absolute;
-            top: -100%;
-            left: 0px;
+            top: 0;
+            left: 0;
             opacity: 0;
             color: #a8a8a8;
             z-index: 20;
             transition: top 0.1s ease, opacity 0.1s ease;
             z-index: 120;
+
+            &.visible {
+                top: 44.38px;
+                opacity: 1;
+            }
         }
 
-        &:hover .chevron {
-            top: 44.38px;
-            opacity: 1;
-        }
-
-        &.visible .chevron {
-            top: 44.38px;
-            opacity: 1;
-        }
     }
 }
 
 .submenu-container {
     width: 100%;
-    min-height: 263px;
-    max-height: 477px;
+    min-height: 269px;
+    max-height: 483px;
     position: absolute;
-    top: 46px;
+    top: 40px;
     left: 0;
     display: none;
     flex-direction: column;
@@ -94,11 +89,6 @@
         opacity: 1;
         transform: translateY(0);
         transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0s;
-
-        .chevron {
-            top: 44.38px;
-            opacity: 1;
-        }
     }
 
     .submenu-box {

@@ -95,58 +95,58 @@ export class MenuComponent implements OnInit {
       this.articlesSearchBar.removeBottomBorder();
     }
 
-    if (this.clickedItem === menuItem) {
-      return;
-    }
+    if (this.clickedItem === menuItem) return;
 
-    const allWrappers = document.querySelectorAll('.menu-wrapper');
-    allWrappers.forEach((wrapper) => wrapper.classList.remove('visible'));
-
-    const correspondingMenuWrapper = document.getElementById(menuItem)?.parentElement;
-    if (correspondingMenuWrapper) {
-      correspondingMenuWrapper.classList.add('visible');
-    }
+    this.resetSubmenusAndChevron();
 
     const correspondingSubmenu = document.getElementById(`submenu-${menuItem}`);
+    const correspondingChevron = document.querySelector(`#${menuItem} + .chevron`);
     if (correspondingSubmenu) {
       correspondingSubmenu.classList.add('visible');
+
+      const submenuBox = correspondingSubmenu.querySelector('.submenu-box');
+      if (submenuBox) {
+        submenuBox.classList.add('visible');
+      }
+
+      if (correspondingChevron) {
+        correspondingChevron.classList.add('visible');
+      }
     }
-
-    // const submenus = document.querySelectorAll('.submenu-container');
-    // submenus.forEach(submenu => submenu.classList.remove('visible'));
-
-    // const menuWrappers = document.querySelectorAll('.menu-wrapper');
-    // menuWrappers.forEach(wrapper => {
-    //   const menuButton = wrapper.querySelector('.menu-item');
-    //   const chevron = wrapper.querySelector('.chevron');
-    //   if (menuButton) {
-    //     menuButton.classList.remove('selected');
-    //   }
-    //   if (chevron) {
-    //     chevron.classList.remove('visible');
-    //   }
-    // });
-
-    // const correspondingSubmenu = document.getElementById(`submenu-${menuItem}`);
-    // if (correspondingSubmenu) {
-    //   correspondingSubmenu.classList.add('visible');
-
-    //   const submenuBox = correspondingSubmenu.querySelector('.submenu-box');
-    //   if (submenuBox) {
-    //     submenuBox.classList.add('visible');
-    //   }
-    // }
 
     this.selectedMenuItem = menuItem;
   }
 
 
+  @HostListener('document:mousemove', ['$event'])
+  onDocumentMouseMove(event: MouseEvent) {
+    const targetElement = event.target as HTMLElement;
+
+    if (!targetElement.closest('.menu-container') && !targetElement.closest('.submenu-container')) {
+      this.resetSubmenusAndChevron();
+      this.selectedMenuItem = null;
+    }
+  }
+
+  private resetSubmenusAndChevron() {
+    const submenus = document.querySelectorAll('.submenu-container');
+    submenus.forEach(submenu => submenu.classList.remove('visible'));
+
+    const chevrons = document.querySelectorAll('.chevron');
+    chevrons.forEach(chevron => chevron.classList.remove('visible'));
+
+    const menuWrappers = document.querySelectorAll('.menu-wrapper');
+    menuWrappers.forEach(wrapper => {
+      const menuButton = wrapper.querySelector('.menu-item');
+      if (menuButton) {
+        menuButton.classList.remove('selected', 'active');
+      }
+    });
+  }
+
   onMenuHide(menuItem: string, event: Event) {
     event.stopPropagation();
     this.clickedItem = menuItem;
-
-    const allMenuItems = document.querySelectorAll('.menu-item');
-    allMenuItems.forEach(item => item.classList.remove('active'));
 
     const clickedMenuItem = document.getElementById(menuItem);
     if (clickedMenuItem) {
@@ -156,56 +156,11 @@ export class MenuComponent implements OnInit {
     const submenus = document.querySelectorAll('.submenu-container');
     submenus.forEach(submenu => submenu.classList.remove('visible'));
 
-    const menuWrappers = document.querySelectorAll('.menu-wrapper');
-    menuWrappers.forEach(wrapper => {
-      const menuButton = wrapper.querySelector('.menu-item');
-      const chevron = wrapper.querySelector('.chevron');
-      if (menuButton) {
-        menuButton.classList.remove('selected');
-      }
-      if (chevron) {
-        chevron.classList.remove('visible');
-      }
-    });
-
-    setTimeout(() => {
-      this.clickedItem = null;
-    }, 200);
+    const correspondingChevron = document.querySelector(`#${menuItem} + .chevron`);
+    if (correspondingChevron) {
+      correspondingChevron.classList.remove('visible');
+    }
 
     this.selectedMenuItem = null;
-  }
-
-  @HostListener('document:mousemove', ['$event'])
-  onDocumentMouseMove(event: MouseEvent) {
-    const targetElement = event.target as HTMLElement;
-
-    if (
-      !targetElement.closest('.menu-container') &&
-      !targetElement.closest('.submenu-container')
-    ) {
-      // Remove the `visible` class from all menu wrappers and chevrons
-      const allWrappers = document.querySelectorAll('.menu-wrapper');
-      allWrappers.forEach((wrapper) => {
-        wrapper.classList.remove('visible'); // Ensure the menu wrapper itself is reset
-        const menuButton = wrapper.querySelector('.menu-item');
-        const chevron = wrapper.querySelector('.chevron');
-        if (menuButton) {
-          menuButton.classList.remove('selected');
-        }
-        if (chevron) {
-          chevron.classList.remove('visible'); // Explicitly handle the chevron visibility
-        }
-      });
-
-      // Remove the `visible` class from all submenus
-      const submenus = document.querySelectorAll('.submenu-container');
-      submenus.forEach((submenu) => submenu.classList.remove('visible'));
-
-      // Reset the selected menu item
-      this.selectedMenuItem = null;
-    } else {
-      // Debugging logs to identify which element is causing the issue
-      console.log('Mouse is inside menu-container or submenu-container');
-    }
   }
 }
