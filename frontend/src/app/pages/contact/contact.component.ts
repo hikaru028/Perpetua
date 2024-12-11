@@ -87,7 +87,6 @@ export class ContactComponent implements OnInit, OnDestroy {
         }
       }));
       this.setDefaultFlag('+64');
-      console.log(this.flags)
     });
 
     this.route.fragment.subscribe((fragment) => {
