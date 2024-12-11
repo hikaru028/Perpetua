@@ -32,13 +32,15 @@ export class MemberService {
     fetchMembers(): void {
         this.loadingSubject.next(true);
         this.strapiService.getAllMembers().subscribe((result: APIResponseModel) => {
-            const members = result.data.map((member: IMember) => ({
-                ...member,
-                portrait_image: {
-                    ...member.portrait_image,
-                    url: this.strapiUrl + member.portrait_image.url || "../../../../../assets/images/img_n.a.png"
-                }
-            }));
+            const members = result.data
+                .map((member: IMember) => ({
+                    ...member,
+                    portrait_image: {
+                        ...member.portrait_image,
+                        url: this.strapiUrl + member.portrait_image.url || "../../../../../assets/images/img_n.a.png"
+                    }
+                }))
+                .sort((a: any, b: any) => a.last_name.localeCompare(b.last_name));
 
             this.membersSubject.next(members);
             this.filteredMembersSubject.next(members);
@@ -49,12 +51,14 @@ export class MemberService {
         });
     }
 
+
     sortMembers(type: string): void {
         const members = this.membersSubject.getValue();
 
         if (type === 'all' || this.selectedFilterSubject.getValue() === type) {
             this.selectedFilterSubject.next('all');
-            this.filteredMembersSubject.next([...members]);
+            const sortedMembers = [...members].sort((a, b) => a.last_name.localeCompare(b.last_name));
+            this.filteredMembersSubject.next(sortedMembers);
         } else if (type === 'office') {
             this.selectedFilterSubject.next(type);
 
@@ -80,16 +84,17 @@ export class MemberService {
                 { name: 'Data Analytics', keywords: ['data'] },
             ];
 
-            let sortedMembers: IMember[] = [];
+            let filteredMembers: IMember[] = [];
 
             roleCategories.forEach(category => {
                 const membersInCategory = members
                     .filter(member => category.keywords.some(keyword => member.role.toLowerCase().includes(keyword.toLowerCase())))
                     .sort((a, b) => a.last_name.localeCompare(b.last_name));
 
-                sortedMembers = [...sortedMembers, ...membersInCategory];
+                filteredMembers = [...filteredMembers, ...membersInCategory];
             });
 
+            const sortedMembers = filteredMembers.sort((a, b) => a.last_name.localeCompare(b.last_name));
             this.filteredMembersSubject.next(sortedMembers);
         }
     }

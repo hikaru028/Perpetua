@@ -187,12 +187,6 @@ p {
                 }
             }
 
-            .first-line {
-                max-height: 38px;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-            }
 
             .phone-wrapper {
                 display: flex;
@@ -218,7 +212,6 @@ p {
             }
 
             textarea {
-                height: 38px;
                 box-sizing: border-box;
                 resize: none;
                 overflow: hidden;
@@ -228,13 +221,20 @@ p {
                 }
             }
 
+            .first-line {
+                max-height: 38px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
             ::placeholder {
                 font-family: 'Sohne', sans-serif;
                 font-size: 1.5rem;
                 color: #0e0e01;
             }
 
-            ::-webkit-input-placeholder {
+            m ::-webkit-input-placeholder {
                 font-family: 'Sohne', sans-serif;
                 font-size: 1.5rem;
                 color: #0e0e01;

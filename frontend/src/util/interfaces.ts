@@ -56,6 +56,7 @@ export interface IMember {
     id: number,
     documentId: string,
     first_name: string,
+    middle_name: string,
     last_name: string,
     role: string,
     location: string,

@@ -51,6 +51,9 @@
         "Sydney",
         "Yokohama"
       ]
+    },
+    "middle_name": {
+      "type": "string"
     }
   }
 }

@@ -5,8 +5,7 @@
                 loop="true">
                 <swiper-slide *ngFor="let member of shuffledMemberArray">
                     <div class="image-wrapper" (mouseenter)="onMouseEnter(i)" (mouseleave)="onMouseLeave(i)">
-                        <img [src]="member.portrait_image.url" [alt]="member.first_name + ' ' + member.last_name"
-                            lazy="true">
+                        <img [src]="member.portrait_image.url" [alt]="member.first_name + member.last_name" lazy="true">
                     </div>
                 </swiper-slide>
             </swiper-container>

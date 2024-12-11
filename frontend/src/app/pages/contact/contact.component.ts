@@ -1,6 +1,6 @@
 // Libraries
 import { Title, Meta } from '@angular/platform-browser';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -32,6 +32,7 @@ import { OfficeService } from '../../shared/office.service';
 })
 
 export class ContactComponent implements OnInit, OnDestroy {
+  @ViewChild('messageTextarea') messageTextarea!: ElementRef<HTMLTextAreaElement>;
   offices$: Observable<IOffice[]>;
   contactData = ContactData;
   selectedLocation: string | null = 'christchurch';
@@ -86,11 +87,18 @@ export class ContactComponent implements OnInit, OnDestroy {
         }
       }));
       this.setDefaultFlag('+64');
+      console.log(this.flags)
     });
 
     this.route.fragment.subscribe((fragment) => {
       if (fragment) {
         this.scrollToSection(fragment);
+      }
+    });
+
+    setTimeout(() => {
+      if (this.messageTextarea) {
+        this.autoResize(this.messageTextarea.nativeElement);
       }
     });
   }
@@ -106,7 +114,6 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   setDefaultFlag(defaultCode: string): void {
-    console.log("defaultCode:", defaultCode);
     const matchingFlag = this.flags.find(flag => flag.country_code === defaultCode);
     if (matchingFlag) {
       this.selectedFlagUrl = matchingFlag.flag_image.url;
@@ -151,7 +158,6 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   autoResize(textarea: HTMLTextAreaElement): void {
     textarea.style.height = 'auto';
-
     if (textarea.value.trim() === '') {
       textarea.style.height = '38px';
       textarea.classList.remove('first-line');

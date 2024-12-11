@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { SearchBarComponent } from "./search-bar/search-bar.component";
 import { MenuService } from '../../shared/menu.service';
 import { ProjectService } from '../../shared/project.service';
+import { ArticleService } from '../../shared/article.service';
 import { IProject } from '../../../util/interfaces';
 
 @Component({
@@ -39,6 +40,7 @@ export class MenuComponent implements OnInit {
   private clickedItem: string | null = null;
 
   projectService: ProjectService = inject(ProjectService);
+  articleService: ArticleService = inject(ArticleService);
 
   constructor(
     private translateService: TranslateService,
@@ -79,6 +81,10 @@ export class MenuComponent implements OnInit {
 
   sortProjects(type: string): void {
     this.projectService.filterProjects(type);
+  }
+
+  sortArticles(type: string): void {
+    this.articleService.sortArticles(type);
   }
 
   onKeyDown(e: KeyboardEvent, type: string): void {
@@ -163,7 +169,13 @@ export class MenuComponent implements OnInit {
 
   handleClick(sortType: string, menuItem: string, event: Event): void {
     event.stopPropagation();
-    this.sortProjects(sortType);
+
+    if (sortType === 'article' || sortType === 'news' || sortType === 'blog') {
+      this.sortArticles(sortType);
+    } else {
+      this.sortProjects(sortType);
+    }
+
     this.onMenuHide(menuItem, event);
   }
 

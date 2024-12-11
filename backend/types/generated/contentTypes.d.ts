@@ -756,6 +756,7 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
     location: Schema.Attribute.Enumeration<
       ['Christchurch', 'Auckland', 'Sydney', 'Yokohama']
     >;
+    middle_name: Schema.Attribute.String;
     phone: Schema.Attribute.String;
     portrait_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
