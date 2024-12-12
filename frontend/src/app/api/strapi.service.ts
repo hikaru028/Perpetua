@@ -79,8 +79,10 @@ export class StrapiService {
   }
 
   getAllFlags(): Observable<APIResponseModel> {
-    return this.http.get<APIResponseModel>(`${this.apiUrl}/flags?pagination[pageSize]=200`, {
-      headers: this.getHeaders(),
-    });
+    return this.http.get<APIResponseModel>(
+      `${this.apiUrl}/flags?pagination[pageSize]=200&populate=*`,
+      { headers: this.getHeaders() }
+    );
   }
+
 }

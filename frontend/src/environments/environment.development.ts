@@ -7,5 +7,4 @@ export const environment = {
     strapiUrl: 'http://localhost:1337/api',
     strapiApi: '6c5368286893c0f7f093b17dfd18777ed9728447c8b6ffa165087fa5f19c26fe0ec678757fb2eeaea8b0dc690a179392b14b9be3c0ff09797ae446a1162e082722cbb314122571627181bc9da55c0e6bd758151b4a74a116ba5bb9737bf8dd0bfda1517559f554698c3fa7334aea3e071ce2473bf51f60dff1ea756c97125510',
     strapiMediaUrl: 'http://localhost:1337/',
-
 };
