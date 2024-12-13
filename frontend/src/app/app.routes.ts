@@ -12,6 +12,7 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { ProjectDetailComponent } from './pages/projects/project-detail/project-detail.component';
 import { ProjectSearchResultComponent } from './pages/projects/project-search-result/project-search-result.component';
 import { ServicesComponent } from './pages/services/services.component';
+import { ServiceDetailComponent } from './pages/services/service-detail/service-detail.component';
 import { TeamComponent } from './pages/team/team.component';
 
 export const routes: Routes = [
@@ -21,6 +22,7 @@ export const routes: Routes = [
     { path: 'projects/results', component: ProjectSearchResultComponent },
     { path: 'projects/:id', component: ProjectDetailComponent },
     { path: 'services', component: ServicesComponent },
+    { path: 'services/details', component: ServiceDetailComponent },
     { path: 'about', component: AboutComponent },
     { path: 'about/:id', component: OfficeDetailComponent },
     { path: 'articles', component: ArticlesComponent },

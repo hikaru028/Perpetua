@@ -1,12 +1,13 @@
-<div class="service-container">
+<div class="service-container" [ngClass]="{ 'detail-container': isServiceDetail }">
     <div class="row row-cols-3">
-        <div class="col service-box" *ngFor="let service of services; let i = index">
+        <div class="col" [ngClass]="{ 'service-box': isServiceDetail }" *ngFor="let service of services; let i = index">
             <div class="service-text-wrapper">
                 <p class="service-title">{{ getTitle(service) || 'No Title' }}</p>
-                <p class="service-description">{{ getDescription(service) || 'No Description' }}</p>
+                <p [ngClass]="{ 'service-description': !isServiceDetail }">{{ getDescription(service) || 'No
+                    Description' }}</p>
             </div>
             <div class="service-button-wapper">
-                <div class="more-wrapper" routerLink="/services">
+                <div class="more-wrapper" routerLink="/services/details">
                     <p>{{ 'service.learn-more' | translate }}</p>
                     <i class="bi bi-arrow-right-short"></i>
                 </div>

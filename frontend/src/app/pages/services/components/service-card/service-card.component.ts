@@ -1,7 +1,7 @@
 // Libraries
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // Services
 import { ServiceData } from '../../../home/components/services/service-data';
@@ -11,11 +11,12 @@ import { TranslationHelper } from '../../../../shared/translation-helper';
 @Component({
   selector: 'app-service-card',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, RouterLink, TranslateModule],
   templateUrl: './service-card.component.html',
   styleUrl: './service-card.component.scss'
 })
 export class ServiceCardComponent implements OnDestroy {
+  @Input() isServiceDetail: boolean = false;
   services: IService[] = ServiceData;
   currentLanguage: string = 'en';
 
