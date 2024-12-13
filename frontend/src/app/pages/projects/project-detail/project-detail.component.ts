@@ -52,6 +52,7 @@ export class ProjectDetailComponent implements OnInit {
   loadProjectDetails(): void {
     this.strapiService.getProjectById(this.documentId).subscribe((result: APIResponseModel) => {
       if (result && result.data) {
+        this.project = result.data;
         this.project = {
           ...result.data,
           thumbnail_image: {

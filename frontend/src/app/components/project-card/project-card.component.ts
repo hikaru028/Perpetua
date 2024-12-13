@@ -30,7 +30,7 @@ export class ProjectCardComponent implements OnInit {
   scrollToTop(): void {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'instant'
     });
   }
 

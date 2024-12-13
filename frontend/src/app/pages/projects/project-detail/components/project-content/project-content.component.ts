@@ -1,5 +1,5 @@
 // Libraries
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // Components
 import { IProject } from '../../../../../../util/interfaces'
@@ -11,6 +11,15 @@ import { IProject } from '../../../../../../util/interfaces'
   templateUrl: './project-content.component.html',
   styleUrl: './project-content.component.scss'
 })
-export class ProjectContentComponent {
+
+export class ProjectContentComponent implements OnChanges {
   @Input() project: IProject | undefined;
+
+  constructor(private cdr: ChangeDetectorRef) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['project']) {
+      this.cdr.detectChanges();
+    }
+  }
 }

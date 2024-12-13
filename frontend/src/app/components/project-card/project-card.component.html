@@ -5,7 +5,7 @@
             (mouseleave)="onMouseLeaveTitle($event)">
             <!-- Image -->
             <div class="image-wrapper">
-                <img [src]="project.thumbnail_image.url" [alt]="project.project_title" loading="lazy"
+                <img [src]="project.thumbnail_image.url" alt="project.project_title" loading="lazy"
                     (load)="onImageLoad()" />
             </div>
             <!-- Title -->
@@ -24,7 +24,7 @@
             <div class="card-container" [routerLink]="['/projects', project.industry]">
                 <!-- Image -->
                 <div class="image-wrapper">
-                    <img [src]="project.thumbnail_image.url" [alt]="project.project_title" loading="lazy"
+                    <img [src]="project.thumbnail_image.url" alt="project.project_title" loading="lazy"
                         (load)="onImageLoad()" />
                 </div>
                 <!-- Title -->

@@ -46,9 +46,6 @@ export class SlidesComponent implements OnInit, AfterViewInit, OnDestroy {
         },
       }));
 
-
-      console.log(this.slides);
-
       this.array1 = [...this.slides];
       this.array2 = [...this.slides];
 
