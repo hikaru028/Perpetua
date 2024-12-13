@@ -7,6 +7,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // Components
 import { CallActionComponent } from '../../components/call-action/call-action.component';
 import { BackToTopButtonComponent } from '../../components/buttons/back-to-top-button/back-to-top-button.component';
+import { ServiceCardComponent } from './components/service-card/service-card.component';
 // Services
 import { ServiceData } from '../home/components/services/service-data';
 import { IService } from '../../../util/interfaces';
@@ -16,7 +17,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule, TranslateModule, CallActionComponent, BackToTopButtonComponent],
+  imports: [CommonModule, TranslateModule, CallActionComponent, BackToTopButtonComponent, ServiceCardComponent],
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss'
 })
@@ -50,5 +51,4 @@ export class ServicesComponent implements OnInit, OnDestroy {
   getDescription(service: IService): string {
     return this.translate.instant(service.description);
   }
-
 }
