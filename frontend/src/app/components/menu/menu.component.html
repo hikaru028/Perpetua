@@ -54,7 +54,8 @@
         </ul>
 
         <div class="submenu-item-wrapper">
-            <app-search-bar [placeholder]="searchProjects" data="projects" #projectsSearchBar></app-search-bar>
+            <app-search-bar [placeholder]="searchProjects" data="projects" #projectsSearchBar
+                (resultSelected)="onSearchResultSelected()"></app-search-bar>
         </div>
     </div>
 </div>
@@ -168,7 +169,8 @@
             </li>
         </ul>
         <div class="submenu-item-wrapper">
-            <app-search-bar [placeholder]="searchContent" data="articles" #articlesSearchBar></app-search-bar>
+            <app-search-bar [placeholder]="searchContent" data="articles" #articlesSearchBar
+                (resultSelected)="onSearchResultSelected()"></app-search-bar>
         </div>
     </div>
 </div>

@@ -1,1 +1,38 @@
-<p>Show all result projects</p>
+<div class='w-100 m-0' id="pageTop">
+    <!-- Title -->
+    <h1>
+        Search result
+    </h1>
+    <!-- All results -->
+    <section>
+        <ul>
+            <li *ngFor="let project of visibleProjects">
+                <div class="image-wrapper">
+                    <img [src]="project.thumbnail_image.url" alt="">
+                </div>
+                <div class="right-wrapper">
+                    <div>
+                        <p class="title">{{ project.project_title}}</p>
+                        <p class="category">{{project.industry}}&nbsp;&middot;&nbsp;{{project.project_type}}</p>
+                        <p></p>
+                    </div>
+                    <div>
+                        <button>See more</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <!-- Footer -->
+    <div class="footer-button-wrapper">
+        <button id="loadMoreButton" *ngIf="loadMoreButtonVisible" class="footer-button" (click)="loadMoreProjects()">
+            {{ 'button.load-more' | translate }}
+            <i class="bi bi-arrow-down-short"></i>
+        </button>
+        <app-back-to-top-button></app-back-to-top-button>
+    </div>
+    <span class="separator"></span>
+
+    <!-- Call to action -->
+    <app-call-action></app-call-action>
+</div>

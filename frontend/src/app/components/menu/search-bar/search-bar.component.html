@@ -10,7 +10,8 @@
             </svg>
         </div>
         <div class="input-wrapper">
-            <input #searchInput type="text" [placeholder]="placeholder" [formControl]="searchControl"
+            <label for="searchInput">Search</label>
+            <input #searchInput id="searchInput" type="text" [placeholder]="placeholder" [formControl]="searchControl"
                 (focus)="onSearchInput()" (input)="onSearchInput()" />
             <span class="b-bottom"></span>
         </div>
@@ -19,6 +20,7 @@
     <!-- Search result display -->
     <div class="search-result-container" *ngIf="searchResults.length > 0">
         <div *ngFor="let result of searchResults" class="search-result-item" [routerLink]="result.path"
+            (click)="onSearchResultClick()" (keydown)="onKeyDownSearchResultClick($event)"
             [innerHTML]="result.highlightedTitle">
             {{ result.title }}
         </div>

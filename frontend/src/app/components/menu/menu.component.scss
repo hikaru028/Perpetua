@@ -29,6 +29,7 @@
             font-size: 1.125rem;
             background-color: transparent;
             border: none;
+            -webkit-user-select: none;
             user-select: none;
             cursor: pointer;
             z-index: 21;
@@ -128,6 +129,7 @@
                 font-family: 'Sohne-500' !important;
                 font-size: 1.5rem;
                 border: none;
+                -webkit-user-select: none;
                 user-select: none;
                 color: #ffffff;
                 cursor: pointer;

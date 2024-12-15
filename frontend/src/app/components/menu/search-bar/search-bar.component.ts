@@ -1,14 +1,15 @@
 // Libraries
-import { Component, Input, OnInit, inject, ViewChild, HostListener, ElementRef, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit, inject, ViewChild, HostListener, ElementRef, Renderer2, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-// Components
-import { IProject, IArticle, APIResponseModel } from '../../../../util/interfaces';
 // Services
+import { IProject, IArticle, APIResponseModel } from '../../../../util/interfaces';
 import { StrapiService } from '../../../api/strapi.service';
 import { MenuService } from '../../../shared/menu.service';
+import { ProjectService } from '../../../shared/project.service';
+import { ArticleService } from '../../../shared/article.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -21,10 +22,13 @@ import { MenuService } from '../../../shared/menu.service';
 export class SearchBarComponent implements OnInit {
   @Input() placeholder: string = '';
   @Input() data: 'projects' | 'articles' = 'projects';
+  @Output() resultSelected = new EventEmitter<void>();
   @ViewChild('searchInput') searchInput!: ElementRef;
   searchControl = new FormControl();
   projects: IProject[] = [];
+  allProjectData: IProject[] = [];
   articles: IArticle[] = [];
+  allArticleData: IArticle[] = [];
   searchResultAll: string[] = [];
   searchResults: { title: string, path: string, highlightedTitle: SafeHtml }[] = [];
   strapiService = inject(StrapiService);
@@ -33,19 +37,21 @@ export class SearchBarComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     private menuService: MenuService,
-    private router: Router
+    private router: Router,
+    private projectService: ProjectService,
+    private articleService: ArticleService,
   ) { }
 
   ngOnInit(): void {
     if (this.data === 'projects') {
-      this.strapiService.getAllProjects().subscribe((result: APIResponseModel) => {
-        this.projects = result.data;
+      this.projectService.projects$.subscribe((projects: IProject[]) => {
+        this.projects = projects;
       }, error => {
-        console.error('Error fetching projects:', error);
+        console.error('Error fetching projects from ProjectService:', error);
       });
     } else if (this.data === 'articles') {
-      this.strapiService.getAllArticles().subscribe((result: APIResponseModel) => {
-        this.articles = result.data;
+      this.articleService.articles$.subscribe((articles: IArticle[]) => {
+        this.articles = articles;
       }, error => {
         console.error('Error fetching articles:', error);
       });
@@ -78,8 +84,9 @@ export class SearchBarComponent implements OnInit {
     }
 
     if (this.data === 'projects') {
-      this.searchResults = this.projects
+      this.allProjectData = this.projects
         .filter((project: IProject) => project.project_title.toLowerCase().includes(keyword))
+      this.searchResults = this.allProjectData
         .slice(0, 5)
         .map((project: IProject) => ({
           title: project.project_title,
@@ -88,8 +95,9 @@ export class SearchBarComponent implements OnInit {
         }));
       this.searchResultAll = this.projects.filter((project: IProject) => project.project_title.toLowerCase().includes(keyword)).map((project: IProject) => (`/projects/${project.documentId}`));
     } else if (this.data === 'articles') {
-      this.searchResults = this.articles
+      this.allArticleData = this.articles
         .filter((article: IArticle) => article.title.toLowerCase().includes(keyword))
+      this.searchResults = this.allArticleData
         .slice(0, 5)
         .map((article: IArticle) => ({
           title: article.title,
@@ -109,11 +117,27 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
-  onClickAll(data: any) {
+  onSearchResultClick(): void {
+    this.resultSelected.emit();
+  }
+
+  onKeyDownSearchResultClick(event: KeyboardEvent): void {
+    event.preventDefault();
+    this.onSearchResultClick();
+  }
+
+  onClickAll(data: any): void {
+    this.resultSelected.emit();
+
     if (data === 'projects') {
-      this.router.navigate(['/projects/results'], { queryParams: { keyword: this.searchControl.value } });
+      this.projectService.setSearchResults(this.allProjectData);
+      this.router.navigate(['/projects/results'], {
+        queryParams: { keyword: this.searchControl.value },
+      });
     } else if (data === 'articles') {
-      this.router.navigate(['/articles/results'], { queryParams: { keyword: this.searchControl.value } });
+      this.router.navigate(['/articles/results'], {
+        queryParams: { keyword: this.searchControl.value },
+      });
     }
   }
 

@@ -214,4 +214,9 @@ export class MenuComponent implements OnInit {
     }
     return null;
   }
+
+  onSearchResultSelected(): void {
+    this.resetSubmenusAndChevron();
+    this.selectedMenuItem = null;
+  }
 }

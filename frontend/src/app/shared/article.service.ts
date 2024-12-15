@@ -26,6 +26,9 @@ export class ArticleService {
     private loadingSubject = new BehaviorSubject<boolean>(true);
     isLoading$ = this.loadingSubject.asObservable();
 
+    private searchResultsSubject = new BehaviorSubject<IArticle[]>([]);
+    searchResults$ = this.searchResultsSubject.asObservable();
+
     strapiUrl = environment.strapiMediaUrl;
 
     constructor(private strapiService: StrapiService) {
@@ -89,5 +92,24 @@ export class ArticleService {
         }, error => {
             console.error('Error fetching articles:', error);
         });
+    }
+
+    setSearchResults(results: IArticle[]): void {
+        this.searchResultsSubject.next(results);
+        localStorage.setItem('searchResults', JSON.stringify(results));
+    }
+
+    getSearchResults(): IArticle[] {
+        const results = this.searchResultsSubject.getValue();
+        if (results.length === 0) {
+            const savedResults = localStorage.getItem('searchResults');
+            return savedResults ? JSON.parse(savedResults) : [];
+        }
+        return results;
+    }
+
+    clearSearchResults(): void {
+        this.searchResultsSubject.next([]);
+        localStorage.removeItem('searchResults');
     }
 }

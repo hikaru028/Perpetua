@@ -27,6 +27,10 @@
             width: 525px;
             margin-left: 6px;
 
+            label {
+                display: none;
+            }
+
             input {
                 width: 100%;
                 height: 24px;

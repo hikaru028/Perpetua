@@ -1,30 +1,70 @@
-import { Component, OnInit } from '@angular/core';
+// Libraries
+import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+// Components
+import { BackToTopButtonComponent } from '../../../components/buttons/back-to-top-button/back-to-top-button.component';
+import { CallActionComponent } from '../../../components/call-action/call-action.component';
+// Services
+import { ProjectService } from '../../../shared/project.service';
+import { IProject } from '../../../../util/interfaces';
 
 @Component({
   selector: 'app-project-search-result',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, TranslateModule, BackToTopButtonComponent, CallActionComponent],
   templateUrl: './project-search-result.component.html',
   styleUrl: './project-search-result.component.scss'
 })
 export class ProjectSearchResultComponent implements OnInit {
   keyword: string = '';
-  filteredProjects: any[] = [];
-  allProjects: any[] = []; // Assume this comes from a service
+  allProjectData: any[] = [];
+  visibleProjects: IProject[] = [];
+  projectsToLoad: number = 12;
+  loadMoreButtonVisible: boolean = false;
+  projectService: ProjectService = inject(ProjectService);
+  translate: TranslateService = inject(TranslateService);
+  currentLanguage: string = 'en';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private titleService: Title, private metaService: Meta) {
+  }
 
   ngOnInit(): void {
+    // Meta info for SEO
+    this.titleService.setTitle('Search Result - Perpeture');
+    this.metaService.updateTag({ name: 'description', content: 'Browse our projects searched by keywords to learn more about the amazing things we have done at Perpeture.' });
+
+
     this.route.queryParams.subscribe((params) => {
       this.keyword = params['keyword'] || '';
-      this.filterProjects();
+
+      this.allProjectData = this.projectService.getSearchResults();
+
+      if (!this.allProjectData || this.allProjectData.length === 0) {
+        this.projectService.projects$.subscribe((projects) => {
+          this.allProjectData = projects.filter((project) =>
+            project.project_title.toLowerCase().includes(this.keyword.toLowerCase())
+          );
+          this.visibleProjects = this.allProjectData.slice(0, this.projectsToLoad);
+          this.loadMoreButtonVisible = this.allProjectData.length > this.projectsToLoad;
+        });
+      } else {
+        this.visibleProjects = this.allProjectData.slice(0, this.projectsToLoad);
+        this.loadMoreButtonVisible = this.allProjectData.length > this.projectsToLoad;
+      }
+    });
+
+    this.translate.onLangChange.subscribe((event) => {
+      this.currentLanguage = event.lang;
+      this.titleService.setTitle(this.translate.instant('projects.title') + ' - Perpeture');
     });
   }
 
-  filterProjects(): void {
-    this.filteredProjects = this.allProjects.filter((project) =>
-      project.project_title.toLowerCase().includes(this.keyword.toLowerCase())
-    );
+  loadMoreProjects(): void {
+    const newProjects = this.allProjectData.slice(this.visibleProjects.length, this.visibleProjects.length + this.projectsToLoad);
+    this.visibleProjects = [...this.visibleProjects, ...newProjects];
+    this.loadMoreButtonVisible = this.visibleProjects.length < this.allProjectData.length;
   }
 }
