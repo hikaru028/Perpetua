@@ -34,7 +34,7 @@ export class ProjectSearchResultComponent implements OnInit {
 
   ngOnInit(): void {
     // Meta info for SEO
-    this.titleService.setTitle('Search Result - Perpeture');
+    this.titleService.setTitle('Search Result (Projects) - Perpeture');
     this.metaService.updateTag({ name: 'description', content: 'Browse our projects searched by keywords to learn more about the amazing things we have done at Perpeture.' });
 
 

@@ -4,7 +4,7 @@
             <!-- Image -->
             <div class="image-wrapper" (click)="navigateToArticle(article.documentId)"
                 (keydown)="handleKeydown($event, article.documentId)">
-                <img [src]="article.thumbnail_image.url" [alt]="article.author">
+                <img [src]="article.thumbnail_image.url" alt="article.author">
             </div>
             <div class="information-container">
                 <!-- Title -->

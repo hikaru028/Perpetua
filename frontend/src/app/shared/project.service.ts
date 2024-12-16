@@ -117,21 +117,30 @@ export class ProjectService {
     }
 
     setSearchResults(results: IProject[]): void {
+        const dataWithTimestamp = {
+            results,
+            timestamp: Date.now(),
+        };
+        localStorage.setItem('projectSearchResults', JSON.stringify(dataWithTimestamp));
         this.searchResultsSubject.next(results);
-        localStorage.setItem('searchResults', JSON.stringify(results));
     }
 
     getSearchResults(): IProject[] {
-        const results = this.searchResultsSubject.getValue();
-        if (results.length === 0) {
-            const savedResults = localStorage.getItem('searchResults');
-            return savedResults ? JSON.parse(savedResults) : [];
+        const savedResults = localStorage.getItem('projectSearchResults');
+        if (savedResults) {
+            const { results, timestamp } = JSON.parse(savedResults);
+            const expiryTime = 60 * 60 * 1000; // 1 hour
+            if (Date.now() - timestamp > expiryTime) {
+                this.clearSearchResults();
+                return [];
+            }
+            return results;
         }
-        return results;
+        return [];
     }
 
     clearSearchResults(): void {
         this.searchResultsSubject.next([]);
-        localStorage.removeItem('searchResults');
+        localStorage.removeItem('projectSearchResults');
     }
 }
