@@ -5,9 +5,7 @@ import { RouterLink, Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 // Services
-import { IProject, IArticle, APIResponseModel } from '../../../../util/interfaces';
-import { StrapiService } from '../../../api/strapi.service';
-import { MenuService } from '../../../shared/menu.service';
+import { IProject, IArticle } from '../../../../util/interfaces';
 import { ProjectService } from '../../../shared/project.service';
 import { ArticleService } from '../../../shared/article.service';
 
@@ -31,12 +29,10 @@ export class SearchBarComponent implements OnInit {
   allArticleData: IArticle[] = [];
   searchResultAll: string[] = [];
   searchResults: { title: string, path: string, highlightedTitle: SafeHtml }[] = [];
-  strapiService = inject(StrapiService);
   sanitizer = inject(DomSanitizer);
 
   constructor(
     private renderer: Renderer2,
-    private menuService: MenuService,
     private router: Router,
     private projectService: ProjectService,
     private articleService: ArticleService,

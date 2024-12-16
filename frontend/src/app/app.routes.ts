@@ -4,6 +4,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { ArticleDetailComponent } from './pages/articles/article-detail/article-detail.component';
 import { ArticleSearchResultComponent } from './pages/articles/article-search-result/article-search-result.component';
+import { CareersComponent } from './pages/careers/careers.component';
 import { ClientsComponent } from './pages/clients/clients.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HistoryComponent } from './pages/about/history/history.component';
@@ -32,6 +33,7 @@ export const routes: Routes = [
     { path: 'articles', component: ArticlesComponent },
     { path: 'articles/results', component: ArticleSearchResultComponent },
     { path: 'articles/:id', component: ArticleDetailComponent },
+    { path: 'careers/:id', component: CareersComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'clients', component: ClientsComponent },
     { path: 'team', component: TeamComponent },
