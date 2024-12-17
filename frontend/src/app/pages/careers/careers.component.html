@@ -1,52 +1,32 @@
 <div class='w-100 m-0'>
     <section class="header-container">
-        <div>
+        <div class="header-left-container">
             <h1 class="title">{{ career?.job_title }}</h1>
-            <p>{{ career?.job_type }}</p>
-            <p>{{ career?.location_type }}</p>
+            <span>{{ career?.job_type }}&nbsp;&#8213;&nbsp;{{ career?.job_location }}</span>
             <div>
-                <p class="title">{{ career?.job_location }}</p>
-                <p>{{ career?.job_description }}</p>
-                <p>{{ career?.branch_name }}</p>
+                <p>{{ career?.location_type }}</p>
+                <div class="job-description" [innerHTML]="jobDescriptionHtml"></div>
             </div>
         </div>
-        <div>
+        <div class="header-right-container">
             <h2>Apply for this position</h2>
-            <p>To apply, please submit your CV and cover letter via email to<a
+            <p>To apply, please submit your CV and cover letter via email to <a
                     href="mailto:team@perpeture.co">career&#64;perpeture.co</a>.</p>
+            <br />
             <p>Please include your full name and location in the subject of the email.</p>
         </div>
     </section>
     <section class="offer-container">
         <h1>What we offer</h1>
-        <div>
-            <h2>Supportive & Friendly Work Environment</h2>
-            <p>At Perpeture we believe people produce their best work when they’re happy, rested, and they feel their
-                work has meaning. It’s with this in mind that we take particular care to foster a supportive and
-                friendly workplace—no one at Perpeture has ever been punished for making a mistake, as making mistakes
-                is a natural part of pushing for the top.
-            </p>
-        </div>
-        <div>
-            <h2>Health & Wellness Programs & Subsidies</h2>
-            <p>As part of our investment in a happy, healthy, productive workplace, we offer every member of staff
-                support for maintaining and bettering your physical and mental health. This includes subsidised or
-                completely covered fitness memberships, and an employee assistance program with our client OCP.
-            </p>
-        </div>
-        <div>
-            <h2>Flexible Hours, Location & Remote Work</h2>
-            <p>As part of Perpeture’s global team, you’ll have access to a shared office space as per your location.
-                However, there’s no requirement to go in. Many of our team prefer the security of fixed hours, (and some
-                positions demand relatively fixed hours) but many others can choose the days, times and locations of
-                their work as it suits their schedules, and we encourage them to do so.
-            </p>
+        <div *ngFor="let offer of offers; let i = index" class="offer-wrapper"
+            [ngClass]="{ visible: i === activeOfferIndex }" (click)="toggleDetail(i)" (keydown.enter)="toggleDetail(i)">
+            <div class="title-wrapper">
+                <h2>{{ offer.title }}</h2>
+                <i class="bi bi-chevron-down example-menu-icon"></i>
+            </div>
+            <p class="offer-description">{{ offer.description }}</p>
         </div>
     </section>
-    <section>
-        <div *ngIf="career">
-            <img [src]="career.office_address[0].office_image.url" alt=[`career.branch_name`] />
-        </div>
-    </section>
+
     <app-footer></app-footer>
 </div>

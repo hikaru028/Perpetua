@@ -65,6 +65,12 @@ export class AboutComponent implements OnInit, OnDestroy {
     this.titleService.setTitle('About us - Perpeture');
     this.metaService.updateTag({ name: 'description', content: 'Browse About up to learn more about our amazing clients and team at Perpeture.' });
 
+    this.route.fragment.subscribe((fragment) => {
+      console.log('URL Fragment:', fragment);
+      if (fragment) {
+        this.scrollToSection(fragment);
+      }
+    });
 
     this.strapiService.getAllClients().subscribe((response: APIResponseModel) => {
       this.clients = response.data.map((client: IClient) => ({
@@ -102,12 +108,6 @@ export class AboutComponent implements OnInit, OnDestroy {
     this.careerService.careers$.subscribe((careers) => {
       this.careers = careers;
     });
-
-    this.route.fragment.subscribe((fragment) => {
-      if (fragment) {
-        this.scrollToSection(fragment);
-      }
-    });
   }
 
   ngOnDestroy(): void {
@@ -137,7 +137,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   scrollToSection(sectionId: string): void {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 }
