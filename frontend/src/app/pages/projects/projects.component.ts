@@ -1,8 +1,9 @@
 // Libraries
 import { Meta, Title } from '@angular/platform-browser';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, Injectable } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { filter } from 'rxjs/operators';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // Components
@@ -14,6 +15,10 @@ import { ProjectCardSkeletonComponent } from '../../components/skeletons/project
 import { ProjectService } from '../../shared/project.service';
 import { IProject } from '../../../util/interfaces';
 
+@Injectable({
+  providedIn: 'root',
+})
+
 @Component({
   selector: 'app-projects',
   standalone: true,
@@ -21,11 +26,14 @@ import { IProject } from '../../../util/interfaces';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })
+
 export class ProjectsComponent implements OnInit {
   filteredProjects$: Observable<IProject[]>;
   selectedFilter$!: Observable<string | null>;
-  projectsByIndustry$!: Observable<{ [industry: string]: IProject[] }>;
+  // projectsByIndustry$!: Observable<{ [industry: string]: IProject[] }>;
   isLoading$!: Observable<boolean | null>;
+  private projectsSubject = new BehaviorSubject<IProject[]>([]);
+  projects$ = this.projectsSubject.asObservable();
 
   // Lazy loading
   visibleProjects: IProject[] = [];
@@ -40,8 +48,23 @@ export class ProjectsComponent implements OnInit {
   constructor(private titleService: Title, private metaService: Meta) {
     this.filteredProjects$ = this.projectService.filteredProjects$;
     this.selectedFilter$ = this.projectService.selectedFilter$;
-    this.projectsByIndustry$ = this.projectService.projectsByIndustry$;
+    // this.projectsByIndustry$ = this.projectService.projectsByIndustry$;
     this.isLoading$ = this.projectService.isLoading$;
+  }
+
+  get projectsByIndustry$(): Observable<{ [industry: string]: IProject[] }> {
+    return this.projects$.pipe(
+      map((projects) =>
+        projects.reduce((acc, project) => {
+          const industry = project.industry || 'Uncategorized';
+          if (!acc[industry]) {
+            acc[industry] = [];
+          }
+          acc[industry].push(project);
+          return acc;
+        }, {} as { [industry: string]: IProject[] })
+      )
+    );
   }
 
   ngOnInit(): void {
@@ -73,6 +96,10 @@ export class ProjectsComponent implements OnInit {
         this.allProjects = projects;
         this.initializeVisibleProjects();
       });
+  }
+
+  setProjects(projects: IProject[]): void {
+    this.projectsSubject.next(projects);
   }
 
   initializeVisibleProjects(): void {

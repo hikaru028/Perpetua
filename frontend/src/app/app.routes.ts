@@ -25,7 +25,7 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'projects', component: ProjectsComponent },
     { path: 'projects/results', component: ProjectSearchResultComponent },
-    { path: 'projects/industry/:industry', component: ProjectIndustryComponent },
+    { path: 'projects/industries/:industry', component: ProjectIndustryComponent },
     { path: 'projects/:id', component: ProjectDetailComponent },
     { path: 'services', component: ServicesComponent },
     { path: 'services/details', component: ServiceDetailComponent },
