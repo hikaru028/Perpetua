@@ -30,7 +30,7 @@ import { IProject } from '../../../util/interfaces';
 export class ProjectsComponent implements OnInit {
   filteredProjects$: Observable<IProject[]>;
   selectedFilter$!: Observable<string | null>;
-  // projectsByIndustry$!: Observable<{ [industry: string]: IProject[] }>;
+  industries$!: Observable<{ [industry: string]: IProject[] }>;
   isLoading$!: Observable<boolean | null>;
   private projectsSubject = new BehaviorSubject<IProject[]>([]);
   projects$ = this.projectsSubject.asObservable();
@@ -48,7 +48,7 @@ export class ProjectsComponent implements OnInit {
   constructor(private titleService: Title, private metaService: Meta) {
     this.filteredProjects$ = this.projectService.filteredProjects$;
     this.selectedFilter$ = this.projectService.selectedFilter$;
-    // this.projectsByIndustry$ = this.projectService.projectsByIndustry$;
+    this.industries$ = this.projectService.projectsByIndustry$;
     this.isLoading$ = this.projectService.isLoading$;
   }
 

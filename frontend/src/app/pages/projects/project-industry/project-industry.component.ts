@@ -3,9 +3,8 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { filter } from 'rxjs/operators';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // Components
 import { ProjectCardComponent } from '../../../components/project-card/project-card.component';
@@ -26,6 +25,8 @@ import { IProject } from '../../../../util/interfaces';
 export class ProjectIndustryComponent implements OnInit {
   selectedIndustry: string | undefined;
   industryProjects$: Observable<IProject[]>;
+  filteredProjects$ = new BehaviorSubject<IProject[]>([]);
+  selectedFilter$ = new BehaviorSubject<string | null>('all');
   isLoading$!: Observable<boolean | null>;
 
   // Lazy loading
@@ -48,9 +49,23 @@ export class ProjectIndustryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       this.selectedIndustry = params.get('industry')!;
       this.titleService.setTitle(`${this.selectedIndustry || 'Projects'} - Perpeture`);
+      this.industryProjects$.subscribe((projects) => {
+        this.filteredProjects$.next(projects);
+      });
+    });
+  }
+
+  sortProjects(type: string): void {
+    this.selectedFilter$.next(type);
+    this.industryProjects$.subscribe((projects) => {
+      let sortedProjects = [...projects];
+      if (type !== 'all') {
+        sortedProjects = projects.filter((project) => project.project_type === type);
+      }
+      this.filteredProjects$.next(sortedProjects);
     });
   }
 
