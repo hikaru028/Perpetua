@@ -12,9 +12,9 @@ import { LocationCardComponent } from '../about/components/location-card/locatio
 import { ContactData } from './contact-data';
 // Services
 import { StrapiService } from '../../api/strapi.service';
-import { IMessage, IOffice, APIResponseModel, IFlag } from '../../../util/interfaces';
+import { IOffice, APIResponseModel, IFlag } from '../../../util/interfaces';
 import { TranslationHelper } from '../../shared/translation-helper';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { OfficeService } from '../../shared/office.service';
 
 @Component({
@@ -189,10 +189,10 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.formSubmitted = true;
 
     emailjs.send(
-      'service_cvy0zb6',
-      'template_x70ax2q',
+      environment.emailjsServiceId,
+      environment.emailjsTemplateId,
       this.contactForm.value,
-      { publicKey: 'W8luC9ul7Wgdj9Zdh' }
+      { publicKey: environment.emailjsPublicKey }
     )
       .then(
         () => {

@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 // Services
 import { StrapiService } from '../api/strapi.service';
 import { IOffice, APIResponseModel } from '../../util/interfaces';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
     providedIn: 'root'

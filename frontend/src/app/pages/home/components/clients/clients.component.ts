@@ -9,7 +9,7 @@ import { ClientCardComponent } from './components/client-card/client-card.compon
 import { IClient, APIResponseModel } from '../../../../../util/interfaces';
 import { StrapiService } from '../../../../api/strapi.service';
 import { TranslationHelper } from '../../../../shared/translation-helper';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment.development';
 
 @Component({
   selector: 'app-clients',

@@ -2,17 +2,13 @@
 import { Title, Meta } from '@angular/platform-browser';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // Components
 import { CallActionComponent } from '../../components/call-action/call-action.component';
 import { BackToTopButtonComponent } from '../../components/buttons/back-to-top-button/back-to-top-button.component';
 import { ServiceCardComponent } from './components/service-card/service-card.component';
 // Services
-import { ServiceData } from '../home/components/services/service-data';
-import { IService } from '../../../util/interfaces';
 import { TranslationHelper } from '../../shared/translation-helper';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-services',

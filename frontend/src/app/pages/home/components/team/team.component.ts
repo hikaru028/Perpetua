@@ -9,7 +9,7 @@ import { StaffCardComponent } from '../../../../components/staff-card/staff-card
 import { IMember, APIResponseModel } from '../../../../../util/interfaces';
 import { StrapiService } from '../../../../api/strapi.service';
 import { TranslationHelper } from '../../../../shared/translation-helper';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment.development';
 
 @Component({
   selector: 'app-team',

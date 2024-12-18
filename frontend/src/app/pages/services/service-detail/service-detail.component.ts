@@ -9,8 +9,6 @@ import { BackToTopButtonComponent } from '../../../components/buttons/back-to-to
 import { ServiceCardComponent } from '../components/service-card/service-card.component';
 // Services
 import { TranslationHelper } from '../../../shared/translation-helper';
-import { environment } from '../../../../environments/environment';
-
 
 @Component({
   selector: 'app-service-detail',

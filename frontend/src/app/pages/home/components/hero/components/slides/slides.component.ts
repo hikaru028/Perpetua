@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 // Components
 import { SlidesSkeletonComponent } from '../../../../../../components/skeletons/slides-skeleton/slides-skeleton.component';
 // Services
-import { environment } from '../../../../../../../environments/environment';
+import { environment } from '../../../../../../../environments/environment.development';
 import { StrapiService } from '../../../../../../api/strapi.service';
 import { ISlide, APIResponseModel } from '../../../../../../../util/interfaces';
 

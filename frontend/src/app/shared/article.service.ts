@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 // Services
 import { IArticle, APIResponseModel, IImage } from '../../util/interfaces';
 import { StrapiService } from '../api/strapi.service';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
     providedIn: 'root'

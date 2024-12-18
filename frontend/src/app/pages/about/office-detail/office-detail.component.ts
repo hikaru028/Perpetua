@@ -13,7 +13,7 @@ import { ProjectCardSkeletonComponent } from '../../../components/skeletons/proj
 import { StrapiService } from '../../../api/strapi.service';
 import { IOffice, ICareer, APIResponseModel } from '../../../../util/interfaces';
 import { TranslationHelper } from '../../../shared/translation-helper';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.development';
 import { ProjectService } from '../../../shared/project.service';
 import { CareerService } from '../../../shared/career.service';
 import { OfficeService } from '../../../shared/office.service';

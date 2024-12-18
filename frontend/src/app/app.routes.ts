@@ -13,6 +13,7 @@ import { OfficeDetailComponent } from './pages/about/office-detail/office-detail
 import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { ProjectDetailComponent } from './pages/projects/project-detail/project-detail.component';
+import { ProjectIndustryComponent } from './pages/projects/project-industry/project-industry.component';
 import { ProjectSearchResultComponent } from './pages/projects/project-search-result/project-search-result.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ServiceDetailComponent } from './pages/services/service-detail/service-detail.component';
@@ -24,6 +25,7 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'projects', component: ProjectsComponent },
     { path: 'projects/results', component: ProjectSearchResultComponent },
+    { path: 'projects/industry/:industry', component: ProjectIndustryComponent },
     { path: 'projects/:id', component: ProjectDetailComponent },
     { path: 'services', component: ServicesComponent },
     { path: 'services/details', component: ServiceDetailComponent },

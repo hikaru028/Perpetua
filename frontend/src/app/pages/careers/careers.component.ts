@@ -10,7 +10,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 // Services
 import { ICareer, APIResponseModel } from '../../../util/interfaces';
 import { StrapiService } from '../../api/strapi.service';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-careers',

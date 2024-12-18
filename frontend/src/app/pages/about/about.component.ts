@@ -14,7 +14,7 @@ import { CareerCardComponent } from './components/career-card/career-card.compon
 import { StrapiService } from '../../api/strapi.service';
 import { IClient, IMember, IOffice, ICareer, APIResponseModel } from '../../../util/interfaces';
 import { TranslationHelper } from '../../shared/translation-helper';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { CareerService } from '../../shared/career.service';
 import { OfficeService } from '../../shared/office.service';
 

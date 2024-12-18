@@ -14,7 +14,7 @@ import { ArticleDetailSkeletonComponent } from '../../../components/skeletons/ar
 import { StrapiService } from '../../../api/strapi.service';
 import { IArticle, APIResponseModel } from '../../../../util/interfaces';
 import { TranslationHelper } from '../../../shared/translation-helper';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-article-detail',

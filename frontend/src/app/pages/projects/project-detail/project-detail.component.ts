@@ -11,7 +11,7 @@ import { ProjectContentComponent } from './components/project-content/project-co
 // Services
 import { StrapiService } from '../../../api/strapi.service';
 import { IProject, APIResponseModel } from '../../../../util/interfaces';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-project-detail',
