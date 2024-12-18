@@ -41,8 +41,8 @@ p {
         img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center;
+            // object-fit: cover;
+            // object-position: center;
         }
     }
 
@@ -119,7 +119,7 @@ p {
         height: 38px;
         font-family: 'Sohne', sans-serif;
         font-size: 1.5rem;
-        padding: 2px 5px;
+        padding: 5px 20px;
         transition: right 0.3s ease-in-out;
     }
 

@@ -198,9 +198,14 @@ export class ContactComponent implements OnInit, OnDestroy {
         () => {
           this.showMessage(true);
           this.contactForm.reset({
-            country_code: '+64'  // Default value for country code
+            country_code: '+64'
           });
           this.formSubmitted = false;
+          setTimeout(() => {
+            if (this.messageTextarea) {
+              this.autoResize(this.messageTextarea.nativeElement);
+            }
+          }, 0);
         },
         (error) => {
           console.error('FAILED...', (error as EmailJSResponseStatus).text);
