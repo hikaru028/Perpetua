@@ -81,6 +81,7 @@ export class MemberService {
                 { name: 'Administration & Management', keywords: ['CEO', 'executive', 'assistant'] },
                 { name: 'Design', keywords: ['designer'] },
                 { name: 'Software Engineering', keywords: ['software', 'developer'] },
+                { name: 'Accountant', keywords: ['accountant'] },
                 { name: 'Data Analytics', keywords: ['data'] },
             ];
 

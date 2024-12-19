@@ -108,7 +108,8 @@ export class TeamComponent implements OnInit, OnDestroy {
         { name: this.sanitizer.bypassSecurityTrustHtml('Administration <span style="font-family:sohne; font-weight:600; font-size:2.25rem; color:#000000;">&#38;</span> Management'), keywords: ['CEO', 'executive', 'assistant'] },
         { name: this.sanitizer.bypassSecurityTrustHtml('Design'), keywords: ['designer'] },
         { name: this.sanitizer.bypassSecurityTrustHtml('Software Engineering'), keywords: ['software', 'developer'] },
-        { name: this.sanitizer.bypassSecurityTrustHtml('Data Analytics'), keywords: ['data'] },
+        { name: this.sanitizer.bypassSecurityTrustHtml('Accountant'), keywords: ['accountant'] },
+        // { name: this.sanitizer.bypassSecurityTrustHtml('Data Analytics'), keywords: ['data'] },
       ];
 
       this.membersByCategory = roleCategories.map(category => ({
