@@ -28,9 +28,15 @@
     </div>
     <span class="separator"></span>
     <!-- Article cards -->
-    <ng-container *ngIf="(articles$ | async) as articles">
-        <app-article-card [articles]="articles | slice:0:6"></app-article-card>
+    <ng-container *ngIf="isLoading$ | async; else articleCards">
+        <app-article-and-project-card-skeleton></app-article-and-project-card-skeleton>
     </ng-container>
+
+    <ng-template #articleCards>
+        <ng-container *ngIf="(articles$ | async) as articles">
+            <app-article-card [articles]="articles | slice:0:6"></app-article-card>
+        </ng-container>
+    </ng-template>
     <!-- Footer -->
     <div class="footer-button-wrapper" [routerLink]="['/articles']">
         <button class="footer-button">

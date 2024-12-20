@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 // Components
 import { ProjectCardComponent } from '../../../components/project-card/project-card.component';
 import { CareerCardComponent } from '../components/career-card/career-card.component';
-import { ProjectCardSkeletonComponent } from '../../../components/skeletons/project-card-skeleton/project-card-skeleton.component';
+import { ArticleAndProjectCardSkeletonComponent } from '../../../components/skeletons/article-and-project-card-skeleton/article-and-project-card-skeleton.component';
 // Services
 import { StrapiService } from '../../../api/strapi.service';
 import { IOffice, ICareer, APIResponseModel } from '../../../../util/interfaces';
@@ -28,7 +28,7 @@ import { IProject } from '../../../../util/interfaces';
     TranslateModule,
     ProjectCardComponent,
     CareerCardComponent,
-    ProjectCardSkeletonComponent
+    ArticleAndProjectCardSkeletonComponent
   ],
   templateUrl: './office-detail.component.html',
   styleUrl: './office-detail.component.scss'

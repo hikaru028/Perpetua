@@ -49,7 +49,7 @@
     <span class="separator"></span>
     <!-- Project cards -->
     <ng-container *ngIf="isLoading$ | async">
-        <app-project-card-skeleton></app-project-card-skeleton>
+        <app-article-and-project-card-skeleton></app-article-and-project-card-skeleton>
     </ng-container>
 
     <ng-container *ngIf="!(isLoading$ | async)">

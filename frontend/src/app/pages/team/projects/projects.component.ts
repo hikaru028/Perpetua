@@ -7,13 +7,13 @@ import { map } from 'rxjs/operators';
 import { filter } from 'rxjs/operators';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // Components
-import { ProjectCardComponent } from '../../components/project-card/project-card.component';
-import { CallActionComponent } from '../../components/call-action/call-action.component';
-import { BackToTopButtonComponent } from '../../components/buttons/back-to-top-button/back-to-top-button.component';
-import { ProjectCardSkeletonComponent } from '../../components/skeletons/project-card-skeleton/project-card-skeleton.component';
+import { ProjectCardComponent } from '../../../components/project-card/project-card.component';
+import { CallActionComponent } from '../../../components/call-action/call-action.component';
+import { BackToTopButtonComponent } from '../../../components/buttons/back-to-top-button/back-to-top-button.component';
+import { ArticleAndProjectCardSkeletonComponent } from '../../../components/skeletons/article-and-project-card-skeleton/article-and-project-card-skeleton.component';
 // Service
-import { ProjectService } from '../../shared/project.service';
-import { IProject } from '../../../util/interfaces';
+import { ProjectService } from '../../../shared/project.service';
+import { IProject } from '../../../../util/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ import { IProject } from '../../../util/interfaces';
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectCardComponent, TranslateModule, CallActionComponent, BackToTopButtonComponent, ProjectCardSkeletonComponent],
+  imports: [CommonModule, ProjectCardComponent, TranslateModule, CallActionComponent, BackToTopButtonComponent, ArticleAndProjectCardSkeletonComponent],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })

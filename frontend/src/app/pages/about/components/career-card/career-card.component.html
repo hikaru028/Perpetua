@@ -4,7 +4,7 @@
         <div class="office_info_container">
             <!-- Position info -->
             <div class="container_left">
-                <div class="job-title-wrapper">
+                <div class="job-title-wrapper" [routerLink]="['/careers', career.documentId]">
                     <p class="job-title">{{ career.job_title }}</p>
                     <i class="bi bi-arrow-up-short location-icon"></i>
                 </div>
@@ -41,7 +41,7 @@
 
 <!-- Template for a single career -->
 <ng-template #singleCareerTemplate>
-    <div *ngIf="career" class="card-container">
+    <div *ngIf="career" class="card-container" [routerLink]="['/careers', career.documentId]">
         <div class="office_info_container">
             <!-- Position info -->
             <div class="container_left">
@@ -71,7 +71,7 @@
             </div>
         </div>
         <!-- Button -->
-        <div class="footer-button-wrapper" routerLink="/">
+        <div class="footer-button-wrapper" [routerLink]="['/careers', career.documentId]">
             <button class="footer-button">
                 Learn more
                 <i class="bi bi-arrow-right-short"></i>

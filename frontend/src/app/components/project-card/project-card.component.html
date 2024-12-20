@@ -1,4 +1,4 @@
-<div *ngIf="!showTitleAsIndustry; else noProjects" class="project-card-container container-fluid">
+<div *ngIf="!showTitleAsIndustry" class="project-card-container container-fluid">
     <div class="row row-cols-1 row-cols-md-3 custom-gutter">
         <div class="col" *ngFor="let project of projects" (click)="navigateToProject(project.documentId)"
             (keydown)="onKeyDown($event, project.documentId)" (mouseenter)="onMouseEnterTitle($event)"
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div *ngIf="showTitleAsIndustry; else noProjects" class="industry-card-container container-fluid">
+<div *ngIf="showTitleAsIndustry" class="industry-card-container container-fluid">
     <div class="row row-cols-1 row-cols-md-3 custom-gutter">
         <div class="col" *ngFor="let project of projects" (mouseenter)="onMouseEnterTitle($event)"
             (mouseleave)="onMouseLeaveTitle($event)">
@@ -35,7 +35,3 @@
         </div>
     </div>
 </div>
-
-<ng-template #noProjects>
-    <!-- <p>No projects available.</p> -->
-</ng-template>

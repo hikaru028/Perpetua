@@ -6,8 +6,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 // Components
 import { ArticleCardPlusInfoComponent } from '../../components/article-cards/article-card-plus-info/article-card-plus-info.component';
-import { CallActionComponent } from '../../components/call-action/call-action.component';
 import { BackToTopButtonComponent } from '../../components/buttons/back-to-top-button/back-to-top-button.component';
+import { ArticleDetailSkeletonComponent } from '../../components/skeletons/article-detail-skeleton/article-detail-skeleton.component';
 // Service
 import { IArticle } from '../../../util/interfaces';
 import { ArticleService } from '../../shared/article.service';
@@ -20,8 +20,8 @@ import { TranslationHelper } from '../../shared/translation-helper';
     CommonModule,
     TranslateModule,
     ArticleCardPlusInfoComponent,
-    CallActionComponent,
     BackToTopButtonComponent,
+    ArticleDetailSkeletonComponent
   ],
   templateUrl: './articles.component.html',
   styleUrl: './articles.component.scss'
@@ -29,6 +29,7 @@ import { TranslationHelper } from '../../shared/translation-helper';
 export class ArticlesComponent implements OnInit, OnDestroy {
   articles$: Observable<IArticle[]>;
   selectedFilter$: Observable<string | null>;
+  isLoading$!: Observable<boolean | null>;
   articleService = inject(ArticleService);
   currentLanguage: string = 'en';
 
@@ -41,6 +42,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   constructor(private titleService: Title, private metaService: Meta, private translationHelper: TranslationHelper) {
     this.articles$ = this.articleService.filteredArticles$;
     this.selectedFilter$ = this.articleService.selectedFilter$;
+    this.isLoading$ = this.articleService.isLoading$;
     this.currentLanguage = this.translationHelper.getCurrentLanguage();
   }
 

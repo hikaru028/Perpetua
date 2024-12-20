@@ -6,7 +6,7 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Subscription, Observable } from 'rxjs';
 // Components
 import { ProjectCardComponent } from '../../../../components/project-card/project-card.component';
-import { ProjectCardSkeletonComponent } from '../../../../components/skeletons/project-card-skeleton/project-card-skeleton.component';
+import { ArticleAndProjectCardSkeletonComponent } from '../../../../components/skeletons/article-and-project-card-skeleton/article-and-project-card-skeleton.component';
 // Services
 import { TranslationHelper } from '../../../../shared/translation-helper';
 import { ProjectService } from '../../../../shared/project.service';
@@ -15,7 +15,7 @@ import { IProject } from '../../../../../util/interfaces';
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectCardComponent, RouterLink, TranslateModule, ProjectCardSkeletonComponent],
+  imports: [CommonModule, ProjectCardComponent, RouterLink, TranslateModule, ArticleAndProjectCardSkeletonComponent],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
 })

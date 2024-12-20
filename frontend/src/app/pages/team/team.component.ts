@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 // Components
-import { StaffCardComponent } from '../about/components/staff-card/staff-card.component';
+import { StaffCardComponent } from '../about/components/member-card/member-card.component';
 import { BackToTopButtonComponent } from '../../components/buttons/back-to-top-button/back-to-top-button.component';
 // Service
 import { IMember } from '../../../util/interfaces';

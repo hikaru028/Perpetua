@@ -21,7 +21,7 @@
             </ng-container>
         </div>
         <div class="image-wrapper">
-            <img [src]="office?.office_image?.url" [alt]="office?.city">
+            <img [src]="office?.office_image?.url" alt="office?.city">
         </div>
     </section>
     <!-- Contacts -->
@@ -71,7 +71,7 @@
     <section class="work-section">
         <h1>Selected Work</h1>
         <ng-container *ngIf="isLoading$ | async; else projectCards">
-            <app-project-card-skeleton></app-project-card-skeleton>
+            <app-article-and-project-card-skeleton></app-article-and-project-card-skeleton>
         </ng-container>
 
         <ng-template #projectCards>

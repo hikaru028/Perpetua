@@ -120,11 +120,11 @@
                 (keydown)="onKeyDownMenuHide($event, 'about')">
                 {{ 'about.nav.team' | translate }}
             </li>
-            <li class="submenu-item" [routerLink]="['/about']" fragment="aboutClients"
+            <li class="submenu-item" [routerLink]="['/clients']" fragment="aboutClients"
                 (click)="onMenuHide('about', $event)" (keydown)="onKeyDownMenuHide($event, 'about')">
                 {{ 'about.nav.clients' | translate }}
             </li>
-            <li class="submenu-item" [routerLink]="['/about']" fragment="aboutClients"
+            <li class="submenu-item" [routerLink]="['/clients/testimonials']" fragment="aboutClients"
                 (click)="onMenuHide('about', $event)" (keydown)="onKeyDownMenuHide($event, 'about')">
                 {{ 'about.nav.testimonials' | translate }}
             </li>

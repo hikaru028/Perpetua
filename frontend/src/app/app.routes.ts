@@ -6,15 +6,17 @@ import { ArticleDetailComponent } from './pages/articles/article-detail/article-
 import { ArticleSearchResultComponent } from './pages/articles/article-search-result/article-search-result.component';
 import { CareersComponent } from './pages/careers/careers.component';
 import { ClientsComponent } from './pages/clients/clients.component';
+import { ClientsTestimonialComponent } from './pages/clients/clients-testimonial/clients-testimonial.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HistoryComponent } from './pages/about/history/history.component';
 import { HomeComponent } from './pages/home/home.component';
 import { OfficeDetailComponent } from './pages/about/office-detail/office-detail.component';
 import { PrivacyComponent } from './pages/privacy/privacy.component';
-import { ProjectsComponent } from './pages/projects/projects.component';
-import { ProjectDetailComponent } from './pages/projects/project-detail/project-detail.component';
-import { ProjectIndustryComponent } from './pages/projects/project-industry/project-industry.component';
-import { ProjectSearchResultComponent } from './pages/projects/project-search-result/project-search-result.component';
+import { ProjectsComponent } from './pages/team/projects/projects.component';
+import { ProjectDetailComponent } from './pages/team/projects/project-detail/project-detail.component';
+import { ProjectIndustryComponent } from './pages/team/projects/project-industry/project-industry.component';
+import { ProjectSearchResultComponent } from './pages/team/projects/project-search-result/project-search-result.component';
+import { ProjectTagComponent } from './pages/team/projects/project-tag/project-tag.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ServiceDetailComponent } from './pages/services/service-detail/service-detail.component';
 import { TeamComponent } from './pages/team/team.component';
@@ -27,6 +29,7 @@ export const routes: Routes = [
     { path: 'projects/results', component: ProjectSearchResultComponent },
     { path: 'projects/industries/:industry', component: ProjectIndustryComponent },
     { path: 'projects/:id', component: ProjectDetailComponent },
+    { path: 'projects/tags', component: ProjectTagComponent },
     { path: 'services', component: ServicesComponent },
     { path: 'services/details', component: ServiceDetailComponent },
     { path: 'about', component: AboutComponent },
@@ -38,6 +41,7 @@ export const routes: Routes = [
     { path: 'careers/:id', component: CareersComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'clients', component: ClientsComponent },
+    { path: 'clients/testimonials', component: ClientsTestimonialComponent },
     { path: 'team', component: TeamComponent },
     { path: 'privacy', component: PrivacyComponent },
     { path: 'terms', component: TermsComponent }

@@ -39,11 +39,17 @@
     </div>
     <span class="separator"></span>
     <!-- Article cards -->
-    <ng-container *ngIf="articles$ | async as articles">
-        <div *ngIf="articles.length > 0">
-            <app-article-card-plus-info [visibleArticles]="visibleArticles"></app-article-card-plus-info>
-        </div>
+    <ng-container *ngIf="isLoading$ | async; else articleCards">
+        <app-article-detail-skeleton></app-article-detail-skeleton>
     </ng-container>
+
+    <ng-template #articleCards>
+        <ng-container *ngIf="articles$ | async as articles">
+            <div *ngIf="articles.length > 0">
+                <app-article-card-plus-info [visibleArticles]="visibleArticles"></app-article-card-plus-info>
+            </div>
+        </ng-container>
+    </ng-template>
 
     <!-- Footer -->
     <div class="footer-button-wrapper">

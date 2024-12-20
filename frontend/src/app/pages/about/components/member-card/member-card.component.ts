@@ -7,11 +7,11 @@ import { marked } from 'marked';
 import { IMember } from '../../../../../util/interfaces';
 
 @Component({
-  selector: 'app-staff-card',
+  selector: 'app-member-card',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './staff-card.component.html',
-  styleUrl: './staff-card.component.scss'
+  templateUrl: './member-card.component.html',
+  styleUrl: './member-card.component.scss'
 })
 export class StaffCardComponent implements OnChanges {
   @Input() member: IMember | undefined;

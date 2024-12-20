@@ -35,7 +35,7 @@
                 <p class="sorting-title" [innerHTML]="group.category"></p>
                 <div class="row row-cols-1 row-cols-md-3 custom-gutter">
                     <div class="col" *ngFor="let member of group.members">
-                        <app-staff-card [member]="member" filter="office"></app-staff-card>
+                        <app-member-card [member]="member" filter="office"></app-member-card>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 <p class="sorting-title" [innerHTML]="group.category"></p>
                 <div class="row row-cols-1 row-cols-md-3 custom-gutter">
                     <div class="col" *ngFor="let member of group.members">
-                        <app-staff-card [member]="member" filter="role"></app-staff-card>
+                        <app-member-card [member]="member" filter="role"></app-member-card>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
         <div class="staff-container">
             <div class="row row-cols-1 row-cols-md-3 custom-gutter">
                 <div class="col" *ngFor="let member of visibleMembers">
-                    <app-staff-card [member]="member" filter="all"></app-staff-card>
+                    <app-member-card [member]="member" filter="all"></app-member-card>
                 </div>
             </div>
         </div>

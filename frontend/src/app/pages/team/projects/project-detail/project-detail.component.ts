@@ -4,14 +4,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 // Components
-import { BackToTopButtonComponent } from '../../../components/buttons/back-to-top-button/back-to-top-button.component';
-import { ProjectDetailSkeletonComponent } from '../../../components/skeletons/project-detail-skeleton/project-detail-skeleton.component';
+import { BackToTopButtonComponent } from '../../../../components/buttons/back-to-top-button/back-to-top-button.component';
+import { ProjectDetailSkeletonComponent } from '../../../../components/skeletons/project-detail-skeleton/project-detail-skeleton.component';
 import { MoreProjectsComponent } from './components/more-projects/more-projects.component';
 import { ProjectContentComponent } from './components/project-content/project-content.component';
 // Services
-import { StrapiService } from '../../../api/strapi.service';
-import { IProject, APIResponseModel } from '../../../../util/interfaces';
-import { environment } from '../../../../environments/environment.development';
+import { StrapiService } from '../../../../api/strapi.service';
+import { IProject, APIResponseModel } from '../../../../../util/interfaces';
+import { environment } from '../../../../../environments/environment.development';
 
 @Component({
   selector: 'app-project-detail',
