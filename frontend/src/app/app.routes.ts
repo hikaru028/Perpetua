@@ -6,6 +6,7 @@ import { ArticleDetailComponent } from './pages/articles/article-detail/article-
 import { ArticleSearchResultComponent } from './pages/articles/article-search-result/article-search-result.component';
 import { CareersComponent } from './pages/careers/careers.component';
 import { ClientsComponent } from './pages/clients/clients.component';
+import { ClientsListComponent } from './pages/clients/clients-list/clients-list.component';
 import { ClientsTestimonialComponent } from './pages/clients/clients-testimonial/clients-testimonial.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HistoryComponent } from './pages/about/history/history.component';
@@ -41,6 +42,7 @@ export const routes: Routes = [
     { path: 'careers/:id', component: CareersComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'clients', component: ClientsComponent },
+    { path: 'clients/all', component: ClientsListComponent },
     { path: 'clients/testimonials', component: ClientsTestimonialComponent },
     { path: 'team', component: TeamComponent },
     { path: 'privacy', component: PrivacyComponent },

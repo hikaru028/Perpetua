@@ -137,7 +137,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   scrollToSection(sectionId: string): void {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({ behavior: 'instant' });
     }
   }
 }
