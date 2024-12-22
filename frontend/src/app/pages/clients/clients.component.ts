@@ -1,6 +1,6 @@
 // Libraries
 import { Meta, Title } from '@angular/platform-browser';
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -31,14 +31,10 @@ export class ClientsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Meta info for SEO
     this.titleService.setTitle('Our Clients - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'Browse our projects searched by keywords to learn more about the amazing things we have done at Perpeture.' });
+    this.metaService.updateTag({ name: 'description', content: 'Explore our esteemed clients who have partnered with us to achieve outstanding results in their industries.' });
   }
 
   ngOnDestroy(): void {
     this.translationHelper.unsubscribe();
-  }
-
-  onClientSelected(index: number): void {
-    this.selectedClientIndex = index;
   }
 }

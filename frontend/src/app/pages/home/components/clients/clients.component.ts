@@ -40,7 +40,8 @@ export class ClientsComponent implements OnInit, OnDestroy {
             url: this.strapiUrl + client.company_logo.url || "../../../../../assets/images/img_n.a.png"
           }
         }))
-        .sort((a, b) => a.company_name.localeCompare(b.company_name));
+        .sort((a, b) => a.company_name.localeCompare(b.company_name))
+        .slice(0, 9);
     }, error => {
       console.error('Error fetching clients:', error);
     });
