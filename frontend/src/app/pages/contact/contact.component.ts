@@ -34,6 +34,7 @@ import { OfficeService } from '../../shared/office.service';
 export class ContactComponent implements OnInit, OnDestroy {
   @ViewChild('messageTextarea') messageTextarea!: ElementRef<HTMLTextAreaElement>;
   offices$: Observable<IOffice[]>;
+  officeImage: string | null = '../../../assets/images/img_n.a.png';
   contactData = ContactData;
   selectedLocation: string | null = 'christchurch';
   selectedContactInfo: any = null;
@@ -75,6 +76,15 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.selectedLocation = 'Christchurch';
     this.selectedContactInfo = this.contactData.find(data => data.location === 'Christchurch');
+    this.offices$.subscribe((offices: IOffice[]) => {
+      const matchingOffice = offices.find(office => office.office_location === this.selectedLocation);
+      if (matchingOffice) {
+        this.officeImage = matchingOffice.office_image.url;
+      } else {
+        this.officeImage = '../../../assets/images/img_n.a.png';
+      }
+    });
+
 
     this.strapiService.getAllFlags().subscribe((response: APIResponseModel) => {
       this.flags = response.data.map((flag: IFlag) => ({
@@ -146,6 +156,14 @@ export class ContactComponent implements OnInit, OnDestroy {
   onLocationClick(location: string): void {
     this.selectedLocation = location;
     this.selectedContactInfo = this.contactData.find(data => data.location.toLowerCase() === location.toLowerCase()) || null;
+    this.offices$.subscribe((offices: IOffice[]) => {
+      const matchingOffice = offices.find(office => office.office_location === this.selectedLocation);
+      if (matchingOffice) {
+        this.officeImage = matchingOffice.office_image.url;
+      } else {
+        this.officeImage = '../../../assets/images/img_n.a.png';
+      }
+    });
   }
 
   onLocationKeydown(event: KeyboardEvent, location: string): void {
