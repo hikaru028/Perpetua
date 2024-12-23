@@ -149,6 +149,7 @@ p {
         gap: 77px;
 
         .form-wrapper {
+            height: auto;
             display: flex;
             gap: 52px;
 
@@ -191,6 +192,7 @@ p {
             .phone-wrapper {
                 display: flex;
                 gap: 31px;
+                height: 38px;
 
                 .image-wrapper {
                     width: 38px;
