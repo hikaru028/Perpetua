@@ -6,13 +6,6 @@
     overflow: hidden;
 }
 
-@media screen and (max-width: 650px) {
-    .content {
-        flex-direction: column;
-        width: max-content;
-    }
-}
-
 .header-container {
     position: fixed;
     top: 0;
@@ -50,4 +43,20 @@
 
 .section-container {
     padding-top: 46px;
+}
+
+@media screen and (max-width: 650px) {
+    .header-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .desktop {
+            display: none;
+        }
+
+        .mobile {
+            display: block;
+        }
+    }
 }

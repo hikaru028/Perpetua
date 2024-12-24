@@ -1,0 +1,32 @@
+<div class="side-menu-container">
+    <!-- Hamburger menu button -->
+    <button type="button" class="toggle-icon" (click)="toggleMenu()" aria-label="Toggle Menu">
+        <span class="bar bar-top" [ngClass]="{'rotate-top': isMenuOpen}"></span>
+        <span class="bar bar-mid" [ngClass]="{'fade-out': isMenuOpen}"></span>
+        <span class="bar bar-btm" [ngClass]="{'rotate-bottom': isMenuOpen}"></span>
+    </button>
+
+    <!-- Side menu -->
+    <div class="side-menu" [ngClass]="{'open': isMenuOpen}">
+        <nav class="menu-container">
+            <p>sggaljga;eoigjse;rlgkj;</p>
+            <ul>
+                <li class="menu-item" routerLink="/projects" (click)="closeMenu()">
+                    {{ 'menu.projects' | translate }}
+                </li>
+                <li class="menu-item" routerLink="/services" (click)="closeMenu()">
+                    {{ 'menu.services' | translate }}
+                </li>
+                <li class="menu-item" routerLink="/about" (click)="closeMenu()">
+                    {{ 'menu.about' | translate }}
+                </li>
+                <li class="menu-item" routerLink="/articles" (click)="closeMenu()">
+                    {{ 'menu.blog' | translate }}
+                </li>
+                <li class="menu-item" routerLink="/contact" (click)="closeMenu()">
+                    {{ 'menu.contact' | translate }}
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
