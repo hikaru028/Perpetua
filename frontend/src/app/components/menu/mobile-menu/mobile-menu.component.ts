@@ -1,18 +1,12 @@
 // Libraries
-import { Component, HostListener, OnInit, ViewEncapsulation, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, Router, NavigationEnd } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
 // Components
 import { LanguageFooterComponent } from '../../languages/language-footer/language-footer.component';
 // Services
-import { MenuService } from '../../../shared/menu.service';
-import { ProjectService } from '../../../shared/project.service';
-import { ArticleService } from '../../../shared/article.service';
-import { IProject } from '../../../../util/interfaces';
 import { TranslationHelper } from '../../../shared/translation-helper';
-
 
 @Component({
   selector: 'app-mobile-menu',
@@ -24,32 +18,16 @@ import { TranslationHelper } from '../../../shared/translation-helper';
 
 export class MobileMenuComponent implements OnInit {
   isMenuOpen = false;
+  selectedMenuItem: string | null = 'home';
+  @ViewChild('sideMenuContainer', { static: true }) sideMenuContainer!: ElementRef;
   currentLanguage: string = 'en';
 
-  selectedMenuItem: string | null = null;
-  searchProjects: string = '';
-  searchContent: string = '';
-  private clickedItem: string | null = null;
-
-  projectService: ProjectService = inject(ProjectService);
-  articleService: ArticleService = inject(ArticleService);
-
-  constructor(
-    private translationHelper: TranslationHelper,
-    private menuService: MenuService,
-    private router: Router
-  ) {
+  constructor(private translationHelper: TranslationHelper) {
     this.currentLanguage = this.translationHelper.getCurrentLanguage();
   }
 
   ngOnInit(): void {
-
-  }
-
-  clearSelectedMenu() {
-    const allMenuItems = document.querySelectorAll('.menu-item');
-    allMenuItems.forEach(item => item.classList.remove('selected', 'active'));
-    this.selectedMenuItem = null;
+    this.selectedMenuItem = 'home';
   }
 
   toggleMenu(): void {
@@ -58,5 +36,33 @@ export class MobileMenuComponent implements OnInit {
 
   closeMenu(): void {
     this.isMenuOpen = false;
+  }
+
+  onMenuHide(menuItem: string, event: Event): void {
+    event.stopPropagation();
+
+    if (menuItem === this.selectedMenuItem) {
+      return;
+    }
+    this.selectedMenuItem = menuItem;
+    this.closeMenu();
+  }
+
+  onKeyDownMenuHide(e: KeyboardEvent, menuItem: string): void {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      this.onMenuHide(menuItem, e);
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleOutsideClick(event: Event): void {
+    if (
+      this.isMenuOpen &&
+      this.sideMenuContainer &&
+      !this.sideMenuContainer.nativeElement.contains(event.target)
+    ) {
+      this.closeMenu();
+    }
   }
 }

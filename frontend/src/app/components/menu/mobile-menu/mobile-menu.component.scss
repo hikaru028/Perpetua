@@ -61,9 +61,14 @@
             .menu-item {
                 font-family: 'Larsseit' !important;
                 font-size: 1.5rem;
+                color: #ffffff;
                 margin: 25px 0;
                 cursor: pointer;
                 transition: color 0.2s ease;
+
+                &.active {
+                    color: #a8a8a8;
+                }
             }
         }
 

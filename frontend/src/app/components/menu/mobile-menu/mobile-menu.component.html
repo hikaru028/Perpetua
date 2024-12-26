@@ -1,4 +1,4 @@
-<div class="side-menu-container">
+<div class="side-menu-container" #sideMenuContainer>
     <!-- Hamburger menu button -->
     <button type="button" class="toggle-icon" (click)="toggleMenu()" aria-label="Toggle Menu">
         <span class="bar bar-top" [ngClass]="{'rotate-top': isMenuOpen}"></span>
@@ -10,12 +10,30 @@
     <div class="side-menu" [ngClass]="{'visible': isMenuOpen}">
         <nav>
             <ul>
-                <li class="menu-item" routerLink="/projects">{{ 'menu.home' | translate }}</li>
-                <li class="menu-item" routerLink="/projects">{{ 'menu.projects' | translate }}</li>
-                <li class="menu-item" routerLink="/services">{{ 'menu.services' | translate }}</li>
-                <li class="menu-item" routerLink="/about">{{ 'menu.about' | translate }}</li>
-                <li class="menu-item" routerLink="/articles">{{ 'menu.blog' | translate }}</li>
-                <li class="menu-item" routerLink="/contact">{{ 'menu.contact' | translate }}</li>
+                <li class="menu-item" routerLink="/" [ngClass]="{'active': selectedMenuItem === 'home'}"
+                    (click)="onMenuHide('home', $event)" (keydown)="onKeyDownMenuHide($event, 'home')">
+                    {{ 'menu.home' | translate }}
+                </li>
+                <li class="menu-item" routerLink="/projects" [ngClass]="{'active': selectedMenuItem === 'projects'}"
+                    (click)="onMenuHide('projects', $event)" (keydown)="onKeyDownMenuHide($event, 'projects')">
+                    {{ 'menu.projects' | translate }}
+                </li>
+                <li class="menu-item" routerLink="/services" [ngClass]="{'active': selectedMenuItem === 'services'}"
+                    (click)="onMenuHide('services', $event)" (keydown)="onKeyDownMenuHide($event, 'services')">
+                    {{ 'menu.services' | translate }}
+                </li>
+                <li class="menu-item" routerLink="/about" [ngClass]="{'active': selectedMenuItem === 'about'}"
+                    (click)="onMenuHide('about', $event)" (keydown)="onKeyDownMenuHide($event, 'about')">
+                    {{ 'menu.about' | translate }}
+                </li>
+                <li class="menu-item" routerLink="/articles" [ngClass]="{'active': selectedMenuItem === 'articles'}"
+                    (click)="onMenuHide('articles', $event)" (keydown)="onKeyDownMenuHide($event, 'articles')">
+                    {{ 'menu.blog' | translate }}
+                </li>
+                <li class="menu-item" routerLink="/contact" [ngClass]="{'active': selectedMenuItem === 'contact'}"
+                    (click)="onMenuHide('contact', $event)" (keydown)="onKeyDownMenuHide($event, 'contact')">
+                    {{ 'menu.contact' | translate }}
+                </li>
             </ul>
         </nav>
         <div class="lang-container">
