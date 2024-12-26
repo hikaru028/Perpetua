@@ -7,26 +7,20 @@
     </button>
 
     <!-- Side menu -->
-    <div class="side-menu" [ngClass]="{'open': isMenuOpen}">
-        <nav class="menu-container">
-            <p>sggaljga;eoigjse;rlgkj;</p>
+    <div class="side-menu" [ngClass]="{'visible': isMenuOpen}">
+        <nav>
             <ul>
-                <li class="menu-item" routerLink="/projects" (click)="closeMenu()">
-                    {{ 'menu.projects' | translate }}
-                </li>
-                <li class="menu-item" routerLink="/services" (click)="closeMenu()">
-                    {{ 'menu.services' | translate }}
-                </li>
-                <li class="menu-item" routerLink="/about" (click)="closeMenu()">
-                    {{ 'menu.about' | translate }}
-                </li>
-                <li class="menu-item" routerLink="/articles" (click)="closeMenu()">
-                    {{ 'menu.blog' | translate }}
-                </li>
-                <li class="menu-item" routerLink="/contact" (click)="closeMenu()">
-                    {{ 'menu.contact' | translate }}
-                </li>
+                <li class="menu-item" routerLink="/projects">{{ 'menu.home' | translate }}</li>
+                <li class="menu-item" routerLink="/projects">{{ 'menu.projects' | translate }}</li>
+                <li class="menu-item" routerLink="/services">{{ 'menu.services' | translate }}</li>
+                <li class="menu-item" routerLink="/about">{{ 'menu.about' | translate }}</li>
+                <li class="menu-item" routerLink="/articles">{{ 'menu.blog' | translate }}</li>
+                <li class="menu-item" routerLink="/contact">{{ 'menu.contact' | translate }}</li>
             </ul>
         </nav>
+        <div class="lang-container">
+            <p>Language</p>
+            <app-language-footer></app-language-footer>
+        </div>
     </div>
 </div>
