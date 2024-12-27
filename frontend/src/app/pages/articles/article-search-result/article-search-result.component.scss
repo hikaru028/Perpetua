@@ -21,7 +21,7 @@ section {
             .image-wrapper {
                 position: relative;
                 width: 100%;
-                max-width: 350px;
+                max-width: 600px;
                 aspect-ratio: 16 / 9;
                 background: #f0f0f0;
                 overflow: hidden;
@@ -75,46 +75,49 @@ section {
                         text-overflow: ellipsis;
                         word-break: break-word;
                     }
+
+                    .read-more-button-wrapper {
+                        width: 220px;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        padding: 0;
+                        margin-top: 50px;
+
+                        .read-more-button {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 0;
+                            color: #0e0e01;
+                            border: none;
+                            background-color: transparent;
+                            font-family: 'Sohne-500' !important;
+                            font-size: 1.5rem;
+
+                            i {
+                                font-size: 1.75rem;
+                                // margin-left: 5px;
+                                padding-top: 5px;
+                                transform: rotate(-45deg);
+                                transition: color 0.1s ease;
+                            }
+
+                            &:hover {
+                                color: #a8a8a8;
+                            }
+
+                            &:hover .bi-arrow-left-short {
+                                // transform: translateX(-2px);
+                                color: #a8a8a8;
+                            }
+                        }
+                    }
                 }
             }
         }
     }
-}
 
-.read-more-button-wrapper {
-    width: 220px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0;
-    margin-right: -10px;
-
-    .read-more-button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #0e0e01;
-        border: none;
-        background-color: transparent;
-        font-family: 'Sohne-500' !important;
-        font-size: 1.5rem;
-
-        i {
-            font-size: 1.75rem;
-            margin-left: 5px;
-            padding-top: 5px;
-            transition: transform 0.1s ease;
-        }
-
-        &:hover {
-            color: #a8a8a8;
-        }
-
-        &:hover .bi-arrow-left-short {
-            transform: translateX(-2px);
-            color: #a8a8a8;
-        }
-    }
 }
 
 .footer-button-wrapper {

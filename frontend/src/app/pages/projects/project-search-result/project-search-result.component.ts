@@ -6,11 +6,11 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
 // Components
-import { BackToTopButtonComponent } from '../../../../components/buttons/back-to-top-button/back-to-top-button.component';
-import { CallActionComponent } from '../../../../components/call-action/call-action.component';
+import { BackToTopButtonComponent } from '../../../components/buttons/back-to-top-button/back-to-top-button.component';
+import { CallActionComponent } from '../../../components/call-action/call-action.component';
 // Services
-import { ProjectService } from '../../../../shared/project.service';
-import { IProject } from '../../../../../util/interfaces';
+import { ProjectService } from '../../../shared/project.service';
+import { IProject } from '../../../../util/interfaces';
 
 @Component({
   selector: 'app-project-search-result',

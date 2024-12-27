@@ -4,11 +4,11 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 // Components
-import { ProjectCardComponent } from '../../../../../../components/project-card/project-card.component';
+import { ProjectCardComponent } from '../../../../../components/project-card/project-card.component';
 // Services
-import { ProjectService } from '../../../../../../shared/project.service';
-import { IProject } from '../../../../../../../util/interfaces';
-import { TranslationHelper } from '../../../../../../shared/translation-helper';
+import { ProjectService } from '../../../../../shared/project.service';
+import { IProject } from '../../../../../../util/interfaces';
+import { TranslationHelper } from '../../../../../shared/translation-helper';
 
 @Component({
   selector: 'app-more-projects',

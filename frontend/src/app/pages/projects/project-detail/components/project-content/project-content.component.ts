@@ -2,7 +2,7 @@
 import { Component, Input, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // Components
-import { IProject } from '../../../../../../../util/interfaces'
+import { IProject } from '../../../../../../util/interfaces'
 
 @Component({
   selector: 'app-project-content',
