@@ -36,13 +36,22 @@
 
 
 .client-button-cell {
+    height: 319px;
+    display: flex;
+    justify-content: end;
+    align-items: end;
     padding: 287.4px 0 0 97px;
     margin: 0;
     border: none;
+    background-color: #ffffff;
     border-top: 2px solid #000000;
     cursor: pointer;
 
     .contact-button {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        align-items: end;
         font-family: 'Sohne-500' !important;
         font-size: 1.75rem;
         color: #000000;

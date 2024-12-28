@@ -3,10 +3,10 @@
         <!-- First 14 client logos -->
         <div *ngFor="let client of clients | slice: 0:14" class="col d-flex align-items-center justify-content-center">
             <div class="client-logo-container">
-                <img [src]="client.company_logo.url" [alt]="client.company_name">
+                <img [src]="client.company_logo.url" alt="client.company_name">
             </div>
         </div>
-        <button class="col d-flex align-items-center justify-content-center client-button-cell" routerLink="/clients">
+        <button class="d-flex align-items-center justify-content-center client-button-cell" routerLink="/clients">
             <p class="contact-button">{{ 'clients.all-clients' | translate }}</p>
             <i class="bi bi-arrow-up-short client-icon"></i>
         </button>
