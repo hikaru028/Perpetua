@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { ServiceCardComponent } from './components/service-card/service-card.component';
 // Services
 import { TranslationHelper } from '../../../../shared/translation-helper';
+import { LanguageService } from '../../../../shared/language.service';
 
 @Component({
   selector: 'app-services',
@@ -19,21 +20,23 @@ import { TranslationHelper } from '../../../../shared/translation-helper';
 
 export class ServicesComponent implements OnDestroy {
   currentLanguage: string = 'en';
-
   private langChangeSubscription!: Subscription;
 
-  constructor(private translationHelper: TranslationHelper, private translate: TranslateService) {
-    this.currentLanguage = this.translationHelper.getCurrentLanguage();
-    this.langChangeSubscription = this.translate.onLangChange.subscribe((event) => {
-      this.currentLanguage = event.lang;
-    });
+  constructor(private languageService: LanguageService) { }
+
+  ngOnInit(): void {
+    this.currentLanguage = this.languageService.getCurrentLanguage();
+
+    this.langChangeSubscription = this.languageService.currentLanguage$.subscribe(
+      (lang) => {
+        this.currentLanguage = lang;
+      }
+    );
   }
 
   ngOnDestroy(): void {
     if (this.langChangeSubscription) {
       this.langChangeSubscription.unsubscribe();
     }
-
-    this.translationHelper.unsubscribe();
   }
 }

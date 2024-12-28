@@ -2,13 +2,12 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { Subscription, Observable } from 'rxjs';
 // Components
 import { ProjectCardComponent } from '../../../../components/project-card/project-card.component';
 import { ArticleAndProjectCardSkeletonComponent } from '../../../../components/skeletons/article-and-project-card-skeleton/article-and-project-card-skeleton.component';
 // Services
-import { TranslationHelper } from '../../../../shared/translation-helper';
 import { ProjectService } from '../../../../shared/project.service';
 import { LanguageService } from '../../../../shared/language.service';
 import { IProject } from '../../../../../util/interfaces';

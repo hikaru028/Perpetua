@@ -3,21 +3,27 @@
         <!-- Title -->
         <div class="header-wrapper">
             <h1>{{ 'menu.services' | translate }}</h1>
-            <p class="sub-header">We make simple, beautiful technology that delights
-                your customers & empowers your business.</p>
+            <p class="sub-header">
+                {{ 'service.sub-title-L1' | translate }}<br />
+                {{ 'service.sub-title-L2-bf' | translate }}
+                <span *ngIf="currentLanguage === 'en'" class="ampersand" aria-label="Ampersand">&amp;</span>
+                {{ 'service.sub-title-L2-af' | translate }}
+            </p>
         </div>
     </section>
     <!-- Our capabilities -->
     <section class="capabilities-container">
-        <h1>Our capabilities</h1>
+        <h1>{{ 'service.capabilities.title' | translate }}</h1>
         <app-service-card></app-service-card>
     </section>
     <!-- Our technologies -->
     <section class="technologies-container">
         <div class="header-wrapper">
-            <h1>Our technologies</h1>
-            <p class="sub-header">Some two line explanation of the technologies we
-                choose to use and why that’s good</p>
+            <h1>{{ 'service.technologies.title' | translate }}</h1>
+            <p class="sub-header">
+                {{ 'service.technologies.sub-title-L1' | translate }}<br />
+                {{ 'service.technologies.sub-title-L2' | translate }}
+            </p>
         </div>
         <div class="logo-container">
             <div class="row row-cols-5">
