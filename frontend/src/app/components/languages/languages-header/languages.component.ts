@@ -13,6 +13,7 @@ import { LanguageService } from '../../../shared/language.service';
   standalone: true,
   imports: [CommonModule]
 })
+
 export class LanguagesComponent implements OnInit, OnDestroy {
   allLanguages: { key: string, label: string, code: string }[] = [
     { key: 'korean', label: '한국어', code: 'ko' },
@@ -27,18 +28,21 @@ export class LanguagesComponent implements OnInit, OnDestroy {
   @ViewChild('currentLangWrapper', { static: false }) currentLangWrapper!: ElementRef<HTMLDivElement>;
   @ViewChild('chevronIcon', { static: false }) chevronIcon!: ElementRef<HTMLElement>;
 
-  translate: TranslateService = inject(TranslateService);
-  renderer = inject(Renderer2);
-  cdr = inject(ChangeDetectorRef);
-  languageService = inject(LanguageService);
-
   get filteredLanguages() {
     return this.allLanguages.filter(lang => lang.label !== this.selectedLanguage);
   }
 
+  constructor(
+    private languageService: LanguageService,
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
+    private renderer: Renderer2
+  ) { }
+
   ngOnInit() {
-    this.languageSubscription = this.languageService.selectedLanguage$.subscribe((language) => {
-      this.selectedLanguage = language;
+    this.selectedLanguage = this.languageService.getCurrentLanguage();
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe((language) => {
+      this.selectedLanguage = this.getLanguageLabel(language);
       this.cdr.detectChanges();
     });
   }
@@ -54,6 +58,11 @@ export class LanguagesComponent implements OnInit, OnDestroy {
     this.updateDropdownVisibility();
   }
 
+  getLanguageLabel(code: string): string {
+    const lang = this.allLanguages.find((lang) => lang.code === code);
+    return lang ? lang.label : 'English';
+  }
+
   updateDropdownVisibility() {
     if (this.isOpen) {
       this.onOpenOption();
@@ -64,10 +73,10 @@ export class LanguagesComponent implements OnInit, OnDestroy {
 
   onLanguageChange(language: string, code: string, event: Event) {
     event.stopPropagation();
-    this.languageService.updateLanguage(language); // Notify service of language change
-    this.translate.use(code.trim()).subscribe(() => {
-      this.onCloseOption();
-      this.cdr.detectChanges();
+    this.languageService.setCurrentLanguage(language);
+    this.translate.use(code).subscribe(() => {
+      this.isOpen = false;
+      this.updateDropdownVisibility();
     });
   }
 

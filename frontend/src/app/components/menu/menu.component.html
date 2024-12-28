@@ -130,8 +130,8 @@
             </li>
         </ul>
         <ul class="submenu-item-wrapper">
-            <li class="page-link" [routerLink]="['/about']" (click)="onMenuHide('about', $event)"
-                (keydown)="onKeyDownMenuHide($event, 'about')">
+            <li class="page-link" [routerLink]="['/about']" fragment="aboutCareers"
+                (click)="onMenuHide('about', $event)" (keydown)="onKeyDownMenuHide($event, 'about')">
                 <p>{{ 'about.nav.career' | translate }}</p><i class="bi bi-arrow-right-short"></i>
             </li>
             <li class="page-link" [routerLink]="['/about']" fragment="aboutLocations"

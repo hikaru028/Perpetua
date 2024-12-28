@@ -21,24 +21,27 @@ export class LanguageFooterComponent implements OnInit, OnDestroy {
   ];
   isOpen: boolean = false;
   selectedLanguage: string = 'English';
-  private languageSubscription: Subscription | undefined;
+  private languageSubscription!: Subscription;
 
   @ViewChild('languageForm', { static: false }) formElement!: ElementRef<HTMLFormElement>;
   @ViewChild('currentLangWrapper', { static: false }) currentLangWrapper!: ElementRef<HTMLDivElement>;
   @ViewChild('chevronIcon', { static: false }) chevronIcon!: ElementRef<HTMLElement>;
 
-  translate: TranslateService = inject(TranslateService);
-  renderer = inject(Renderer2);
-  cdr = inject(ChangeDetectorRef);
-  languageService = inject(LanguageService);
-
   get filteredLanguages() {
     return this.allLanguages.filter(lang => lang.label !== this.selectedLanguage);
   }
 
+  constructor(
+    private languageService: LanguageService,
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
+    private renderer: Renderer2
+  ) { }
+
   ngOnInit() {
-    this.languageSubscription = this.languageService.selectedLanguage$.subscribe((language) => {
-      this.selectedLanguage = language;
+    this.selectedLanguage = this.languageService.getCurrentLanguage();
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe((language) => {
+      this.selectedLanguage = this.getLanguageLabel(language);
       this.cdr.detectChanges();
     });
   }
@@ -59,6 +62,11 @@ export class LanguageFooterComponent implements OnInit, OnDestroy {
     }
   }
 
+  getLanguageLabel(code: string): string {
+    const lang = this.allLanguages.find((lang) => lang.code === code);
+    return lang ? lang.label : 'English';
+  }
+
   onToggleOptionKeyDown(event: KeyboardEvent): void {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
@@ -66,9 +74,9 @@ export class LanguageFooterComponent implements OnInit, OnDestroy {
     }
   }
 
-  langOption(lang: string, code: string) {
+  langOption(language: string, code: string) {
     this.isOpen = false;
-    this.languageService.updateLanguage(lang);
+    this.languageService.setCurrentLanguage(language);
     this.translate.use(code.trim()).subscribe(() => {
       this.onCloseOption();
       this.cdr.detectChanges();

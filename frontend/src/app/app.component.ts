@@ -12,6 +12,8 @@ import { LanguagesComponent } from './components/languages/languages-header/lang
 import translationsEN from "../../public/i18n/en.json";
 import translationsJP from "../../public/i18n/ja.json";
 import translationsKO from "../../public/i18n/ko.json";
+// Services
+import { LanguageService } from './shared/language.service';
 
 @Component({
   selector: 'app-root',
@@ -34,14 +36,19 @@ export class AppComponent implements OnInit {
     private titleService: Title,
     private metaService: Meta,
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private languageService: LanguageService
   ) {
     this.translate.addLangs(['en', 'ja', 'ko']);
     this.translate.setTranslation('en', translationsEN);
     this.translate.setTranslation('ja', translationsJP);
     this.translate.setTranslation('ko', translationsKO);
-    this.translate.setDefaultLang('en');
-    this.translate.use(this.translate.getBrowserLang() || "en");
+
+    const browserLang = this.translate.getBrowserLang() || 'en';
+    this.translate.setDefaultLang(browserLang);
+    this.translate.use(browserLang).subscribe(() => {
+      this.languageService.setCurrentLanguage(browserLang);
+    });
   }
 
   ngOnInit(): void {
@@ -63,5 +70,9 @@ export class AppComponent implements OnInit {
           this.metaService.updateTag({ name: 'description', content: 'Welcome to Perpeture, an innovative technology services company.' });
         }
       });
+
+    this.translate.onLangChange.subscribe((event) => {
+      this.languageService.setCurrentLanguage(event.lang);
+    });
   }
 }

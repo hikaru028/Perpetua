@@ -1,5 +1,5 @@
 // Libraries
-import { Component, OnDestroy, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
@@ -10,6 +10,7 @@ import { ArticleAndProjectCardSkeletonComponent } from '../../../../components/s
 // Services
 import { TranslationHelper } from '../../../../shared/translation-helper';
 import { ProjectService } from '../../../../shared/project.service';
+import { LanguageService } from '../../../../shared/language.service';
 import { IProject } from '../../../../../util/interfaces';
 
 @Component({
@@ -19,35 +20,39 @@ import { IProject } from '../../../../../util/interfaces';
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
 })
-export class ProjectsComponent implements OnDestroy {
+export class ProjectsComponent implements OnInit, OnDestroy {
   projects$: Observable<IProject[]>;
   filteredProjects$: Observable<IProject[]>;
   selectedFilter$!: Observable<string | null>;
   isLoading$!: Observable<boolean | null>;
   currentLanguage: string = 'en';
-
   private langChangeSubscription!: Subscription;
 
   projectService: ProjectService = inject(ProjectService);
 
-  constructor(private translationHelper: TranslationHelper, private translate: TranslateService) {
+  constructor(
+    private languageService: LanguageService
+  ) {
     this.projects$ = this.projectService.projects$;
     this.filteredProjects$ = this.projectService.filteredProjects$;
     this.selectedFilter$ = this.projectService.selectedFilter$;
     this.isLoading$ = this.projectService.isLoading$;
-    this.currentLanguage = this.translationHelper.getCurrentLanguage();
+  }
 
-    this.langChangeSubscription = this.translate.onLangChange.subscribe((event) => {
-      this.currentLanguage = event.lang;
-    });
+  ngOnInit(): void {
+    this.currentLanguage = this.languageService.getCurrentLanguage();
+
+    this.langChangeSubscription = this.languageService.currentLanguage$.subscribe(
+      (lang) => {
+        this.currentLanguage = lang;
+      }
+    );
   }
 
   ngOnDestroy(): void {
     if (this.langChangeSubscription) {
       this.langChangeSubscription.unsubscribe();
     }
-
-    this.translationHelper.unsubscribe();
   }
 
   sortProjects(type: string): void {
