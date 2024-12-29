@@ -1,8 +1,9 @@
 // Libraries
 import { Meta, Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 // Components
 import { BackToTopButtonComponent } from '../../../components/buttons/back-to-top-button/back-to-top-button.component';
 import { ProjectDetailSkeletonComponent } from '../../../components/skeletons/project-detail-skeleton/project-detail-skeleton.component';
@@ -12,6 +13,7 @@ import { ProjectContentComponent } from './components/project-content/project-co
 import { StrapiService } from '../../../api/strapi.service';
 import { IProject, APIResponseModel } from '../../../../util/interfaces';
 import { environment } from '../../../../environments/environment.development';
+import { TranslationHelper } from '../../../shared/translation-helper';
 
 @Component({
   selector: 'app-project-detail',
@@ -21,7 +23,8 @@ import { environment } from '../../../../environments/environment.development';
     ProjectDetailSkeletonComponent,
     BackToTopButtonComponent,
     MoreProjectsComponent,
-    ProjectContentComponent
+    ProjectContentComponent,
+    TranslateModule
   ],
   templateUrl: './project-detail.component.html',
   styleUrl: './project-detail.component.scss'
@@ -30,14 +33,18 @@ export class ProjectDetailComponent implements OnInit {
   documentId!: string;
   project?: IProject;
   strapiUrl = environment.strapiMediaUrl;
+  currentLanguage: string = 'en';
 
   constructor(
     private metaService: Meta,
     private titleService: Title,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private strapiService: StrapiService
-  ) { }
+    private strapiService: StrapiService,
+    private translationHelper: TranslationHelper
+  ) {
+    this.currentLanguage = this.translationHelper.getCurrentLanguage();
+  }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -47,6 +54,10 @@ export class ProjectDetailComponent implements OnInit {
         this.loadProjectDetails();
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.translationHelper.unsubscribe();
   }
 
   loadProjectDetails(): void {

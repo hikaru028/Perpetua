@@ -1,24 +1,26 @@
 // Libraries
-import { Component, Input, inject, OnChanges, SimpleChanges, HostListener, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, inject, OnChanges, SimpleChanges, HostListener, ElementRef, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { marked } from 'marked';
 import { Observable } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 // Components
 import { ShareArticleButtonComponent } from '../../../../../components/buttons/share-article-button/share-article-button.component';
 // Services
 import { ArticleService } from '../../../../../shared/article.service';
 import { IArticle } from '../../../../../../util/interfaces';
+import { TranslationHelper } from '../../../../../shared/translation-helper';
 
 @Component({
   selector: 'app-article-content',
   standalone: true,
-  imports: [CommonModule, ShareArticleButtonComponent],
+  imports: [CommonModule, ShareArticleButtonComponent, TranslateModule],
   templateUrl: './article-content.component.html',
   styleUrl: './article-content.component.scss'
 })
-export class ArticleContentComponent implements OnChanges {
+export class ArticleContentComponent implements OnChanges, OnDestroy {
   @Input() article: IArticle | undefined;
   @Input() currentArticleDocumentId: string | null = null;
   moreArticles$: Observable<IArticle[]>;
@@ -26,14 +28,17 @@ export class ArticleContentComponent implements OnChanges {
   restOfContent: SafeHtml | undefined;
   firstLetter: string = '';
   articleService: ArticleService = inject(ArticleService);
+  currentLanguage: string = 'en';
 
   constructor(
     private sanitizer: DomSanitizer,
     private router: Router,
     private elRef: ElementRef,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private translationHelper: TranslationHelper
   ) {
     this.moreArticles$ = this.articleService.moreArticles$;
+    this.currentLanguage = this.translationHelper.getCurrentLanguage();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -44,6 +49,10 @@ export class ArticleContentComponent implements OnChanges {
     if (changes['currentArticleDocumentId'] && changes['currentArticleDocumentId'].currentValue) {
       this.articleService.selectMoreArticleByDate(changes['currentArticleDocumentId'].currentValue);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.translationHelper.unsubscribe();
   }
 
   async parseContent(): Promise<void> {

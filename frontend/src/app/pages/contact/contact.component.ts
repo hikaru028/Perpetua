@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 // Components
 import { LocationCardComponent } from '../about/components/location-card/location-card.component';
@@ -13,7 +13,7 @@ import { ContactData } from './contact-data';
 // Services
 import { StrapiService } from '../../api/strapi.service';
 import { IOffice, APIResponseModel, IFlag } from '../../../util/interfaces';
-import { TranslationHelper } from '../../shared/translation-helper';
+import { LanguageService } from '../../shared/language.service';
 import { environment } from '../../../environments/environment.development';
 import { OfficeService } from '../../shared/office.service';
 
@@ -47,17 +47,19 @@ export class ContactComponent implements OnInit, OnDestroy {
   private intervalId: any;
   private timeoutId: any;
   currentLanguage: string = 'en';
+  private langChangeSubscription!: Subscription;
 
   constructor(
     private titleService: Title,
     private metaService: Meta,
     private route: ActivatedRoute,
     private strapiService: StrapiService,
-    private translationHelper: TranslationHelper,
+    // private translationHelper: TranslationHelper,
+    private languageService: LanguageService,
     private officeService: OfficeService,
     private fb: FormBuilder,
   ) {
-    this.currentLanguage = this.translationHelper.getCurrentLanguage();
+    // this.currentLanguage = this.translationHelper.getCurrentLanguage();
     this.offices$ = this.officeService.offices$;
     this.contactForm = this.fb.group({
       full_name: ['', Validators.required],
@@ -73,6 +75,13 @@ export class ContactComponent implements OnInit, OnDestroy {
     // Meta info for SEO
     this.titleService.setTitle('Contact - Perpeture');
     this.metaService.updateTag({ name: 'description', content: 'Browse Contact to get in touch with us at Perpeture.' });
+
+    this.currentLanguage = this.languageService.getCurrentLanguage();
+    this.langChangeSubscription = this.languageService.currentLanguage$.subscribe(
+      (lang) => {
+        this.currentLanguage = lang;
+      }
+    );
 
     this.selectedLocation = 'Christchurch';
     this.selectedContactInfo = this.contactData.find(data => data.location === 'Christchurch');
@@ -113,7 +122,10 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.translationHelper.unsubscribe();
+    if (this.langChangeSubscription) {
+      this.langChangeSubscription.unsubscribe();
+    }
+
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }

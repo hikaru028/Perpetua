@@ -1,7 +1,7 @@
 <section class='w-100 m-0'>
     <div class="image-wrapper">
         <img *ngIf="article?.thumbnail_image; else fallbackImage" [src]="article?.thumbnail_image?.url"
-            [alt]="article?.title || 'No Title Available'" />
+            alt="article?.title || 'No Title Available'" />
         <ng-template #fallbackImage>
             <img src="../../../assets/images/img_n.a.png" alt="No Available" />
         </ng-template>
@@ -10,7 +10,7 @@
         <!-- Left section -->
         <div class="content-left">
             <div class="related-articles-container">
-                <p class="title">Related articles</p>
+                <p class="title">{{ 'articles.related-articles' | translate }}</p>
                 <div *ngFor="let article of moreArticles$ | async | slice: 0:4" class="related-article"
                     (click)="navigateToArticle(article.documentId)"
                     (keydown)="handleKeydown($event, article.documentId)">

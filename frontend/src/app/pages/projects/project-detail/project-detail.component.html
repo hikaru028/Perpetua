@@ -5,7 +5,7 @@
             <p class="description">{{project.project_description}}</p>
             <div class="button-wrapper">
                 <button class="button">
-                    View live project
+                    {{ 'button.live-project' | translate }}
                     <i class="bi bi-arrow-right-short"></i>
                 </button>
             </div>
@@ -31,7 +31,7 @@
     </section>
     <div class="live-button-wrapper">
         <button class="live-button live-button-btm">
-            View live project
+            {{ 'button.live-project' | translate }}
             <i class="bi bi-arrow-right-short"></i>
         </button>
     </div>
@@ -41,7 +41,7 @@
     <div class="footer-button-wrapper">
         <button class="footer-button" (click)="goBack()">
             <i class="bi bi-arrow-left-short"></i>
-            Back to all projects
+            {{ 'button.back-to-projects' | translate }}
         </button>
         <app-back-to-top-button></app-back-to-top-button>
     </div>

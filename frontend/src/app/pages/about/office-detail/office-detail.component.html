@@ -27,7 +27,7 @@
     <!-- Contacts -->
     <section class="contact-section">
         <div class="contact-container">
-            <h1>Contact</h1>
+            <h1>{{ 'about.office.contact' | translate }}</h1>
             <div>
                 <div class="address">
                     <p>{{office?.address_1}}</p>
@@ -69,7 +69,7 @@
     </section>
     <!-- Work -->
     <section class="work-section">
-        <h1>Selected Work</h1>
+        <h1>{{ 'about.office.selected-work' | translate }}</h1>
         <ng-container *ngIf="isLoading$ | async; else projectCards">
             <app-article-and-project-card-skeleton></app-article-and-project-card-skeleton>
         </ng-container>

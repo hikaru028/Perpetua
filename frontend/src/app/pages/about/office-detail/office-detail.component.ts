@@ -73,11 +73,20 @@ export class OfficeDetailComponent implements OnInit, OnDestroy {
       behavior: 'instant'
     });
 
+    this.careerService.careers$.subscribe(careers => {
+      this.careers = careers;
+    });
+
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
         this.documentId = id;
+        localStorage.setItem('documentId', this.documentId);
+      } else {
+        this.documentId = localStorage.getItem('documentId') || '';
+      }
 
+      if (this.documentId) {
         this.offices$.subscribe(offices => {
           this.office = offices.find(office => office.documentId === this.documentId);
 
@@ -103,6 +112,8 @@ export class OfficeDetailComponent implements OnInit, OnDestroy {
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
+
+    localStorage.removeItem('documentId');
   }
 
   formatCurrentTime(currentTime: string): void {
