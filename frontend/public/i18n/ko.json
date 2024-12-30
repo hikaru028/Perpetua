@@ -90,6 +90,8 @@
 	"menu.home": "홈　",
 	"menu.projects": "프로젝트",
 	"menu.services": "저희의 일",
+	"page.not-found.message": "죄송합니다. 이 페이지는 존재하지 않습니다.",
+	"page.not-found.home-button": "홈으로 돌아가기",
 	"projects.title": "작업물",
 	"project.nav.software": "소프트웨어",
 	"project.nav.website": "웹사이트",

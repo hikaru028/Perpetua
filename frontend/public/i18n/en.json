@@ -90,6 +90,8 @@
 	"menu.services": "What we do",
 	"menu.search.projects": "Search projects",
 	"menu.search.articles": "Search content",
+	"page.not-found.message": "Sorry, this page doesn't exist.",
+	"page.not-found.home-button": "Go back home",
 	"projects.title": "Work",
 	"project.nav.software": "Software",
 	"project.nav.website": "Websites",

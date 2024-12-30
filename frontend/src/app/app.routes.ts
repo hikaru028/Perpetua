@@ -11,6 +11,7 @@ import { ClientsTestimonialComponent } from './pages/clients/clients-testimonial
 import { ContactComponent } from './pages/contact/contact.component';
 import { HistoryComponent } from './pages/about/history/history.component';
 import { HomeComponent } from './pages/home/home.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { OfficeDetailComponent } from './pages/about/office-detail/office-detail.component';
 import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
@@ -43,8 +44,9 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'clients', component: ClientsComponent },
     { path: 'clients/all', component: ClientsListComponent },
-    { path: 'clients/testimonials', component: ClientsTestimonialComponent },
+    // { path: 'clients/testimonials', component: ClientsTestimonialComponent },
     { path: 'team', component: TeamComponent },
     { path: 'privacy', component: PrivacyComponent },
-    { path: 'terms', component: TermsComponent }
+    { path: 'terms', component: TermsComponent },
+    { path: '**', component: NotFoundComponent }
 ];
