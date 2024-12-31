@@ -56,7 +56,11 @@ export class PageListComponent implements OnInit, OnDestroy {
   handleClick(sortType: string, menuItem: string, event: Event): void {
     event.stopPropagation();
 
-    if (sortType === 'article' || sortType === 'news' || sortType === 'blog') {
+    if (sortType === 'article' || sortType === 'news' || sortType === 'allArticle') {
+      if (sortType === 'allArticle') {
+        sortType = 'all';
+      }
+      console.log(sortType)
       this.sortArticles(sortType);
     } else {
       this.sortProjects(sortType);

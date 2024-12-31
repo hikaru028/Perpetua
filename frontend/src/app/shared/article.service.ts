@@ -60,7 +60,7 @@ export class ArticleService {
 
         if (type === 'all' || this.selectedFilterSubject.getValue() === type) {
             this.selectedFilterSubject.next('all');
-            this.filteredArticlesSubject.next(articles);  // Reset to all articles
+            this.filteredArticlesSubject.next(articles);
         } else {
             this.selectedFilterSubject.next(type);
             const filteredArticles = articles.filter(article => article.type === type);

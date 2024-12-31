@@ -55,7 +55,7 @@
                 <li [routerLink]="['/about']">
                     {{ 'about.nav.team-footer' | translate }}
                 </li>
-                <li [routerLink]="['/about/history']">
+                <li [routerLink]="['/about/history/preparing']">
                     {{ 'about.nav.history' | translate }}
                 </li>
                 <li [routerLink]="['/clients']">
@@ -70,8 +70,8 @@
         <div class="col">
             <p class="section-title">{{ 'menu.blog' | translate }}</p>
             <ul>
-                <li [routerLink]="['/articles']" (click)="handleClick('all', 'articles', $event)"
-                    (keydown)="handleKeydown($event, 'all', 'articles')">
+                <li [routerLink]="['/articles']" (click)="handleClick('allArticle', 'articles', $event)"
+                    (keydown)="handleKeydown($event, 'allArticle', 'articles')">
                     {{ 'articles.nav.all-content' | translate }}
                 </li>
                 <li [routerLink]="['/articles']" (click)="handleClick('news', 'articles', $event)"
