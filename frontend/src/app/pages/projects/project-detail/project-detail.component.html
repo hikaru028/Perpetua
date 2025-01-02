@@ -4,10 +4,10 @@
             <h1>{{project.project_title}}</h1>
             <p class="description">{{project.project_description}}</p>
             <div class="button-wrapper">
-                <button class="button">
+                <a class="button" [href]="project.project_link" target="_blank" rel="noopener noreferrer">
                     {{ 'button.live-project' | translate }}
                     <i class="bi bi-arrow-right-short"></i>
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -30,10 +30,10 @@
         </div>
     </section>
     <div class="live-button-wrapper">
-        <button class="live-button live-button-btm">
+        <a class="live-button" [href]="project.project_link" target="_blank" rel="noopener noreferrer">
             {{ 'button.live-project' | translate }}
             <i class="bi bi-arrow-right-short"></i>
-        </button>
+        </a>
     </div>
     <!-- Other projects -->
     <app-more-projects [currentProjectDocumentId]="project.documentId"></app-more-projects>

@@ -2,7 +2,7 @@
 import { Meta, Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 // Components
 import { BackToTopButtonComponent } from '../../../components/buttons/back-to-top-button/back-to-top-button.component';
@@ -24,7 +24,8 @@ import { TranslationHelper } from '../../../shared/translation-helper';
     BackToTopButtonComponent,
     MoreProjectsComponent,
     ProjectContentComponent,
-    TranslateModule
+    TranslateModule,
+    RouterLink
   ],
   templateUrl: './project-detail.component.html',
   styleUrl: './project-detail.component.scss'
