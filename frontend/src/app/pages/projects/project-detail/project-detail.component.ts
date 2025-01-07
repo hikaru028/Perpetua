@@ -11,7 +11,7 @@ import { MoreProjectsComponent } from './components/more-projects/more-projects.
 import { ProjectContentComponent } from './components/project-content/project-content.component';
 // Services
 import { StrapiService } from '../../../api/strapi.service';
-import { IProject, APIResponseModel } from '../../../../util/interfaces';
+import { IProject, APIResponseModel, IImage } from '../../../../util/interfaces';
 import { environment } from '../../../../environments/environment.development';
 import { TranslationHelper } from '../../../shared/translation-helper';
 
@@ -71,6 +71,10 @@ export class ProjectDetailComponent implements OnInit {
             ...result.data.thumbnail_image,
             url: this.strapiUrl + result.data.thumbnail_image.url || "../../../../../assets/images/img_n.a.png"
           },
+          project_images: result.data.project_images.map((image: IImage) => ({
+            ...image,
+            url: this.strapiUrl + image.url || "../../../../../assets/images/img_n.a.png"
+          }))
         };
 
         if (this.project) {
