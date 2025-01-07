@@ -867,6 +867,10 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::client.client'
     >;
+    project_comment1: Schema.Attribute.Text;
+    project_comment2: Schema.Attribute.Text;
+    project_comment3: Schema.Attribute.Text;
+    project_comment4: Schema.Attribute.Text;
     project_date: Schema.Attribute.Date;
     project_description: Schema.Attribute.Text;
     project_images: Schema.Attribute.Media<

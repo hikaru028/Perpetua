@@ -93,6 +93,18 @@
       "relation": "oneToOne",
       "target": "api::slide.slide",
       "mappedBy": "project_image"
+    },
+    "project_comment1": {
+      "type": "text"
+    },
+    "project_comment2": {
+      "type": "text"
+    },
+    "project_comment3": {
+      "type": "text"
+    },
+    "project_comment4": {
+      "type": "text"
     }
   }
 }
