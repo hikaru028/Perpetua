@@ -35,12 +35,16 @@ export class ServicesComponent implements OnInit, OnDestroy {
     this.metaService.updateTag({ name: 'description', content: 'Browse Services to learn more about our ultimate services at Perpeture.' });
 
     this.currentLanguage = this.languageService.getCurrentLanguage();
-
     this.langChangeSubscription = this.languageService.currentLanguage$.subscribe(
       (lang) => {
         this.currentLanguage = lang;
       }
     );
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant'
+    });
   }
 
   ngOnDestroy(): void {

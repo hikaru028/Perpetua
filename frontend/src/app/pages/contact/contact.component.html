@@ -24,7 +24,7 @@
         </menu>
         <div class="contact-info-container" *ngIf="selectedContactInfo">
             <div class="contact-info-wrapper">
-                <p class="subject">Global New Business</p>
+                <p class="subject">{{ 'contact.enquiry.business' | translate }}</p>
                 <p class="name">{{ selectedContactInfo.new_business[0]?.name }}</p>
                 <p class="email" (click)="sendEmail(selectedContactInfo.new_business[0]?.email)"
                     (keydown)="sendEmailKeyDown($event, selectedContactInfo.new_business[0]?.email)">
@@ -32,7 +32,7 @@
                 </p>
             </div>
             <div class="contact-info-wrapper">
-                <p class="subject">Global Job Opportunities</p>
+                <p class="subject">{{ 'contact.enquiry.job' | translate }}</p>
                 <p class="name">{{ selectedContactInfo.job_opportunities[0]?.name }}</p>
                 <p class="email" (click)="sendEmail(selectedContactInfo.job_opportunities[0]?.email)"
                     (keydown)="sendEmailKeyDown($event, selectedContactInfo.job_opportunities[0]?.email)">
@@ -40,7 +40,7 @@
                 </p>
             </div>
             <div class="contact-info-wrapper">
-                <p class="subject">General Enquiries</p>
+                <p class="subject">{{ 'contact.enquiry.general' | translate }}</p>
                 <p class="email" (click)="sendEmail(selectedContactInfo.general_enquiries[0]?.email)"
                     (keydown)="sendEmailKeyDown($event, selectedContactInfo.general_enquiries[0]?.email)">
                     {{ selectedContactInfo.general_enquiries[0]?.email }}

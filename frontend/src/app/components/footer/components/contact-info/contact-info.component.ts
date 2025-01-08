@@ -1,7 +1,11 @@
+// Libraries
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+// Components
+import { OfficeData } from './office-data';
+// Services
 import { TranslationHelper } from '../../../../shared/translation-helper';
 
 @Component({
@@ -13,23 +17,7 @@ import { TranslationHelper } from '../../../../shared/translation-helper';
 })
 export class ContactInfoComponent implements OnInit, OnDestroy {
   @ViewChild(CdkMenuTrigger) trigger!: CdkMenuTrigger; // Reference to the CdkMenuTrigger
-  offices: any[] = [
-    {
-      country: 'location.nz',
-      phone: '+64 3 399 1111',
-      email: 'nz@perpetua.studio'
-    },
-    {
-      country: 'location.au',
-      phone: '+61 27 468 0018',
-      email: 'au@perpetua.studio'
-    },
-    {
-      country: 'location.jp',
-      phone: '+81 80 7823 9592',
-      email: 'jp@perpetua.studio'
-    }
-  ];
+  offices: any[] = OfficeData;
   selectedOfficeIndex: number = 0;
   isMenuOpen: boolean = false; // Track menu visibility
   currentLanguage: string = 'en';
