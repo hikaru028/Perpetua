@@ -185,6 +185,10 @@ p {
 
                 &.input-error {
                     border-bottom: 2px solid #ff6767;
+
+                    &::placeholder {
+                        color: #ff6767;
+                    }
                 }
             }
 
@@ -220,7 +224,12 @@ p {
 
                 &.input-error {
                     border-bottom: 2px solid #ff6767;
+
+                    &::placeholder {
+                        color: #ff6767;
+                    }
                 }
+
             }
 
             .first-line {
