@@ -91,7 +91,7 @@ export class OfficeDetailComponent implements OnInit, OnDestroy {
           this.office = offices.find(office => office.documentId === this.documentId);
 
           if (this.office) {
-            this.titleService.setTitle(`${this.office.office_location} - Perpeture`);
+            this.titleService.setTitle(`${this.office.office_location} - Perpetua`);
             this.metaService.updateTag({
               name: 'description',
               content: `Learn more about our office in ${this.office.office_location}.`

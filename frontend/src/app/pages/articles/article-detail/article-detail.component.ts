@@ -73,7 +73,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
         };
 
         if (this.article) {
-          this.titleService.setTitle(`${this.article.type}: ${this.article.title} (${this.article.createdAt}) - Perpeture`);
+          this.titleService.setTitle(`${this.article.type}: ${this.article.title} (${this.article.createdAt}) - Perpetua`);
           this.metaService.updateTag({
             name: 'description',
             content: `Read more about ${this.article.title}.`

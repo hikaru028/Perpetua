@@ -29,7 +29,7 @@ export class CareersComponent implements OnInit {
     {
       title: 'Supportive & Friendly Work Environment',
       description:
-        "At Perpeture we believe people produce their best work when they’re happy, rested, and they feel their work has meaning. It’s with this in mind that we take particular care to foster a supportive and friendly workplace—no one at Perpeture has ever been punished for making a mistake, as making mistakes is a natural part of pushing for the top."
+        "At Perpetua we believe people produce their best work when they’re happy, rested, and they feel their work has meaning. It’s with this in mind that we take particular care to foster a supportive and friendly workplace—no one at Perpetua has ever been punished for making a mistake, as making mistakes is a natural part of pushing for the top."
     },
     {
       title: 'Health & Wellness Programs & Subsidies',
@@ -39,7 +39,7 @@ export class CareersComponent implements OnInit {
     {
       title: 'Flexible Hours, Location & Remote Work',
       description:
-        "As part of Perpeture’s global team, you’ll have access to a shared office space as per your location. However, there’s no requirement to go in. Many of our team prefer the security of fixed hours, (and some positions demand relatively fixed hours) but many others can choose the days, times and locations of their work as it suits their schedules, and we encourage them to do so."
+        "As part of Perpetua’s global team, you’ll have access to a shared office space as per your location. However, there’s no requirement to go in. Many of our team prefer the security of fixed hours, (and some positions demand relatively fixed hours) but many others can choose the days, times and locations of their work as it suits their schedules, and we encourage them to do so."
     }
   ];
   strapiService = inject(StrapiService);
@@ -67,10 +67,10 @@ export class CareersComponent implements OnInit {
               }
 
               if (this.career?.job_title) {
-                this.titleService.setTitle(`Careers | ${this.career.job_title} - Perpeture`);
+                this.titleService.setTitle(`Careers | ${this.career.job_title} - Perpetua`);
                 this.metaService.updateTag({
                   name: 'description',
-                  content: `Explore the opportunity for a ${this.career.job_title} position at Perpeture. Join our team and grow your career!`
+                  content: `Explore the opportunity for a ${this.career.job_title} position at Perpetua. Join our team and grow your career!`
                 });
               }
             }

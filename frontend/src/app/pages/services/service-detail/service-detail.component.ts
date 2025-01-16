@@ -32,8 +32,8 @@ export class ServiceDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Meta info for SEO
-    this.titleService.setTitle('What we do - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'Browse Services to learn more about our ultimate services at Perpeture.' });
+    this.titleService.setTitle('What we do - Perpetua');
+    this.metaService.updateTag({ name: 'description', content: 'Browse Services to learn more about our ultimate services at Perpetua.' });
   }
 
   ngOnDestroy(): void {

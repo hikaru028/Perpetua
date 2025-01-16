@@ -32,8 +32,8 @@ export class ClientsListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Meta info for SEO
-    this.titleService.setTitle('Our Client List - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'Discover the full list of our clients and learn more about the impactful collaborations we’ve fostered at Perpeture.' });
+    this.titleService.setTitle('Our Client List - Perpetua');
+    this.metaService.updateTag({ name: 'description', content: 'Discover the full list of our clients and learn more about the impactful collaborations we’ve fostered at Perpetua.' });
   }
 
   ngOnDestroy(): void {

@@ -59,9 +59,9 @@
     "branch_name": {
       "type": "enumeration",
       "enum": [
-        "Perpeture Christchurch",
-        "Perpeture Australia",
-        "Perpeture Japan",
+        "Perpetua Christchurch",
+        "Perpetua Australia",
+        "Perpetua Japan",
         "MDMC"
       ]
     },

@@ -53,8 +53,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // Meta info for SEO
-    this.titleService.setTitle('Home - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'This is Perpeture website.' });
+    this.titleService.setTitle('Home - Perpetua');
+    this.metaService.updateTag({ name: 'description', content: 'This is Perpetua website.' });
 
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -63,11 +63,11 @@ export class AppComponent implements OnInit {
 
         // Update title and meta tag
         if (currentUrl === '/home') {
-          this.titleService.setTitle('Home - Perpeture');
-          this.metaService.updateTag({ name: 'description', content: 'Explore our portfolio to discover our innovative projects and learn about the diverse range of services we provide at Perpeture.' });
+          this.titleService.setTitle('Home - Perpetua');
+          this.metaService.updateTag({ name: 'description', content: 'Explore our portfolio to discover our innovative projects and learn about the diverse range of services we provide at Perpetua.' });
         } else {
-          this.titleService.setTitle('Perpeture');
-          this.metaService.updateTag({ name: 'description', content: 'Welcome to Perpeture, an innovative technology services company.' });
+          this.titleService.setTitle('Perpetua');
+          this.metaService.updateTag({ name: 'description', content: 'Welcome to Perpetua, an innovative technology services company.' });
         }
       });
 

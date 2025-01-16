@@ -48,17 +48,17 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Meta info for SEO
-    this.titleService.setTitle('Articles - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'Browse our news/blogs to read more about the amazing things we have done at Perpeture.' });
+    this.titleService.setTitle('Articles - Perpetua');
+    this.metaService.updateTag({ name: 'description', content: 'Browse our news/blogs to read more about the amazing things we have done at Perpetua.' });
 
     this.selectedFilter$.subscribe((filter) => {
       if (filter) {
         const upperCaseFilter = filter.charAt(0).toUpperCase() + filter.slice(1).toLowerCase(); // capitalise only the first letter
-        this.titleService.setTitle(`${upperCaseFilter} in Articles - Perpeture`);
-        this.metaService.updateTag({ name: 'description', content: `Browse ${filter} articles by Perpeture` });
+        this.titleService.setTitle(`${upperCaseFilter} in Articles - Perpetua`);
+        this.metaService.updateTag({ name: 'description', content: `Browse ${filter} articles by Perpetua` });
       } else {
-        this.titleService.setTitle('All articles - Perpeture');
-        this.metaService.updateTag({ name: 'description', content: 'Browse all articles by Perpeture' });
+        this.titleService.setTitle('All articles - Perpetua');
+        this.metaService.updateTag({ name: 'description', content: 'Browse all articles by Perpetua' });
       }
     });
 

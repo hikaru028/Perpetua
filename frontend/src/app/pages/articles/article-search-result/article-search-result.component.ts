@@ -34,8 +34,8 @@ export class ArticleSearchResultComponent implements OnInit {
 
   ngOnInit(): void {
     // Meta info for SEO
-    this.titleService.setTitle('Search Result (Articles) - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'Browse our articles searched by keywords to learn more about the amazing things we have done at Perpeture.' });
+    this.titleService.setTitle('Search Result (Articles) - Perpetua');
+    this.metaService.updateTag({ name: 'description', content: 'Browse our articles searched by keywords to learn more about the amazing things we have done at Perpetua.' });
 
 
     this.route.queryParams.subscribe((params) => {
@@ -60,7 +60,7 @@ export class ArticleSearchResultComponent implements OnInit {
 
     this.translate.onLangChange.subscribe((event) => {
       this.currentLanguage = event.lang;
-      this.titleService.setTitle(this.translate.instant('articles.title') + ' - Perpeture');
+      this.titleService.setTitle(this.translate.instant('articles.title') + ' - Perpetua');
     });
   }
 

@@ -62,8 +62,8 @@ export class AboutComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.officeService.offices$.subscribe();
     // Meta info for SEO
-    this.titleService.setTitle('About us - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'Browse About up to learn more about our amazing clients and team at Perpeture.' });
+    this.titleService.setTitle('About us - Perpetua');
+    this.metaService.updateTag({ name: 'description', content: 'Browse About up to learn more about our amazing clients and team at Perpetua.' });
 
     this.route.fragment.subscribe((fragment) => {
       console.log('URL Fragment:', fragment);

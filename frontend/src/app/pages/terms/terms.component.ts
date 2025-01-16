@@ -21,8 +21,8 @@ export class TermsComponent implements OnInit {
 
   ngOnInit(): void {
     // Meta info for SEO
-    this.titleService.setTitle('Terms - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'Understand the terms and conditions for using Perpeture. Explore detailed guidelines on our services, user responsibilities, and legal agreements.' });
+    this.titleService.setTitle('Terms - Perpetua');
+    this.metaService.updateTag({ name: 'description', content: 'Understand the terms and conditions for using Perpetua. Explore detailed guidelines on our services, user responsibilities, and legal agreements.' });
 
     window.scrollTo({
       top: 0,

@@ -69,23 +69,23 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     // Meta info for SEO
-    this.titleService.setTitle('Projects - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'Browse our projects to learn more about the amazing things we have done at Perpeture.' });
+    this.titleService.setTitle('Projects - Perpetua');
+    this.metaService.updateTag({ name: 'description', content: 'Browse our projects to learn more about the amazing things we have done at Perpetua.' });
 
     this.selectedFilter$.subscribe((filter) => {
       if (filter) {
         const upperCaseFilter = filter.charAt(0).toUpperCase() + filter.slice(1).toLowerCase(); // capitalise only the first letter
-        this.titleService.setTitle(`${upperCaseFilter} Projects - Perpeture`);
-        this.metaService.updateTag({ name: 'description', content: `Browse ${filter} projects by Perpeture` });
+        this.titleService.setTitle(`${upperCaseFilter} Projects - Perpetua`);
+        this.metaService.updateTag({ name: 'description', content: `Browse ${filter} projects by Perpetua` });
       } else {
-        this.titleService.setTitle('All Projects - Perpeture');
-        this.metaService.updateTag({ name: 'description', content: 'Browse all projects by Perpeture' });
+        this.titleService.setTitle('All Projects - Perpetua');
+        this.metaService.updateTag({ name: 'description', content: 'Browse all projects by Perpetua' });
       }
     });
 
     this.translate.onLangChange.subscribe(event => {
       this.currentLanguage = event.lang;
-      this.titleService.setTitle(this.translate.instant('projects.title') + ' - Perpeture');
+      this.titleService.setTitle(this.translate.instant('projects.title') + ' - Perpetua');
     });
 
     this.filteredProjects$

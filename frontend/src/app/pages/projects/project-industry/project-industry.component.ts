@@ -51,7 +51,7 @@ export class ProjectIndustryComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.selectedIndustry = params.get('industry')!;
-      this.titleService.setTitle(`${this.selectedIndustry || 'Projects'} - Perpeture`);
+      this.titleService.setTitle(`${this.selectedIndustry || 'Projects'} - Perpetua`);
       this.industryProjects$.subscribe((projects) => {
         this.filteredProjects$.next(projects);
       });

@@ -30,7 +30,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Meta info for SEO
-    this.titleService.setTitle('Our Clients - Perpeture');
+    this.titleService.setTitle('Our Clients - Perpetua');
     this.metaService.updateTag({ name: 'description', content: 'Explore our esteemed clients who have partnered with us to achieve outstanding results in their industries.' });
   }
 

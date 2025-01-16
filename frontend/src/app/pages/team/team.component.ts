@@ -52,18 +52,18 @@ export class TeamComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Meta info for SEO
-    this.titleService.setTitle('Our team - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'Browse our staff at Perpeture by a location or role.' });
+    this.titleService.setTitle('Our team - Perpetua');
+    this.metaService.updateTag({ name: 'description', content: 'Browse our staff at Perpetua by a location or role.' });
 
     this.selectedFilter$.subscribe((filter) => {
       if (filter) {
         const upperCaseFilter = filter.charAt(0).toUpperCase() + filter.slice(1).toLowerCase(); // Capitalise only the first letter
-        this.titleService.setTitle(`Our staff by ${upperCaseFilter} - Perpeture`);
-        this.metaService.updateTag({ name: 'description', content: `Browse members at Perpeture by ${filter}` });
+        this.titleService.setTitle(`Our staff by ${upperCaseFilter} - Perpetua`);
+        this.metaService.updateTag({ name: 'description', content: `Browse members at Perpetua by ${filter}` });
         this.groupMembersByCategory(filter);
       } else {
-        this.titleService.setTitle('All staff - Perpeture');
-        this.metaService.updateTag({ name: 'description', content: 'Browse all staff at Perpeture' });
+        this.titleService.setTitle('All staff - Perpetua');
+        this.metaService.updateTag({ name: 'description', content: 'Browse all staff at Perpetua' });
         this.membersByCategory = [];
       }
     });

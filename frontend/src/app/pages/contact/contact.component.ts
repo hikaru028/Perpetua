@@ -73,8 +73,8 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Meta info for SEO
-    this.titleService.setTitle('Contact - Perpeture');
-    this.metaService.updateTag({ name: 'description', content: 'Browse Contact to get in touch with us at Perpeture.' });
+    this.titleService.setTitle('Contact - Perpetua');
+    this.metaService.updateTag({ name: 'description', content: 'Browse Contact to get in touch with us at Perpetua.' });
 
     this.currentLanguage = this.languageService.getCurrentLanguage();
     this.langChangeSubscription = this.languageService.currentLanguage$.subscribe(
