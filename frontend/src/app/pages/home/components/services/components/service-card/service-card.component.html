@@ -1,10 +1,10 @@
 <div class="project-card-container container-fluid">
-    <div class="row row-cols-1 row-cols-md-3 custom-gutter">
+    <div class="row row-cols-3 custom-gutter">
         <div class="col" *ngFor="let service of services; let i = index">
             <div class="card-container">
                 <!-- Image -->
                 <div class="image-wrapper" (click)="showDescription(i)" (keydown)="onKeyDown($event, i)">
-                    <img [src]="service.image" [alt]="service.title + ' ' + (i + 1)">
+                    <img [src]="service.image" alt="service.title + ' ' + (i + 1)">
                 </div>
                 <!-- Title -->
                 <div class="title-wrapper" (click)="showDescription(i)" (keydown)="onKeyDown($event, i)">
