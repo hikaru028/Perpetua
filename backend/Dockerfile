@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y libvips-dev build-essential
 # Set up environment
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
+ENV PORT=8080 
 
 # Set the working directory for the app
 WORKDIR /opt/
