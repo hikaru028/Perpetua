@@ -1,21 +1,30 @@
-# Step 1: Use the official Node.js image as the base
-FROM node:16-alpine
+FROM node:18
 
-# Step 2: Set the working directory inside the container
-WORKDIR /srv/app
+# Install necessary dependencies (e.g., libvips-dev for image processing)
+RUN apt-get update && apt-get install -y libvips-dev build-essential
 
-# Step 3: Copy the package files and install dependencies
+# Set up environment
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
+
+# Set the working directory for the app
+WORKDIR /opt/
+
+# Copy package.json and package-lock.json
 COPY package.json package-lock.json ./
-RUN npm install --production
 
-# Step 4: Copy the rest of your Strapi application
-COPY . .
+# Install dependencies
+RUN npm install --legacy-peer-deps
 
-# Step 5: Expose the port your app runs on
+# Copy the rest of the app files
+WORKDIR /opt/app
+COPY ./ .
+
+# Build the app
+RUN npm run build
+
+# Expose the app port
 EXPOSE 1337
 
-# Step 6: Set the environment variables for production (Optional)
-ENV NODE_ENV=production
-
-# Step 7: Run Strapi when the container starts
+# Start the app
 CMD ["npm", "start"]
